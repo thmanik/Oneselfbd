@@ -1,3 +1,9 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-console": "error",
+    "no-undef": "error",
+    "no-unused-expressions": "error",
+    "no-unreachable": "error"
+  }
 }
