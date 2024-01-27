@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 import Carousel from "../components/carousel/Carousel";
 import Header from "../components/header/Navber";
+import ProductCarousel from "../components/productCarousel/ProductCarousel";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         {" "}
         <Header></Header>
         <Carousel></Carousel>
+        <ProductCarousel></ProductCarousel>
         {children}
       </body>
     </html>
