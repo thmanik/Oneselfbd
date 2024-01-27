@@ -49,7 +49,7 @@ const CarouselPage = () => {
       </div>
 
       {/* Second div taking 4 columns on medium screens and 4 columns on larger screens */}
-      <div className=" md:col-span-4 lg:col-span-4 ">
+      <div className=" md:col-span-4 lg:col-span-4  my-3">
         <div className="flex suggest-item md:m-3 items-center justify-center">
           <div>
             <img
@@ -58,7 +58,7 @@ const CarouselPage = () => {
               alt=""
             />
           </div>
-          <div className="md:ms-5">
+          <div className="ms-5">
             <h3>The Classical Bulb</h3>
             <Button placeholder={undefined}>Order Now!</Button>
           </div>
@@ -72,7 +72,7 @@ const CarouselPage = () => {
               alt=""
             />
           </div>
-          <div className="md:ms-5">
+          <div className="ms-5">
             <h3>The Classical Bulb</h3>
             <Button placeholder={undefined}>Order Now!</Button>
           </div>
@@ -85,7 +85,7 @@ const CarouselPage = () => {
               alt=""
             />
           </div>
-          <div className="md:ms-5">
+          <div className="ms-5">
             <h3>The Classical Bulb</h3>
             <Button placeholder={undefined}>Order Now!</Button>
           </div>
