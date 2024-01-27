@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
+import Carousel from "../components/carousel/Carousel";
 import Header from "../components/header/Navber";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {" "}
         <Header></Header>
+        <Carousel></Carousel>
         {children}
       </body>
     </html>
