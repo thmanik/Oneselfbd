@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 // components/SuggestedProducts.tsx
 "use client";
-import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import {
+  Button,
   Card,
   CardBody,
   CardFooter,
@@ -39,7 +39,7 @@ const SuggestedProducts: React.FC = () => {
       } else if (window.innerWidth < 600) {
         setSlidesPerView(2);
       } else {
-        setSlidesPerView(6); // Medium and larger screens
+        setSlidesPerView(5); // Medium and larger screens
       }
     };
 
@@ -63,7 +63,7 @@ const SuggestedProducts: React.FC = () => {
             <div className={`py-2 px-4 font-medium uppercase cursor-pointer`}>
               <div
                 className={`flex items-center gap-2 ${
-                  value === "tab1" ? "bg-blue-500 text-white" : "text-gray-700"
+                  value === "tab1" ? " text-black" : "text-gray-700"
                 }`}
                 onClick={() => handleChange("tab1")}
               >
@@ -106,11 +106,14 @@ const SuggestedProducts: React.FC = () => {
                   clickable: true,
                 }}
                 modules={[Pagination]}
-                className="mySwiper"
+                className="mySwiper   my-10"
               >
                 {data?.map((singledata) => (
                   <SwiperSlide key={singledata.id}>
-                    <Card className="mt-6 w-52 h-96" placeholder={undefined}>
+                    <Card
+                      className="my-4 W-56 mx-1  h-96 "
+                      placeholder={undefined}
+                    >
                       <CardBody placeholder={undefined}>
                         <Typography placeholder={undefined}>
                           {singledata?.Category}
@@ -126,16 +129,22 @@ const SuggestedProducts: React.FC = () => {
                       </CardBody>
 
                       <img
-                        className="CarouselProductImg"
+                        className="CarouselProductImg img-fluid"
                         src={singledata?.ProductImage}
                         alt="card-image"
                       />
 
                       <CardFooter className="pt-0" placeholder={undefined}>
-                        <div className="flex">
+                        <div className="flex justify-between">
                           <div>$ {singledata?.SellingPrice}</div>
                           <div>
-                            <ShoppingCartIcon className="bg-lime-800" />
+                            <Button
+                              size="sm"
+                              className="addTocartBtn "
+                              placeholder={undefined}
+                            >
+                              Add to Cart
+                            </Button>
                           </div>
                         </div>
                       </CardFooter>
@@ -154,11 +163,14 @@ const SuggestedProducts: React.FC = () => {
                   clickable: true,
                 }}
                 modules={[Pagination]}
-                className="mySwiper"
+                className="mySwiper   my-10"
               >
                 {data?.map((singledata) => (
                   <SwiperSlide key={singledata.id}>
-                    <Card className="mt-6 w-52 h-96" placeholder={undefined}>
+                    <Card
+                      className="my-4 W-56 mx-1  h-96 "
+                      placeholder={undefined}
+                    >
                       <CardBody placeholder={undefined}>
                         <Typography placeholder={undefined}>
                           {singledata?.Category}
@@ -174,16 +186,22 @@ const SuggestedProducts: React.FC = () => {
                       </CardBody>
 
                       <img
-                        className="CarouselProductImg"
+                        className="CarouselProductImg img-fluid"
                         src={singledata?.ProductImage}
                         alt="card-image"
                       />
 
                       <CardFooter className="pt-0" placeholder={undefined}>
-                        <div className="flex">
+                        <div className="flex justify-between">
                           <div>$ {singledata?.SellingPrice}</div>
                           <div>
-                            <ShoppingCartIcon className="bg-lime-800" />
+                            <Button
+                              size="sm"
+                              className="addTocartBtn "
+                              placeholder={undefined}
+                            >
+                              Add to Cart
+                            </Button>
                           </div>
                         </div>
                       </CardFooter>
@@ -202,11 +220,14 @@ const SuggestedProducts: React.FC = () => {
                   clickable: true,
                 }}
                 modules={[Pagination]}
-                className="mySwiper"
+                className="mySwiper   my-10"
               >
                 {data?.map((singledata) => (
                   <SwiperSlide key={singledata.id}>
-                    <Card className="mt-6 w-52 h-96" placeholder={undefined}>
+                    <Card
+                      className="my-4 W-56 mx-1  h-96 "
+                      placeholder={undefined}
+                    >
                       <CardBody placeholder={undefined}>
                         <Typography placeholder={undefined}>
                           {singledata?.Category}
@@ -222,16 +243,22 @@ const SuggestedProducts: React.FC = () => {
                       </CardBody>
 
                       <img
-                        className="CarouselProductImg"
+                        className="CarouselProductImg img-fluid"
                         src={singledata?.ProductImage}
                         alt="card-image"
                       />
 
                       <CardFooter className="pt-0" placeholder={undefined}>
-                        <div className="flex">
+                        <div className="flex justify-between">
                           <div>$ {singledata?.SellingPrice}</div>
                           <div>
-                            <ShoppingCartIcon className="bg-lime-800" />
+                            <Button
+                              size="sm"
+                              className="addTocartBtn "
+                              placeholder={undefined}
+                            >
+                              Add to Cart
+                            </Button>
                           </div>
                         </div>
                       </CardFooter>

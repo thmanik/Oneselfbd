@@ -4,3 +4,12 @@
   width: 350px;
   height: 150px;
 }
+.addTocartBtn {
+  outline: 1px solid #00c1f0;
+  background-color: white;
+  color: #00c1f0;
+}
+.addTocartBtn:hover {
+  background-color: #00c1f0;
+  color: white;
+}

@@ -60,7 +60,15 @@ const CarouselPage = () => {
           </div>
           <div className="ms-5">
             <h3>The Classical Bulb</h3>
-            <Button placeholder={undefined}>Order Now!</Button>
+            <div>
+              <Button
+                size="sm"
+                className="addTocartBtn "
+                placeholder={undefined}
+              >
+                Order Now!
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -74,7 +82,15 @@ const CarouselPage = () => {
           </div>
           <div className="ms-5">
             <h3>The Classical Bulb</h3>
-            <Button placeholder={undefined}>Order Now!</Button>
+            <div>
+              <Button
+                size="sm"
+                className="addTocartBtn "
+                placeholder={undefined}
+              >
+                Order Now!
+              </Button>
+            </div>
           </div>
         </div>
         <div className="flex suggest-item  md:m-3 items-center justify-center">
@@ -87,7 +103,15 @@ const CarouselPage = () => {
           </div>
           <div className="ms-5">
             <h3>The Classical Bulb</h3>
-            <Button placeholder={undefined}>Order Now!</Button>
+            <div>
+              <Button
+                size="sm"
+                className="addTocartBtn "
+                placeholder={undefined}
+              >
+                Order Now!
+              </Button>
+            </div>
           </div>
         </div>
       </div>
