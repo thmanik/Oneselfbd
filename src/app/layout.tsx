@@ -1,3 +1,4 @@
+import ProductHighlight from "@/components/ProductHighlight/ProductHighlight";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Header></Header>
         <Carousel></Carousel>
         <ProductCarousel></ProductCarousel>
+        <ProductHighlight></ProductHighlight>
         {children}
       </body>
     </html>
