@@ -106,7 +106,7 @@ const SuggestedProducts: React.FC = () => {
                   clickable: true,
                 }}
                 modules={[Pagination]}
-                className="mySwiper   my-10"
+                className="mySwiper   my-16"
               >
                 {data?.map((singledata) => (
                   <SwiperSlide key={singledata.id}>
@@ -215,7 +215,7 @@ const SuggestedProducts: React.FC = () => {
             <div>
               <Swiper
                 slidesPerView={slidesPerView}
-                spaceBetween={2}
+                spaceBetween={16}
                 pagination={{
                   clickable: true,
                 }}
