@@ -1,4 +1,5 @@
 import ProductHighlight from "@/components/ProductHighlight/ProductHighlight";
+import Footer from "@/components/footer/Footer";
 import PopularProducts from "@/components/popularProducts/PopularProducts";
 import PreFooter from "@/components/preFooter/PreFooter";
 import ProductsGallery from "@/components/productsGallery/ProductsGallery";
@@ -39,6 +40,7 @@ export default function RootLayout({
         <ProductsPromotion></ProductsPromotion>
         <PreFooter></PreFooter>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   );
