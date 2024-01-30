@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import "./ProductHighlight.css";
 const ProductHighlight = () => {
   return (
