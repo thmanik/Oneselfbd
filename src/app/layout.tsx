@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 import Carousel from "../components/carousel/Carousel";
+import FeatureProduct from "../components/featureProduct/FeatureProduct";
 import Header from "../components/header/Navber";
 import ProductCarousel from "../components/productCarousel/ProductCarousel";
 import "./globals.css";
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Carousel></Carousel>
         <ProductCarousel></ProductCarousel>
         <ProductHighlight></ProductHighlight>
+        <FeatureProduct></FeatureProduct>
         {children}
       </body>
     </html>
