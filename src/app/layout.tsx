@@ -1,6 +1,7 @@
 import ProductHighlight from "@/components/ProductHighlight/ProductHighlight";
 import PopularProducts from "@/components/popularProducts/PopularProducts";
 import ProductsGallery from "@/components/productsGallery/ProductsGallery";
+import ProductsPromotion from "@/components/productsPromotion/ProductsPromotion";
 import TrandingProducts from "@/components/trandingProducts/TrandingProducts";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -34,6 +35,7 @@ export default function RootLayout({
         <TrandingProducts></TrandingProducts>
         <PopularProducts></PopularProducts>
         <ProductsGallery></ProductsGallery>
+        <ProductsPromotion></ProductsPromotion>
         {children}
       </body>
     </html>
