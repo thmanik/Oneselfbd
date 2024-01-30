@@ -1,4 +1,5 @@
 import ProductHighlight from "@/components/ProductHighlight/ProductHighlight";
+import TrandingProducts from "@/components/trandingProducts/TrandingProducts";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
@@ -28,6 +29,7 @@ export default function RootLayout({
         <ProductCarousel></ProductCarousel>
         <ProductHighlight></ProductHighlight>
         <FeatureProduct></FeatureProduct>
+        <TrandingProducts></TrandingProducts>
         {children}
       </body>
     </html>

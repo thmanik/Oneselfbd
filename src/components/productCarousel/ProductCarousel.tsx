@@ -98,7 +98,7 @@ const SuggestedProducts: React.FC = () => {
         </TabsHeader>
         <TabsBody placeholder={undefined}>
           <TabPanel value="tab1">
-            <div>
+            <div className="md:mx-5">
               <Swiper
                 slidesPerView={slidesPerView}
                 spaceBetween={2}
@@ -155,7 +155,7 @@ const SuggestedProducts: React.FC = () => {
             </div>
           </TabPanel>
           <TabPanel value="tab2">
-            <div>
+            <div className="md:mx-5">
               <Swiper
                 slidesPerView={slidesPerView}
                 spaceBetween={2}
@@ -212,7 +212,7 @@ const SuggestedProducts: React.FC = () => {
             </div>
           </TabPanel>
           <TabPanel value="tab3">
-            <div>
+            <div className="md:mx-5">
               <Swiper
                 slidesPerView={slidesPerView}
                 spaceBetween={16}
