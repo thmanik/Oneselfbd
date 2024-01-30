@@ -1,17 +1,9 @@
-import ProductHighlight from "@/components/ProductHighlight/ProductHighlight";
 import Footer from "@/components/footer/Footer";
-import PopularProducts from "@/components/popularProducts/PopularProducts";
-import PreFooter from "@/components/preFooter/PreFooter";
-import ProductsGallery from "@/components/productsGallery/ProductsGallery";
-import ProductsPromotion from "@/components/productsPromotion/ProductsPromotion";
-import TrandingProducts from "@/components/trandingProducts/TrandingProducts";
+import Header from "../components/header/Navber";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
-import Carousel from "../components/carousel/Carousel";
-import FeatureProduct from "../components/featureProduct/FeatureProduct";
-import Header from "../components/header/Navber";
-import ProductCarousel from "../components/productCarousel/ProductCarousel";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,15 +22,6 @@ export default function RootLayout({
       <body className={inter.className}>
         {" "}
         <Header></Header>
-        <Carousel></Carousel>
-        <ProductCarousel></ProductCarousel>
-        <ProductHighlight></ProductHighlight>
-        <FeatureProduct></FeatureProduct>
-        <TrandingProducts></TrandingProducts>
-        <PopularProducts></PopularProducts>
-        <ProductsGallery></ProductsGallery>
-        <ProductsPromotion></ProductsPromotion>
-        <PreFooter></PreFooter>
         {children}
         <Footer></Footer>
       </body>
