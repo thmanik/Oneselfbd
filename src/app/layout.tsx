@@ -1,5 +1,6 @@
 import ProductHighlight from "@/components/ProductHighlight/ProductHighlight";
 import PopularProducts from "@/components/popularProducts/PopularProducts";
+import PreFooter from "@/components/preFooter/PreFooter";
 import ProductsGallery from "@/components/productsGallery/ProductsGallery";
 import ProductsPromotion from "@/components/productsPromotion/ProductsPromotion";
 import TrandingProducts from "@/components/trandingProducts/TrandingProducts";
@@ -36,6 +37,7 @@ export default function RootLayout({
         <PopularProducts></PopularProducts>
         <ProductsGallery></ProductsGallery>
         <ProductsPromotion></ProductsPromotion>
+        <PreFooter></PreFooter>
         {children}
       </body>
     </html>

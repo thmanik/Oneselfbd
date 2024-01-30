@@ -40,7 +40,7 @@ const PopularProducts = () => {
     };
   }, []);
   return (
-    <div>
+    <div className="mb-5">
       <div className="flex justify-between mx-8 mt-14 ">
         <div>
           <h3>Popular Products</h3>
