@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import data from "../../../public/data.json";
-import "./TrandingProducts.css";
-const TrandingProducts = () => {
+import "./PopularProducts.css";
+const PopularProducts = () => {
   const [slidesPerView, setSlidesPerView] = useState(1);
 
   useEffect(() => {
@@ -43,10 +43,13 @@ const TrandingProducts = () => {
     <div>
       <div className="flex justify-between mx-8 mt-14 ">
         <div>
-          <h3>Tranding Products</h3>
+          <h3>Popular Products</h3>
         </div>
-        <div>
-          <a href="">Go to the TrandingProducts</a>
+        <div className="flex gap-5">
+          <a className="" href="">
+            Top
+          </a>
+          <a href="">All in one</a>
         </div>
       </div>
       <hr />
@@ -106,4 +109,4 @@ const TrandingProducts = () => {
   );
 };
 
-export default TrandingProducts;
+export default PopularProducts;
