@@ -58,12 +58,19 @@ const SuggestedProducts: React.FC = () => {
   return (
     <div className="mt-8 bg-gray-100 rounded" style={{ width: "100%" }}>
       <Tabs value={value} onChange={handleChange}>
-        <TabsHeader placeholder={undefined}>
+        <TabsHeader
+          className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
+          indicatorProps={{
+            className:
+              "bg-transparent border-b-2 border-primary shadow-none rounded-none",
+          }}
+          placeholder={undefined}
+        >
           <Tab value="tab1" placeholder={undefined}>
             <div className={`py-2 px-4 font-medium uppercase cursor-pointer`}>
               <div
                 className={`flex items-center gap-2 ${
-                  value === "tab1" ? " text-black" : "text-gray-700"
+                  value === "tab1" ? " text-primary" : "text-gray-700"
                 }`}
                 onClick={() => handleChange("tab1")}
               >
@@ -75,7 +82,7 @@ const SuggestedProducts: React.FC = () => {
             <div className={`py-2 px-4 font-medium uppercase cursor-pointer`}>
               <div
                 className={`flex items-center gap-2 ${
-                  value === "tab2" ? " text-black" : "text-gray-700"
+                  value === "tab2" ? " text-primary" : "text-gray-700"
                 }`}
                 onClick={() => handleChange("tab2")}
               >
@@ -87,7 +94,7 @@ const SuggestedProducts: React.FC = () => {
             <div className={`py-2 px-4 font-medium uppercase cursor-pointer`}>
               <div
                 className={`flex items-center gap-2 ${
-                  value === "tab3" ? " text-black" : "text-gray-700"
+                  value === "tab3" ? " text-primary" : "text-gray-700"
                 }`}
                 onClick={() => handleChange("tab3")}
               >

@@ -1,4 +1,5 @@
 import Footer from "@/components/footer/Footer";
+import ProductsDetails from "@/components/productsDetails/ProductsDetails";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Header></Header>
         {children}
         <Footer></Footer>
+        <ProductsDetails></ProductsDetails>
       </body>
     </html>
   );
