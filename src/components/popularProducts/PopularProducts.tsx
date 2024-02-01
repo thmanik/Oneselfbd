@@ -65,7 +65,10 @@ const PopularProducts = () => {
         >
           {data?.map((singledata) => (
             <SwiperSlide key={singledata.id}>
-              <Card className="my-4 W-56 mx-1  h-96 " placeholder={undefined}>
+              <Card
+                className="my-4 W-56 mx-1 h-96 relative"
+                placeholder={undefined}
+              >
                 <CardBody placeholder={undefined}>
                   <Typography placeholder={undefined}>
                     {singledata?.Category}
@@ -86,13 +89,16 @@ const PopularProducts = () => {
                   alt="card-image"
                 />
 
-                <CardFooter className="pt-0" placeholder={undefined}>
+                <CardFooter
+                  className="pt-0 absolute bottom-0 left-0 right-0"
+                  placeholder={undefined}
+                >
                   <div className="flex justify-between">
                     <div>$ {singledata?.SellingPrice}</div>
                     <div>
                       <Button
                         size="sm"
-                        className="addTocartBtn "
+                        className="addTocartBtn"
                         placeholder={undefined}
                       >
                         Add to Cart

@@ -118,7 +118,7 @@ const SuggestedProducts: React.FC = () => {
                 {data?.map((singledata) => (
                   <SwiperSlide key={singledata.id}>
                     <Card
-                      className="my-4 W-56 mx-1  h-96 "
+                      className="my-4 W-56 mx-1 h-96 relative"
                       placeholder={undefined}
                     >
                       <CardBody placeholder={undefined}>
@@ -141,13 +141,16 @@ const SuggestedProducts: React.FC = () => {
                         alt="card-image"
                       />
 
-                      <CardFooter className="pt-0" placeholder={undefined}>
+                      <CardFooter
+                        className="pt-0 absolute bottom-0 left-0 right-0"
+                        placeholder={undefined}
+                      >
                         <div className="flex justify-between">
                           <div>$ {singledata?.SellingPrice}</div>
                           <div>
                             <Button
                               size="sm"
-                              className="addTocartBtn "
+                              className="addTocartBtn"
                               placeholder={undefined}
                             >
                               Add to Cart
@@ -175,7 +178,7 @@ const SuggestedProducts: React.FC = () => {
                 {data?.map((singledata) => (
                   <SwiperSlide key={singledata.id}>
                     <Card
-                      className="my-4 W-56 mx-1  h-96 "
+                      className="my-4 W-56 mx-1 h-96 relative"
                       placeholder={undefined}
                     >
                       <CardBody placeholder={undefined}>
@@ -198,13 +201,16 @@ const SuggestedProducts: React.FC = () => {
                         alt="card-image"
                       />
 
-                      <CardFooter className="pt-0" placeholder={undefined}>
+                      <CardFooter
+                        className="pt-0 absolute bottom-0 left-0 right-0"
+                        placeholder={undefined}
+                      >
                         <div className="flex justify-between">
                           <div>$ {singledata?.SellingPrice}</div>
                           <div>
                             <Button
                               size="sm"
-                              className="addTocartBtn "
+                              className="addTocartBtn"
                               placeholder={undefined}
                             >
                               Add to Cart
@@ -232,7 +238,7 @@ const SuggestedProducts: React.FC = () => {
                 {data?.map((singledata) => (
                   <SwiperSlide key={singledata.id}>
                     <Card
-                      className="my-4 W-56 mx-1  h-96 "
+                      className="my-4 W-56 mx-1 h-96 relative"
                       placeholder={undefined}
                     >
                       <CardBody placeholder={undefined}>
@@ -255,13 +261,16 @@ const SuggestedProducts: React.FC = () => {
                         alt="card-image"
                       />
 
-                      <CardFooter className="pt-0" placeholder={undefined}>
+                      <CardFooter
+                        className="pt-0 absolute bottom-0 left-0 right-0"
+                        placeholder={undefined}
+                      >
                         <div className="flex justify-between">
                           <div>$ {singledata?.SellingPrice}</div>
                           <div>
                             <Button
                               size="sm"
-                              className="addTocartBtn "
+                              className="addTocartBtn"
                               placeholder={undefined}
                             >
                               Add to Cart
