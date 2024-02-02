@@ -1,0 +1,23 @@
+.svgIcon {
+  border: 1px solid #00c1f0;
+  padding: 5px;
+  background-color: white;
+  color: #00c1f0;
+}
+.svgIcon:hover {
+  background-color: #00c1f0;
+  color: white;
+}
+.deleteBtn {
+  width: 30px;
+  height: 30px;
+}
+.proceedToCart {
+  outline: 1px solid #00c1f0;
+  background-color: white;
+  color: #00c1f0;
+}
+.proceedToCart:hover {
+  background-color: #00c1f0;
+  color: white;
+}
