@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import {
   Button,
@@ -15,7 +16,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-const LoginPage: React.FC = () => {
+const ForgetPassword: React.FC = () => {
   const { handleSubmit, control } = useForm<LoginFormInputs>();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
@@ -32,8 +33,12 @@ const LoginPage: React.FC = () => {
       <div className="flex items-center justify-center h-screen">
         <Card className="w-96" placeholder={undefined}>
           <CardBody className="flex flex-col gap-4" placeholder={undefined}>
-            <Typography variant="h3" color="black" placeholder={undefined}>
-              Sign In
+            <Typography variant="h4" color="black" placeholder={undefined}>
+              Forgot password?
+            </Typography>
+            <Typography placeholder={undefined}>
+              No problem - just enter the email address associated with your
+              Oneself account and we'll send you a link to reset your password.
             </Typography>
             <Controller
               name="number"
@@ -42,29 +47,11 @@ const LoginPage: React.FC = () => {
                 <input
                   type="tel"
                   {...field}
-                  className="border border-gray-300 my-2 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
+                  className="border border-gray-300 mt-2 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
                   placeholder="Enter PhoneNumber/Email"
                 />
               )}
             />
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <input
-                  type="password"
-                  {...field}
-                  className="border border-gray-300 my-2 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
-                  placeholder="Enter Password"
-                />
-              )}
-            />
-
-            <div className="mt-2">
-              <a href="/forgot-password" className="text-primary underline">
-                Forgot Password?
-              </a>
-            </div>
           </CardBody>
           <CardFooter className="pt-0" placeholder={undefined}>
             <Button
@@ -73,8 +60,14 @@ const LoginPage: React.FC = () => {
               placeholder={undefined}
               className="mt-4 BtnStyle"
             >
-              Sign In
+              Reset Password
             </Button>
+
+            <div className="mt-2">
+              <a href="/loginPage" className="text-primary m-auto ">
+                <p>Back To Login Page</p>
+              </a>
+            </div>
           </CardFooter>
         </Card>
       </div>
@@ -82,4 +75,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default ForgetPassword;

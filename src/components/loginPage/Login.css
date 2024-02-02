@@ -1,9 +1,0 @@
-.loginBtn {
-  outline: 1px solid #00c1f0;
-  background-color: white;
-  color: #00c1f0;
-}
-.loginBtn:hover {
-  background-color: #00c1f0;
-  color: white;
-}

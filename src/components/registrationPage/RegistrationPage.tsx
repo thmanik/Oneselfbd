@@ -9,7 +9,6 @@ import {
 // LoginPage.tsx
 import React from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import "./RegistrationPage.css";
 interface LoginFormInputs {
   number: number;
   password: string;
@@ -88,7 +87,7 @@ const RegistrationPage: React.FC = () => {
             />
 
             <div className="mt-2">
-              <a href="/forgot-password" className="text-blue-500 underline">
+              <a href="/forgot-password" className="text-primary underline">
                 Do You Have Already An Account?
               </a>
             </div>
@@ -98,7 +97,7 @@ const RegistrationPage: React.FC = () => {
               type="submit"
               fullWidth
               placeholder={undefined}
-              className="mt-4 registerBtn"
+              className="mt-4 BtnStyle"
             >
               Sign Up
             </Button>
