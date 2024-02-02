@@ -15,7 +15,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-const LoginPage: React.FC = () => {
+const ResetPasswordPage: React.FC = () => {
   const { handleSubmit, control } = useForm<LoginFormInputs>();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
@@ -31,9 +31,12 @@ const LoginPage: React.FC = () => {
     >
       <div className="flex items-center justify-center h-screen">
         <Card className="w-96" placeholder={undefined}>
-          <CardBody className="flex flex-col gap-4" placeholder={undefined}>
-            <Typography variant="h3" color="black" placeholder={undefined}>
-              Sign In
+          <CardBody className="flex flex-col gap-2" placeholder={undefined}>
+            <Typography variant="h4" color="black" placeholder={undefined}>
+              Reset Account Password!
+            </Typography>
+            <Typography placeholder={undefined}>
+              Enter A New Password For Your Account
             </Typography>
             <Controller
               name="number"
@@ -42,7 +45,7 @@ const LoginPage: React.FC = () => {
                 <input
                   type="tel"
                   {...field}
-                  className="border border-gray-300 my-2 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
+                  className="border border-gray-300 my-1 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
                   placeholder="Enter PhoneNumber/Email"
                 />
               )}
@@ -54,17 +57,11 @@ const LoginPage: React.FC = () => {
                 <input
                   type="password"
                   {...field}
-                  className="border border-gray-300 my-2 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
+                  className="border border-gray-300 my-1 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
                   placeholder="Enter Password"
                 />
               )}
             />
-
-            <div className="mt-2">
-              <a href="/forgot-password" className="text-primary underline">
-                Forgot Password?
-              </a>
-            </div>
           </CardBody>
           <CardFooter className="pt-0" placeholder={undefined}>
             <Button
@@ -73,7 +70,7 @@ const LoginPage: React.FC = () => {
               placeholder={undefined}
               className="mt-4 BtnStyle"
             >
-              Sign In
+              Reset Password
             </Button>
           </CardFooter>
         </Card>
@@ -82,4 +79,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default ResetPasswordPage;

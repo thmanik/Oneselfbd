@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.BtnStyle {
+  outline: 1px solid #00c1f0;
+  background-color: white;
+  color: #00c1f0;
+}
+.BtnStyle:hover {
+  background-color: #00c1f0;
+  color: white;
+}
