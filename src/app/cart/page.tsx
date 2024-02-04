@@ -8,8 +8,8 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
-import "./CartPage.css";
-const CartPage = () => {
+import "./cart.css";
+const page = () => {
   return (
     <div className="grid md:grid-cols-12 md:m-10 sm:p-5">
       <div className="md:col-span-8 sm:col-span-12 md:mx-5">
@@ -154,4 +154,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default page;

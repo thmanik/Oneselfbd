@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 import {
@@ -7,7 +8,7 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
-// LoginPage.tsx
+
 import React from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
@@ -16,7 +17,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-const ForgetPassword: React.FC = () => {
+const page: React.FC = () => {
   const { handleSubmit, control } = useForm<LoginFormInputs>();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
@@ -64,7 +65,7 @@ const ForgetPassword: React.FC = () => {
             </Button>
 
             <div className="mt-2">
-              <a href="/loginPage" className="text-primary m-auto ">
+              <a href="/login" className="text-primary m-auto ">
                 <p>Back To Login Page</p>
               </a>
             </div>
@@ -75,4 +76,4 @@ const ForgetPassword: React.FC = () => {
   );
 };
 
-export default ForgetPassword;
+export default page;

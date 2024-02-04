@@ -8,10 +8,10 @@ import {
   ReactNode,
   ReactPortal,
 } from "react";
-import data from "../../../public/data.json";
-import "./PreFooter.css";
+import data from "../../../../../public/data.json";
+import "./pre-footer.css";
 /* eslint-disable @next/next/no-img-element */
-const PreFooter = () => {
+const Prefooter = () => {
   return (
     <div className="grid md:grid-cols-12 mx-8 mt-16">
       <div className="md:col-span-3 sm:col-span-12">
@@ -192,4 +192,4 @@ const PreFooter = () => {
   );
 };
 
-export default PreFooter;
+export default Prefooter;
