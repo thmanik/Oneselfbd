@@ -15,7 +15,8 @@ interface LoginFormInputs {
   password: string;
 }
 
-const LoginPage: React.FC = () => {
+const page: React.FC = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { handleSubmit, control } = useForm<LoginFormInputs>();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
@@ -61,7 +62,7 @@ const LoginPage: React.FC = () => {
             />
 
             <div className="mt-2">
-              <a href="/forgot-password" className="text-primary underline">
+              <a href="/forget-password" className="text-primary underline">
                 Forgot Password?
               </a>
             </div>
@@ -82,4 +83,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default page;

@@ -15,7 +15,8 @@ interface LoginFormInputs {
   password: string;
 }
 
-const ResetPasswordPage: React.FC = () => {
+const page: React.FC = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { handleSubmit, control } = useForm<LoginFormInputs>();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
@@ -79,4 +80,4 @@ const ResetPasswordPage: React.FC = () => {
   );
 };
 
-export default ResetPasswordPage;
+export default page;

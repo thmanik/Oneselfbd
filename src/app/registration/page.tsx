@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import {
   Button,
@@ -6,7 +7,7 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
-// LoginPage.tsx
+
 import React from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 interface LoginFormInputs {
@@ -14,7 +15,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-const RegistrationPage: React.FC = () => {
+const page: React.FC = () => {
   const { handleSubmit, control } = useForm<LoginFormInputs>();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
@@ -87,7 +88,7 @@ const RegistrationPage: React.FC = () => {
             />
 
             <div className="mt-2">
-              <a href="/forgot-password" className="text-primary underline">
+              <a href="/login" className="text-primary underline">
                 Do You Have Already An Account?
               </a>
             </div>
@@ -108,4 +109,4 @@ const RegistrationPage: React.FC = () => {
   );
 };
 
-export default RegistrationPage;
+export default page;

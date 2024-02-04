@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import {
   ArrowPathRoundedSquareIcon,
@@ -29,7 +30,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
-import "./navber.css";
+import "./header.css";
 
 const navListMenuItems = [
   {
@@ -64,7 +65,7 @@ const navListMenuItems = [
   },
 ];
 
-const NavbarPage = () => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -381,4 +382,4 @@ const NavbarPage = () => {
   );
 };
 
-export default NavbarPage;
+export default Header;

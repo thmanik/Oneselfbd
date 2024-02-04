@@ -1,15 +1,19 @@
 import ProductHighlight from "@/components/ProductHighlight/ProductHighlight";
 import PopularProducts from "@/components/popularProducts/PopularProducts";
-import PreFooter from "@/components/preFooter/PreFooter";
 import ProductsGallery from "@/components/productsGallery/ProductsGallery";
 import ProductsPromotion from "@/components/productsPromotion/ProductsPromotion";
 import TrandingProducts from "@/components/trandingProducts/TrandingProducts";
 import Carousel from "../components/carousel/Carousel";
 import FeatureProduct from "../components/featureProduct/FeatureProduct";
 import ProductCarousel from "../components/productCarousel/ProductCarousel";
+import Footer from "./ui/shared/footer/Footer";
+import Header from "./ui/shared/header/Header";
+import Prefooter from "./ui/shared/prefooter/PreFooter";
+
 export default function Home() {
   return (
     <main className=" items-center justify-between ">
+      <Header></Header>
       <Carousel></Carousel>
       <ProductCarousel></ProductCarousel>
       <ProductHighlight></ProductHighlight>
@@ -18,7 +22,8 @@ export default function Home() {
       <PopularProducts></PopularProducts>
       <ProductsGallery></ProductsGallery>
       <ProductsPromotion></ProductsPromotion>
-      <PreFooter></PreFooter>
+      <Prefooter></Prefooter>
+      <Footer></Footer>
     </main>
   );
 }
