@@ -1,9 +1,18 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next",
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "globals": {
+    "React": "writable"
+  },
   "rules": {
+    "no-unused-vars": "error",
     "no-console": "error",
-    "no-undef": "error",
     "no-unused-expressions": "error",
-    "no-unreachable": "error"
+    "no-unreachable": "error",
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"]
   }
 }
