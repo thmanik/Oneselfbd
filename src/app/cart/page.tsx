@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
@@ -8,8 +9,21 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
+import Link from "next/link";
+import { useState } from "react";
 import "./cart.css";
 const page = () => {
+  const [shippingCost, setShippingCost] = useState(0);
+
+  const handleShippingChange = (event) => {
+    const shippingOption = event.target.value;
+    // Set shipping cost based on the selected option
+    if (shippingOption === "insideDhaka") {
+      setShippingCost(12); // Example cost for inside Dhaka
+    } else if (shippingOption === "outsideDhaka") {
+      setShippingCost(20); // Example cost for outside Dhaka
+    }
+  };
   return (
     <div className="grid md:grid-cols-12 md:m-10 sm:p-5">
       <div className="md:col-span-8 sm:col-span-12 md:mx-5">
@@ -67,8 +81,9 @@ const page = () => {
               </div>
               {/*  */}
               <div className="md:flex ">
-                <div className="md:my-8 md:ms-16">
-                  <span>$99.99</span>
+                <div className=" md:ms-16">
+                  <span className="font-bold">Sub-Total</span> <br />
+                  <span className="md:my-3">$99.99</span>
                 </div>
                 <div className="md:mt-7 md:ms-16  sm:mt-4">
                   <svg
@@ -109,18 +124,37 @@ const page = () => {
                 </div>
               </Typography>
               <hr />
-              <Typography
-                color="blue-gray"
-                className="font-medium"
-                placeholder={undefined}
-              >
-                <div className="flex justify-between">
-                  <div className="my-3">Delivery Fee</div>
-                  <div className="my-3">
-                    <span>{""}$12</span>
-                  </div>
+              {/* Shipping Section */}
+              <div className="flex justify-between">
+                <Typography
+                  color="blue-gray"
+                  className="font-medium my-auto"
+                  placeholder={undefined}
+                >
+                  Shipping
+                </Typography>
+                <div className="my-3">
+                  <label className="gap-1">
+                    <input
+                      type="radio"
+                      name="shipping"
+                      value="insideDhaka"
+                      onChange={handleShippingChange}
+                    />
+                    Inside Dhaka City <span>($12)</span>
+                  </label>
+                  <br />
+                  <label>
+                    <input
+                      type="radio"
+                      name="shipping"
+                      value="outsideDhaka"
+                      onChange={handleShippingChange}
+                    />
+                    Outside Dhaka City <span>($20)</span>
+                  </label>
                 </div>
-              </Typography>
+              </div>
               <hr />
             </div>
             <Typography
@@ -131,21 +165,23 @@ const page = () => {
               <div className="flex justify-between">
                 <div className="my-3">Grand-Total</div>
                 <div className="my-3">
-                  <span>{""}$512</span>
+                  <span>{`$${500 + shippingCost}`}</span>
                 </div>
               </div>
             </Typography>
             <hr />
 
             <CardFooter className="pt-0" placeholder={undefined}>
-              <Button
-                ripple={false}
-                fullWidth={true}
-                className="bg-blue-gray-900/10  hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100 proceedToCart my-5"
-                placeholder={undefined}
-              >
-                Proceed To Cart
-              </Button>
+              <Link href="/checkout">
+                <Button
+                  ripple={false}
+                  fullWidth={true}
+                  className="bg-blue-gray-900/10  hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100 proceedToCart my-5"
+                  placeholder={undefined}
+                >
+                  Proceed To Checkout
+                </Button>
+              </Link>
             </CardFooter>
           </CardBody>
         </Card>
