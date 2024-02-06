@@ -7,7 +7,6 @@ import {
   Typography,
 } from "@material-tailwind/react";
 // LoginPage.tsx
-import React from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 interface LoginFormInputs {
@@ -15,7 +14,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-const page: React.FC = () => {
+const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { handleSubmit, control } = useForm<LoginFormInputs>();
 
