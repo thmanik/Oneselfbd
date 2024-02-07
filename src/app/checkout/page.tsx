@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-// src/Page.tsx
 "use client";
 import {
   Card,
@@ -9,6 +7,7 @@ import {
   Select,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Paymentsgateway from "../ui/shared/paymentsgateway/Paymentsgateway";
@@ -49,8 +48,9 @@ const Page: React.FC<PageProps> = ({ onSubmit = () => {} }) => {
           <div className="md:col-span-6 sm:col-span-12 md:mx-5">
             <div className="flex bg-gray-100 ">
               <div className="m-5">
-                <img
-                  className="w-[110px] h-[110px]"
+                <Image
+                  width={110}
+                  height={100}
                   src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
                   alt=""
                 />
