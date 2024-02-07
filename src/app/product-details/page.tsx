@@ -20,46 +20,45 @@ import {
   TabsHeader,
 } from "@material-tailwind/react";
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
 import { Navigation, Thumbs } from "swiper/modules";
-
-const ProductsDetails = () => {
-  // const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  // const [activeTab, setActiveTab] = React.useState("html");
+const ProductDetailsPage = () => {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  //   const [activeTab, setActiveTab] = React.useState("html");
   const [value, setValue] = useState<string>("tab1");
-  // const data = [
-  //   {
-  //     label: "HTML",
-  //     value: "html",
-  //     desc: `It really matters and then like it really doesn't matter.
-  //     What matters is the people who are sparked by it. And the people
-  //     who are like offended by it, it doesn't matter.`,
-  //   },
-  //   {
-  //     label: "React",
-  //     value: "react",
-  //     desc: `Because it's about motivating the doers. Because I'm here
-  //     to follow my dreams and inspire other people to follow their dreams, too.`,
-  //   },
-  //   {
-  //     label: "Vue",
-  //     value: "vue",
-  //     desc: `We're not always in the position that we want to be at.
-  //     We're constantly growing. We're constantly making mistakes. We're
-  //     constantly trying to express ourselves and actualize our dreams.`,
-  //   },
-  // ];
+  //   const data = [
+  //     {
+  //       label: "HTML",
+  //       value: "html",
+  //       desc: `It really matters and then like it really doesn't matter.
+  //       What matters is the people who are sparked by it. And the people
+  //       who are like offended by it, it doesn't matter.`,
+  //     },
+  //     {
+  //       label: "React",
+  //       value: "react",
+  //       desc: `Because it's about motivating the doers. Because I'm here
+  //       to follow my dreams and inspire other people to follow their dreams, too.`,
+  //     },
+  //     {
+  //       label: "Vue",
+  //       value: "vue",
+  //       desc: `We're not always in the position that we want to be at.
+  //       We're constantly growing. We're constantly making mistakes. We're
+  //       constantly trying to express ourselves and actualize our dreams.`,
+  //     },
+  //   ];
 
   const handleChange = (newValue: string) => {
     setValue(newValue);
     // You can add additional logic here if needed
   };
   return (
-    <div className="md:mb-5 ">
+    <div className="md:my-5   ">
       <hr />
       <div className="md:grid md:grid-cols-12 mt-5  mx-10">
         {/* Product Photo Carousel */}
-        <div className="md:col-span-6 sm:col-span-12 bg-blue-gray-50 md:h-[75%] md:w-[80%] ">
+        <div className="md:col-span-6 sm:col-span-12 bg-blue-gray-50 md:h-[75%] md:w-[80%] border border-gray-400  ">
           <Swiper
             style={{
               maxHeight: "100%", // Set a maximum height for the entire Swiper
@@ -67,7 +66,7 @@ const ProductsDetails = () => {
             loop={true}
             spaceBetween={1}
             navigation={true}
-            // thumbs={{ swiper: thumbsSwiper }}
+            thumbs={{ swiper: thumbsSwiper }}
             modules={[Navigation, Thumbs]}
             className="mySwiper2"
           >
@@ -127,7 +126,7 @@ const ProductsDetails = () => {
             </SwiperSlide>
           </Swiper>
           <Swiper
-            // onSwiper={setThumbsSwiper}
+            onSwiper={setThumbsSwiper}
             loop={true}
             spaceBetween={1}
             slidesPerView={4}
@@ -142,46 +141,52 @@ const ProductsDetails = () => {
                 height={100}
                 src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
                 alt="Nature 1"
+                className="object-fill"
               />
             </SwiperSlide>
             <SwiperSlide>
               <Image
                 width={125}
-                height={100}
+                height={90}
                 src="https://i.ibb.co/YLM3tnP/LED-BULb.png"
                 alt="Nature 2"
+                className="object-fill"
               />
             </SwiperSlide>
             <SwiperSlide>
               <Image
                 width={125}
-                height={100}
+                height={90}
                 src="https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg"
                 alt="Nature 3"
+                className="object-fill"
               />
             </SwiperSlide>
             <SwiperSlide>
               <Image
                 width={125}
-                height={100}
+                height={90}
                 src="https://i.ibb.co/3BFKjfS/Orelco-Bulb-02.jpg"
                 alt="Nature 4"
+                className="object-fill"
               />
             </SwiperSlide>
             <SwiperSlide>
               <Image
                 width={125}
-                height={100}
+                height={90}
                 src="https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg"
                 alt="Nature 5"
+                className="object-fill"
               />
             </SwiperSlide>
             <SwiperSlide>
               <Image
                 width={125}
-                height={100}
+                height={90}
                 src="https://i.ibb.co/YLM3tnP/LED-BULb.png"
                 alt="Nature 6"
+                className="object-fill"
               />
             </SwiperSlide>
           </Swiper>
@@ -220,12 +225,54 @@ const ProductsDetails = () => {
             </div>
             <hr />
 
-            <div className="flex justify-around mt-5 ">
-              <div> - 0 +</div>
+            <div className="flex justify-around mt-3 ">
+              <div className="flex">
+                <div className="lg:mr-0 md:mr-0 ">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    cursor="pointer"
+                    stroke="currentColor"
+                    className="w-10 h-10 svgIcon m-5 "
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 12h14"
+                    />
+                  </svg>
+                </div>
+                <div className="my-8 text-primary sm:text-lg">1</div>
+                <div className="lg:mr-0 md:mr-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    cursor="pointer"
+                    stroke="currentColor"
+                    className="w-10 h-10 svgIcon m-5 "
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </div>
+              </div>
               <div>
-                <Button size="lg" className="BtnStyle" placeholder={undefined}>
-                  Add To Cart
-                </Button>
+                <Link href="/cart">
+                  <Button
+                    size="lg"
+                    className="BtnStyle mt-4"
+                    placeholder={undefined}
+                  >
+                    Add To Cart
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -297,4 +344,4 @@ const ProductsDetails = () => {
   );
 };
 
-export default ProductsDetails;
+export default ProductDetailsPage;
