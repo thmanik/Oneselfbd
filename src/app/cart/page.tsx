@@ -7,10 +7,10 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import "./cart.css";
-import Image from "next/image";
+
 const CartPage = () => {
   const [shippingCost, setShippingCost] = useState(0);
 
@@ -178,7 +178,7 @@ const CartPage = () => {
                 <Button
                   ripple={false}
                   fullWidth={true}
-                  className="bg-blue-gray-900/10  hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100 proceedToCart my-5"
+                  className="bg-blue-gray-900/10  hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100 BtnStyle my-5"
                   placeholder={undefined}
                 >
                   Proceed To Checkout

@@ -4,7 +4,6 @@
 
 import { Button, Carousel } from "@material-tailwind/react";
 import Image from "next/image";
-import "./carousel.css";
 
 const CarouselPage = () => {
   return (
