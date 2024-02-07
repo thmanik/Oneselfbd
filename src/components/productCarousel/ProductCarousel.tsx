@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 // components/SuggestedProducts.tsx
 "use client";
 import {
@@ -16,12 +15,13 @@ import {
 
 import React, { useEffect, useState } from "react";
 // Import Swiper React components
+import Image from "next/image";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import data from "../../../public/data.json";
-import "./productCarousel.css";
+
 const SuggestedProducts: React.FC = () => {
   const [value, setValue] = useState<string>("tab1");
   const [slidesPerView, setSlidesPerView] = useState(1);
@@ -135,8 +135,9 @@ const SuggestedProducts: React.FC = () => {
                         </Typography>
                       </CardBody>
 
-                      <img
-                        className="CarouselProductImg img-fluid"
+                      <Image
+                        width={180}
+                        height={200}
                         src={singledata?.ProductImage}
                         alt="card-image"
                       />
@@ -150,7 +151,7 @@ const SuggestedProducts: React.FC = () => {
                           <div>
                             <Button
                               size="sm"
-                              className="addTocartBtn"
+                              className="BtnStyle"
                               placeholder={undefined}
                             >
                               Add to Cart
@@ -195,8 +196,9 @@ const SuggestedProducts: React.FC = () => {
                         </Typography>
                       </CardBody>
 
-                      <img
-                        className="CarouselProductImg img-fluid"
+                      <Image
+                        width={180}
+                        height={200}
                         src={singledata?.ProductImage}
                         alt="card-image"
                       />
@@ -210,7 +212,7 @@ const SuggestedProducts: React.FC = () => {
                           <div>
                             <Button
                               size="sm"
-                              className="addTocartBtn"
+                              className="BtnStyle"
                               placeholder={undefined}
                             >
                               Add to Cart
@@ -255,8 +257,9 @@ const SuggestedProducts: React.FC = () => {
                         </Typography>
                       </CardBody>
 
-                      <img
-                        className="CarouselProductImg img-fluid"
+                      <Image
+                        width={180}
+                        height={200}
                         src={singledata?.ProductImage}
                         alt="card-image"
                       />
@@ -270,7 +273,7 @@ const SuggestedProducts: React.FC = () => {
                           <div>
                             <Button
                               size="sm"
-                              className="addTocartBtn"
+                              className="BtnStyle"
                               placeholder={undefined}
                             >
                               Add to Cart

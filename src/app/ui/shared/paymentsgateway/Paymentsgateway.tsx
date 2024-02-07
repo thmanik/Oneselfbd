@@ -3,7 +3,7 @@ import { Accordion, AccordionBody, Button } from "@material-tailwind/react";
 import Image from "next/image";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-const Paymentsgateway = () => {
+const PaymentsGateWay = () => {
   const [openAccordion, setOpenAccordion] = React.useState(null);
 
   const handleOpen = (value: number | React.SetStateAction<null>) => {
@@ -341,4 +341,4 @@ const Paymentsgateway = () => {
   );
 };
 
-export default Paymentsgateway;
+export default PaymentsGateWay;

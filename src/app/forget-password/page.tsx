@@ -10,6 +10,7 @@ import {
 } from "@material-tailwind/react";
 
 import { Input } from "@material-tailwind/react";
+import Link from "next/link";
 import React from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 interface LoginFormInputs {
@@ -50,20 +51,23 @@ const page: React.FC = () => {
                   type="tel"
                   {...field}
                   size="lg"
-                  label="Enter Phone Number/Email"
+                  label="Phone Number/Email"
+                  placeholder="Enter Phone Number/Email"
                 />
               )}
             />
           </CardBody>
           <CardFooter className="pt-0" placeholder={undefined}>
-            <Button
-              type="submit"
-              fullWidth
-              placeholder={undefined}
-              className="mt-4 BtnStyle"
-            >
-              Reset Password
-            </Button>
+            <Link href="/reset-password">
+              <Button
+                type="submit"
+                fullWidth
+                placeholder={undefined}
+                className="mt-4 BtnStyle"
+              >
+                Reset Password
+              </Button>
+            </Link>
 
             <div className="mt-2">
               <a href="/login" className="text-primary m-auto ">

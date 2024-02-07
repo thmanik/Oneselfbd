@@ -45,7 +45,8 @@ const page: React.FC = () => {
                   type="text"
                   {...field}
                   size="lg"
-                  label="Your Full Name"
+                  label="Full Name"
+                  placeholder="Your Full Name"
                 />
               )}
             />
@@ -58,7 +59,8 @@ const page: React.FC = () => {
                   type="tel"
                   {...field}
                   size="lg"
-                  label="Your Phone Number"
+                  label="Phone Number"
+                  placeholder="Your Phone Number"
                 />
               )}
             />
@@ -73,6 +75,7 @@ const page: React.FC = () => {
                   {...field}
                   size="lg"
                   label="Email"
+                  placeholder="Enter Your Email"
                 />
               )}
             />
@@ -86,7 +89,8 @@ const page: React.FC = () => {
                   type="password"
                   {...field}
                   size="lg"
-                  label="Your Password"
+                  label="Password"
+                  placeholder="Enter Your Password"
                 />
               )}
             />

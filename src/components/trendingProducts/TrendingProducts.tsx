@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import {
   Button,
   Card,
@@ -8,12 +7,12 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import data from "../../../public/data.json";
-import "./TrandingProducts.css";
-const TrandingProducts = () => {
+const TrendingProducts = () => {
   const [slidesPerView, setSlidesPerView] = useState(1);
 
   useEffect(() => {
@@ -43,10 +42,10 @@ const TrandingProducts = () => {
     <div>
       <div className="flex justify-between mx-8 mt-14 ">
         <div>
-          <h3>Tranding Products</h3>
+          <h3>Trending Products</h3>
         </div>
         <div>
-          <a href="">Go to the TrandingProducts</a>
+          <a href="">Go to the TrendingProducts</a>
         </div>
       </div>
       <hr />
@@ -80,7 +79,9 @@ const TrandingProducts = () => {
                   </Typography>
                 </CardBody>
 
-                <img
+                <Image
+                  width={220}
+                  height={250}
                   className="CarouselProductImg img-fluid"
                   src={singledata?.ProductImage}
                   alt="card-image"
@@ -95,7 +96,7 @@ const TrandingProducts = () => {
                     <div>
                       <Button
                         size="sm"
-                        className="addTocartBtn"
+                        className="BtnStyle"
                         placeholder={undefined}
                       >
                         Add to Cart
@@ -112,4 +113,4 @@ const TrandingProducts = () => {
   );
 };
 
-export default TrandingProducts;
+export default TrendingProducts;

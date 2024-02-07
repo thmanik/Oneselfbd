@@ -44,7 +44,8 @@ const page = () => {
                   type="tel"
                   {...field}
                   size="lg"
-                  label="Enter Your Phone Number/Email"
+                  label="Phone Number/Email"
+                  placeholder="Enter Your Phone Number/Email"
                 />
               )}
             />
@@ -57,7 +58,8 @@ const page = () => {
                   type="password"
                   {...field}
                   size="lg"
-                  label="Enter Your Password"
+                  label="Password"
+                  placeholder="Enter Your Password"
                 />
               )}
             />

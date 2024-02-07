@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
+
 "use client";
 import { useState } from "react";
 // Import Swiper React components
@@ -19,6 +19,7 @@ import {
   TabsBody,
   TabsHeader,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import React from "react";
 import { Navigation, Thumbs } from "swiper/modules";
 
@@ -54,11 +55,11 @@ const ProductsDetails = () => {
     // You can add additional logic here if needed
   };
   return (
-    <div className="md:mb-5">
+    <div className="md:mb-5 ">
       <hr />
-      <div className="md:grid md:grid-cols-12 mt-5   mx-10">
+      <div className="md:grid md:grid-cols-12 mt-5  mx-10">
         {/* Product Photo Carousel */}
-        <div className="md:col-span-6 sm:col-span-12 md:h-[75%] md:w-[80%] ">
+        <div className="md:col-span-6 sm:col-span-12 bg-blue-gray-50 md:h-[75%] md:w-[80%] ">
           <Swiper
             style={{
               maxHeight: "100%", // Set a maximum height for the entire Swiper
@@ -71,73 +72,57 @@ const ProductsDetails = () => {
             className="mySwiper2"
           >
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-1.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
+              <Image
+                width={530}
+                height={450}
+                src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
+                className="object-cover"
                 alt="Nature 1"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-2.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
+              <Image
+                width={530}
+                height={450}
+                src="https://i.ibb.co/YLM3tnP/LED-BULb.png"
+                className="object-cover"
                 alt="Nature 2"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-3.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
+              <Image
+                width={530}
+                height={450}
+                src="https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg"
+                className="object-cover"
                 alt="Nature 3"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-4.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
+              <Image
+                width={530}
+                height={450}
+                src="https://i.ibb.co/3BFKjfS/Orelco-Bulb-02.jpg"
+                className="object-cover"
                 alt="Nature 4"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-5.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
+              <Image
+                width={530}
+                height={450}
+                src="https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg"
+                className="object-cover"
                 alt="Nature 5"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-6.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
+              <Image
+                width={530}
+                height={450}
+                src="https://i.ibb.co/YLM3tnP/LED-BULb.png"
+                className="object-cover"
                 alt="Nature 6"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-7.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
-                alt="Nature 7"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-8.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
-                alt="Nature 8"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-9.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
-                alt="Nature 9"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-10.jpg"
-                style={{ objectFit: "cover", height: "100%", width: "100%" }}
-                alt="Nature 10"
               />
             </SwiperSlide>
           </Swiper>
@@ -149,66 +134,54 @@ const ProductsDetails = () => {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[Navigation, Thumbs]}
-            className="mySwiper"
+            className="mySwiper bg-blue-gray-100"
           >
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-1.jpg"
+              <Image
+                width={125}
+                height={100}
+                src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
                 alt="Nature 1"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-2.jpg"
+              <Image
+                width={125}
+                height={100}
+                src="https://i.ibb.co/YLM3tnP/LED-BULb.png"
                 alt="Nature 2"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-3.jpg"
+              <Image
+                width={125}
+                height={100}
+                src="https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg"
                 alt="Nature 3"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-4.jpg"
+              <Image
+                width={125}
+                height={100}
+                src="https://i.ibb.co/3BFKjfS/Orelco-Bulb-02.jpg"
                 alt="Nature 4"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-5.jpg"
+              <Image
+                width={125}
+                height={100}
+                src="https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg"
                 alt="Nature 5"
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-6.jpg"
+              <Image
+                width={125}
+                height={100}
+                src="https://i.ibb.co/YLM3tnP/LED-BULb.png"
                 alt="Nature 6"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-7.jpg"
-                alt="Nature 7"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-8.jpg"
-                alt="Nature 8"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-9.jpg"
-                alt="Nature 9"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://swiperjs.com/demos/images/nature-10.jpg"
-                alt="Nature 10"
               />
             </SwiperSlide>
           </Swiper>
@@ -250,11 +223,7 @@ const ProductsDetails = () => {
             <div className="flex justify-around mt-5 ">
               <div> - 0 +</div>
               <div>
-                <Button
-                  size="lg"
-                  className="addTocartBtn "
-                  placeholder={undefined}
-                >
+                <Button size="lg" className="BtnStyle" placeholder={undefined}>
                   Add To Cart
                 </Button>
               </div>

@@ -1,11 +1,11 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
 import {
   Card,
   CardBody,
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import data from "../../../public/data.json";
 const ProductsGallery = () => {
   return (
@@ -24,10 +24,12 @@ const ProductsGallery = () => {
                 className="m-0 w-2/5 shrink-0 bg-gray-200"
                 placeholder={undefined}
               >
-                <img
+                <Image
+                  width={140}
+                  height={130}
                   src={singleData?.ProductImage}
                   alt="card-image"
-                  className="h-[70%] m-auto mt-5 w-[70%] object-cover "
+                  className=" m-auto mt-3 object-cover "
                 />
               </CardHeader>
               <CardBody placeholder={undefined}>

@@ -10,7 +10,8 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import Paymentsgateway from "../ui/shared/paymentsgateway/Paymentsgateway";
+
+import PaymentsGateWay from "../ui/shared/paymentsGateWay/PaymentsGateWay";
 import "./checkout.css";
 
 interface PageProps {
@@ -307,7 +308,7 @@ const Page: React.FC<PageProps> = ({ onSubmit = () => {} }) => {
       </div>
       <div className="grid md:grid-cols-12">
         <div className="md:col-span-7 sm:col-span-12 md:mb-7 md:-mt-10 md:ms-8">
-          <Paymentsgateway></Paymentsgateway>
+          <PaymentsGateWay></PaymentsGateWay>
         </div>
       </div>
     </div>
