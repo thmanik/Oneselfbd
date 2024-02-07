@@ -2,7 +2,7 @@
 import { PhoneArrowDownLeftIcon } from "@heroicons/react/24/solid";
 const Footer = () => {
   return (
-    <div className="grid md:grid-cols-12 mx-10 my-10 bg-blue-gray-100 px-4 py-8 ">
+    <div className="grid md:grid-cols-12 ps-16  mt-10 bg-blue-gray-100  py-8 ">
       <div className="md:col-span-3 sm:col-span-12">
         <div>Company logo</div>
         <div className="flex my-2">

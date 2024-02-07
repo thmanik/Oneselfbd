@@ -139,6 +139,7 @@ const page = () => {
                       type="radio"
                       name="shipping"
                       value="insideDhaka"
+                      className="me-1"
                       onChange={handleShippingChange}
                     />
                     Inside Dhaka City <span>($12)</span>
@@ -149,6 +150,7 @@ const page = () => {
                       type="radio"
                       name="shipping"
                       value="outsideDhaka"
+                      className="me-1"
                       onChange={handleShippingChange}
                     />
                     Outside Dhaka City <span>($20)</span>
