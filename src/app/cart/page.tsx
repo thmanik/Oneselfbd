@@ -29,7 +29,8 @@ const CartPage = () => {
         <div className="flex bg-gray-100 ">
           <div className="m-5">
             <Image
-              className="w-[110px] h-[110px]"
+              width={110}
+              height={110}
               src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
               alt=""
             />
@@ -138,6 +139,7 @@ const CartPage = () => {
                       type="radio"
                       name="shipping"
                       value="insideDhaka"
+                      className="me-1"
                       onChange={handleShippingChange}
                     />
                     Inside Dhaka City <span>($12)</span>
@@ -148,6 +150,7 @@ const CartPage = () => {
                       type="radio"
                       name="shipping"
                       value="outsideDhaka"
+                      className="me-1"
                       onChange={handleShippingChange}
                     />
                     Outside Dhaka City <span>($20)</span>

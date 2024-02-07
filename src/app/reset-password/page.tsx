@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 // LoginPage.tsx
+import { Input } from "@material-tailwind/react";
 import React from "react";
 import {
   Controller,
@@ -43,11 +44,12 @@ const ResetPasswordPage = () => {
               name="number"
               control={control}
               render={({ field }) => (
-                <input
+                <Input
+                  crossOrigin={undefined}
                   type="tel"
                   {...field}
-                  className="border border-gray-300 my-1 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
-                  placeholder="Enter PhoneNumber/Email"
+                  size="lg"
+                  label="Your Phone Number/Email"
                 />
               )}
             />
@@ -55,11 +57,12 @@ const ResetPasswordPage = () => {
               name="password"
               control={control}
               render={({ field }) => (
-                <input
+                <Input
+                  crossOrigin={undefined}
                   type="password"
                   {...field}
-                  className="border border-gray-300 my-1 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
-                  placeholder="Enter Password"
+                  size="lg"
+                  label="Password"
                 />
               )}
             />

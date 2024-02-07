@@ -9,6 +9,7 @@ import {
   Card,
   CardBody,
   CardFooter,
+  Input,
   Typography,
 } from "@material-tailwind/react";
 // LoginPage.tsx
@@ -53,11 +54,12 @@ const Login = () => {
               name="phoneNumber"
               control={control}
               render={({ field }) => (
-                <input
+                <Input
+                  crossOrigin={undefined}
                   type="tel"
                   {...field}
-                  className="border border-gray-300 my-2 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
-                  placeholder="Enter PhoneNumber/Email"
+                  size="lg"
+                  label="Enter Your Phone Number/Email"
                 />
               )}
             />
@@ -65,11 +67,12 @@ const Login = () => {
               name="password"
               control={control}
               render={({ field }) => (
-                <input
+                <Input
+                  crossOrigin={undefined}
                   type="password"
                   {...field}
-                  className="border border-gray-300 my-2 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
-                  placeholder="Enter Password"
+                  size="lg"
+                  label="Enter Your Password"
                 />
               )}
             />

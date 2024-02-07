@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
+import { Input } from "@material-tailwind/react";
 import React from "react";
 import {
   Controller,
@@ -50,11 +51,12 @@ const ForgetPasswordPage = () => {
               name="number"
               control={control}
               render={({ field }) => (
-                <input
+                <Input
+                  crossOrigin={undefined}
                   type="tel"
                   {...field}
-                  className="border border-gray-300 mt-2 p-2 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-500"
-                  placeholder="Enter PhoneNumber/Email"
+                  size="lg"
+                  label="Enter Phone Number/Email"
                 />
               )}
             />
