@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { Accordion, AccordionBody, Button } from "@material-tailwind/react";
+import Image from "next/image";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 const Paymentsgateway = () => {
@@ -15,11 +14,11 @@ const Paymentsgateway = () => {
 
   const onSubmit = (data: any) => {
     // Handle form submission logic here
-    console.log("payment: ", {
-      paymentMethod: getPaymentMethod(),
-      phoneNumber: data.phoneNumber,
-      transactionId: data.transactionId,
-    });
+    // console.log("payment: ", {
+    //   paymentMethod: getPaymentMethod(),
+    //   phoneNumber: data.phoneNumber,
+    //   transactionId: data.transactionId,
+    // });
   };
 
   const getPaymentMethod = () => {
@@ -87,11 +86,7 @@ const Paymentsgateway = () => {
               {" "}
               {/*--------- Bkash Logo------------ */}
               <span>
-                <img
-                  className="w-[80px] h-[50px]"
-                  src="/Bkash_logo.svg"
-                  alt=""
-                />
+                <Image width={80} height={50} src="/Bkash_logo.svg" alt="" />
               </span>
             </div>
           </div>
@@ -179,8 +174,9 @@ const Paymentsgateway = () => {
           >
             {/*--------- nogod Logo------------ */}
             <div className="ms-2">
-              <img
-                className="w-[70px] h-[50px]"
+              <Image
+                width={70}
+                height={50}
                 src="/Nagad_Logo_horizontally.svg"
                 alt=""
               />
@@ -269,7 +265,7 @@ const Paymentsgateway = () => {
           >
             {/*--------- rocket Logo------------ */}
             <div className="ms-2">
-              <img className="w-[60px] h-[40px]" src="/rocket.svg" alt="" />
+              <Image width={60} height={40} src="/rocket.svg" alt="" />
             </div>
           </div>
         </div>

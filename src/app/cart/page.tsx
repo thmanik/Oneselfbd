@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable @next/next/no-img-element */
+
 "use client";
 
 import {
@@ -9,6 +9,7 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import "./cart.css";
@@ -29,8 +30,9 @@ const page = () => {
       <div className="md:col-span-8 sm:col-span-12 md:mx-5">
         <div className="flex bg-gray-100 ">
           <div className="m-5">
-            <img
-              className="w-[110px] h-[110px]"
+            <Image
+              width={110}
+              height={110}
               src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
               alt=""
             />
