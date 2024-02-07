@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import {
   Button,
@@ -9,16 +8,17 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import React from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-interface LoginFormInputs {
-  number: number;
-  password: string;
-}
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 
-const page: React.FC = () => {
-  const { handleSubmit, control } = useForm<LoginFormInputs>();
+const RegistrationPage = () => {
+  const { handleSubmit, control } = useForm();
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // Handle login logic here
     // eslint-disable-next-line no-console
     console.log(data);
@@ -117,4 +117,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default RegistrationPage;

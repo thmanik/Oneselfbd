@@ -1,27 +1,42 @@
 "use client";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { setUser } from "@/redux/features/auth/authSlice";
+import { TUser } from "@/redux/features/auth/interface";
+import { useAppDispatch } from "@/redux/hooks";
+import decodeJWT from "@/utilities/decodeJWT";
 import {
   Button,
   Card,
   CardBody,
   CardFooter,
+  Input,
   Typography,
 } from "@material-tailwind/react";
 // LoginPage.tsx
-import { Input } from "@material-tailwind/react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-interface LoginFormInputs {
-  number: number;
-  password: string;
-}
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 
-const page = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { handleSubmit, control } = useForm<LoginFormInputs>();
+const LoginPage = () => {
+  const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
+  const { handleSubmit, control } = useForm();
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // Handle login logic here
-    // eslint-disable-next-line no-console
-    console.log(data);
+
+    try {
+      const res = await login(data).unwrap();
+
+      const user = decodeJWT(res.data.accessToken) as TUser;
+      // console.log(user)
+      dispatch(setUser({ user: user, token: res.data.accessToken }));
+    } catch (error) {
+      // console.log(error);
+    }
   };
 
   return (
@@ -36,7 +51,7 @@ const page = () => {
               Sign In
             </Typography>
             <Controller
-              name="number"
+              name="phoneNumber"
               control={control}
               render={({ field }) => (
                 <Input
@@ -86,4 +101,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LoginPage;

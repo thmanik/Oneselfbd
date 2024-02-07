@@ -2,23 +2,30 @@
 import { Accordion, AccordionBody, Button } from "@material-tailwind/react";
 import Image from "next/image";
 import React from "react";
-import { Controller, useForm } from "react-hook-form";
-const PaymentsGateWay = () => {
-  const [openAccordion, setOpenAccordion] = React.useState(null);
 
-  const handleOpen = (value: number | React.SetStateAction<null>) => {
-    setOpenAccordion(openAccordion === value ? null : value);
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
+const PaymentsGateway = () => {
+  const [openAccordion, setOpenAccordion] = React.useState<number | null>(null);
+
+  const handleOpen = (value: number | null) => {
+    setOpenAccordion((prevState) => (prevState === value ? null : value));
   };
 
-  const { handleSubmit, control, reset } = useForm();
+  const { handleSubmit, control } = useForm();
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // Handle form submission logic here
-    // console.log("payment: ", {
-    //   paymentMethod: getPaymentMethod(),
-    //   phoneNumber: data.phoneNumber,
-    //   transactionId: data.transactionId,
-    // });
+    // eslint-disable-next-line no-console
+    console.log("payment: ", {
+      paymentMethod: getPaymentMethod(),
+      phoneNumber: data.phoneNumber,
+      transactionId: data.transactionId,
+    });
   };
 
   const getPaymentMethod = () => {
@@ -86,7 +93,12 @@ const PaymentsGateWay = () => {
               {" "}
               {/*--------- Bkash Logo------------ */}
               <span>
-                <Image width={80} height={50} src="/Bkash_logo.svg" alt="" />
+                <Image
+                  src="/Bkash_logo.svg"
+                  alt="Bkash logo"
+                  width={80}
+                  height={50}
+                />
               </span>
             </div>
           </div>
@@ -175,10 +187,10 @@ const PaymentsGateWay = () => {
             {/*--------- nogod Logo------------ */}
             <div className="ms-2">
               <Image
-                width={70}
-                height={50}
                 src="/Nagad_Logo_horizontally.svg"
-                alt=""
+                alt="Nagad logo"
+                width={80}
+                height={50}
               />
             </div>
           </div>
@@ -265,7 +277,12 @@ const PaymentsGateWay = () => {
           >
             {/*--------- rocket Logo------------ */}
             <div className="ms-2">
-              <Image width={60} height={40} src="/rocket.svg" alt="" />
+              <Image
+                src="/rocket.svg"
+                alt="Rocket logo"
+                width={60}
+                height={40}
+              />
             </div>
           </div>
         </div>
@@ -341,4 +358,4 @@ const PaymentsGateWay = () => {
   );
 };
 
-export default PaymentsGateWay;
+export default PaymentsGateway;

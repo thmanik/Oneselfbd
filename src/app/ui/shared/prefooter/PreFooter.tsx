@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { Card, CardBody, CardHeader } from "@material-tailwind/react";
-import {
-  JSXElementConstructor,
-  Key,
-  PromiseLikeOfReactNode,
-  ReactElement,
-  ReactNode,
-  ReactPortal,
-} from "react";
+// import {
+//   JSXElementConstructor,
+//   Key,
+//   PromiseLikeOfReactNode,
+//   ReactElement,
+//   ReactNode,
+//   ReactPortal,
+// } from "react";
 import data from "../../../../../public/data.json";
 import "./preFooter.css";
 /* eslint-disable @next/next/no-img-element */
@@ -21,45 +22,43 @@ const PreFooter = () => {
         </div>
         <div>
           <div className="m-2">
-            {data
-              .slice(0 - 3)
-              .map(
-                (singleData: {
-                  SellingPrice: ReactNode;
-                  Specification: any;
-                  id: Key | null | undefined;
-                  ProductImage: string | undefined;
-                  ProductName:
-                    | string
-                    | number
-                    | boolean
-                    | ReactElement<any, string | JSXElementConstructor<any>>
-                    | Iterable<ReactNode>
-                    | ReactPortal
-                    | PromiseLikeOfReactNode
-                    | null
-                    | undefined;
-                }) => (
-                  <a
-                    href=""
-                    key={singleData?.id}
-                    className="flex p-3 product-card gap-2"
-                  >
-                    <div>
-                      <img
-                        className="PreFooter-img"
-                        src={singleData?.ProductImage}
-                        alt=""
-                      />
-                    </div>
-                    <div className="ms-2">
-                      <h3>{singleData?.ProductName}</h3>
-                      <p>{singleData?.Specification?.Review}</p>
-                      <p>{singleData?.SellingPrice}</p>
-                    </div>
-                  </a>
-                ),
-              )}
+            {data.slice(0, 3).map(
+              (singleData: {
+                id: number;
+                ProductName: string;
+                Category: string;
+                ProductImage: string;
+                ProductImageGallery: string[];
+                RegularPrice: number;
+                SellingPrice: number;
+                ShortDescription: string;
+                FullDescription: string;
+                Specification: {
+                  Brand: string;
+                  Voltage: string;
+                  Review: number;
+                };
+              }) => (
+                <a
+                  href=""
+                  key={singleData.id.toString()} // Convert id to string if necessary
+                  className="flex p-3 product-card gap-2"
+                >
+                  <div>
+                    <img
+                      className="PreFooter-img"
+                      src={singleData.ProductImage}
+                      alt=""
+                    />
+                  </div>
+                  <div className="ms-2">
+                    <h3>{singleData.ProductName}</h3>
+                    <p>Review: {singleData.Specification.Review}</p>
+                    <p>{singleData.SellingPrice}</p>
+                  </div>
+                </a>
+              )
+            )}
           </div>
         </div>
       </div>
@@ -69,13 +68,13 @@ const PreFooter = () => {
           <hr />
         </div>
         <div>
-          <div className="m-2">
+          {/* <div className="m-2">
             {data
               .slice(0 - 3)
               .map(
                 (singleData: {
                   SellingPrice: ReactNode;
-                  Specification: any;
+                  Specification: Record<string, unknown>;
                   id: Key | null | undefined;
                   ProductImage: string | undefined;
                   ProductName:
@@ -107,8 +106,47 @@ const PreFooter = () => {
                       <p>{singleData?.SellingPrice}</p>
                     </div>
                   </a>
-                ),
+                )
               )}
+          </div> */}
+          <div className="m-2">
+            {data.slice(0 - 3).map(
+              (singleData: {
+                id: number;
+                ProductName: string;
+                Category: string;
+                ProductImage: string;
+                ProductImageGallery: string[];
+                RegularPrice: number;
+                SellingPrice: number;
+                ShortDescription: string;
+                FullDescription: string;
+                Specification: {
+                  Brand: string;
+                  Voltage: string;
+                  Review: number;
+                };
+              }) => (
+                <a
+                  href=""
+                  key={singleData?.id}
+                  className="flex p-3 product-card gap-2"
+                >
+                  <div>
+                    <img
+                      className="PreFooter-img"
+                      src={singleData?.ProductImage}
+                      alt=""
+                    />
+                  </div>
+                  <div className="ms-2">
+                    <h3>{singleData?.ProductName}</h3>
+                    <p>{singleData?.Specification?.Review}</p>
+                    <p>{singleData?.SellingPrice}</p>
+                  </div>
+                </a>
+              )
+            )}
           </div>
         </div>
       </div>
@@ -119,45 +157,43 @@ const PreFooter = () => {
         </div>
         <div>
           <div className="m-2">
-            {data
-              .slice(0 - 3)
-              .map(
-                (singleData: {
-                  SellingPrice: ReactNode;
-                  Specification: any;
-                  id: Key | null | undefined;
-                  ProductImage: string | undefined;
-                  ProductName:
-                    | string
-                    | number
-                    | boolean
-                    | ReactElement<any, string | JSXElementConstructor<any>>
-                    | Iterable<ReactNode>
-                    | ReactPortal
-                    | PromiseLikeOfReactNode
-                    | null
-                    | undefined;
-                }) => (
-                  <a
-                    href=""
-                    key={singleData?.id}
-                    className="flex p-3 product-card gap-2"
-                  >
-                    <div>
-                      <img
-                        className="PreFooter-img"
-                        src={singleData?.ProductImage}
-                        alt=""
-                      />
-                    </div>
-                    <div className="ms-2">
-                      <h3>{singleData?.ProductName}</h3>
-                      <p>{singleData?.Specification?.Review}</p>
-                      <p>{singleData?.SellingPrice}</p>
-                    </div>
-                  </a>
-                ),
-              )}
+            {data.slice(0 - 3).map(
+              (singleData: {
+                id: number;
+                ProductName: string;
+                Category: string;
+                ProductImage: string;
+                ProductImageGallery: string[];
+                RegularPrice: number;
+                SellingPrice: number;
+                ShortDescription: string;
+                FullDescription: string;
+                Specification: {
+                  Brand: string;
+                  Voltage: string;
+                  Review: number;
+                };
+              }) => (
+                <a
+                  href=""
+                  key={singleData?.id}
+                  className="flex p-3 product-card gap-2"
+                >
+                  <div>
+                    <img
+                      className="PreFooter-img"
+                      src={singleData?.ProductImage}
+                      alt=""
+                    />
+                  </div>
+                  <div className="ms-2">
+                    <h3>{singleData?.ProductName}</h3>
+                    <p>{singleData?.Specification?.Review}</p>
+                    <p>{singleData?.SellingPrice}</p>
+                  </div>
+                </a>
+              )
+            )}
           </div>
         </div>
       </div>

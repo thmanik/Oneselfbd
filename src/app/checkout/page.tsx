@@ -1,27 +1,22 @@
 "use client";
+import { useState } from "react";
 import {
-  Card,
-  CardBody,
-  Input,
-  Option,
-  Select,
-  Typography,
-} from "@material-tailwind/react";
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
+
+import { Card, CardBody, Typography } from "@material-tailwind/react";
 import Image from "next/image";
-import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
 
-import PaymentsGateWay from "../ui/shared/paymentsGateWay/PaymentsGateWay";
 import "./checkout.css";
+import PaymentsGateway from "./components/PaymentsGateway";
 
-interface PageProps {
-  onSubmit?: (data: any) => void;
-}
-
-const Page: React.FC<PageProps> = ({ onSubmit = () => {} }) => {
+const CheckoutPage = () => {
   const [shippingCost, setShippingCost] = useState(0);
 
-  const handleShippingChange = (event) => {
+  const handleShippingChange = (event: { target: { value: unknown } }) => {
     const shippingOption = event.target.value;
     // Set shipping cost based on the selected option
     if (shippingOption === "insideDhaka") {
@@ -36,8 +31,7 @@ const Page: React.FC<PageProps> = ({ onSubmit = () => {} }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmitForm = (data: any) => {
-    onSubmit(data);
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // eslint-disable-next-line no-console
     console.log("Form Data:", data);
   };
@@ -50,10 +44,10 @@ const Page: React.FC<PageProps> = ({ onSubmit = () => {} }) => {
             <div className="flex bg-gray-100 ">
               <div className="m-5">
                 <Image
-                  width={110}
-                  height={100}
                   src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
                   alt=""
+                  width={110}
+                  height={110}
                 />
               </div>
               <div className="flex ">
@@ -200,104 +194,108 @@ const Page: React.FC<PageProps> = ({ onSubmit = () => {} }) => {
 
         <div className="md:col-span-5 sm:col-span-12 mt-1">
           <form
-            onSubmit={handleSubmit(onSubmitForm)}
-            className="max-w-md mx-auto p-4 border rounded shadow-md gap-10"
+            onSubmit={handleSubmit(onSubmit)}
+            className="max-w-md mx-auto p-4 border rounded shadow-md"
           >
-            <label className="block " style={{ marginBottom: "2rem" }}>
+            <label className="block mb-2">
+              Name:
               <Controller
                 name="name"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <Input
-                    crossOrigin={undefined}
+                  <input
                     type="text"
                     {...field}
-                    size="lg"
-                    label="Your Name"
-                    placeholder="Your Name"
-                    className={` ${errors.name ? "border-red-500" : ""}`}
+                    placeholder="Enter your name"
+                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
+                      errors.name ? "border-red-500" : ""
+                    }`}
                     required
                   />
                 )}
               />
             </label>
-            <label className="block" style={{ marginBottom: "2rem" }}>
+
+            <label className="block mb-2">
+              Address:
               <Controller
                 name="address"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <Input
-                    crossOrigin={undefined}
+                  <input
                     type="text"
-                    placeholder="Address"
                     {...field}
-                    size="lg"
-                    label="Address"
-                    className={` ${errors.name ? "border-red-500" : ""}`}
+                    placeholder="Enter your address"
+                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
+                      errors.address ? "border-red-500" : ""
+                    }`}
                     required
                   />
                 )}
               />
             </label>
-            <label className="block" style={{ marginBottom: "2rem" }}>
+
+            <label className="block mb-2">
+              District:
               <Controller
                 name="district"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <Select
-                    placeholder={undefined}
-                    variant="outlined"
-                    label="Select District"
+                  <select
                     {...field}
-                    size="lg"
-                    className={` ${errors.name ? "border-red-500" : ""}`}
+                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
+                      errors.district ? "border-red-500" : ""
+                    }`}
+                    required
                   >
-                    <Option>Select District</Option>
+                    <option value="">Select District</option>
                     {districtsData.map((district, index) => (
-                      <Option key={index} value={district}>
+                      <option key={index} value={district}>
                         {district}
-                      </Option>
+                      </option>
                     ))}
-                  </Select>
+                  </select>
                 )}
               />
             </label>
-            <label className="block" style={{ marginBottom: "2rem" }}>
+
+            <label className="block mb-2">
+              Phone Number:
               <Controller
                 name="phoneNumber"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <Input
-                    crossOrigin={undefined}
+                  <input
                     type="tel"
                     {...field}
-                    placeholder="Your Phone Number"
-                    size="lg"
-                    label="Phone Number"
-                    className={` ${errors.name ? "border-red-500" : ""}`}
+                    placeholder="Enter your phone number"
+                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
+                      errors.phoneNumber ? "border-red-500" : ""
+                    }`}
                     required
                   />
                 )}
               />
             </label>
-            <label className="block" style={{ marginBottom: "2rem" }}>
+
+            <label className="block mb-2">
+              Email:
               <Controller
                 name="email"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <Input
-                    crossOrigin={undefined}
+                  <input
                     type="email"
                     {...field}
-                    placeholder="Your Email"
-                    size="lg"
-                    label="Email"
-                    className={` ${errors.name ? "border-red-500" : ""}`}
+                    placeholder="Enter your email"
+                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
+                      errors.email ? "border-red-500" : ""
+                    }`}
                     required
                   />
                 )}
@@ -308,11 +306,11 @@ const Page: React.FC<PageProps> = ({ onSubmit = () => {} }) => {
       </div>
       <div className="grid md:grid-cols-12">
         <div className="md:col-span-7 sm:col-span-12 md:mb-7 md:-mt-10 md:ms-8">
-          <PaymentsGateWay></PaymentsGateWay>
+          <PaymentsGateway></PaymentsGateway>
         </div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default CheckoutPage;

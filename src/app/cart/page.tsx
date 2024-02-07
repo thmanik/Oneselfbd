@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-
 "use client";
 
 import {
@@ -9,14 +7,14 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import "./cart.css";
-const page = () => {
+import Image from "next/image";
+const CartPage = () => {
   const [shippingCost, setShippingCost] = useState(0);
 
-  const handleShippingChange = (event) => {
+  const handleShippingChange = (event: { target: { value: unknown } }) => {
     const shippingOption = event.target.value;
     // Set shipping cost based on the selected option
     if (shippingOption === "insideDhaka") {
@@ -194,4 +192,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default CartPage;

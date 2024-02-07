@@ -24,31 +24,31 @@ import React from "react";
 import { Navigation, Thumbs } from "swiper/modules";
 
 const ProductsDetails = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [activeTab, setActiveTab] = React.useState("html");
+  // const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  // const [activeTab, setActiveTab] = React.useState("html");
   const [value, setValue] = useState<string>("tab1");
-  const data = [
-    {
-      label: "HTML",
-      value: "html",
-      desc: `It really matters and then like it really doesn't matter.
-      What matters is the people who are sparked by it. And the people 
-      who are like offended by it, it doesn't matter.`,
-    },
-    {
-      label: "React",
-      value: "react",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
-    },
-    {
-      label: "Vue",
-      value: "vue",
-      desc: `We're not always in the position that we want to be at.
-      We're constantly growing. We're constantly making mistakes. We're
-      constantly trying to express ourselves and actualize our dreams.`,
-    },
-  ];
+  // const data = [
+  //   {
+  //     label: "HTML",
+  //     value: "html",
+  //     desc: `It really matters and then like it really doesn't matter.
+  //     What matters is the people who are sparked by it. And the people
+  //     who are like offended by it, it doesn't matter.`,
+  //   },
+  //   {
+  //     label: "React",
+  //     value: "react",
+  //     desc: `Because it's about motivating the doers. Because I'm here
+  //     to follow my dreams and inspire other people to follow their dreams, too.`,
+  //   },
+  //   {
+  //     label: "Vue",
+  //     value: "vue",
+  //     desc: `We're not always in the position that we want to be at.
+  //     We're constantly growing. We're constantly making mistakes. We're
+  //     constantly trying to express ourselves and actualize our dreams.`,
+  //   },
+  // ];
 
   const handleChange = (newValue: string) => {
     setValue(newValue);
@@ -67,7 +67,7 @@ const ProductsDetails = () => {
             loop={true}
             spaceBetween={1}
             navigation={true}
-            thumbs={{ swiper: thumbsSwiper }}
+            // thumbs={{ swiper: thumbsSwiper }}
             modules={[Navigation, Thumbs]}
             className="mySwiper2"
           >
@@ -127,7 +127,7 @@ const ProductsDetails = () => {
             </SwiperSlide>
           </Swiper>
           <Swiper
-            onSwiper={setThumbsSwiper}
+            // onSwiper={setThumbsSwiper}
             loop={true}
             spaceBetween={1}
             slidesPerView={4}

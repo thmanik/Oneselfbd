@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 import {
   Button,
@@ -12,16 +10,23 @@ import {
 import { Input } from "@material-tailwind/react";
 import Link from "next/link";
 import React from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-interface LoginFormInputs {
-  number: number;
-  password: string;
-}
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 
-const page: React.FC = () => {
-  const { handleSubmit, control } = useForm<LoginFormInputs>();
+// type LoginFormInputs = {
+//   number: number;
+//   password: string;
+// };
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+const ForgetPasswordPage = () => {
+  const { handleSubmit, control } = useForm();
+  // const { handleSubmit, control } = useForm<LoginFormInputs>();
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // Handle login logic here
     // eslint-disable-next-line no-console
     console.log(data);
@@ -40,7 +45,8 @@ const page: React.FC = () => {
             </Typography>
             <Typography placeholder={undefined}>
               No problem - just enter the email address associated with your
-              Oneself account and we'll send you a link to reset your password.
+              Oneself account and we&apos;ll send you a link to reset your
+              password.
             </Typography>
             <Controller
               name="number"
@@ -81,4 +87,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default ForgetPasswordPage;
