@@ -17,9 +17,6 @@ const buildPrettierCommand = (filenames) =>
     .join(" ")}`;
 
 module.exports = {
-  "*.{js,jsx,ts,tsx}": [
-    buildPrettierCommand,
-    buildEslintCommand,
-    buildNextLintCommand,
-  ],
+  "*.{js,jsx,ts,tsx}": [buildEslintCommand, buildNextLintCommand],
+  "*.{js,jsx,ts,tsx,css,json,md}": [buildPrettierCommand],
 };
