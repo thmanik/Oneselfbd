@@ -1,11 +1,11 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
 import {
   Card,
   CardBody,
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import data from "../../../public/data.json";
 const FeatureProduct = () => {
   return (
@@ -21,7 +21,9 @@ const FeatureProduct = () => {
               floated={false}
               className="m-0 w-2/5 shrink-0 bg-gray-200"
             >
-              <img
+              <Image
+                width={215}
+                height={200}
                 src={singleData?.ProductImage}
                 alt="card-image"
                 className="h-[90%] m-auto mt-3 w-[90%] object-cover "

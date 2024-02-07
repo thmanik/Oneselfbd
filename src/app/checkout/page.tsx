@@ -9,8 +9,9 @@ import {
 
 import { Card, CardBody, Typography } from "@material-tailwind/react";
 import Image from "next/image";
+
 import "./checkout.css";
-import PaymentsGateway from "../ui/shared/paymentsgateway/Paymentsgateway";
+import PaymentsGateway from "./components/PaymentsGateway";
 
 const CheckoutPage = () => {
   const [shippingCost, setShippingCost] = useState(0);

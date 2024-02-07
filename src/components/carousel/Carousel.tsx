@@ -70,11 +70,7 @@ const CarouselPage = () => {
             <div className="ms-5">
               <h3>The Classical Bulb</h3>
               <div>
-                <Button
-                  size="sm"
-                  className="addTocartBtn "
-                  placeholder={undefined}
-                >
+                <Button size="sm" className="BtnStyle " placeholder={undefined}>
                   Order Now!
                 </Button>
               </div>
@@ -93,11 +89,7 @@ const CarouselPage = () => {
             <div className="ms-5">
               <h3>The Classical Bulb</h3>
               <div>
-                <Button
-                  size="sm"
-                  className="addTocartBtn "
-                  placeholder={undefined}
-                >
+                <Button size="sm" className="BtnStyle " placeholder={undefined}>
                   Order Now!
                 </Button>
               </div>
@@ -115,11 +107,7 @@ const CarouselPage = () => {
             <div className="ms-5">
               <h3>The Classical Bulb</h3>
               <div>
-                <Button
-                  size="sm"
-                  className="addTocartBtn "
-                  placeholder={undefined}
-                >
+                <Button size="sm" className="BtnStyle " placeholder={undefined}>
                   Order Now!
                 </Button>
               </div>

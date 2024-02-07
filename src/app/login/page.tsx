@@ -20,7 +20,7 @@ import {
   useForm,
 } from "react-hook-form";
 
-const Login = () => {
+const LoginPage = () => {
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
   const { handleSubmit, control } = useForm();
@@ -59,7 +59,8 @@ const Login = () => {
                   type="tel"
                   {...field}
                   size="lg"
-                  label="Enter Your Phone Number/Email"
+                  label="Phone Number/Email"
+                  placeholder="Enter Your Phone Number/Email"
                 />
               )}
             />
@@ -72,7 +73,8 @@ const Login = () => {
                   type="password"
                   {...field}
                   size="lg"
-                  label="Enter Your Password"
+                  label="Password"
+                  placeholder="Enter Your Password"
                 />
               )}
             />
@@ -99,4 +101,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

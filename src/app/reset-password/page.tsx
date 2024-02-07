@@ -49,7 +49,8 @@ const ResetPasswordPage = () => {
                   type="tel"
                   {...field}
                   size="lg"
-                  label="Your Phone Number/Email"
+                  label="Phone Number/Email"
+                  placeholder="Enter Phone Number/Email"
                 />
               )}
             />
@@ -63,6 +64,7 @@ const ResetPasswordPage = () => {
                   {...field}
                   size="lg"
                   label="Password"
+                  placeholder="Enter a new Password"
                 />
               )}
             />

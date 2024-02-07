@@ -1,5 +1,5 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
+
 import { useEffect, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,6 +17,7 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import data from "../../../public/data.json";
 const DiscountProduct = () => {
   const [slidesPerViews, setSlidesPerViews] = useState(1);
@@ -86,7 +87,9 @@ const DiscountProduct = () => {
                   </Typography>
                 </CardBody>
 
-                <img
+                <Image
+                  width={230}
+                  height={250}
                   className="CarouselProductImg img-fluid"
                   src={singledata?.ProductImage}
                   alt="card-image"

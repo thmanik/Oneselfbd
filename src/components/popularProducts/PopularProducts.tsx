@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import {
   Button,
   Card,
@@ -8,11 +7,12 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import data from "../../../public/data.json";
-import "./PopularProducts.css";
+
 const PopularProducts = () => {
   const [slidesPerView, setSlidesPerView] = useState(1);
 
@@ -83,8 +83,9 @@ const PopularProducts = () => {
                   </Typography>
                 </CardBody>
 
-                <img
-                  className="CarouselProductImg img-fluid"
+                <Image
+                  width={220}
+                  height={250}
                   src={singledata?.ProductImage}
                   alt="card-image"
                 />
@@ -98,7 +99,7 @@ const PopularProducts = () => {
                     <div>
                       <Button
                         size="sm"
-                        className="addTocartBtn"
+                        className="BtnStyle"
                         placeholder={undefined}
                       >
                         Add to Cart

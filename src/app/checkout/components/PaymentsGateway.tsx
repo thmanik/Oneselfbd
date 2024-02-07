@@ -5,8 +5,8 @@ import React from "react";
 
 import {
   Controller,
-  SubmitHandler,
   FieldValues,
+  SubmitHandler,
   useForm,
 } from "react-hook-form";
 const PaymentsGateway = () => {

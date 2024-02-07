@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
+import Image from "next/image";
 import "./ProductHighlight.css";
 const ProductHighlight = () => {
   return (
@@ -17,7 +17,9 @@ const ProductHighlight = () => {
           </div>
         </div>
         <div className="md:ms-5 ">
-          <img
+          <Image
+            width={185}
+            height={220}
             className="ProductHighlightImg"
             src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
             alt=""

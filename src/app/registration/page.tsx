@@ -45,7 +45,8 @@ const RegistrationPage = () => {
                   type="text"
                   {...field}
                   size="lg"
-                  label="Your Full Name"
+                  label="Full Name"
+                  placeholder="Your Full Name"
                 />
               )}
             />
@@ -58,7 +59,8 @@ const RegistrationPage = () => {
                   type="tel"
                   {...field}
                   size="lg"
-                  label="Your Phone Number"
+                  label="Phone Number"
+                  placeholder="Your Phone Number"
                 />
               )}
             />
@@ -73,6 +75,7 @@ const RegistrationPage = () => {
                   {...field}
                   size="lg"
                   label="Email"
+                  placeholder="Enter Your Email"
                 />
               )}
             />
@@ -86,7 +89,8 @@ const RegistrationPage = () => {
                   type="password"
                   {...field}
                   size="lg"
-                  label="Your Password"
+                  label="Password"
+                  placeholder="Enter Your Password"
                 />
               )}
             />

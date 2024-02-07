@@ -1,11 +1,12 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
+
 import {
   Card,
   CardBody,
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image";
 
 const ProductsPromotion = () => {
   return (
@@ -14,7 +15,7 @@ const ProductsPromotion = () => {
         <div className="md:col-span-8 sm:col-span-12  ">
           <Card
             shadow={false}
-            className="w-full  h-56 rounded-none bg-gray-200  max-w-[52rem] flex-row"
+            className="w-full  h-56 rounded-none justify-between bg-gray-200  max-w-[52rem] flex-row"
             placeholder={undefined}
           >
             <CardBody placeholder={undefined}>
@@ -47,10 +48,12 @@ const ProductsPromotion = () => {
               className="m-0 w-2/5 shrink-0 bg-gray-200"
               placeholder={undefined}
             >
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+              <Image
+                width={250}
+                height={150}
+                src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
                 alt="card-image"
-                className="h-[90%]  mt-3 w-[90%] object-cover "
+                className=" object-cover ms-14 mt-2 "
               />
             </CardHeader>
           </Card>
@@ -91,10 +94,12 @@ const ProductsPromotion = () => {
               className="m-0 w-2/5 shrink-0 bg-gray-200"
               placeholder={undefined}
             >
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+              <Image
+                width={200}
+                height={150}
+                src="https://i.ibb.co/YLM3tnP/LED-BULb.png"
                 alt="card-image"
-                className="h-[90%]  mt-3 w-[90%] object-cover "
+                className=" object-cover me-4 mt-6"
               />
             </CardHeader>
           </Card>
@@ -138,10 +143,12 @@ const ProductsPromotion = () => {
               className="m-0 w-2/5 shrink-0 bg-gray-200"
               placeholder={undefined}
             >
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+              <Image
+                width={200}
+                height={150}
+                src="https://i.ibb.co/YLM3tnP/LED-BULb.png"
                 alt="card-image"
-                className="h-[90%]  mt-3 w-[90%] object-cover "
+                className=" object-cover me-4 mt-6 "
               />
             </CardHeader>
           </Card>
@@ -157,10 +164,12 @@ const ProductsPromotion = () => {
               className="m-0 w-2/5 shrink-0 bg-gray-200 "
               placeholder={undefined}
             >
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+              <Image
+                width={250}
+                height={150}
+                src="https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg"
                 alt="card-image"
-                className="h-[90%]  mt-3 w-[90%] object-cover "
+                className=" object-cover ms-5 mt-2 "
               />
             </CardHeader>
             <CardBody placeholder={undefined}>
