@@ -31,27 +31,27 @@ const CarouselPage = () => {
             <div>
               <div>
                 <Image
-                  width={640}
-                  height={400}
+                  width={1000}
+                  height={800}
                   src="https://i.ibb.co/QbhM89t/demo-Image-1.png"
                   alt="image 1"
-                  className=" object-cover carousel-image"
+                  className="  object-cover carousel-image"
                 />
               </div>
             </div>
             <Image
-              width={640}
-              height={400}
+              width={1000}
+              height={800}
               src="https://i.ibb.co/yq1nDSx/demo-Image-2.png"
               alt="image 2"
-              className=" object-cover"
+              className="  object-cover"
             />
             <Image
-              width={640}
-              height={400}
+              width={1000}
+              height={800}
               src="https://i.ibb.co/T2v8Cxm/demo-Image-3.png"
               alt="image 3"
-              className=" object-cover"
+              className="  object-cover"
             />
           </Carousel>
         </div>
