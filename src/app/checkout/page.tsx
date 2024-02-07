@@ -1,10 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 // src/Page.tsx
 "use client";
+import {
+  Card,
+  CardBody,
+  Input,
+  Option,
+  Select,
+  Typography,
+} from "@material-tailwind/react";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-
-import { Card, CardBody, Typography } from "@material-tailwind/react";
 import Paymentsgateway from "../ui/shared/paymentsgateway/Paymentsgateway";
 import "./checkout.css";
 
@@ -194,107 +200,103 @@ const Page: React.FC<PageProps> = ({ onSubmit = () => {} }) => {
         <div className="md:col-span-5 sm:col-span-12 mt-1">
           <form
             onSubmit={handleSubmit(onSubmitForm)}
-            className="max-w-md mx-auto p-4 border rounded shadow-md"
+            className="max-w-md mx-auto p-4 border rounded shadow-md gap-10"
           >
-            <label className="block mb-2">
-              Name:
+            <label className="block " style={{ marginBottom: "2rem" }}>
               <Controller
                 name="name"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <input
+                  <Input
+                    crossOrigin={undefined}
                     type="text"
                     {...field}
-                    placeholder="Enter your name"
-                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
-                      errors.name ? "border-red-500" : ""
-                    }`}
+                    size="lg"
+                    label="Your Name"
+                    placeholder="Your Name"
+                    className={` ${errors.name ? "border-red-500" : ""}`}
                     required
                   />
                 )}
               />
             </label>
-
-            <label className="block mb-2">
-              Address:
+            <label className="block" style={{ marginBottom: "2rem" }}>
               <Controller
                 name="address"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <input
+                  <Input
+                    crossOrigin={undefined}
                     type="text"
+                    placeholder="Address"
                     {...field}
-                    placeholder="Enter your address"
-                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
-                      errors.address ? "border-red-500" : ""
-                    }`}
+                    size="lg"
+                    label="Address"
+                    className={` ${errors.name ? "border-red-500" : ""}`}
                     required
                   />
                 )}
               />
             </label>
-
-            <label className="block mb-2">
-              District:
+            <label className="block" style={{ marginBottom: "2rem" }}>
               <Controller
                 name="district"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <select
+                  <Select
+                    placeholder={undefined}
+                    variant="outlined"
+                    label="Select District"
                     {...field}
-                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
-                      errors.district ? "border-red-500" : ""
-                    }`}
-                    required
+                    size="lg"
+                    className={` ${errors.name ? "border-red-500" : ""}`}
                   >
-                    <option value="">Select District</option>
+                    <Option>Select District</Option>
                     {districtsData.map((district, index) => (
-                      <option key={index} value={district}>
+                      <Option key={index} value={district}>
                         {district}
-                      </option>
+                      </Option>
                     ))}
-                  </select>
+                  </Select>
                 )}
               />
             </label>
-
-            <label className="block mb-2">
-              Phone Number:
+            <label className="block" style={{ marginBottom: "2rem" }}>
               <Controller
                 name="phoneNumber"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <input
+                  <Input
+                    crossOrigin={undefined}
                     type="tel"
                     {...field}
-                    placeholder="Enter your phone number"
-                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
-                      errors.phoneNumber ? "border-red-500" : ""
-                    }`}
+                    placeholder="Your Phone Number"
+                    size="lg"
+                    label="Phone Number"
+                    className={` ${errors.name ? "border-red-500" : ""}`}
                     required
                   />
                 )}
               />
             </label>
-
-            <label className="block mb-2">
-              Email:
+            <label className="block" style={{ marginBottom: "2rem" }}>
               <Controller
                 name="email"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <input
+                  <Input
+                    crossOrigin={undefined}
                     type="email"
                     {...field}
-                    placeholder="Enter your email"
-                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
-                      errors.email ? "border-red-500" : ""
-                    }`}
+                    placeholder="Your Email"
+                    size="lg"
+                    label="Email"
+                    className={` ${errors.name ? "border-red-500" : ""}`}
                     required
                   />
                 )}
