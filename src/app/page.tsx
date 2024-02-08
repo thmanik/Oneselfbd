@@ -6,7 +6,7 @@ import TrendingProducts from "@/components/trendingProducts/TrendingProducts";
 import Carousel from "../components/carousel/Carousel";
 import FeatureProduct from "../components/featureProduct/FeatureProduct";
 import ProductCarousel from "../components/productCarousel/ProductCarousel";
-import PreFooter from "./ui/shared/preFooter/PreFooter";
+import PreFooter from "./ui/shared/prefooter/PreFooter";
 
 export default function Home() {
   return (
