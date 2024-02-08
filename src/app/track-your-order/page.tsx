@@ -12,7 +12,7 @@ const page = () => {
           press the "Track" button. This was given to you on your receipt and in
           the confirmation email you should have received.
         </p>
-        <div className=""></div>
+        <div className="text-4xl my-10 font-bold">In a Process...</div>
       </div>
     </div>
   );
