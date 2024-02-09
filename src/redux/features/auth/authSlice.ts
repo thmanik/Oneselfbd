@@ -1,4 +1,3 @@
-"use client";
 import { createSlice } from "@reduxjs/toolkit";
 import { TInitialState } from "./interface";
 
