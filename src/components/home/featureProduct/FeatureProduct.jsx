@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import Image from "next/image";
-import data from "../../../public/data.json";
+import data from "/public/data.json";
 const FeatureProduct = () => {
   return (
     <div className="grid md:grid-cols-12 md:ms-9  mt-16 gap-3">

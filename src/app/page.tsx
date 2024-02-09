@@ -1,25 +1,32 @@
-import ProductHighlight from "@/components/ProductHighlight/ProductHighlight";
-import PopularProducts from "@/components/popularProducts/PopularProducts";
-import ProductsGallery from "@/components/productsGallery/ProductsGallery";
-import ProductsPromotion from "@/components/productsPromotion/ProductsPromotion";
-import TrendingProducts from "@/components/trendingProducts/TrendingProducts";
-import Carousel from "../components/carousel/Carousel";
-import FeatureProduct from "../components/featureProduct/FeatureProduct";
-import ProductCarousel from "../components/productCarousel/ProductCarousel";
-import PreFooter from "./ui/shared/prefooter/PreFooter";
+import ProductHighlight from "@/components/home/ProductHighlight/ProductHighlight";
+import FeatureProduct from "@/components/home/featureProduct/FeatureProduct";
+import PopularProducts from "@/components/home/popularProducts/PopularProducts";
+import SuggestedProducts from "@/components/home/productCarousel/ProductCarousel";
+import ProductsGallery from "@/components/home/productsGallery/ProductsGallery";
+import ProductsPromotion from "@/components/home/productsPromotion/ProductsPromotion";
+import TrendingProducts from "@/components/home/trendingProducts/TrendingProducts";
+import { Metadata } from "next";
+import Carousel from "../components/home/carousel/Carousel";
+import PreFooter from "./ui/shared/preFooter/PreFooter";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Home | Oneself",
+  description: "Buy now",
+};
+
+const Home = () => {
   return (
-    <main className=" items-center justify-between ">
-      <Carousel></Carousel>
-      <ProductCarousel></ProductCarousel>
-      <ProductHighlight></ProductHighlight>
-      <FeatureProduct></FeatureProduct>
-      <TrendingProducts></TrendingProducts>
-      <PopularProducts></PopularProducts>
-      <ProductsGallery></ProductsGallery>
-      <ProductsPromotion></ProductsPromotion>
-      <PreFooter></PreFooter>
-    </main>
+    <>
+      <Carousel />
+      <SuggestedProducts />
+      <ProductHighlight />
+      <FeatureProduct />
+      <TrendingProducts />
+      <PopularProducts />
+      <ProductsGallery />
+      <ProductsPromotion />
+      <PreFooter />
+    </>
   );
-}
+};
+export default Home;

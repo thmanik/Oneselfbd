@@ -11,7 +11,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import data from "../../../public/data.json";
+import data from "../../../../public/data.json";
 
 const PopularProducts = () => {
   const [slidesPerView, setSlidesPerView] = useState(1);

@@ -1,13 +1,14 @@
+import config from "@/config/config";
 import {
   BaseQueryFn,
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
-import { RootState } from "../store";
 import { logOut, setUser } from "../features/auth/authSlice";
+import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000/api/v1",
+  baseUrl: config.base_erl,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -27,7 +28,7 @@ const customBaseQueryWithRefreshToken: BaseQueryFn = async (
   let result = await baseQuery(args, api, extraOptions);
   if (result?.error?.status === 401) {
     // request for getting access token
-    const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
+    const res = await fetch(`${config.base_erl}/auth/refresh-token`, {
       method: "POST",
       credentials: "include",
     });
