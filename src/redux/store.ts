@@ -3,14 +3,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/auth/authSlice";
 
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import baseApi from "./baseApi/baseApi";

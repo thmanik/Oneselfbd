@@ -20,7 +20,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import data from "../../../public/data.json";
+import data from "../../../../public/data.json";
 
 const SuggestedProducts: React.FC = () => {
   const [value, setValue] = useState<string>("tab1");
