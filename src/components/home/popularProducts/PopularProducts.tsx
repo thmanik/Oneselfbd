@@ -1,118 +1,38 @@
-"use client";
-
+import ContainerMax from "@/components/containerMax/ContainerMax";
+import ProductCardPrimary from "@/components/productCards/ProductCardPrimary";
+import SectionTitle from "@/components/sectionTitle/SectionTitle";
 import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Typography,
-} from "@material-tailwind/react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import data from "../../../../public/data.json";
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import useQuery from "@/hooks/useQuery";
+import { TProduct } from "@/types/product";
 
-const PopularProducts = () => {
-  const [slidesPerView, setSlidesPerView] = useState(1);
-
-  useEffect(() => {
-    const handleResize = () => {
-      // Update slidesPerView based on screen width
-      if (window.innerWidth < 200) {
-        setSlidesPerView(1); // Small screens
-      } else if (window.innerWidth < 600) {
-        setSlidesPerView(2);
-      } else {
-        setSlidesPerView(5); // Medium and larger screens
-      }
-    };
-
-    // Initial setup
-    handleResize();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", handleResize);
-
-    // Remove event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+const PopularProducts = async () => {
+  const { data: tendingProducts } = await useQuery("/products/featured"); // TODO: Change endpoint
   return (
-    <div className="mb-5">
-      <div className="flex justify-between mx-8 mt-14 ">
+    <section className="pt-20">
+      <ContainerMax>
+        <SectionTitle title="Popular products" href="/products" />
         <div>
-          <h3>Popular Products</h3>
-        </div>
-        <div className="flex gap-5">
-          <a className="" href="">
-            Top
-          </a>
-          <a href="">All in one</a>
-        </div>
-      </div>
-      <hr />
-      <div className="mx-8">
-        <Swiper
-          slidesPerView={slidesPerView}
-          spaceBetween={2}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className="mySwiper "
-        >
-          {data?.map((singledata) => (
-            <SwiperSlide key={singledata.id}>
-              <Card
-                className="my-4 W-56 mx-1 h-96 relative"
-                placeholder={undefined}
-              >
-                <CardBody placeholder={undefined}>
-                  <Typography placeholder={undefined}>
-                    {singledata?.Category}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    color="blue-gray"
-                    className="mb-2"
-                    placeholder={undefined}
+          <Carousel>
+            <CarouselContent className="">
+              {(tendingProducts?.data?.data as unknown as TProduct[])?.map(
+                (product) => (
+                  <CarouselItem
+                    key={product._id}
+                    className="basis-1/2 sm:basis-1/3 md:basis1/5 lg:basis-1/6"
                   >
-                    {singledata?.ProductName}
-                  </Typography>
-                </CardBody>
-
-                <Image
-                  width={220}
-                  height={250}
-                  src={singledata?.ProductImage}
-                  alt="card-image"
-                />
-
-                <CardFooter
-                  className="pt-0 absolute bottom-0 left-0 right-0"
-                  placeholder={undefined}
-                >
-                  <div className="flex justify-between">
-                    <div>$ {singledata?.SellingPrice}</div>
-                    <div>
-                      <Button
-                        size="sm"
-                        className="BtnStyle"
-                        placeholder={undefined}
-                      >
-                        Add to Cart
-                      </Button>
-                    </div>
-                  </div>
-                </CardFooter>
-              </Card>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </div>
+                    <ProductCardPrimary product={product} />
+                  </CarouselItem>
+                )
+              )}
+            </CarouselContent>
+          </Carousel>
+        </div>
+      </ContainerMax>
+    </section>
   );
 };
 
