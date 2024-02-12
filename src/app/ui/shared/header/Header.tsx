@@ -236,6 +236,7 @@ const Header = () => {
                     crossOrigin={undefined}
                   />
                 </Collapse>
+
                 <IconButton variant="text" placeholder={undefined}>
                   <UserIcon className="h-6 w-6 icon-btn" />
                 </IconButton>

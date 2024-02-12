@@ -80,9 +80,8 @@ const TrendingProducts = () => {
                 </CardBody>
 
                 <Image
-                  width={220}
-                  height={250}
-                  className="CarouselProductImg img-fluid"
+                  width={180}
+                  height={200}
                   src={singledata?.ProductImage}
                   alt="card-image"
                 />

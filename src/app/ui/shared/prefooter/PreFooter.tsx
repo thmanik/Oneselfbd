@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { Card, CardBody, CardHeader } from "@material-tailwind/react";
 // import {
@@ -9,9 +8,9 @@ import { Card, CardBody, CardHeader } from "@material-tailwind/react";
 //   ReactNode,
 //   ReactPortal,
 // } from "react";
+import Image from "next/image";
 import data from "../../../../../public/data.json";
-import "./preFooter.css";
-/* eslint-disable @next/next/no-img-element */
+
 const PreFooter = () => {
   return (
     <div className="grid md:grid-cols-12 mx-8 mt-16">
@@ -45,8 +44,9 @@ const PreFooter = () => {
                   className="flex p-3 product-card gap-2"
                 >
                   <div>
-                    <img
-                      className="PreFooter-img"
+                    <Image
+                      width={45}
+                      height={45}
                       src={singleData.ProductImage}
                       alt=""
                     />
@@ -133,8 +133,9 @@ const PreFooter = () => {
                   className="flex p-3 product-card gap-2"
                 >
                   <div>
-                    <img
-                      className="PreFooter-img"
+                    <Image
+                      width={45}
+                      height={45}
                       src={singleData?.ProductImage}
                       alt=""
                     />
@@ -180,8 +181,9 @@ const PreFooter = () => {
                   className="flex p-3 product-card gap-2"
                 >
                   <div>
-                    <img
-                      className="PreFooter-img"
+                    <Image
+                      width={45}
+                      height={45}
                       src={singleData?.ProductImage}
                       alt=""
                     />
@@ -206,9 +208,9 @@ const PreFooter = () => {
                 <h3>Product Name</h3>
               </div>
               <div>
-                <p>
+                <div>
                   Starting AT <br /> <span>$99.99</span>
-                </p>
+                </div>
               </div>
             </div>
           </CardBody>
@@ -217,8 +219,10 @@ const PreFooter = () => {
             className="relative h-56"
             placeholder={undefined}
           >
-            <img
-              src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+            <Image
+              width={220}
+              height={200}
+              src="https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg"
               alt="card-image"
             />
           </CardHeader>

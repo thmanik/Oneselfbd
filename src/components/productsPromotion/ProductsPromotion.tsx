@@ -80,12 +80,12 @@ const ProductsPromotion = () => {
               >
                 Like so many organizations these days,
                 <br />
-                <p>
+                <div>
                   From{" "}
                   <span>
                     $<span className="text-2xl">99.99</span>
                   </span>{" "}
-                </p>
+                </div>
               </Typography>
             </CardBody>
             <CardHeader
@@ -188,12 +188,12 @@ const ProductsPromotion = () => {
               >
                 Like so many organizations these days,
                 <br />
-                <p>
+                <div>
                   From{" "}
                   <span>
                     $<span className="text-2xl">99.99</span>
                   </span>{" "}
-                </p>
+                </div>
               </Typography>
             </CardBody>
           </Card>

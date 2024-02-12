@@ -84,8 +84,8 @@ const PopularProducts = () => {
                 </CardBody>
 
                 <Image
-                  width={220}
-                  height={250}
+                  width={180}
+                  height={200}
                   src={singledata?.ProductImage}
                   alt="card-image"
                 />
