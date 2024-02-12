@@ -5,13 +5,14 @@ import { TProduct } from "@/types/product";
 import BannerCarousel from "./components/BannerCarousel";
 
 const Banner = async () => {
-  const { data: bannerSideProducts } = await useQuery("/products");
-
+  const { data: bannerSideProducts } = await useQuery("/products"); // TODO: change endpoints
   return (
     <section>
       <ContainerMax>
         <div className="grid grid-cols-8 lg:grid-cols-12 mt-5 gap-5 justify-between">
-          <BannerCarousel />
+          <div className="col-span-8">
+            <BannerCarousel />
+          </div>
           <div className="col-span-8 md:col-span-4 lg:col-span-4  my-3 space-y-5">
             {(bannerSideProducts?.data?.data as unknown as TProduct[])
               .slice(0, 3)

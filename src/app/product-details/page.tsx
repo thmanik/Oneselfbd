@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 
 "use client";
@@ -23,6 +24,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navigation, Thumbs } from "swiper/modules";
 const ProductDetailsPage = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   //   const [activeTab, setActiveTab] = React.useState("html");
   const [value, setValue] = useState<string>("tab1");
@@ -126,7 +128,7 @@ const ProductDetailsPage = () => {
             </SwiperSlide>
           </Swiper>
           <Swiper
-            onSwiper={setThumbsSwiper}
+            // onSwiper={setThumbsSwiper}
             loop={true}
             spaceBetween={1}
             slidesPerView={4}

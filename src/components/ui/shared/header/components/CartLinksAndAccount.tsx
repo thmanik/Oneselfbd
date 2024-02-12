@@ -5,7 +5,7 @@ import { FaRegUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import CartData from "./CartData";
 
-const HeaderLinksAndCart = () => {
+const CartLinksAndAccount = () => {
   const user = useSelector((state: TRootState) => state.auth.user);
   return (
     <>
@@ -19,4 +19,4 @@ const HeaderLinksAndCart = () => {
   );
 };
 
-export default HeaderLinksAndCart;
+export default CartLinksAndAccount;

@@ -25,10 +25,7 @@ const Home = async () => {
       <TrendingProducts />
       <PopularProducts />
       <HighlightTwoProducts />
-
       <ProductsGallery />
-      {/* <ProductsPromotion /> */}
-      {/* <PreFooter /> */}
     </>
   );
 };

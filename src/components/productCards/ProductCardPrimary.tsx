@@ -10,8 +10,8 @@ const ProductCardPrimary = ({ product }: { product: TProduct }) => {
       href={`/product/${product.slug}`}
       className="bg-white w-[188px] border- p-4 flex flex-col gap-2 group"
     >
-      <p className="text-xs text-secondary">{product?.category?.name}</p>
-      <h2 className="text-primary font-bold">{product.title}</h2>
+      <p className="text-xs text-muted">{product?.category?.name}</p>
+      <h2 className="text-secondary font-bold">{product.title}</h2>
       <Image
         src={`${config.base_url}/uploads/public${product.image.src}`}
         alt={product.image.alt}
