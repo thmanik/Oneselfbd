@@ -5,13 +5,14 @@ import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/product";
 
 const ProductsGallery = async () => {
-  const { data: products } = await useQuery("/products");
+  const { data } = await useQuery("/products");
+  const products = (data?.data?.data as unknown as TProduct[]) ?? [];
   return (
     <section className="pt-20">
       <ContainerMax>
         <SectionTitle title="All products" href="/shop" />
         <div className="flex gap-3 flex-wrap justify-center mt-5">
-          {(products?.data?.data as unknown as TProduct[])?.map((product) => (
+          {products?.map((product) => (
             <ProductCardSecondary key={product._id} product={product} />
           ))}
         </div>

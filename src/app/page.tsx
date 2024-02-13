@@ -6,6 +6,7 @@ import ProductsGallery from "@/components/home/productsGallery/ProductsGallery";
 import SuggestedProducts from "@/components/home/suggestedProducts/suggestedProducts";
 import TrendingProducts from "@/components/home/trendingProducts/TrendingProducts";
 import useQuery from "@/hooks/useQuery";
+import { TProduct } from "@/types/product";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,14 +15,13 @@ export const metadata: Metadata = {
 };
 
 const Home = async () => {
-  const { data: highlightedProducts } = await useQuery("/products/featured"); // TODO: Change endpoint
+  const { data } = await useQuery("/products/featured"); // TODO: Change endpoint
+  const highlightedProducts = (data?.data?.data as unknown as TProduct[]) ?? [];
   return (
     <>
       <Banner />
       <SuggestedProducts />
-      <HighlightAProduct
-        product={highlightedProducts?.data?.data?.[0] ?? null}
-      />
+      <HighlightAProduct product={highlightedProducts[0] ?? null} />
       <TrendingProducts />
       <PopularProducts />
       <HighlightTwoProducts />

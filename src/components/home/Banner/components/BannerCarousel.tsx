@@ -10,18 +10,17 @@ import { TProduct } from "@/types/product";
 import CarouselUi from "./CarouselUi";
 
 const BannerCarousel = async () => {
-  const { data: carouselProducts } = await useQuery("/products"); // TODO: change endpoint
+  const { data } = await useQuery("/products"); // TODO: change endpoint
+  const carouselProducts = (data?.data?.data as unknown as TProduct[]) ?? [];
   return (
     <>
       <Carousel>
         <CarouselContent>
-          {(carouselProducts?.data?.data as unknown as TProduct[]).map(
-            (product) => (
-              <CarouselItem key={product._id}>
-                <CarouselUi product={product} />
-              </CarouselItem>
-            )
-          )}
+          {carouselProducts?.slice(0, 5)?.map((product) => (
+            <CarouselItem key={product._id}>
+              <CarouselUi product={product} />
+            </CarouselItem>
+          ))}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />

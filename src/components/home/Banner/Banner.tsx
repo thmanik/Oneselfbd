@@ -5,7 +5,9 @@ import { TProduct } from "@/types/product";
 import BannerCarousel from "./components/BannerCarousel";
 
 const Banner = async () => {
-  const { data: bannerSideProducts } = await useQuery("/products"); // TODO: change endpoints
+  const { data } = await useQuery("/products"); // TODO: change endpoints
+  const bannerSideProducts = (data?.data?.data as unknown as TProduct[]) ?? [];
+
   return (
     <section>
       <ContainerMax>
@@ -14,9 +16,9 @@ const Banner = async () => {
             <BannerCarousel />
           </div>
           <div className="col-span-8 md:col-span-4 lg:col-span-4  my-3 space-y-5">
-            {(bannerSideProducts?.data?.data as unknown as TProduct[])
-              .slice(0, 3)
-              .map((product) => (
+            {bannerSideProducts
+              ?.slice(0, 3)
+              ?.map((product) => (
                 <HorizontalProductCard key={product._id} product={product} />
               ))}
           </div>

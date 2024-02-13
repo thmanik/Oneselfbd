@@ -41,7 +41,7 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
           )}
         </div>
         <Link
-          href={`/product/${product.slug}`}
+          href={`/products/slug/${product.slug}`}
           className="font-semibold text-secondary hover:text-primary transition-all flex items-center gap-2"
         >
           <span>Buy now</span>

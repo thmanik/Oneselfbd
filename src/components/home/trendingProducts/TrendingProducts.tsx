@@ -10,7 +10,8 @@ import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/product";
 
 const TrendingProducts = async () => {
-  const { data: tendingProducts } = await useQuery("/products/featured"); // TODO: Change endpoint
+  const { data } = await useQuery("/products/featured"); // TODO: Change endpoint
+  const trendingProducts = (data?.data?.data as unknown as TProduct[]) ?? [];
   return (
     <section className="pt-20">
       <ContainerMax>
@@ -18,16 +19,14 @@ const TrendingProducts = async () => {
         <div>
           <Carousel>
             <CarouselContent className="">
-              {(tendingProducts?.data?.data as unknown as TProduct[])?.map(
-                (product) => (
-                  <CarouselItem
-                    key={product._id}
-                    className="basis-1/2 sm:basis-1/3 md:basis1/5 lg:basis-1/6"
-                  >
-                    <ProductCardPrimary product={product} />
-                  </CarouselItem>
-                )
-              )}
+              {trendingProducts?.map((product) => (
+                <CarouselItem
+                  key={product._id}
+                  className="basis-1/2 sm:basis-1/3 md:basis1/5 lg:basis-1/6"
+                >
+                  <ProductCardPrimary product={product} />
+                </CarouselItem>
+              ))}
             </CarouselContent>
           </Carousel>
         </div>

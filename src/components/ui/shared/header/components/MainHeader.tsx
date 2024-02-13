@@ -3,6 +3,7 @@ import Link from "next/link";
 import CartLinksAndAccount from "./CartLinksAndAccount";
 import NavLinks from "./NavLinks";
 import Search from "./Search";
+
 const MainHeader = () => {
   return (
     <div className="flex gap-5 justify-between lg:justify-evenly items-center px-2 lg:px-10 py-2 border-b-2 shadow-md">
@@ -14,6 +15,7 @@ const MainHeader = () => {
             height={200}
             width={400}
             className="w-28 lg:w-36"
+            priority
           />
         </Link>
       </div>
