@@ -14,13 +14,20 @@ type TProduct = {
   _id: string;
 };
 
-type TCartItemData = {
+type TAttribute = {
+  _id: string;
+  name: string;
+  value: string;
+};
+
+export type TCartItemData = {
   _id: string;
   product: TProduct;
   quantity: number;
+  attributes: TAttribute[];
 };
 
-type TCartItem = {
+export type TCartItem = {
   item: TCartItemData;
   _id: string;
 };

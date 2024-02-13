@@ -18,22 +18,22 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
         />
       </div>
       <div>
-        <h2 className="text-accent font-semibold">{product.title}</h2>
+        <h2 className="font-semibold">{product.title}</h2>
         <div>
           {product.salePrice ? (
             <>
               <span className="text-muted">
                 &#2547;
-                <del>{product.price}</del>
+                <del className="text-sm">{product.price}</del>
               </span>
-              <span className="text-2xl font-bold">
+              <span className="text-xl font-bold">
                 &#2547;
                 <span>{product.salePrice}</span>
               </span>
             </>
           ) : (
             <>
-              <span className="text-2xl font-bold">
+              <span className="text-2xl font-bold text-primary">
                 &#2547;
                 <span>{product.price}</span>
               </span>
@@ -41,8 +41,8 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
           )}
         </div>
         <Link
-          href={`/product/${product.slug}`}
-          className="font-semibold text-primary hover:text-primary/80 transition-all flex items-center gap-2"
+          href={`/products/slug/${product.slug}`}
+          className="font-semibold text-secondary hover:text-primary transition-all flex items-center gap-2"
         >
           <span>Buy now</span>
           <span>

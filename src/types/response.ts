@@ -5,15 +5,15 @@ type TMeta = {
   totalPage: number;
 };
 
+export type TMetaAndData<T = null> = {
+  meta: TMeta;
+  data: T;
+};
+
 type TGenericResponse<T = null> = {
   success: boolean;
   message: string;
-  data:
-    | T
-    | {
-        meta: TMeta;
-        data: T;
-      };
+  data: T | TMetaAndData<T>;
 };
 
 export default TGenericResponse;
