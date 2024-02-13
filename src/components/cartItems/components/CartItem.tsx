@@ -34,9 +34,8 @@ const CartItem = ({
       cartItemId: cartItem._id,
       quantity,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
-  // eslint-disable-next-line no-console
-  // console.log(data);
   return (
     <TableRow>
       <TableCell className="font-medium flex gap-3 items-center justify-center">
