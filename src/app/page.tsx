@@ -1,31 +1,34 @@
-import ProductHighlight from "@/components/home/ProductHighlight/ProductHighlight";
-import FeatureProduct from "@/components/home/featureProduct/FeatureProduct";
+import HighlightAProduct from "@/components/highlightAProduct/HighlightedProduct";
+import Banner from "@/components/home/Banner/Banner";
+import HighlightTwoProducts from "@/components/home/highlightTwoProducts/HighlightTwoProducts";
 import PopularProducts from "@/components/home/popularProducts/PopularProducts";
-import SuggestedProducts from "@/components/home/productCarousel/ProductCarousel";
 import ProductsGallery from "@/components/home/productsGallery/ProductsGallery";
-import ProductsPromotion from "@/components/home/productsPromotion/ProductsPromotion";
+import SuggestedProducts from "@/components/home/suggestedProducts/suggestedProducts";
 import TrendingProducts from "@/components/home/trendingProducts/TrendingProducts";
+import useQuery from "@/hooks/useQuery";
 import { Metadata } from "next";
-import Carousel from "../components/home/carousel/Carousel";
-import PreFooter from "./ui/shared/preFooter/PreFooter";
 
 export const metadata: Metadata = {
   title: "Home | Oneself",
   description: "Buy now",
 };
 
-const Home = () => {
+const Home = async () => {
+  const { data: highlightedProducts } = await useQuery("/products/featured"); // TODO: Change endpoint
   return (
     <>
-      <Carousel />
+      <Banner />
       <SuggestedProducts />
-      <ProductHighlight />
-      <FeatureProduct />
+      <HighlightAProduct
+        product={highlightedProducts?.data?.data?.[0] ?? null}
+      />
       <TrendingProducts />
       <PopularProducts />
+      <HighlightTwoProducts />
+
       <ProductsGallery />
-      <ProductsPromotion />
-      <PreFooter />
+      {/* <ProductsPromotion /> */}
+      {/* <PreFooter /> */}
     </>
   );
 };

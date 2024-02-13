@@ -6,8 +6,10 @@ const page = () => {
   return (
     <div className="m-8">
       <div>
-        <h2 className="text-4xl text-center text-heading">Track your Order</h2>
-        <p className="mb-4 mt-8 text-sub_title">
+        <h2 className="text-4xl text-center text-dark-gray">
+          Track your Order
+        </h2>
+        <p className="mb-4 mt-8 text-base-100">
           To track your order please enter your Order ID in the box below and
           press the "Track" button. This was given to you on your receipt and in
           the confirmation email you should have received.
