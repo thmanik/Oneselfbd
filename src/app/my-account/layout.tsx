@@ -7,9 +7,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div>
-      {/* Sidebar */}
-
+    <div className="px-6 py-8">
       {/* Main Content */}
       <main className="grid md:grid-cols-12  px-4 py-6">
         <div className="md:col-span-4 sm:col-span-12">

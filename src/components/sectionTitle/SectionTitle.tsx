@@ -14,14 +14,14 @@ const SectionTitle = ({
       <div
         className={`${href ? "flex justify-between items-center" : "block"}`}
       >
-        <h2 className="text-accent font-semibold border-b-2 border-primary py-3 -pb-1">
+        <h2 className="text-secondary font-semibold border-b-2 border-primary py-3 -pb-1">
           {title}
         </h2>
         {href ? (
           <>
             <Link
               href={href}
-              className="hover:text-primary flex gap-2 font-semibold text-accent"
+              className="hover:text-primary flex gap-2 font-semibold"
             >
               {linkText ?? "See all"}{" "}
               <span>

@@ -11,8 +11,8 @@ const EditAccountPage = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto my-3 ">
-      <div className="form-container">
+    <div className="max-w-lg mx-auto border p-5 ">
+      <div className="form-container ">
         <h2 className="text-2xl font-bold mb-4">Edit Account Information</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
@@ -80,7 +80,7 @@ const EditAccountPage = () => {
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-indigo-600 text-white rounded-md font-semibold hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
           >
             Save
           </button>

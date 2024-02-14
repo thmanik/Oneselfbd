@@ -6,6 +6,7 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 
 const CartData = () => {
   const { totalCartItem, totalCost } = useCart();
+
   return (
     <>
       <span>
@@ -13,7 +14,7 @@ const CartData = () => {
           <MdOutlineShoppingBag className="w-6 h-6" />
           <span className="absolute -bottom-3 -right-1">
             <Badge variant="outline" className="bg-primary text-white">
-              {totalCartItem}
+              {totalCartItem ?? 0}
             </Badge>
           </span>
         </span>

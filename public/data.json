@@ -3,7 +3,7 @@
     "id": 1,
     "ProductName": "LED Bulb A",
     "Category": "Lighting",
-    "ProductImage": "https://i.ibb.co/7VH5rMw/Orelco-Bulb-01.jpg",
+    "ProductImage": "url_to_image1.jpg",
     "ProductImageGallery": [
       "url_to_image2.jpg",
       "url_to_image3.jpg",
@@ -24,7 +24,7 @@
     "id": 2,
     "ProductName": "Smart Bulb B",
     "Category": "Smart Home",
-    "ProductImage": "https://i.ibb.co/YLM3tnP/LED-BULb.png",
+    "ProductImage": "url_to_image6.jpg",
     "ProductImageGallery": [
       "url_to_image7.jpg",
       "url_to_image8.jpg",
@@ -45,7 +45,7 @@
     "id": 3,
     "ProductName": "Incandescent Bulb C",
     "Category": "Traditional",
-    "ProductImage": "https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg",
+    "ProductImage": "url_to_image11.jpg",
     "ProductImageGallery": [
       "url_to_image12.jpg",
       "url_to_image13.jpg",
@@ -66,7 +66,7 @@
     "id": 4,
     "ProductName": "LED Spotlight D",
     "Category": "Spotlights",
-    "ProductImage": "https://i.ibb.co/3BFKjfS/Orelco-Bulb-02.jpg",
+    "ProductImage": "url_to_image16.jpg",
     "ProductImageGallery": [
       "url_to_image17.jpg",
       "url_to_image18.jpg",
@@ -87,7 +87,7 @@
     "id": 5,
     "ProductName": "Color-changing Smart Bulb E",
     "Category": "Smart Home",
-    "ProductImage": "https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg",
+    "ProductImage": "url_to_image21.jpg",
     "ProductImageGallery": [
       "url_to_image22.jpg",
       "url_to_image23.jpg",
@@ -108,7 +108,7 @@
     "id": 6,
     "ProductName": "Vintage Edison Bulb F",
     "Category": "Decorative",
-    "ProductImage": "https://i.ibb.co/YLM3tnP/LED-BULb.png",
+    "ProductImage": "url_to_image26.jpg",
     "ProductImageGallery": [
       "url_to_image27.jpg",
       "url_to_image28.jpg",
@@ -129,7 +129,7 @@
     "id": 7,
     "ProductName": "LED Candle Bulb G",
     "Category": "Candle Bulbs",
-    "ProductImage": "https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg",
+    "ProductImage": "url_to_image31.jpg",
     "ProductImageGallery": [
       "url_to_image32.jpg",
       "url_to_image33.jpg",
@@ -150,7 +150,7 @@
     "id": 8,
     "ProductName": "Flame Effect LED Bulb H",
     "Category": "Special Effects",
-    "ProductImage": "https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg",
+    "ProductImage": "url_to_image36.jpg",
     "ProductImageGallery": [
       "url_to_image37.jpg",
       "url_to_image38.jpg",
@@ -171,7 +171,7 @@
     "id": 9,
     "ProductName": "Halogen Floodlight I",
     "Category": "Floodlights",
-    "ProductImage": "https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg",
+    "ProductImage": "url_to_image41.jpg",
     "ProductImageGallery": [
       "url_to_image42.jpg",
       "url_to_image43.jpg",
@@ -192,7 +192,7 @@
     "id": 10,
     "ProductName": "Dimmable LED Bulb J",
     "Category": "Dimmable Bulbs",
-    "ProductImage": "https://i.ibb.co/zrtWxWR/l-LED-BULB.jpg",
+    "ProductImage": "url_to_image46.jpg",
     "ProductImageGallery": [
       "url_to_image47.jpg",
       "url_to_image48.jpg",

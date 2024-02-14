@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -36,7 +37,7 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div className="container mx-auto max-w-md py-4">
+    <div className="w-[430px] border-none md:mx-auto my-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -48,9 +49,10 @@ const RegistrationPage = () => {
           >
             Phone Number
           </label>
-          <input
+          <Input
             className={`shadow appearance-none border ${errors.phoneNumber ? "border-red-500" : "border-gray-200"} rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
             type="tel"
+            placeholder="Enter Your Phone Number"
             id="phoneNumber"
             {...register("phoneNumber")}
           />
@@ -67,10 +69,11 @@ const RegistrationPage = () => {
           >
             Password
           </label>
-          <input
+          <Input
             className={`shadow appearance-none border ${errors.password ? "border-red-500" : "border-gray-200"} rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline`}
             type="password"
             id="password"
+            placeholder="Enter a Password"
             {...register("password")}
           />
           {errors.password && (

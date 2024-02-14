@@ -1,4 +1,5 @@
 "use client";
+import EcButton from "@/components/EcButton/EcButton";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
@@ -78,12 +79,7 @@ const EditShippingAddressPage = () => {
               className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none  "
             />
           </div>
-          <button
-            type="submit"
-            className="w-full px-4 py-2 bg-indigo-600 text-white rounded-md font-semibold hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
-          >
-            Save
-          </button>
+          <EcButton>save</EcButton>
         </form>
       </div>
     </div>

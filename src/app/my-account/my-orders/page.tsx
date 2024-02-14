@@ -21,7 +21,7 @@ const invoices = [
   },
 
   {
-    orderID: "INV001",
+    orderID: "INV002",
     date: "05/02/2024",
     ship_to: "Manik",
     totalAmount: "$200.00",
@@ -29,7 +29,7 @@ const invoices = [
     paymentMethod: "Bank Transfer",
   },
   {
-    orderID: "INV001",
+    orderID: "INV003",
     date: "04/02/2024",
     ship_to: "Manik",
     totalAmount: "$300.00",
