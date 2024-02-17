@@ -44,6 +44,7 @@ const MainFooterContent = () => {
               width={400}
               height={200}
               className="w-44 rounded-md shadow-md"
+              priority
             />
             <div className="flex gap-2 items-center">
               <BiSupport className="w-12 h-12" />

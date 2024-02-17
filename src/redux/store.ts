@@ -14,6 +14,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import baseApi from "./baseApi/baseApi";
+import shippingClass from "./features/shippingClasses/shippingClass";
 const persistConfig = {
   key: "auth",
   storage,
@@ -25,6 +26,7 @@ export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedAuthReducer,
+    shippingClass: shippingClass,
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({

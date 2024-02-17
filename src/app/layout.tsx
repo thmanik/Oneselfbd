@@ -1,5 +1,6 @@
 import Footer from "@/components/ui/shared/footer/Footer";
 import Header from "@/components/ui/shared/header/Header";
+import { Toaster } from "@/components/ui/toaster";
 import StoreProvider from "@/redux/StoreProvider";
 import "@smastrom/react-rating/style.css";
 import { Inter } from "next/font/google";
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Header />
           <main>{children}</main>
           <Footer />
+          <Toaster />
         </body>
       </StoreProvider>
     </html>
