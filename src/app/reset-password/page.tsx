@@ -1,85 +1,104 @@
 "use client";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Typography,
-} from "@material-tailwind/react";
-// LoginPage.tsx
-import { Input } from "@material-tailwind/react";
-import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Controller,
   FieldValues,
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import * as yup from "yup";
 
 const ResetPasswordPage = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { handleSubmit, control } = useForm();
+  const schema = yup.object().shape({
+    PhoneNumber: yup.string().required("Email or phone number is required"),
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      ),
+  });
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      PhoneNumber: "017XXXXXX", // Provide initial value here
+      password: "",
+    },
+  });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // Handle login logic here
     // eslint-disable-next-line no-console
     console.log(data);
   };
 
   return (
     <form
-      className="justify-center items-center"
+      className="flex justify-center items-center my-8"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="flex items-center justify-center h-screen">
-        <Card className="w-96" placeholder={undefined}>
-          <CardBody className="flex flex-col gap-2" placeholder={undefined}>
-            <Typography variant="h4" color="black" placeholder={undefined}>
-              Reset Account Password!
-            </Typography>
-            <Typography placeholder={undefined}>
-              Enter A New Password For Your Account
-            </Typography>
-            <Controller
-              name="number"
-              control={control}
-              render={({ field }) => (
+      <div className="max-w-md mx-auto w-full">
+        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <h4 className="text-2xl font-bold mb-2">Reset Account Password!</h4>
+          <p className="mb-4">Enter A New Password For Your Account</p>
+
+          <Controller
+            name="PhoneNumber"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                className={`shadcn-input shadcn-border shadcn-rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none ${
+                  errors.PhoneNumber ? "border-red-500" : "shadcn-border"
+                }`}
+                id="PhoneNumber"
+                type="text"
+              />
+            )}
+          />
+          {errors.PhoneNumber && (
+            <p className="text-red-500 text-xs italic">
+              {errors.PhoneNumber.message}
+            </p>
+          )}
+
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <div>
                 <Input
-                  crossOrigin={undefined}
-                  type="tel"
                   {...field}
-                  size="lg"
-                  label="Phone Number/Email"
-                  placeholder="Enter Phone Number/Email"
-                />
-              )}
-            />
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  crossOrigin={undefined}
+                  className={`shadcn-input shadcn-border shadcn-rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none ${
+                    errors.password ? "border-red-500" : "shadcn-border"
+                  }`}
+                  id="password"
                   type="password"
-                  {...field}
-                  size="lg"
-                  label="Password"
                   placeholder="Enter a new Password"
                 />
-              )}
-            />
-          </CardBody>
-          <CardFooter className="pt-0" placeholder={undefined}>
-            <Button
-              type="submit"
-              fullWidth
-              placeholder={undefined}
-              className="mt-4 BtnStyle"
-            >
-              Reset Password
-            </Button>
-          </CardFooter>
-        </Card>
+                {errors.password && (
+                  <p className="text-red-500 text-xs italic">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
+            )}
+          />
+          <Button
+            type="submit"
+            className="shadcn-btn w-full bg-primary text-white shadcn-font-bold py-2 px-4 shadcn-rounded focus:outline-none focus:shadcn-shadow hover:shadcn-bg-blue-700"
+          >
+            Reset Password
+          </Button>
+        </div>
       </div>
     </form>
   );

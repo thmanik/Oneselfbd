@@ -38,6 +38,9 @@ const RegistrationPage = () => {
 
   return (
     <div className="w-[430px] border-none md:mx-auto my-6">
+      <div>
+        <h4 className="ms-8 font-bold text-primary">Registration Page</h4>
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -84,10 +87,10 @@ const RegistrationPage = () => {
         </div>
         <div className="flex items-center justify-between">
           <Button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className=" w-full bg-primary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Register
+            Registration
           </Button>
         </div>
       </form>
