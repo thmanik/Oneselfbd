@@ -1,4 +1,5 @@
 "use client";
+import EcButton from "@/components/EcButton/EcButton";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
@@ -78,12 +79,9 @@ const EditAccountPage = () => {
               className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none  "
             />
           </div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
+          <EcButton type="submit" className=" px-4 py-2 ">
             Save
-          </button>
+          </EcButton>
         </form>
       </div>
     </div>

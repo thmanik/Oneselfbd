@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 
@@ -12,14 +13,8 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-import {
-  Button,
-  Tab,
-  TabPanel,
-  Tabs,
-  TabsBody,
-  TabsHeader,
-} from "@material-tailwind/react";
+import EcButton from "@/components/EcButton/EcButton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import Link from "next/link";
 import { Navigation, Thumbs } from "swiper/modules";
@@ -195,7 +190,7 @@ const ProductDetailsPage = () => {
         </div>
         {/* Products Details */}
         <div className="md:col-span-6 sm:col-span-12">
-          <div className="md:ms-10">
+          <div className="">
             <div>
               {" "}
               <span className="text-2xl">$10000</span>{" "}
@@ -229,51 +224,13 @@ const ProductDetailsPage = () => {
 
             <div className="flex justify-around mt-3 ">
               <div className="flex">
-                <div className="lg:mr-0 md:mr-0 ">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    cursor="pointer"
-                    stroke="currentColor"
-                    className="w-10 h-10 svgIcon m-5 "
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M5 12h14"
-                    />
-                  </svg>
-                </div>
-                <div className="my-8 text-primary sm:text-lg">1</div>
-                <div className="lg:mr-0 md:mr-0">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    cursor="pointer"
-                    stroke="currentColor"
-                    className="w-10 h-10 svgIcon m-5 "
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 4.5v15m7.5-7.5h-15"
-                    />
-                  </svg>
-                </div>
+                <EcButton className="text-2xl">-</EcButton>
+                <div className="mt-2 mx-4 text-primary sm:text-lg">1</div>
+                <EcButton className="text-2xl">+</EcButton>
               </div>
               <div>
                 <Link href="/cart">
-                  <Button
-                    size="lg"
-                    className="BtnStyle mt-4"
-                    placeholder={undefined}
-                  >
-                    Add To Cart
-                  </Button>
+                  <EcButton>Add To Cart</EcButton>
                 </Link>
               </div>
             </div>
@@ -283,63 +240,22 @@ const ProductDetailsPage = () => {
 
       {/* Tabs */}
       <div className="my-20">
-        <Tabs value={value} onChange={handleChange}>
-          <TabsHeader
-            className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
-            indicatorProps={{
-              className:
-                "bg-transparent border-b-2 border-primary shadow-none rounded-none",
-            }}
-            placeholder={undefined}
-          >
-            <Tab value="tab1" placeholder={undefined}>
-              <div className={`py-2 px-4 font-medium uppercase cursor-pointer`}>
-                <div
-                  className={`flex items-center gap-2 ${
-                    value === "tab1" ? " text-primary" : "text-gray-700"
-                  }`}
-                  onClick={() => handleChange("tab1")}
-                >
-                  Details
-                </div>
-              </div>
-            </Tab>
-            <Tab value="tab2" placeholder={undefined}>
-              <div className={`py-2 px-4 font-medium uppercase cursor-pointer`}>
-                <div
-                  className={`flex items-center gap-2 ${
-                    value === "tab2" ? " text-primary" : "text-gray-700"
-                  }`}
-                  onClick={() => handleChange("tab2")}
-                >
-                  More Information
-                </div>
-              </div>
-            </Tab>
-            <Tab value="tab3" placeholder={undefined}>
-              <div className={`py-2 px-4 font-medium uppercase cursor-pointer`}>
-                <div
-                  className={`flex items-center gap-2 ${
-                    value === "tab3" ? " text-primary" : "text-gray-700"
-                  }`}
-                  onClick={() => handleChange("tab3")}
-                >
-                  Reviews
-                </div>
-              </div>
-            </Tab>
-          </TabsHeader>
-          <TabsBody placeholder={undefined}>
-            <TabPanel value="tab1">
-              <div className="md:mx-5"></div>
-            </TabPanel>
-            <TabPanel value="tab2">
-              <div className="md:mx-5"></div>
-            </TabPanel>
-            <TabPanel value="tab3">
-              <div className="md:mx-5"></div>
-            </TabPanel>
-          </TabsBody>
+        <Tabs defaultValue="featured">
+          <TabsList>
+            <TabsTrigger value="Details">Details</TabsTrigger>
+            <TabsTrigger value="moreInfo">More Information</TabsTrigger>
+            <TabsTrigger value="review">Reviews</TabsTrigger>
+          </TabsList>
+          <hr className="w-full" />
+          <TabsContent value="Details">
+            <div>Details coming</div>
+          </TabsContent>
+          <TabsContent value="moreInfo">
+            <div>information coming..</div>
+          </TabsContent>
+          <TabsContent value="review">
+            <div>Review coming</div>
+          </TabsContent>
         </Tabs>
       </div>
     </div>

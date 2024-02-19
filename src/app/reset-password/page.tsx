@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import EcButton from "@/components/EcButton/EcButton";
 import { Input } from "@/components/ui/input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -92,12 +92,9 @@ const ResetPasswordPage = () => {
               </div>
             )}
           />
-          <Button
-            type="submit"
-            className="shadcn-btn w-full bg-primary text-white shadcn-font-bold py-2 px-4 shadcn-rounded focus:outline-none focus:shadcn-shadow hover:shadcn-bg-blue-700"
-          >
+          <EcButton type="submit" className=" w-full  py-2 px-4 ">
             Reset Password
-          </Button>
+          </EcButton>
         </div>
       </div>
     </form>

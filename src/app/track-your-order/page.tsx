@@ -1,11 +1,8 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { Button, Input } from "@material-tailwind/react";
-import React from "react";
+import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
-/* eslint-disable no-console */
 const TrackOrderPage = () => {
   const {
     register,
@@ -13,9 +10,11 @@ const TrackOrderPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit: React.FormEventHandler<HTMLFormElement> = (data: object) => {
+  const onSubmit = (data: object) => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
+
   return (
     <>
       <div className="my-8 mx-10">
@@ -23,10 +22,10 @@ const TrackOrderPage = () => {
           <h2 className="text-4xl text-center text-dark-gray">
             Track your Order
           </h2>
-          <p className="mb-4 mt-8 text-base-100">
+          <p className="mb-4 mt-8 text-muted ">
             To track your order please enter your Order ID in the box below and
-            press the "Track" button. This was given to you on your receipt and
-            in the confirmation email you should have received.
+            press the Track button. This was given to you on your receipt and in
+            the confirmation email you should have received.
           </p>
         </div>
       </div>
@@ -35,9 +34,8 @@ const TrackOrderPage = () => {
           <div className="md:col-span-6 sm:col-span-12">
             <div className="font-bold ms-2">Order ID</div>
             <Input
-              crossOrigin={undefined}
               {...register("orderId", { required: true })}
-              className="w-80 rounded"
+              className="w-full rounded border p-2"
               type="text"
               placeholder="Found in your order Confirmation email"
             />
@@ -48,9 +46,8 @@ const TrackOrderPage = () => {
           <div className="md:col-span-6 sm:col-span-12">
             <div className="font-bold ms-2">Billing email</div>
             <Input
-              crossOrigin={undefined}
               {...register("billingEmail", { required: true })}
-              className="w-80"
+              className="w-full rounded border p-2"
               type="email"
               placeholder="Email you used during checkout"
             />
@@ -59,13 +56,12 @@ const TrackOrderPage = () => {
             )}
           </div>
         </div>
-        <Button
-          className="BtnStyle ms-10"
+        <button
+          className="BtnStyle ms-10 shadow-md bg-primary text-white font-bold py-2 px-4 rounded"
           onClick={handleSubmit(onSubmit)}
-          placeholder={undefined}
         >
           Track Order
-        </Button>
+        </button>
       </div>
     </>
   );

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "ProductName": "LED Bulb A",
+    "Category": "Lighting",
+    "ProductImage": "url_to_image1.jpg",
+    "ProductImageGallery": [
+      "url_to_image2.jpg",
+      "url_to_image3.jpg",
+      "url_to_image4.jpg",
+      "url_to_image5.jpg"
+    ],
+    "RegularPrice": 19.99,
+    "SellingPrice": 14.99,
+    "ShortDescription": "Energy-efficient LED bulb with a warm glow.",
+    "FullDescription": "This LED bulb is designed to provide energy-efficient lighting with a warm and comfortable glow. Suitable for various environments.",
+    "Specification": {
+      "Brand": "XYZ Lighting",
+      "Voltage": "120V",
+      "Review": 4.5
+    }
+  }
+]

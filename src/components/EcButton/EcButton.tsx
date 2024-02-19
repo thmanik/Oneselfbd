@@ -16,7 +16,7 @@ const EcButton = ({
   loading?: boolean;
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
-  type?: "simple" | "icon";
+  type?: "simple" | "icon" | "submit";
   variant?:
     | "link"
     | "default"

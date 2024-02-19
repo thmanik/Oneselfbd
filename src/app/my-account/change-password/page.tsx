@@ -1,5 +1,6 @@
 "use client";
 
+import EcButton from "@/components/EcButton/EcButton";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
@@ -76,12 +77,9 @@ const ChangePasswordPage = () => {
         )}
       </div>
       <div className="mb-4">
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
+        <EcButton type="submit" className=" px-4 py-2 ">
           Save
-        </button>
+        </EcButton>
       </div>
     </form>
   );

@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import EcButton from "@/components/EcButton/EcButton";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
@@ -18,13 +18,13 @@ const LoginPage = () => {
 
   return (
     <div className="w-[430px] border-none md:mx-auto my-6">
-      <div>
-        <h4 className="ms-8 font-bold text-primary">Login Page</h4>
-      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
+        <div>
+          <h4 className=" my-3 font-bold  text-2xl">Login Page</h4>
+        </div>
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -56,12 +56,9 @@ const LoginPage = () => {
           />
         </div>
         <div className="flex items-center justify-between">
-          <Button
-            className="bg-primary w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
+          <EcButton type="submit" className=" w-full  font-bold py-2 px-4 ">
             Login
-          </Button>
+          </EcButton>
         </div>
       </form>
     </div>
