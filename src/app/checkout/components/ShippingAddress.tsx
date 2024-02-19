@@ -1,5 +1,7 @@
 "use client";
 import ErrorMessage from "@/components/errorMessage/ErrorMessage";
+import Box from "@/components/ui/ec/Box";
+import BoxHeading from "@/components/ui/ec/BoxHeading";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { shippingInfo } from "@/schemas/shippingInfo";
@@ -44,8 +46,8 @@ const ShippingAddress = ({
   }, [errors, countSubmitBtnClick]);
 
   return (
-    <div className="ring-1 shadow-md rounded-md p-5 ring-base-100">
-      <h2 className="mb-4 font-bold text-xl">Shipping information</h2>
+    <Box>
+      <BoxHeading>Shipping information</BoxHeading>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>
           <Label className="font-bold pl-2 pb-2 block">Your full name*</Label>
@@ -103,7 +105,7 @@ const ShippingAddress = ({
           Submit
         </button>
       </form>
-    </div>
+    </Box>
   );
 };
 

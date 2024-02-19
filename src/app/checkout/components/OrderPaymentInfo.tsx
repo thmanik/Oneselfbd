@@ -11,6 +11,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import Box from "@/components/ui/ec/Box";
+import BoxHeading from "@/components/ui/ec/BoxHeading";
 import useCart from "@/hooks/useCart";
 import { TOrderPayment } from "@/types/order/orderPayment";
 import { TPaymentMethod } from "@/types/paymentMethod";
@@ -20,7 +22,7 @@ import Image from "next/image";
 import { Dispatch, RefObject, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 
-const AddedProductsAndShipping = ({
+const OrderPaymentInfo = ({
   shippingCharges,
   paymentMethods,
   orderNowHandler,
@@ -48,8 +50,8 @@ const AddedProductsAndShipping = ({
   );
   return (
     <>
-      <div className="ring-1 shadow-md rounded-md p-5 ring-base-100 mt-5">
-        <h2 className="text-xl font-bold">Your order</h2>
+      <Box>
+        <BoxHeading>Your order</BoxHeading>
         <CartTotalCalculations shippingCharges={shippingCharges} />
         <EcButton
           className="w-full font-bold text-white"
@@ -58,7 +60,7 @@ const AddedProductsAndShipping = ({
         >
           Order now
         </EcButton>
-      </div>
+      </Box>
       {selectedPaymentMethod && (
         <AlertDialog>
           <AlertDialogTrigger hidden ref={orderModelRef}></AlertDialogTrigger>
@@ -120,4 +122,4 @@ const AddedProductsAndShipping = ({
   );
 };
 
-export default AddedProductsAndShipping;
+export default OrderPaymentInfo;

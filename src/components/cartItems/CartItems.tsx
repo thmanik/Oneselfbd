@@ -3,7 +3,6 @@ import CartItem from "@/components/cartItems/components/CartItem";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableHead,
   TableHeader,
   TableRow,
@@ -35,7 +34,6 @@ const CartItems = ({ basUrl }: { basUrl?: string }) => {
   return (
     <>
       <Table>
-        <TableCaption>Your cart items.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="text-center">Product</TableHead>

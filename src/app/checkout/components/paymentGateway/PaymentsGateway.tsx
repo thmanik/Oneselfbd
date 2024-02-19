@@ -1,4 +1,6 @@
 import ErrorMessage from "@/components/errorMessage/ErrorMessage";
+import Box from "@/components/ui/ec/Box";
+import BoxHeading from "@/components/ui/ec/BoxHeading";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -90,8 +92,8 @@ const PaymentsGateway = ({
   }, [errors, countSubmitBtnClick]);
 
   return (
-    <div className="ring-1 shadow-md rounded-md p-5 ring-base-100">
-      <h2 className="mb-4 font-bold text-xl">Payment info</h2>
+    <Box>
+      <BoxHeading>Payment info</BoxHeading>
       <SelectPaymentMethod
         paymentMethods={paymentMethods}
         selectedPaymentMethod={selectedPaymentMethod}
@@ -191,7 +193,7 @@ const PaymentsGateway = ({
           </div>
         </>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -1,11 +1,13 @@
 "use client";
 import CartItems from "@/components/cartItems/CartItems";
+import Box from "@/components/ui/ec/Box";
+import BoxHeading from "@/components/ui/ec/BoxHeading";
 import paymentMethodsFakeData from "@/constants/paymentMethods";
 import { TOrderPayment } from "@/types/order/orderPayment";
 import TShippingCharges from "@/types/shippingCharge";
 import { useEffect, useRef, useState } from "react";
 import ShippingAddress, { TShippingData } from "../components/ShippingAddress";
-import AddedProductsAndShipping from "./AddedProductsAndShipping";
+import OrderPaymentInfo from "./OrderPaymentInfo";
 import PaymentsGateway from "./paymentGateway/PaymentsGateway";
 const CheckoutPageContent = ({
   shippingCharges,
@@ -42,22 +44,19 @@ const CheckoutPageContent = ({
   }, [orderNowClick, shippingAddress, paymentInfo]);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+      <Box className="col-span-1 lg:col-span-2 mt-10">
+        <BoxHeading>Added items</BoxHeading>
+        <CartItems basUrl={baseUrl} />
+      </Box>
       <div>
         <ShippingAddress
           shippingAddressHandler={shippingAddressHandler}
           submitBtnRef={shippingBtn}
         />
       </div>
-      <div>
-        <PaymentsGateway
-          paymentInfoHandler={paymentInfoHandler}
-          paymentMethods={paymentMethods}
-          paymentBtn={paymentBtn}
-        />
-      </div>
-      <div>
-        <AddedProductsAndShipping
+      <div className="order-4 lg:order-3">
+        <OrderPaymentInfo
           orderNowHandler={orderNowHandler}
           shippingCharges={shippingCharges}
           orderModelRef={orderModelRef}
@@ -66,8 +65,12 @@ const CheckoutPageContent = ({
           paymentInfo={paymentInfo}
         />
       </div>
-      <div className="col-span-1 lg:col-span-2 mt-10">
-        <CartItems basUrl={baseUrl} />
+      <div className="order-3 lg:order-4">
+        <PaymentsGateway
+          paymentInfoHandler={paymentInfoHandler}
+          paymentMethods={paymentMethods}
+          paymentBtn={paymentBtn}
+        />
       </div>
     </div>
   );
