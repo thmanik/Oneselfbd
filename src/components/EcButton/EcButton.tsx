@@ -9,6 +9,7 @@ const EcButton = ({
   disabled = false,
   onClick,
   type = "simple",
+  ref,
   ...props
 }: {
   children: ReactNode;
@@ -45,6 +46,7 @@ const EcButton = ({
         variant={variant}
         className={`${className} active:scale-95 transition-all select-none aspect-square`}
         onClick={onClick}
+        ref={ref}
         {...props}
       >
         {children}

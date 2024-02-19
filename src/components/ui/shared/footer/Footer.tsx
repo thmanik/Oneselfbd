@@ -3,7 +3,7 @@ import MainFooterContent from "./components/MainFooterContent";
 
 const Footer = () => {
   return (
-    <footer className="pt-10">
+    <footer>
       <MainFooterContent />
       <CopyrightContent />
     </footer>
