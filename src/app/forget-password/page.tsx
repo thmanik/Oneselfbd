@@ -1,5 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import EcButton from "@/components/EcButton/EcButton";
+
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import {
@@ -41,12 +42,9 @@ const ForgetPasswordPage = () => {
               />
             )}
           />
-          <Button
-            type="submit"
-            className="shadcn-btn bg-primary text-white shadcn-font-bold py-2 px-4 shadcn-rounded focus:outline-none focus:shadcn-shadow hover:shadcn-bg-blue-700 mt-4 BtnStyle"
-          >
+          <EcButton type="submit" className="py-2 w-full px-4 mt-4 BtnStyle">
             Reset Password
-          </Button>
+          </EcButton>
           <div className="mt-2 ">
             <Link className="text-primary" href="/login">
               <p>Back To Login Page</p>

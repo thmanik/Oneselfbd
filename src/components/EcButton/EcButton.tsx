@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode, Ref } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import { Button } from "../ui/button";
 
 const EcButton = ({
@@ -17,8 +17,7 @@ const EcButton = ({
   loading?: boolean;
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
-  type?: "simple" | "icon";
-  ref?: Ref<HTMLButtonElement>;
+  type?: "simple" | "icon" | "submit";
   variant?:
     | "link"
     | "default"

@@ -8,10 +8,19 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/components/ui/table"; // Adjust the import path according to your project structure
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const invoices = [
+type Invoice = {
+  orderID: string;
+  date: string;
+  ship_to: string;
+  totalAmount: string;
+  paymentStatus: string;
+};
+
+const invoices: Invoice[] = [
   {
     orderID: "INV001",
     date: "01/02/2024",
@@ -19,14 +28,12 @@ const invoices = [
     totalAmount: "$250.00",
     paymentStatus: "Unpaid",
   },
-
   {
     orderID: "INV002",
     date: "05/02/2024",
     ship_to: "Manik",
     totalAmount: "$200.00",
     paymentStatus: "Paid",
-    paymentMethod: "Bank Transfer",
   },
   {
     orderID: "INV003",
@@ -38,6 +45,23 @@ const invoices = [
 ];
 
 const MyOrdersPage = () => {
+  const [totalAmount, setTotalAmount] = useState<number>(0);
+
+  useEffect(() => {
+    const calculateTotalAmount = () => {
+      let total = 0;
+      invoices.forEach((invoice) => {
+        const amount = parseFloat(invoice.totalAmount.replace("$", ""));
+        if (!isNaN(amount)) {
+          total += amount;
+        }
+      });
+      setTotalAmount(total);
+    };
+
+    calculateTotalAmount();
+  }, []);
+
   return (
     <Table className="border">
       <TableCaption>A list of your recent invoices.</TableCaption>
@@ -58,7 +82,7 @@ const MyOrdersPage = () => {
       <TableBody>
         {invoices.map((invoice) => (
           <TableRow key={invoice.orderID}>
-            <TableCell className="font-medium ">{invoice.orderID}</TableCell>
+            <TableCell className="font-medium">{invoice.orderID}</TableCell>
             <TableCell>{invoice.date}</TableCell>
             <TableCell>{invoice.ship_to}</TableCell>
             <TableCell>{invoice.totalAmount}</TableCell>
@@ -71,8 +95,12 @@ const MyOrdersPage = () => {
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={5}>{invoices.length} Item(s)</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
+          <TableCell className="font-bold" colSpan={5}>
+            {invoices.length} Item(s)
+          </TableCell>
+          <TableCell className="text-right font-bold">
+            ${totalAmount.toFixed(2)}
+          </TableCell>
         </TableRow>
       </TableFooter>
     </Table>
