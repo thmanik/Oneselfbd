@@ -1,21 +1,7 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
+import paymentMethods from "@/constants/paymentMethods";
 import Image from "next/image";
 import Link from "next/link";
-
-const paymentMethods = [
-  {
-    name: "Nagad",
-    src: "/images/payment_methods/nagad.png",
-  },
-  {
-    name: "Rocket",
-    src: "/images/payment_methods/rocket.png",
-  },
-  {
-    name: "Bkash",
-    src: "/images/payment_methods/bkash.png",
-  },
-];
 
 const CopyrightContent = () => {
   return (
@@ -35,8 +21,8 @@ const CopyrightContent = () => {
             {paymentMethods.map((item) => (
               <Image
                 key={item.name}
-                src={item.src}
-                alt={item.name}
+                src={item.image.src}
+                alt={item.image.alt}
                 width={50}
                 height={50}
                 className="w-8 md:w-10 rounded-md"

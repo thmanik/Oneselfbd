@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { MouseEventHandler, ReactNode, Ref } from "react";
 import { Button } from "../ui/button";
 
 const EcButton = ({
@@ -9,6 +9,7 @@ const EcButton = ({
   disabled = false,
   onClick,
   type = "simple",
+  ref,
   ...props
 }: {
   children: ReactNode;
@@ -17,6 +18,7 @@ const EcButton = ({
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   type?: "simple" | "icon";
+  ref?: Ref<HTMLButtonElement>;
   variant?:
     | "link"
     | "default"
@@ -45,6 +47,7 @@ const EcButton = ({
         variant={variant}
         className={`${className} active:scale-95 transition-all select-none aspect-square`}
         onClick={onClick}
+        ref={ref}
         {...props}
       >
         {children}

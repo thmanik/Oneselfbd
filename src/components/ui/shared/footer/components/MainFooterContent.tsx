@@ -33,7 +33,7 @@ const socialLinks = [
 ];
 const MainFooterContent = () => {
   return (
-    <div className=" pb-5 pt-6 relative ">
+    <div className="pb-5 pt-6 relative ">
       <div className="absolute inset-0 -z-10 h-full w-full bg-base-100 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
       <ContainerMax>
         <div className="grid grid-cols-1 md:grid-cols-4">
@@ -44,6 +44,7 @@ const MainFooterContent = () => {
               width={400}
               height={200}
               className="w-44 rounded-md shadow-md"
+              priority
             />
             <div className="flex gap-2 items-center">
               <BiSupport className="w-12 h-12" />

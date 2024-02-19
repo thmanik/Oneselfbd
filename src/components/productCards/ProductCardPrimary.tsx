@@ -2,13 +2,23 @@ import config from "@/config/config";
 import { TProduct } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 import { Button } from "../ui/button";
 
-const ProductCardPrimary = ({ product }: { product: TProduct }) => {
+const ProductCardPrimary = ({
+  product,
+  className,
+}: {
+  product: TProduct;
+  className?: string;
+}) => {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className="bg-white w-[188px] border- p-4 flex flex-col gap-2 group"
+      className={twMerge(
+        "bg-white w-[188px] border- p-4 flex flex-col gap-2 group",
+        className
+      )}
     >
       <p className="text-xs text-muted">{product?.category?.name}</p>
       <h2 className="text-secondary font-bold">{product.title}</h2>
@@ -18,6 +28,7 @@ const ProductCardPrimary = ({ product }: { product: TProduct }) => {
         height={400}
         width={400}
         className="w-28 h-28 aspect-square object-cover mx-auto"
+        priority
       />
       <div>
         {product.salePrice ? (
