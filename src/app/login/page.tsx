@@ -1,103 +1,70 @@
 "use client";
-import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { setUser } from "@/redux/features/auth/authSlice";
-import { TUser } from "@/redux/features/auth/interface";
-import { useAppDispatch } from "@/redux/hooks";
-import decodeJWT from "@/utilities/decodeJWT";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Input,
-  Typography,
-} from "@material-tailwind/react";
-// LoginPage.tsx
-import {
-  Controller,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
-  const dispatch = useAppDispatch();
-  const [login] = useLoginMutation();
-  const { handleSubmit, control } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({});
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // Handle login logic here
-
-    try {
-      const res = await login(data).unwrap();
-
-      const user = decodeJWT(res.data.accessToken) as TUser;
-      // console.log(user)
-      dispatch(setUser({ user: user, token: res.data.accessToken }));
-    } catch (error) {
-      // console.log(error);
-    }
+  const onSubmit = (data: unknown) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+    // You can handle form submission logic here
   };
 
   return (
-    <form
-      className="justify-center items-center"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <div className="flex items-center justify-center h-screen">
-        <Card className="w-96" placeholder={undefined}>
-          <CardBody className="flex flex-col gap-4" placeholder={undefined}>
-            <Typography variant="h3" color="black" placeholder={undefined}>
-              Sign In
-            </Typography>
-            <Controller
-              name="phoneNumber"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  crossOrigin={undefined}
-                  type="tel"
-                  {...field}
-                  size="lg"
-                  label="Phone Number/Email"
-                  placeholder="Enter Your Phone Number/Email"
-                />
-              )}
-            />
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  crossOrigin={undefined}
-                  type="password"
-                  {...field}
-                  size="lg"
-                  label="Password"
-                  placeholder="Enter Your Password"
-                />
-              )}
-            />
-
-            <div className="mt-2">
-              <a href="/forget-password" className="text-primary underline">
-                Forgot Password?
-              </a>
-            </div>
-          </CardBody>
-          <CardFooter className="pt-0" placeholder={undefined}>
-            <Button
-              type="submit"
-              fullWidth
-              placeholder={undefined}
-              className="mt-4 BtnStyle"
-            >
-              Sign In
-            </Button>
-          </CardFooter>
-        </Card>
+    <div className="w-[430px] border-none md:mx-auto my-6">
+      <div>
+        <h4 className="ms-8 font-bold text-primary">Login Page</h4>
       </div>
-    </form>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="phoneNumber"
+          >
+            Phone Number
+          </label>
+          <Input
+            className={`shadow appearance-none border ${errors.phoneNumber ? "border-red-500" : "border-gray-200"} rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+            type="tel"
+            placeholder="Enter Your Phone Number"
+            id="phoneNumber"
+            {...register("phoneNumber")}
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <Input
+            className={`shadow appearance-none border ${errors.password ? "border-red-500" : "border-gray-200"} rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline`}
+            type="password"
+            id="password"
+            placeholder="Enter a Password"
+            {...register("password")}
+          />
+        </div>
+        <div className="flex items-center justify-between">
+          <Button
+            className="bg-primary w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Login
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 
