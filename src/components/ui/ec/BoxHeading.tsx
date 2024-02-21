@@ -9,7 +9,9 @@ const BoxHeading = ({
   className?: string;
 }) => {
   return (
-    <h2 className={twMerge("text-xl font-bold mb-4", className)}>{children}</h2>
+    <h2 className={twMerge("text-xl font-semibold mb-4", className)}>
+      {children}
+    </h2>
   );
 };
 

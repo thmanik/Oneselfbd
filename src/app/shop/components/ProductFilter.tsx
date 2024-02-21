@@ -15,7 +15,7 @@ const ProductFilter = ({
   tags,
   categories,
 }: {
-  searchParams: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
   tags: TTag[];
   categories: TCategory[];
 }) => {

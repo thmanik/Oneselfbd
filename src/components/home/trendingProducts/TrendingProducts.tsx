@@ -7,7 +7,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import useQuery from "@/hooks/useQuery";
-import { TProduct } from "@/types/product";
+import { TProduct } from "@/types/products/product";
 
 const TrendingProducts = async () => {
   const { data } = await useQuery("/products/featured"); // TODO: Change endpoint

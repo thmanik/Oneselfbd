@@ -1,9 +1,9 @@
 import config from "@/config/config";
-import { TProduct } from "@/types/product";
+import { TProduct } from "@/types/products/product";
 import Image from "next/image";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
-import { Button } from "../ui/button";
+import EcButton from "../EcButton/EcButton";
 
 const ProductCardPrimary = ({
   product,
@@ -14,7 +14,7 @@ const ProductCardPrimary = ({
 }) => {
   return (
     <Link
-      href={`/product/${product.slug}`}
+      href={`/product/${product._id}`}
       className={twMerge(
         "bg-white w-[188px] border- p-4 flex flex-col gap-2 group",
         className
@@ -45,9 +45,9 @@ const ProductCardPrimary = ({
           </>
         )}
       </div>
-      <Button className="bg-gray-300 text-white group-hover:bg-primary font-bold">
+      <EcButton className="bg-gray-300 text-white group-hover:bg-primary font-bold">
         Buy now
-      </Button>
+      </EcButton>
     </Link>
   );
 };

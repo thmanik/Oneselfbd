@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import config from "@/config/config";
-import { TProduct } from "@/types/product";
+import { TProduct } from "@/types/products/product";
 import Image from "next/image";
 import Link from "next/link";
 

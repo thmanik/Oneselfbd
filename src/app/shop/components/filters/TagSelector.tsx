@@ -9,7 +9,7 @@ const TagSelector = ({
 }: {
   tags: TTag[];
   setTagParams: Dispatch<SetStateAction<string>>;
-  searchParams: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
 }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   useEffect(() => {

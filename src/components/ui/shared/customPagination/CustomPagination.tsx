@@ -16,7 +16,7 @@ const CustomPagination = ({
   className,
 }: {
   meta: TMeta;
-  searchParams: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
   className?: string;
 }) => {
   const pageNumbers: number[] = [];

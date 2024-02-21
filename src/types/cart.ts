@@ -1,4 +1,4 @@
-import { TProductImage } from "./product";
+import { TProductImage } from "./products/product";
 
 type TProduct = {
   image: {

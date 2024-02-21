@@ -1,7 +1,7 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import HorizontalProductCard from "@/components/productCards/HorizontalProductCard";
 import useQuery from "@/hooks/useQuery";
-import { TProduct } from "@/types/product";
+import { TProduct } from "@/types/products/product";
 import BannerCarousel from "./components/BannerCarousel";
 
 const Banner = async () => {

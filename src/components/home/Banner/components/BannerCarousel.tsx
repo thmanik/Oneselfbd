@@ -6,7 +6,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import useQuery from "@/hooks/useQuery";
-import { TProduct } from "@/types/product";
+import { TProduct } from "@/types/products/product";
 import CarouselUi from "./CarouselUi";
 
 const BannerCarousel = async () => {

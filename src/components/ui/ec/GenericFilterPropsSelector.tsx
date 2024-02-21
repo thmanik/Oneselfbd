@@ -23,7 +23,7 @@ const GenericFilterPropsSelector = ({
   selectedValues: string[];
   setSelectedValues: Dispatch<SetStateAction<string[]>>;
   items: TTag[];
-  searchParams: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
 }) => {
   const [isOpen, setIsOpen] = useState(true);
   const handleCheckboxChange = (value: string) => {
@@ -37,7 +37,7 @@ const GenericFilterPropsSelector = ({
     if (searchParams[filterBy] && Array.isArray(searchParams[filterBy])) {
       setSelectedValues(searchParams[filterBy] as unknown as string[]);
     } else if (typeof searchParams[filterBy] === "string") {
-      setSelectedValues([searchParams[filterBy]]);
+      setSelectedValues([searchParams[filterBy]] as string[]);
     } else {
       setSelectedValues([]);
     }
@@ -64,17 +64,34 @@ const GenericFilterPropsSelector = ({
         </div>
         <CollapsibleContent className="space-y-2">
           {items.map((item) => (
-            <div key={item._id} className="flex items-center space-x-2">
-              <label className="select-none flex gap-2 font-bold">
-                <input
-                  type="checkbox"
+            <>
+              <div key={item._id} className="flex items-center space-x-2">
+                <label className="select-none flex gap-2">
+                  <input
+                    type="checkbox"
+                    value={item._id}
+                    checked={selectedValues.includes(item._id)}
+                    onChange={() => handleCheckboxChange(item._id)}
+                  />
+                  {item.name}
+                </label>
+              </div>
+
+              {/* <div className="flex items-center space-x-2" key={item._id}>
+                <Checkbox
+                  id={item._id}
                   value={item._id}
                   checked={selectedValues.includes(item._id)}
                   onChange={() => handleCheckboxChange(item._id)}
                 />
-                {item.name}
-              </label>
-            </div>
+                <label
+                  htmlFor={item._id}
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  {item.name}
+                </label>
+              </div> */}
+            </>
           ))}
         </CollapsibleContent>
       </Collapsible>

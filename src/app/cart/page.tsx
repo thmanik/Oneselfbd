@@ -12,7 +12,7 @@ const CartPage = async () => {
   const { data } = await useQuery("/shipping-charges");
   const shippingCharges = (data?.data as unknown as TShippingCharges[]) ?? [];
   return (
-    <section className="pt-10 md:pt-20">
+    <section className="pt-10 md:pt-20 mb-10">
       <ContainerMax>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <Box className="col-span-1 md:col-span-2 ">

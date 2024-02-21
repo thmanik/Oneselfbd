@@ -1,5 +1,5 @@
 import config from "@/config/config";
-import { TProduct } from "@/types/product";
+import { TProduct } from "@/types/products/product";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
@@ -41,7 +41,7 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
           )}
         </div>
         <Link
-          href={`/products/slug/${product.slug}`}
+          href={`/product/${product._id}`}
           className="font-semibold text-secondary hover:text-primary transition-all flex items-center gap-2"
         >
           <span>Buy now</span>

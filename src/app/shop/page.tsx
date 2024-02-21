@@ -5,7 +5,7 @@ import BoxHeading from "@/components/ui/ec/BoxHeading";
 import CustomPagination from "@/components/ui/shared/customPagination/CustomPagination";
 import useQuery from "@/hooks/useQuery";
 import TCategory from "@/types/categories/categories";
-import { TProduct } from "@/types/product";
+import { TProduct } from "@/types/products/product";
 import { TMeta } from "@/types/response";
 import { TTag } from "@/types/tags/tag";
 import { Metadata } from "next";
@@ -13,14 +13,14 @@ import CategorySection from "./components/CategorySection";
 import ProductFilter from "./components/ProductFilter";
 
 export const metadata: Metadata = {
-  title: "Shop | Oneself",
+  title: "Shop",
   description: "Buy now",
 };
 
 const ShopPage = async ({
   searchParams,
 }: {
-  searchParams: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
 }) => {
   const { data: categoriesResponse } = await useQuery("/categories");
   const { data: productsResponse } = await useQuery(`/products`, {

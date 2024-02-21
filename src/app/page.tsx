@@ -6,13 +6,7 @@ import ProductsGallery from "@/components/home/productsGallery/ProductsGallery";
 import SuggestedProducts from "@/components/home/suggestedProducts/suggestedProducts";
 import TrendingProducts from "@/components/home/trendingProducts/TrendingProducts";
 import useQuery from "@/hooks/useQuery";
-import { TProduct } from "@/types/product";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Home | Oneself",
-  description: "Buy now",
-};
+import { TProduct } from "@/types/products/product";
 
 const Home = async () => {
   const { data } = await useQuery("/products/featured"); // TODO: Change endpoint

@@ -8,7 +8,7 @@ const CategorySelector = ({
   setCategoryParams,
 }: {
   categories: TCategory[];
-  searchParams: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
   setCategoryParams: Dispatch<SetStateAction<string>>;
 }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
