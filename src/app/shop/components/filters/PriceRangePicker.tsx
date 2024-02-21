@@ -15,7 +15,7 @@ const PriceRangePicker = ({
 }: {
   initialState: number[];
   setInitialState: Dispatch<SetStateAction<number[]>>;
-  searchParams: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
 }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const handleChange = (valueFor: string, value: number) => {

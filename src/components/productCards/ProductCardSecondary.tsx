@@ -1,5 +1,5 @@
 import config from "@/config/config";
-import { TProduct } from "@/types/product";
+import { TProduct } from "@/types/products/product";
 import { Rating } from "@smastrom/react-rating";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +17,7 @@ const ProductCardSecondary = ({ product }: { product: TProduct }) => {
       </div>
       <div className="col-span-3 space-y-1">
         <Link
-          href={`/products/slug/${product.slug}`}
+          href={`/product/${product._id}`}
           className="font-semibold text-secondary hover:text-primary"
         >
           {product.title}

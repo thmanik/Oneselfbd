@@ -2,7 +2,7 @@ import ContainerMax from "@/components/containerMax/ContainerMax";
 import ProductCardSecondary from "@/components/productCards/ProductCardSecondary";
 import SectionTitle from "@/components/sectionTitle/SectionTitle";
 import useQuery from "@/hooks/useQuery";
-import { TProduct } from "@/types/product";
+import { TProduct } from "@/types/products/product";
 
 const ProductsGallery = async () => {
   const { data } = await useQuery("/products");

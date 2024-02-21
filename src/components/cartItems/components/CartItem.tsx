@@ -1,4 +1,5 @@
 "use client";
+import CartQuantityChangeBtn from "@/components/cartQuantityChangeBtn/CartQuantityChangeBtn";
 import { useToast } from "@/components/ui/use-toast";
 import { useUpdateCartQuantityMutation } from "@/redux/features/cart/cartApi";
 import { TCartItemData } from "@/types/cart";
@@ -24,18 +25,13 @@ const CartItem = ({
   const price = cartItem.product.price.salePrice
     ? cartItem.product.price.salePrice
     : cartItem.product.price.regularPrice;
-  const quantityUpdateHandler = (command: "inc" | "dec") => {
-    let newQuantity = quantity;
-    if (command === "inc") {
-      newQuantity += 1;
-    } else if (command === "dec") {
-      newQuantity -= 1;
-    }
+  const callBack = (newQuantity: number) => {
     updateQuantity({
       cartItemId: cartItem._id,
       quantity: newQuantity,
     });
   };
+
   useEffect(() => {
     if (data?.success) {
       setQuantity(cartItem.quantity);
@@ -63,8 +59,8 @@ const CartItem = ({
         </EcButton>
 
         <Link
-          href={`/products/slug/${cartItem.product.slug}`}
-          className="hover:text-secondary flex-grow flex gap-3 justify-center items-center font-bold flex-wrap text-center"
+          href={`/product/${cartItem.product._id}`}
+          className="hover:text-secondary flex-grow flex flex-col gap-3 justify-center items-center font-semibold flex-wrap text-center"
         >
           <Image
             src={`${basUrl}/uploads/public${cartItem?.product?.image?.thumbnail?.src}`}
@@ -78,28 +74,17 @@ const CartItem = ({
       </TableCell>
       <TableCell className="min-w-24">&#2547; {price}</TableCell>
       <TableCell className="flex items-center">
-        <EcButton
-          variant="ghost"
-          className="text-xl hover:text-white hover:bg-secondary"
-          onClick={() => quantityUpdateHandler("dec")}
-        >
-          -
-        </EcButton>
-        <div className="w-10 p-3 select-none">{quantity}</div>
-
-        <EcButton
-          variant="ghost"
-          className="text-xl hover:text-white hover:bg-secondary"
-          onClick={() => quantityUpdateHandler("inc")}
-        >
-          +
-        </EcButton>
+        <CartQuantityChangeBtn
+          quantity={quantity}
+          setQuantity={setQuantity}
+          callBack={callBack}
+        />
       </TableCell>
       <TableCell>
         {cartItem.attributes.map((item) => (
           <div key={item._id} className="uppercase">
-            <span className="capitalize font-bold">{item.name}</span> :{" "}
-            {item.value}
+            <span className="capitalize font-semibold">{item.name}</span> :{" "}
+            <span className="block pl-2">{item.value}</span>
           </div>
         ))}
       </TableCell>

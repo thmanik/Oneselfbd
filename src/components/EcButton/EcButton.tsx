@@ -1,4 +1,5 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { MouseEventHandler, ReactNode, Ref } from "react";
+import { twMerge } from "tailwind-merge";
 import { Button } from "../ui/button";
 
 const EcButton = ({
@@ -27,13 +28,17 @@ const EcButton = ({
     | "ghost"
     | null
     | undefined;
+  ref?: Ref<HTMLButtonElement>;
 }) => {
   if (type === "icon") {
     if (loading) {
       return (
         <Button
           disabled
-          className={`${className} bg-base-100 flex justify-center items-center text-xs`}
+          className={twMerge(
+            "bg-base-100 flex justify-center items-center text-xs",
+            className
+          )}
           {...props}
         >
           {children}
@@ -44,7 +49,10 @@ const EcButton = ({
       <Button
         disabled={disabled}
         variant={variant}
-        className={`${className} active:scale-95 transition-all select-none aspect-square`}
+        className={twMerge(
+          "active:scale-95 transition-all select-none aspect-square",
+          className
+        )}
         onClick={onClick}
         ref={ref}
         {...props}
@@ -64,7 +72,10 @@ const EcButton = ({
     <Button
       disabled={disabled}
       variant={variant}
-      className={`${className} active:scale-95 transition-all select-none`}
+      className={twMerge(
+        "active:scale-95 transition-all select-none",
+        className
+      )}
       onClick={onClick}
       {...props}
     >

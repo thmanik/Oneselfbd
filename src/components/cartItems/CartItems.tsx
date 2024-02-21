@@ -38,7 +38,7 @@ const CartItems = ({ basUrl }: { basUrl?: string }) => {
           <TableRow>
             <TableHead className="text-center">Product</TableHead>
             <TableHead>Price</TableHead>
-            <TableHead>Quantity</TableHead>
+            <TableHead className="text-center">Quantity</TableHead>
             <TableHead>Attributes</TableHead>
             <TableHead className="text-right">Subtotal</TableHead>
           </TableRow>

@@ -3,7 +3,7 @@ import objectToSearchParams from "@/lib/ec/objectToSearchParams";
 import TGenericResponse from "@/types/response";
 
 export type TQueryOptions = {
-  searchParams: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
   reqConfig?: Record<string, unknown>;
 };
 

@@ -12,8 +12,8 @@ const quickLinks = [
     url: "/about",
   },
   {
-    name: "Location",
-    url: "/location",
+    name: "Store location",
+    url: "/store",
   },
   {
     name: "Refund policy",
