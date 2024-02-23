@@ -45,7 +45,7 @@ const ProductSharing = ({ productUrl }: { productUrl: string }) => {
       await navigator.clipboard.writeText(productUrl);
       toast({
         title: "Success",
-        description: "Text copied to clipboard!",
+        description: "Link copied to clipboard!",
       });
     } catch (err) {
       toast({

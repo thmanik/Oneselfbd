@@ -10,7 +10,7 @@ import { TMeta } from "@/types/response";
 import { TTag } from "@/types/tags/tag";
 import { Metadata } from "next";
 import CategorySection from "./components/CategorySection";
-import ProductFilter from "./components/ProductFilter";
+import ProductFilterContent from "./components/ProductFilterContent";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -36,22 +36,22 @@ const ShopPage = async ({
       <div className="absolute inset-0 -z-10 h-full w-full bg-base-100 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
       <ContainerMax>
         <CategorySection categories={categories} />
-        <div className="grid grid-cols-1 md:grid-cols-7 mt-20 gap-5">
+        <BoxHeading className="mt-20 mb-5">Shop</BoxHeading>
+        <div className="grid grid-cols-1 md:grid-cols-7 gap-5">
           <div className="col-span-1 md:col-span-2">
-            <ProductFilter
+            <ProductFilterContent
               searchParams={searchParams}
               tags={tags}
               categories={categories}
             />
           </div>
-          <div className="col-span-1 md:col-span-5 pt-5">
-            <BoxHeading>Shop</BoxHeading>
-            <div className="flex flex-wrap gap-5">
+          <div className="col-span-7 lg:col-span-5 pt-5">
+            <div className="flex flex-wrap gap-5 justify-center">
               {products.map((product) => (
                 <ProductCardPrimary
                   key={product._id}
                   product={product}
-                  className="rounded-md hover:scale-105 transition-all"
+                  className="rounded-md hover:scale-105 transition-all w-40 md:w-[188px]"
                 />
               ))}
               {!products.length ? (

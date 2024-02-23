@@ -64,34 +64,17 @@ const GenericFilterPropsSelector = ({
         </div>
         <CollapsibleContent className="space-y-2">
           {items.map((item) => (
-            <>
-              <div key={item._id} className="flex items-center space-x-2">
-                <label className="select-none flex gap-2">
-                  <input
-                    type="checkbox"
-                    value={item._id}
-                    checked={selectedValues.includes(item._id)}
-                    onChange={() => handleCheckboxChange(item._id)}
-                  />
-                  {item.name}
-                </label>
-              </div>
-
-              {/* <div className="flex items-center space-x-2" key={item._id}>
-                <Checkbox
-                  id={item._id}
+            <div key={item._id} className="flex items-center space-x-2">
+              <label className="select-none flex gap-2">
+                <input
+                  type="checkbox"
                   value={item._id}
                   checked={selectedValues.includes(item._id)}
                   onChange={() => handleCheckboxChange(item._id)}
                 />
-                <label
-                  htmlFor={item._id}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {item.name}
-                </label>
-              </div> */}
-            </>
+                {item.name}
+              </label>
+            </div>
           ))}
         </CollapsibleContent>
       </Collapsible>

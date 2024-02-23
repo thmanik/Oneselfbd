@@ -1,3 +1,5 @@
+import { TTag } from "../tags/tag";
+
 export type TDate = {
   start: string;
   end: string;
@@ -57,11 +59,6 @@ export type TCategory = {
     _id: string;
     name: string;
   }[];
-};
-
-export type TTag = {
-  _id: string;
-  name: string;
 };
 
 export type TPublishedStatus = {

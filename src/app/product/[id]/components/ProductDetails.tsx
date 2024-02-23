@@ -4,7 +4,7 @@ const ProductDetails = ({ product }: { product: TSingleProduct }) => {
   return (
     <div>
       <Tabs defaultValue="description">
-        <TabsList>
+        <TabsList className="overflow-x-auto md:overflow-hidden pl-10 md:pl-0">
           <TabsTrigger value="description">Description</TabsTrigger>
           <TabsTrigger value="additionalInformation">
             Additional information
