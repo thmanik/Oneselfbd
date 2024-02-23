@@ -5,7 +5,7 @@ import BoxHeading from "@/components/ui/ec/BoxHeading";
 import TCategory from "@/types/categories/categories";
 import { TTag } from "@/types/tags/tag";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import CategorySelector from "./filters/CategorySelector";
 import PriceRangePicker from "./filters/PriceRangePicker";
 import TagSelector from "./filters/TagSelector";
@@ -14,10 +14,12 @@ const ProductFilter = ({
   searchParams,
   tags,
   categories,
+  sheetCloseRef,
 }: {
   searchParams: Record<string, string | string[] | undefined>;
   tags: TTag[];
   categories: TCategory[];
+  sheetCloseRef: RefObject<HTMLButtonElement>;
 }) => {
   const [csSearchParams, setCsSearchParams] = useState(searchParams);
   const [filters, setFilters] = useState("");
@@ -54,45 +56,50 @@ const ProductFilter = ({
 
   const handleClearAllFilters = () => {
     setCsSearchParams({});
+    sheetCloseRef?.current?.click();
     router.push(`?`);
   };
-
   return (
-    <Box className="bg-white space-y-3">
-      <BoxHeading>Filter by price</BoxHeading>
-      <PriceRangePicker
-        initialState={priceFilterInitialState}
-        setInitialState={setPriceFilterInitialState}
-        searchParams={csSearchParams}
-      />
-      <TagSelector
-        tags={tags}
-        setTagParams={setTagParams}
-        searchParams={csSearchParams}
-      />
-      <CategorySelector
-        categories={categories}
-        searchParams={csSearchParams}
-        setCategoryParams={setCategoryParams}
-      />
-      <div className="flex gap-2">
-        <EcButton
-          className="px-6 font-bold text-white"
-          onClick={() => router.push(`?${filters}`)}
-          disabled={!filters}
-        >
-          Find
-        </EcButton>
-        <EcButton
-          className="px-6 font-bold hover:text-white"
-          onClick={() => handleClearAllFilters()}
-          variant="ghost"
-          disabled={!Object.keys(searchParams).length}
-        >
-          Clear all filters
-        </EcButton>
-      </div>
-    </Box>
+    <>
+      <Box className="bg-white space-y-3">
+        <BoxHeading>Filter by price</BoxHeading>
+        <PriceRangePicker
+          initialState={priceFilterInitialState}
+          setInitialState={setPriceFilterInitialState}
+          searchParams={csSearchParams}
+        />
+        <TagSelector
+          tags={tags}
+          setTagParams={setTagParams}
+          searchParams={csSearchParams}
+        />
+        <CategorySelector
+          categories={categories}
+          searchParams={csSearchParams}
+          setCategoryParams={setCategoryParams}
+        />
+        <div className="flex gap-2">
+          <EcButton
+            className="px-6 font-bold text-white"
+            onClick={() => {
+              router.push(`?${filters}`);
+              sheetCloseRef?.current?.click();
+            }}
+            disabled={!filters}
+          >
+            Find
+          </EcButton>
+          <EcButton
+            className="px-6 font-bold hover:text-white"
+            onClick={() => handleClearAllFilters()}
+            variant="ghost"
+            disabled={!Object.keys(searchParams).length}
+          >
+            Clear all filters
+          </EcButton>
+        </div>
+      </Box>
+    </>
   );
 };
 
