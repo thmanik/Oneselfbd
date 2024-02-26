@@ -1,3 +1,4 @@
+import { TImage } from "../image";
 import { TTag } from "../tags/tag";
 
 export type TDate = {
@@ -13,17 +14,9 @@ export type TPrice = {
   discountPercent: number;
 };
 
-export type TImage = {
-  thumbnail: {
-    _id: string;
-    src: string;
-    alt: string;
-  };
-  gallery: {
-    _id: string;
-    src: string;
-    alt: string;
-  }[];
+export type TGalleryImage = {
+  thumbnail: TImage;
+  gallery: TImage[];
 };
 
 export type TInventory = {
@@ -88,7 +81,7 @@ export type TSingleProduct = {
   featured: boolean;
   review: boolean;
   price: TPrice;
-  image: TImage;
+  image: TGalleryImage;
   inventory: TInventory;
   attribute: TAttribute[];
   brand: TBrand[];

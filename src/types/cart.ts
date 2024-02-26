@@ -1,8 +1,8 @@
-import { TProductImage } from "./products/product";
+import { TImage } from "./image";
 
 type TProduct = {
   image: {
-    thumbnail: TProductImage;
+    thumbnail: TImage;
   };
   price: {
     salePrice: number;

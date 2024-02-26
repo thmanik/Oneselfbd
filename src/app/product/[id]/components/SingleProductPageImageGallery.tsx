@@ -1,18 +1,14 @@
 "use client";
-import { TImage } from "@/types/products/singleProduct";
+import { useBaseUrl } from "@/hooks/useBaseUrl";
+import { TGalleryImage } from "@/types/products/singleProduct";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
-const SingleProductPageImageGallery = ({
-  image,
-  baseUrl,
-}: {
-  image: TImage;
-  baseUrl: string;
-}) => {
+const SingleProductPageImageGallery = ({ image }: { image: TGalleryImage }) => {
+  const baseUrl = useBaseUrl();
   const galleryImages = image?.gallery.map((image) => ({
-    original: `${baseUrl}/uploads/public${image.src}`,
-    thumbnail: `${baseUrl}/uploads/public${image.src}`,
+    original: `${baseUrl}/${image.src}`,
+    thumbnail: `${baseUrl}/${image.src}`,
     crossOrigin: "anonymous",
   }));
 

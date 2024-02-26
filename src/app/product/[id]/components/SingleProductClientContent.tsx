@@ -7,14 +7,14 @@ import AddToCartAndBuyNow from "../components/AddToCartAndBuyNow";
 const SingleProductClientContent = ({
   product,
 }: {
-  product: TSingleProduct;
+  product?: TSingleProduct;
 }) => {
   // add to cart handler
   const [quantity, setQuantity] = useState(1);
   const [addToCart, addToCartStatus] = useAddToCartMutation();
   const addToCartHandler = () => {
     const cartInfo = {
-      product: product._id,
+      product: product?._id,
       quantity,
       attributes: [
         {

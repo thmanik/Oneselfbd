@@ -8,8 +8,8 @@ import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
 
 const Featured = async () => {
-  const { data } = await useQuery("/products/featured");
-  const featuredProducts = (data?.data?.data as unknown as TProduct[]) ?? [];
+  const [{ data: featuredProducts = [] }] =
+    await useQuery<TProduct[]>("/products/featured");
   return (
     <>
       <Carousel>

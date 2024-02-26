@@ -1,12 +1,12 @@
-import { TShippingData } from "@/app/checkout/components/ShippingAddress";
 import { TUser } from "@/redux/features/auth/interface";
-import { TOrderPayment } from "./order/orderPayment";
+import { TPaymentInfoState } from "./order/paymentInfo";
+import { TShippingInfoState } from "./order/shippingInfo";
 
 export type TRootState = {
   auth: {
     user: TUser;
   };
   shippingClass: { _id: string; amount: number };
-  shippingAddress: TShippingData;
-  paymentInfo: TOrderPayment;
+  shippingInfo: TShippingInfoState;
+  paymentInfo: TPaymentInfoState;
 };

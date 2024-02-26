@@ -10,8 +10,8 @@ import { TProduct } from "@/types/products/product";
 import CarouselUi from "./CarouselUi";
 
 const BannerCarousel = async () => {
-  const { data } = await useQuery("/products"); // TODO: change endpoint
-  const carouselProducts = (data?.data?.data as unknown as TProduct[]) ?? [];
+  const [{ data: carouselProducts = [] }] =
+    await useQuery<TProduct[]>("/products"); // TODO: change endpoint
   return (
     <>
       <Carousel>

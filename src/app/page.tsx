@@ -9,8 +9,9 @@ import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
 
 const Home = async () => {
-  const { data } = await useQuery("/products/featured"); // TODO: Change endpoint
-  const highlightedProducts = (data?.data?.data as unknown as TProduct[]) ?? [];
+  const [{ data: highlightedProducts = [] }] =
+    await useQuery<TProduct[]>("/products/featured"); // TODO: Change endpoint
+
   return (
     <>
       <Banner />
