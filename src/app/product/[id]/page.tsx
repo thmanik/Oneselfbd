@@ -1,7 +1,7 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import ErrorMessage from "@/components/errorMessage/ErrorMessage";
 import Box from "@/components/ui/ec/Box";
-import config from "@/config/config";
+import { useBaseUrl } from "@/hooks/useBaseUrl";
 import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
 import { TSingleProduct } from "@/types/products/singleProduct";
@@ -20,32 +20,31 @@ type TSingleProductPage = {
 };
 
 const SingleProductPage = async ({ params }: TSingleProductPage) => {
-  const { data: singleProductRes } = await useQuery(`/products/${params.id}`);
-  const product = singleProductRes?.data as unknown as TSingleProduct;
-  const { data: relatedProductRed } = await useQuery(
+  const baseUrl = useBaseUrl();
+  const [{ data: product, success: isSingleProductSuccess }] =
+    await useQuery<TSingleProduct>(`/products/${params.id}`);
+
+  const [{ data: relatedProduct }] = await useQuery<TProduct[]>(
     `/products?category=${product?.category?._id?._id}`
   );
-  if (!singleProductRes?.success) {
+  if (!isSingleProductSuccess) {
     return (
       <ErrorMessage
-        message="No products found"
+        message="No product found"
         className="text-center text-2xl py-5"
       />
     );
   }
   const { image, category, brand, inventory, title, shortDescription, price } =
-    product;
-  const relatedProduct = relatedProductRed?.data?.data as unknown as TProduct[];
+    product as TSingleProduct;
+
   return (
     <>
       <section className="my-10">
         <ContainerMax>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <Box className="shadow-none">
-              <SingleProductPageImageGallery
-                image={image}
-                baseUrl={config.base_url as string}
-              />
+              <SingleProductPageImageGallery image={image} />
             </Box>
             <Box className="space-y-4">
               <Link
@@ -92,7 +91,7 @@ const SingleProductPage = async ({ params }: TSingleProductPage) => {
                 <SingleProductClientContent product={product} />
               </div>
               <ProductSharing
-                productUrl={`${config.base_url}/product/${product?._id}`}
+                productUrl={`${baseUrl}/product/${product?._id}`}
               />
             </Box>
             <div className="col-span-1 md:col-span-2 mt-10">

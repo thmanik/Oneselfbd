@@ -5,8 +5,8 @@ import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
 
 const ProductsGallery = async () => {
-  const { data } = await useQuery("/products");
-  const products = (data?.data?.data as unknown as TProduct[]) ?? [];
+  const [{ data: products = [] }] = await useQuery<TProduct[]>("/products");
+
   return (
     <section className="pt-20">
       <ContainerMax>

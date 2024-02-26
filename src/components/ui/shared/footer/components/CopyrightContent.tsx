@@ -1,9 +1,15 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
-import paymentMethods from "@/constants/paymentMethods";
+import { useBaseUrl } from "@/hooks/useBaseUrl";
+import useQuery from "@/hooks/useQuery";
+import { TPaymentMethod } from "@/types/paymentMethod";
 import Image from "next/image";
 import Link from "next/link";
 
-const CopyrightContent = () => {
+const CopyrightContent = async () => {
+  const baseUrl = useBaseUrl();
+  const [{ data: paymentMethods = [] }] =
+    await useQuery<TPaymentMethod[]>("/payment-method");
+
   return (
     <div className="relative h-24 md:h-14 flex flex-col justify-center">
       <div className="absolute top-0 z-[-2] h-24 md:h-14 w-full bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"></div>
@@ -21,7 +27,7 @@ const CopyrightContent = () => {
             {paymentMethods.map((item) => (
               <Image
                 key={item.name}
-                src={item.image.src}
+                src={`${baseUrl}/${item.image.src}`}
                 alt={item.image.alt}
                 width={50}
                 height={50}

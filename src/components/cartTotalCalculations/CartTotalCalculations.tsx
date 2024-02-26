@@ -10,7 +10,7 @@ import { Skeleton } from "../ui/skeleton";
 const CartTotalCalculations = ({
   shippingCharges,
 }: {
-  shippingCharges: TShippingCharges[];
+  shippingCharges?: TShippingCharges[];
 }) => {
   const selectedShipping = useSelector(
     (state: TRootState) => state.shippingClass
@@ -25,8 +25,8 @@ const CartTotalCalculations = ({
     if (!selectedShipping._id) {
       dispatch(
         setShipping({
-          _id: shippingCharges[0]._id,
-          amount: shippingCharges[0].amount,
+          _id: shippingCharges![0]?._id,
+          amount: shippingCharges![0]?.amount,
         })
       );
     }
@@ -51,8 +51,8 @@ const CartTotalCalculations = ({
           <h2 className="font-bold">Shipping</h2>
         </div>
         <div className=" flex flex-col items-end">
-          {shippingCharges.map((item) => (
-            <div key={item._id} className="py-1">
+          {shippingCharges?.map((item) => (
+            <div key={item?._id} className="py-1">
               <label
                 htmlFor={item?._id}
                 className="select-none px-2 font-semibold text-sm cursor-pointer"
@@ -82,7 +82,12 @@ const CartTotalCalculations = ({
               <Skeleton className="h-4 w-[100px]" />
             </>
           ) : (
-            <>{totalCost + selectedShipping.amount} &#2547;</>
+            <>
+              {totalCost + selectedShipping.amount
+                ? totalCost + selectedShipping.amount
+                : 0}{" "}
+              &#2547;
+            </>
           )}
         </div>
       </div>

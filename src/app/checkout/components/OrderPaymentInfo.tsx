@@ -1,58 +1,106 @@
 import EcButton from "@/components/EcButton/EcButton";
 import CartTotalCalculations from "@/components/cartTotalCalculations/CartTotalCalculations";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import ErrorMessage from "@/components/errorMessage/ErrorMessage";
 import Box from "@/components/ui/ec/Box";
 import BoxHeading from "@/components/ui/ec/BoxHeading";
-import useCart from "@/hooks/useCart";
-import { TOrderPayment } from "@/types/order/orderPayment";
-import { TPaymentMethod } from "@/types/paymentMethod";
+import { toast } from "@/components/ui/use-toast";
+import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
+import TGenericResponse, { TGenericErrorResponse } from "@/types/response";
 import { TRootState } from "@/types/rootState";
 import TShippingCharges from "@/types/shippingCharge";
-import Image from "next/image";
-import { Dispatch, RefObject, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { MdErrorOutline } from "react-icons/md";
 import { useSelector } from "react-redux";
 
 const OrderPaymentInfo = ({
   shippingCharges,
-  paymentMethods,
-  orderNowHandler,
-  orderModelRef,
-  setOrderNowClick,
-  paymentInfo,
+  setErrorMessages,
+  errorMessages,
 }: {
   shippingCharges: TShippingCharges[];
-  paymentMethods: TPaymentMethod[];
-  orderNowHandler: () => void;
-  orderModelRef: RefObject<HTMLButtonElement>;
-  setOrderNowClick: Dispatch<SetStateAction<number>>;
-  paymentInfo: TOrderPayment | null;
+  setErrorMessages: Dispatch<SetStateAction<string[]>>;
+  errorMessages: string[];
 }) => {
-  const { totalCost } = useCart();
-
+  const shippingInfo = useSelector((state: TRootState) => state.shippingInfo);
+  const paymentInfo = useSelector((state: TRootState) => state.paymentInfo);
   const shippingClass = useSelector((state: TRootState) => state.shippingClass);
 
-  const handleOrder = () => {
-    setOrderNowClick((prev) => prev + 1);
-    orderNowHandler();
+  const [createOrder] = useCreateOrderMutation();
+
+  const handleOrder = async () => {
+    setErrorMessages([]);
+    if (shippingInfo.errors?.length || paymentInfo.errors?.length) {
+      setErrorMessages([
+        ...(shippingInfo?.errors || []),
+        ...(paymentInfo?.errors || []),
+      ]);
+      return;
+    }
+    if (!shippingInfo?.data?.phoneNumber) {
+      setErrorMessages(["Please fill out shipping address."]);
+      return;
+    }
+
+    if (paymentInfo?.data?.selectedPaymentMethod?.isPaymentDetailsNeeded) {
+      if (
+        !paymentInfo?.data?.phoneNumber ||
+        !paymentInfo?.data?.transactionId
+      ) {
+        setErrorMessages(["Please fill out payment information."]);
+        return;
+      }
+    }
+    const orderData = {
+      payment: {
+        paymentMethod: paymentInfo?.data?.selectedPaymentMethod?._id,
+        phoneNumber: paymentInfo?.data?.phoneNumber || undefined,
+        transactionId: paymentInfo?.data?.transactionId || undefined,
+      },
+      shippingChargeId: shippingClass._id,
+      shipping: {
+        fullName: shippingInfo.data?.fullName,
+        phoneNumber: shippingInfo.data?.phoneNumber,
+        fullAddress: shippingInfo.data.fullAddress,
+        email: shippingInfo.data?.email || undefined,
+        notes: shippingInfo.data?.notes,
+      },
+    };
+
+    try {
+      const result = (await createOrder(
+        orderData
+      ).unwrap()) as TGenericResponse;
+      if (result.success) {
+        toast({
+          title: "Success",
+          description: result?.message,
+        });
+      }
+    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const res = (error as any).data as TGenericErrorResponse;
+      const errorMessages = res?.errorMessages?.map((error) => error.message);
+      setErrorMessages([...errorMessages]);
+    }
   };
-  const selectedPaymentMethod = paymentMethods.find(
-    (item) => item._id === paymentInfo?.selectedPaymentMethod
-  );
   return (
     <>
       <Box>
         <BoxHeading>Your order</BoxHeading>
         <CartTotalCalculations shippingCharges={shippingCharges} />
+        {errorMessages.length ? (
+          <div className="py-5">
+            {errorMessages.map((message) => (
+              <div
+                key={message}
+                className="flex gap-1 items-center text-red-600 "
+              >
+                <MdErrorOutline />
+                <ErrorMessage message={message} className="!mt-0" />
+              </div>
+            ))}
+          </div>
+        ) : null}
         <EcButton
           className="w-full font-bold text-white"
           variant="secondary"
@@ -61,63 +109,6 @@ const OrderPaymentInfo = ({
           Order now
         </EcButton>
       </Box>
-      {selectedPaymentMethod && (
-        <AlertDialog>
-          <AlertDialogTrigger hidden ref={orderModelRef}></AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>
-                Double check your information.
-              </AlertDialogTitle>
-              <AlertDialogDescription></AlertDialogDescription>
-            </AlertDialogHeader>
-            <div>
-              <div className="flex justify-between items-center px-2 border-b-2">
-                <div>
-                  <h2 className="font-bold">
-                    You need to pay :{" "}
-                    <span className="text-secondary">
-                      {" "}
-                      &#2547; {totalCost + shippingClass.amount}
-                    </span>
-                  </h2>
-                  <h2 className="font-bold">
-                    {selectedPaymentMethod?.requiredFields![0]?.fieldName !==
-                    "transactionId"
-                      ? selectedPaymentMethod?.requiredFields![0]?.fieldName
-                      : selectedPaymentMethod?.requiredFields![1]
-                          ?.fieldName}{" "}
-                    : {paymentInfo?.transactionInfo?.accountInfo?.value}
-                  </h2>
-                  <h2 className="font-bold">
-                    Transaction ID :{" "}
-                    {paymentInfo?.transactionInfo?.transactionId}
-                  </h2>
-                </div>
-                <div className="flex flex-col">
-                  <Image
-                    src={selectedPaymentMethod?.image?.src as string}
-                    alt={selectedPaymentMethod?.image?.alt as string}
-                    height={200}
-                    width={200}
-                    className="w-16 h-16 rounded-md mx-auto"
-                  />
-                  <h2 className="font-bold text-center">
-                    {selectedPaymentMethod?.name}
-                  </h2>
-                </div>
-              </div>
-            </div>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction>Continue</AlertDialogAction>
-              <EcButton variant="secondary" className="text-white">
-                Confirm order
-              </EcButton>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-      )}
     </>
   );
 };

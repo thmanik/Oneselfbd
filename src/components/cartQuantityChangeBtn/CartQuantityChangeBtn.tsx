@@ -10,14 +10,14 @@ const CartQuantityChangeBtn = ({
   quantity: number;
   setQuantity: Dispatch<SetStateAction<number>>;
   // eslint-disable-next-line no-unused-vars
-  callBack?: (num: number) => void;
+  callBack?: (num: number) => Promise<void>;
 }) => {
-  const quantityUpdateHandler = (newQuantity: number) => {
+  const quantityUpdateHandler = async (newQuantity: number) => {
     if (newQuantity <= 1) {
       newQuantity = 1;
     }
     if (callBack) {
-      callBack(newQuantity);
+      await callBack(newQuantity);
     }
     setQuantity(newQuantity);
   };

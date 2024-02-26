@@ -15,14 +15,17 @@ const CustomPagination = ({
   searchParams,
   className,
 }: {
-  meta: TMeta;
+  meta?: TMeta;
   searchParams: Record<string, string | string[] | undefined>;
   className?: string;
 }) => {
   const pageNumbers: number[] = [];
+  if (!meta) {
+    return;
+  }
   for (let i = meta?.page - 3; i <= meta?.page + 3; i++) {
     if (i < 1) continue;
-    if (i > meta.totalPage) break;
+    if (i > meta?.totalPage) break;
     pageNumbers.push(i);
   }
 

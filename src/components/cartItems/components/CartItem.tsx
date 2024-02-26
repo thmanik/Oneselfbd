@@ -21,27 +21,26 @@ const CartItem = ({
 }) => {
   const [quantity, setQuantity] = useState(cartItem.quantity);
   const { toast } = useToast();
-  const [updateQuantity, { data, isLoading }] = useUpdateCartQuantityMutation();
+  const [updateQuantity, { isLoading }] = useUpdateCartQuantityMutation();
   const price = cartItem.product.price.salePrice
     ? cartItem.product.price.salePrice
     : cartItem.product.price.regularPrice;
-  const callBack = (newQuantity: number) => {
-    updateQuantity({
+
+  const callBack = async (newQuantity: number) => {
+    const res = await updateQuantity({
       cartItemId: cartItem._id,
       quantity: newQuantity,
-    });
-  };
+    }).unwrap();
 
-  useEffect(() => {
-    if (data?.success) {
+    if (res?.success) {
       setQuantity(cartItem.quantity);
       toast({
         title: "Success",
-        description: data.message,
+        description: res?.message,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  };
+
   useEffect(() => {
     setQuantity(cartItem.quantity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,7 +62,7 @@ const CartItem = ({
           className="hover:text-secondary flex-grow flex flex-col gap-3 justify-center items-center font-semibold flex-wrap text-center"
         >
           <Image
-            src={`${basUrl}/uploads/public${cartItem?.product?.image?.thumbnail?.src}`}
+            src={`${basUrl}/${cartItem?.product?.image?.thumbnail?.src}`}
             alt={cartItem?.product?.image?.thumbnail?.alt}
             height={200}
             width={200}

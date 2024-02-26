@@ -2,6 +2,7 @@
 import EcButton from "@/components/EcButton/EcButton";
 import CartQuantityChangeBtn from "@/components/cartQuantityChangeBtn/CartQuantityChangeBtn";
 import { toast } from "@/components/ui/use-toast";
+import TGenericResponse from "@/types/response";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
@@ -15,7 +16,7 @@ const AddToCartAndBuyNow = ({
   quantity: number;
   setQuantity: Dispatch<SetStateAction<number>>;
   addToCartStatus: {
-    data: { success: boolean; message: string };
+    data: TGenericResponse;
     isLoading: boolean;
   };
 }) => {

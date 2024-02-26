@@ -1,15 +1,11 @@
+import { TImage } from "../image";
+
 type TProductBrand = {
   _id: string;
   name: string;
 };
 
 type TProductCategory = { _id: string; name: string };
-
-export type TProductImage = {
-  _id: string;
-  src: string;
-  alt: string;
-};
 
 export type TProduct = {
   _id: string;
@@ -24,7 +20,7 @@ export type TProduct = {
   stockAvailable: number;
   category?: TProductCategory;
   brand?: TProductBrand[];
-  image: TProductImage;
+  image: TImage;
   totalReview: number;
   averageRating: null | number;
 };

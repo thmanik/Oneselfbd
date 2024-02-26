@@ -5,15 +5,22 @@ export type TMeta = {
   totalPage: number;
 };
 
-export type TMetaAndData<T = null> = {
-  meta: TMeta;
-  data: T;
+type TGenericResponse<T = unknown> = {
+  success?: boolean;
+  message?: string;
+  data?: T;
+  meta?: TMeta;
 };
 
-type TGenericResponse<T = null> = {
-  success: boolean;
+export type TErrorMessages = {
+  path: string;
   message: string;
-  data: T | TMetaAndData<T>;
+};
+
+export type TGenericErrorResponse = {
+  success?: boolean;
+  message?: string;
+  errorMessages: TErrorMessages[];
 };
 
 export default TGenericResponse;

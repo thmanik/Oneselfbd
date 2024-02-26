@@ -1,3 +1,4 @@
+import { useBaseUrl } from "@/hooks/useBaseUrl";
 import { TPaymentMethod } from "@/types/paymentMethod";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
@@ -10,6 +11,7 @@ const SelectPaymentMethod = ({
   setSelectedPaymentMethod: Dispatch<SetStateAction<string | null>>;
   paymentMethods: TPaymentMethod[];
 }) => {
+  const baseUrl = useBaseUrl();
   return (
     <div>
       {paymentMethods.map((paymentMethod) => (
@@ -31,7 +33,7 @@ const SelectPaymentMethod = ({
           >
             <span>{paymentMethod?.name}</span>
             <Image
-              src={paymentMethod?.image?.src}
+              src={`${baseUrl}/${paymentMethod?.image?.src}`}
               alt={paymentMethod?.image?.alt}
               width={200}
               height={200}

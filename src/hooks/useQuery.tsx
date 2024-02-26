@@ -7,9 +7,11 @@ export type TQueryOptions = {
   reqConfig?: Record<string, unknown>;
 };
 
-const useQuery = async (endPoint: string, queryOptions?: TQueryOptions) => {
+const useQuery = async <T,>(
+  endPoint: string,
+  queryOptions?: TQueryOptions
+): Promise<[TGenericResponse<T>]> => {
   let url = `${config.base_url}/api/v1${endPoint}`;
-
   if (queryOptions) {
     if (queryOptions.reqConfig && !queryOptions.reqConfig.cache) {
       queryOptions.reqConfig.cache = "no-store";
@@ -18,24 +20,36 @@ const useQuery = async (endPoint: string, queryOptions?: TQueryOptions) => {
       const modifiedSearchParams = objectToSearchParams(
         queryOptions.searchParams
       );
-      // console.log(20, modifiedSearchParams);
       url = url.concat("?", modifiedSearchParams);
     }
   }
-  let error = null;
-  let data = null;
+
+  let data: null | TGenericResponse<T> = {};
   try {
     const req = await fetch(url, queryOptions?.reqConfig);
-    const res = (await req.json()) as TGenericResponse;
+    const res = (await req.json()) as TGenericResponse<T>;
     if (res.success) {
       data = res;
     } else {
       throw new Error(res.message);
     }
   } catch (err) {
-    error = err;
+    data = {
+      success: false,
+      message:
+        (err as { message: string })?.message ??
+        "Something went wrong or try again later",
+    };
   }
-  return { data, error };
+
+  return [
+    {
+      success: data?.success,
+      message: data?.message,
+      data: data?.data as T,
+      meta: data?.meta,
+    },
+  ];
 };
 
 export default useQuery;

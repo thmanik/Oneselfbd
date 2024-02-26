@@ -4,31 +4,29 @@ import BoxHeading from "@/components/ui/ec/BoxHeading";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useBaseUrl } from "@/hooks/useBaseUrl";
 import useCart from "@/hooks/useCart";
-import { TOrderPayment } from "@/types/order/orderPayment";
+import {
+  setPaymentInfo,
+  setPaymentInfoError,
+} from "@/redux/features/order/paymentInfo";
+import { TPaymentInfo } from "@/types/order/paymentInfo";
 import { TPaymentMethod } from "@/types/paymentMethod";
 import { TRootState } from "@/types/rootState";
 import Image from "next/image";
-import { RefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SelectPaymentMethod from "./SelectPaymentMethod";
-
 const PaymentsGateway = ({
-  paymentBtn,
   paymentMethods,
-  paymentInfoHandler,
 }: {
-  paymentBtn: RefObject<HTMLButtonElement>;
   paymentMethods: TPaymentMethod[];
-  // eslint-disable-next-line no-unused-vars
-  paymentInfoHandler: (data: TOrderPayment) => void;
 }) => {
-  const submitPaymentInfoRef = useRef<HTMLButtonElement>(null);
-  const [countSubmitBtnClick, setCountSubmitBtnClick] = useState(1);
+  const dispatch = useDispatch();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     string | null
-  >(paymentMethods[1]._id);
+  >(paymentMethods[1]?._id);
   const selectedShippingClass = useSelector(
     (state: TRootState) => state.shippingClass
   );
@@ -36,60 +34,45 @@ const PaymentsGateway = ({
   const findSelectedPaymentMethod = paymentMethods.find(
     (item) => item._id === selectedPaymentMethod
   );
-
-  useEffect(() => {
-    reset();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedPaymentMethod]);
+  const baseUrl = useBaseUrl();
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ shouldFocusError: false });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
-    const newPaymentInfo: TOrderPayment = {
-      success: true,
-      selectedPaymentMethod: findSelectedPaymentMethod?._id as string,
-      transactionInfo: {
-        accountInfo: {
-          IDType:
-            Object.keys(data)[0] !== "transactionId"
-              ? Object.keys(data)[0]
-              : Object.keys(data)[1],
-          value: data[Object.keys(data)[0]],
-        },
-        transactionId: data.transactionId,
-      },
+    const paymentInfo: TPaymentInfo = {
+      selectedPaymentMethod: findSelectedPaymentMethod as TPaymentMethod,
+      phoneNumber: data?.phoneNumber,
+      transactionId: data?.transactionId,
     };
-    paymentInfoHandler(newPaymentInfo);
-  };
-
-  const handlePaymentInfo = () => {
-    if (!findSelectedPaymentMethod?.requiredFields?.length) {
-      const newPaymentInfo: TOrderPayment = {
-        success: true,
-        selectedPaymentMethod: findSelectedPaymentMethod?._id as string,
-      };
-      paymentInfoHandler(newPaymentInfo);
-    } else {
-      submitPaymentInfoRef.current?.click();
-      setCountSubmitBtnClick(countSubmitBtnClick + 1);
-    }
+    dispatch(setPaymentInfo(paymentInfo));
+    dispatch(setPaymentInfoError({ errors: null }));
   };
 
   useEffect(() => {
+    const paymentInfo: TPaymentInfo = {
+      selectedPaymentMethod: findSelectedPaymentMethod as TPaymentMethod,
+      phoneNumber: null,
+      transactionId: null,
+    };
+    dispatch(setPaymentInfo(paymentInfo));
+    dispatch(setPaymentInfoError([]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedPaymentMethod]);
+
+  useEffect(() => {
     if (Object.keys(errors).length) {
-      const newPaymentInfo: TOrderPayment = {
-        success: false,
-      };
-      paymentInfoHandler(newPaymentInfo);
+      const errorMessages = Object?.keys(errors).map(
+        (item) => errors![item]?.message
+      );
+      dispatch(setPaymentInfoError({ errors: errorMessages }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errors, countSubmitBtnClick]);
+  }, [Object.keys(errors).length, dispatch, errors]);
 
   return (
     <Box>
@@ -119,20 +102,21 @@ const PaymentsGateway = ({
               )}
             </div>
             <div>
-              {findSelectedPaymentMethod?.requiredFields?.length ? (
+              {findSelectedPaymentMethod?.isPaymentDetailsNeeded ? (
                 <div className="mt-3">
                   <div className="flex gap-2 justify-between items-center">
                     <div>
                       <p>
-                        <span className="font-bold">Account type: </span>
+                        <span className="font-semibold">Account type: </span>
                         <span>
-                          {findSelectedPaymentMethod?.merchantACInfo?.type}
+                          {
+                            findSelectedPaymentMethod?.merchantACInfo
+                              ?.accountType
+                          }
                         </span>
                       </p>
                       <p>
-                        <span className="font-bold">
-                          {findSelectedPaymentMethod?.merchantACInfo?.name}:{" "}
-                        </span>
+                        <span className="font-semibold">Account No : </span>
                         <span>
                           {findSelectedPaymentMethod?.merchantACInfo?.accountNo}
                         </span>
@@ -140,7 +124,7 @@ const PaymentsGateway = ({
                     </div>
                     <div>
                       <Image
-                        src={findSelectedPaymentMethod?.image?.src as string}
+                        src={`${baseUrl}/${findSelectedPaymentMethod?.image?.src}`}
                         alt={findSelectedPaymentMethod?.image?.alt as string}
                         width={200}
                         height={200}
@@ -152,44 +136,41 @@ const PaymentsGateway = ({
                     </div>
                   </div>
                   <hr className="my-5" />
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                    {findSelectedPaymentMethod?.requiredFields.map((field) => (
-                      <div key={field.fieldName} className="mt-4">
-                        <Label className="font-bold pl-2 pb-2 block">
-                          {field.fieldName}
-                        </Label>
-                        <Input
-                          placeholder={field.placeHolder}
-                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          {...register(field.fieldID, {
-                            required: {
-                              value: true,
-                              message: `${field.fieldName} is required`,
-                            },
-                          })}
-                        />
-                        {errors[field.fieldID] && (
-                          <ErrorMessage
-                            message={errors[field.fieldID]?.message}
-                          />
-                        )}
-                      </div>
-                    ))}
-                    <button
-                      ref={submitPaymentInfoRef}
-                      type="submit"
-                      className="hidden"
-                    ></button>
+                  <form onBlur={handleSubmit(onSubmit)} className="space-y-5">
+                    <div>
+                      <Label className="font-semibold">Phone number :</Label>
+                      <Input
+                        {...register("phoneNumber", {
+                          required: {
+                            value: true,
+                            message: "Payment phone number is required",
+                          },
+                        })}
+                        placeholder={`Provide your ${findSelectedPaymentMethod.name} phone number.`}
+                      />
+                      {errors.phoneNumber && (
+                        <ErrorMessage message={errors.phoneNumber.message} />
+                      )}
+                    </div>
+                    <div>
+                      <Label className="font-semibold">Transaction ID :</Label>
+                      <Input
+                        {...register("transactionId", {
+                          required: {
+                            value: true,
+                            message: "Transaction ID is required",
+                          },
+                        })}
+                        placeholder={`Transaction ID.`}
+                      />
+                      {errors.transactionId && (
+                        <ErrorMessage message={errors.transactionId.message} />
+                      )}
+                    </div>
                   </form>
                 </div>
               ) : null}
             </div>
-            <button
-              ref={paymentBtn}
-              type="submit"
-              className="hidden"
-              onClick={handlePaymentInfo}
-            ></button>
           </div>
         </>
       )}
