@@ -1,10 +1,11 @@
 "use client";
+import { TOrderInfo } from "@/types/order/orderInfo";
+import { format } from "date-fns";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 
-const ThankYouPage = () => {
+const ThankYouCard = ({ orderInfo }: { orderInfo?: TOrderInfo }) => {
   const controls = useAnimation();
-
   useEffect(() => {
     const animationSequence = async () => {
       await controls.start({
@@ -20,7 +21,6 @@ const ThankYouPage = () => {
 
     animationSequence();
   }, [controls]);
-
   return (
     <div className="flex flex-col items-center justify-center bg-cover bg-center h-screen">
       <motion.div
@@ -30,7 +30,7 @@ const ThankYouPage = () => {
         className="max-w-md p-8 my-8 bg-white rounded-lg shadow-lg"
         style={{ width: "100%" }}
       >
-        <h1
+        <h2
           className="text-4xl font-bold mb-4"
           style={{
             backgroundClip: "text",
@@ -39,7 +39,7 @@ const ThankYouPage = () => {
           }}
         >
           Thank You!
-        </h1>
+        </h2>
         <p className="text-lg text-gray-700 mb-8">
           Your order has been successfully placed.
         </p>
@@ -50,29 +50,47 @@ const ThankYouPage = () => {
           <div className="flex flex-col gap-2">
             <div className="flex justify-between">
               <span className="text-gray-600 font-semibold">Order ID:</span>
-              <span className="text-gray-700 ">123456789</span>
+              <span className="text-gray-700 ">{orderInfo?.orderId}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600 font-semibold">Date:</span>
-              <span className="text-gray-700">February 24, 2024</span>
+              <span className="text-gray-700">
+                {format(
+                  new Date(orderInfo?.createdAt as string),
+                  "MMMM dd, yyyy"
+                )}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600 font-semibold">Total Amount:</span>
-              <span className="text-gray-700">$99.99</span>
+              <span className="text-gray-700">&#2547; {orderInfo?.total}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600 font-semibold">Buyer Name:</span>
-              <span className="text-gray-700">John Doe</span>
+              <span className="text-gray-700">
+                {orderInfo?.shipping.fullName}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600 font-semibold">Address:</span>
-              <span className="text-gray-700">123 Main St, City, Country</span>
+              <span className="text-gray-700">
+                {orderInfo?.shipping?.fullAddress}
+              </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600 font-semibold">
-                Payment Method:
+              <span className="text-gray-600 font-semibold">Payment:</span>
+              <span className="text-gray-700">
+                {orderInfo?.payment?.transactionId ? (
+                  <>
+                    <span className="block">
+                      {orderInfo?.payment?.phoneNumber}
+                    </span>
+                    <span>{orderInfo?.payment?.transactionId}</span>
+                  </>
+                ) : (
+                  <>{orderInfo?.payment.paymentMethod.name}</>
+                )}
               </span>
-              <span className="text-gray-700">Credit Card</span>
             </div>
           </div>
         </div>
@@ -99,4 +117,4 @@ const ThankYouPage = () => {
   );
 };
 
-export default ThankYouPage;
+export default ThankYouCard;
