@@ -26,9 +26,8 @@ const ShopPage = async ({
 
   const [{ data: products = [], meta: productMeta }] = await useQuery<
     TProduct[]
-  >(`/products`, {
-    searchParams,
-  });
+  >(`/products`, searchParams);
+
   const [{ data: tags = [] }] = await useQuery<TTag[]>(`/tags`);
 
   return (

@@ -63,7 +63,7 @@ const EcButton = ({
   }
   if (loading) {
     return (
-      <Button disabled {...props}>
+      <Button disabled {...props} className={twMerge(className)}>
         Loading...
       </Button>
     );

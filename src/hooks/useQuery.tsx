@@ -2,31 +2,32 @@ import config from "@/config/config";
 import objectToSearchParams from "@/lib/ec/objectToSearchParams";
 import TGenericResponse from "@/types/response";
 
-export type TQueryOptions = {
-  searchParams: Record<string, string | string[] | undefined>;
-  reqConfig?: Record<string, unknown>;
-};
-
 const useQuery = async <T,>(
   endPoint: string,
-  queryOptions?: TQueryOptions
+  searchParams?: Record<string, string | string[] | undefined>,
+  reqConfig?: Record<string, unknown>
 ): Promise<[TGenericResponse<T>]> => {
   let url = `${config.base_url}/api/v1${endPoint}`;
-  if (queryOptions) {
-    if (queryOptions.reqConfig && !queryOptions.reqConfig.cache) {
-      queryOptions.reqConfig.cache = "no-store";
-    }
-    if (Object.keys(queryOptions.searchParams || {}).length) {
-      const modifiedSearchParams = objectToSearchParams(
-        queryOptions.searchParams
-      );
-      url = url.concat("?", modifiedSearchParams);
-    }
+
+  if (!reqConfig?.cache) {
+    const newData = {
+      catch: "no-store",
+      ...reqConfig,
+    };
+    reqConfig = newData;
+  }
+
+  if (Object.keys(searchParams || {}).length) {
+    const modifiedSearchParams = objectToSearchParams(
+      searchParams as Record<string, string>
+    );
+    url = url.concat("?", modifiedSearchParams);
   }
 
   let data: null | TGenericResponse<T> = {};
+
   try {
-    const req = await fetch(url, queryOptions?.reqConfig);
+    const req = await fetch(url, reqConfig);
     const res = (await req.json()) as TGenericResponse<T>;
     if (res.success) {
       data = res;

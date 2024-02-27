@@ -145,6 +145,11 @@ const PaymentsGateway = ({
                             value: true,
                             message: "Payment phone number is required",
                           },
+                          pattern: {
+                            value: /^(?!.*[a-zA-Z])01\d{9}$/,
+                            message:
+                              "Please provide a valid mobile number starting with 01 and with a total of 11 digits.",
+                          },
                         })}
                         placeholder={`Provide your ${findSelectedPaymentMethod.name} phone number.`}
                       />

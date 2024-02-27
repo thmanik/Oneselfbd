@@ -3,11 +3,11 @@ import CartTotalCalculations from "@/components/cartTotalCalculations/CartTotalC
 import ErrorMessage from "@/components/errorMessage/ErrorMessage";
 import Box from "@/components/ui/ec/Box";
 import BoxHeading from "@/components/ui/ec/BoxHeading";
-import { toast } from "@/components/ui/use-toast";
 import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
 import TGenericResponse, { TGenericErrorResponse } from "@/types/response";
 import { TRootState } from "@/types/rootState";
 import TShippingCharges from "@/types/shippingCharge";
+import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { MdErrorOutline } from "react-icons/md";
 import { useSelector } from "react-redux";
@@ -24,8 +24,9 @@ const OrderPaymentInfo = ({
   const shippingInfo = useSelector((state: TRootState) => state.shippingInfo);
   const paymentInfo = useSelector((state: TRootState) => state.paymentInfo);
   const shippingClass = useSelector((state: TRootState) => state.shippingClass);
+  const router = useRouter();
 
-  const [createOrder] = useCreateOrderMutation();
+  const [createOrder, { isLoading }] = useCreateOrderMutation();
 
   const handleOrder = async () => {
     setErrorMessages([]);
@@ -69,12 +70,9 @@ const OrderPaymentInfo = ({
     try {
       const result = (await createOrder(
         orderData
-      ).unwrap()) as TGenericResponse;
+      ).unwrap()) as TGenericResponse<{ orderId: string }>;
       if (result.success) {
-        toast({
-          title: "Success",
-          description: result?.message,
-        });
+        router.push(`/thank-you/${result?.data?.orderId}`);
       }
     } catch (error) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -105,6 +103,7 @@ const OrderPaymentInfo = ({
           className="w-full font-bold text-white"
           variant="secondary"
           onClick={handleOrder}
+          loading={isLoading}
         >
           Order now
         </EcButton>
