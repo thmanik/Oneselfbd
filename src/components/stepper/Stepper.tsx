@@ -25,10 +25,7 @@ const MyStepper: React.FC = () => {
   };
 
   return (
-    <div
-      className="mx-auto px-6 py-8 my-4 rounded-lg shadow-md"
-      style={{ backgroundImage: "linear-gradient(to right, #00C1F1, #241F21)" }}
-    >
+    <div className="mx-auto px-6 py-8 my-4 bg-white rounded-lg shadow-md">
       <div className="flex flex-col items-center mb-6">
         <h2 className="text-3xl font-bold mb-4">{relatedText}</h2>
         <div className="bg-gray-200 text-gray-800 p-3 rounded-lg">
@@ -41,13 +38,13 @@ const MyStepper: React.FC = () => {
           <div
             key={index}
             className={`flex flex-col items-center ${
-              index === activeStep ? "text-gradient-blue" : "text-gray-400"
+              index === activeStep ? "text-blue-500" : "text-gray-400"
             }`}
           >
             <div
               className={`w-12 h-12 flex justify-center items-center rounded-full border ${
                 index === activeStep
-                  ? "border-gradient-blue bg-gradient-blue text-white"
+                  ? "border-blue-500 bg-blue-500 text-white"
                   : "border-gray-400 bg-white"
               }`}
             >
@@ -89,7 +86,7 @@ const MyStepper: React.FC = () => {
           className={`text-white ${
             activeStep === steps.length - 1
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-gradient-blue hover:bg-gradient-blue-dark"
+              : "bg-blue-500 hover:bg-blue-600"
           } rounded-md px-4 py-2`}
           onClick={handleNext}
           disabled={activeStep === steps.length - 1}
