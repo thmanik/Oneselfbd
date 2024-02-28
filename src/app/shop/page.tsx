@@ -6,7 +6,6 @@ import CustomPagination from "@/components/ui/shared/customPagination/CustomPagi
 import useQuery from "@/hooks/useQuery";
 import TCategory from "@/types/categories/categories";
 import { TProduct } from "@/types/products/product";
-import { TMeta } from "@/types/response";
 import { TTag } from "@/types/tags/tag";
 import { Metadata } from "next";
 import CategorySection from "./components/CategorySection";
@@ -22,15 +21,15 @@ const ShopPage = async ({
 }: {
   searchParams: Record<string, string | string[] | undefined>;
 }) => {
-  const { data: categoriesResponse } = await useQuery("/categories");
-  const { data: productsResponse } = await useQuery(`/products`, {
-    searchParams,
-  });
-  const { data: tagsResponse } = await useQuery(`/tags`);
-  const categories = (categoriesResponse?.data as unknown as TCategory[]) ?? [];
-  const products =
-    (productsResponse?.data?.data as unknown as TProduct[]) ?? [];
-  const tags = (tagsResponse?.data as unknown as TTag[]) ?? [];
+  const [{ data: categories = [] }] =
+    await useQuery<TCategory[]>("/categories");
+
+  const [{ data: products = [], meta: productMeta }] = await useQuery<
+    TProduct[]
+  >(`/products`, searchParams);
+
+  const [{ data: tags = [] }] = await useQuery<TTag[]>(`/tags`);
+
   return (
     <section className="pt-16 relative">
       <div className="absolute inset-0 -z-10 h-full w-full bg-base-100 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
@@ -58,10 +57,7 @@ const ShopPage = async ({
                 <ErrorMessage message="No products found" />
               ) : null}
             </div>
-            <CustomPagination
-              meta={productsResponse?.data?.meta as TMeta}
-              searchParams={searchParams}
-            />
+            <CustomPagination meta={productMeta} searchParams={searchParams} />
           </div>
         </div>
       </ContainerMax>

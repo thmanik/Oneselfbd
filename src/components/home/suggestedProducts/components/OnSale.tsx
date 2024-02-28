@@ -8,8 +8,9 @@ import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
 
 const OnSale = async () => {
-  const { data } = await useQuery("/products/featured"); // TODO: Change endpoint
-  const onSaleProducts = (data?.data?.data as unknown as TProduct[]) ?? [];
+  const [{ data: onSaleProducts = [] }] =
+    await useQuery<TProduct[]>("/products/featured"); // TODO: Change endpoint
+
   return (
     <>
       <Carousel>

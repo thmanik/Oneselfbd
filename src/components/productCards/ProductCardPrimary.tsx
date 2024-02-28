@@ -1,4 +1,4 @@
-import config from "@/config/config";
+import { useBaseUrl } from "@/hooks/useBaseUrl";
 import { TProduct } from "@/types/products/product";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +12,7 @@ const ProductCardPrimary = ({
   product: TProduct;
   className?: string;
 }) => {
+  const baseUrl = useBaseUrl();
   return (
     <Link
       href={`/product/${product._id}`}
@@ -23,7 +24,7 @@ const ProductCardPrimary = ({
       <p className="text-xs text-muted">{product?.category?.name}</p>
       <h2 className="text-secondary font-bold">{product.title}</h2>
       <Image
-        src={`${config.base_url}/uploads/public${product.image.src}`}
+        src={`${baseUrl}/${product.image.src}`}
         alt={product.image.alt}
         height={400}
         width={400}

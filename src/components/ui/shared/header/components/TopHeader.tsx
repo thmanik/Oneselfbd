@@ -4,7 +4,7 @@ import { MdDeliveryDining } from "react-icons/md";
 const TopHeader = () => {
   const links = [
     {
-      href: "/store",
+      href: "/store-location",
       name: "Store locator",
       icon: <FaLocationDot className="h-5 w-5" />,
     },

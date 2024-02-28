@@ -11,26 +11,33 @@ import { useToast } from "@/components/ui/use-toast";
 import useCart from "@/hooks/useCart";
 import { useDeleteFromCartMutation } from "@/redux/features/cart/cartApi";
 import { TCartItem } from "@/types/cart";
-import { useEffect } from "react";
 import CartItemSkeleton from "./components/CartItemSkeleton";
+import { useBaseUrl } from "@/hooks/useBaseUrl";
 
-const CartItems = ({ basUrl }: { basUrl?: string }) => {
-  const [deleteFromCart, { data }] = useDeleteFromCartMutation({});
+const CartItems = () => {
+  const baseUrl = useBaseUrl();
+  const [deleteFromCart] = useDeleteFromCartMutation();
   const { data: cartItems, isLoading } = useCart();
   const { toast } = useToast();
+
   // delete an item from cart
-  const handleRemoveFromCart = (itemId: string) => {
-    deleteFromCart({ itemId });
-  };
-  useEffect(() => {
-    if (data?.success) {
+  const handleRemoveFromCart = async (itemId: string) => {
+    try {
+      const res = await deleteFromCart({ itemId }).unwrap();
+      if (res?.success) {
+        toast({
+          title: "Success",
+          description: res.message,
+        });
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       toast({
         title: "Success",
-        description: data.message,
+        description: error.message,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data?.success]);
+  };
   return (
     <>
       <Table>
@@ -52,7 +59,7 @@ const CartItems = ({ basUrl }: { basUrl?: string }) => {
                 <CartItem
                   key={item._id}
                   cartItem={item.item}
-                  basUrl={basUrl}
+                  basUrl={baseUrl}
                   handleRemoveFromCart={handleRemoveFromCart}
                 />
               ))}

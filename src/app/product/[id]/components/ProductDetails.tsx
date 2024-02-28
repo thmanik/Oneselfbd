@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TSingleProduct } from "@/types/products/singleProduct";
-const ProductDetails = ({ product }: { product: TSingleProduct }) => {
+const ProductDetails = ({ product }: { product?: TSingleProduct }) => {
   return (
     <div>
       <Tabs defaultValue="description">
@@ -13,7 +13,9 @@ const ProductDetails = ({ product }: { product: TSingleProduct }) => {
         </TabsList>
         <hr className="w-full" />
         <TabsContent value="description">
-          <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
+          <div
+            dangerouslySetInnerHTML={{ __html: product?.description as string }}
+          ></div>
         </TabsContent>
         <TabsContent value="additionalInformation">
           <p>

@@ -5,9 +5,8 @@ import { TProduct } from "@/types/products/product";
 import BannerCarousel from "./components/BannerCarousel";
 
 const Banner = async () => {
-  const { data } = await useQuery("/products"); // TODO: change endpoints
-  const bannerSideProducts = (data?.data?.data as unknown as TProduct[]) ?? [];
-
+  const [{ data: bannerSideProducts = [] }] =
+    await useQuery<TProduct[]>("/products"); // TODO: change endpoints
   return (
     <section>
       <ContainerMax>
