@@ -1,104 +1,62 @@
-"use client";
-import EcButton from "@/components/EcButton/EcButton";
-import React, { useState } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import Head from "next/head";
 
-const MyStepper: React.FC = () => {
-  const [activeStep, setActiveStep] = useState(0);
-
-  const steps = [
-    { title: "Order Processed" },
-    { title: "Order Designing" },
-    { title: "Order Shipped" },
-    { title: "Order on Road" },
-    { title: "Order Arrived" },
-  ];
-
-  const orderId = "123456";
-  const relatedText = "Your recent order details:";
-
-  const handleNext = () => {
-    setActiveStep((prevStep) => Math.min(prevStep + 1, steps.length - 1));
-  };
-
-  const handlePrevious = () => {
-    setActiveStep((prevStep) => Math.max(0, prevStep - 1));
-  };
-
+const StoreLocationPage = () => {
   return (
     <div
-      className="mx-auto px-6 py-8 my-4 rounded-lg shadow-md"
-      style={{ backgroundImage: "linear-gradient(to right, #00C1F1, #241F21)" }}
+      className="min-h-screen flex items-center justify-center"
+      style={{ background: "linear-gradient(to right, #00C1F1, #241F21)" }}
     >
-      <div className="flex flex-col items-center mb-6">
-        <h2 className="text-3xl font-bold mb-4">{relatedText}</h2>
-        <div className="bg-gray-200 text-gray-800 p-3 rounded-lg">
-          <span className="font-semibold">Order ID:</span> {orderId}
-        </div>
-      </div>
-
-      <div className="flex justify-center items-center space-x-6 mb-6">
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className={`flex flex-col items-center ${
-              index === activeStep ? "text-gradient-blue" : "text-gray-400"
-            }`}
-          >
-            <div
-              className={`w-12 h-12 flex justify-center items-center rounded-full border ${
-                index === activeStep
-                  ? "border-gradient-blue bg-gradient-blue text-white"
-                  : "border-gray-400 bg-white"
-              }`}
-            >
-              {index < activeStep ? (
-                <span className="text-xs">✓</span>
-              ) : (
-                <span className="text-xs">{index + 1}</span>
-              )}
+      <Head>
+        <title>Store Location - Banani, Dhaka | Your Company Name</title>
+        <meta
+          name="description"
+          content="Find our store location in Banani, Dhaka"
+        />
+      </Head>
+      <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row">
+        <div className="md:w-1/2 relative">
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="h-96 relative">
+              <iframe
+                className="w-full h-full rounded-t-lg"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.1068784985886!2d90.40931291538688!3d23.79314419438346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c717ea0e986b%3A0x5a5e160acef94391!2sBanani%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1645648631078!5m2!1sen!2sbd"
+                allowFullScreen
+                loading="lazy"
+                title="Google Map"
+              ></iframe>
+              <svg
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 0C7.524 0 4 3.524 4 8C4 12.945 11.4 20.26 12 21C12.6 20.26 20 12.945 20 8C20 3.524 16.476 0 12 0ZM12 11C10.346 11 9 9.654 9 8C9 6.346 10.346 5 12 5C13.654 5 15 6.346 15 8C15 9.654 13.654 11 12 11Z"
+                  fill="#FF0000"
+                />
+              </svg>
             </div>
-            <div className="mt-1">{step.title}</div>
           </div>
-        ))}
-      </div>
-
-      <div className="my-10 text-center">
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            style={{ display: index === activeStep ? "block" : "none" }}
-          >
-            <div className="text-lg font-semibold mb-4">{step.title}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex justify-around mt-6">
-        <EcButton
-          className={`text-white ${
-            activeStep === 0
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-gray-500 hover:bg-gray-600"
-          } rounded-md px-4 py-2`}
-          onClick={handlePrevious}
-          disabled={activeStep === 0}
-        >
-          Previous
-        </EcButton>
-        <EcButton
-          className={`text-white ${
-            activeStep === steps.length - 1
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-gradient-blue hover:bg-gradient-blue-dark"
-          } rounded-md px-4 py-2`}
-          onClick={handleNext}
-          disabled={activeStep === steps.length - 1}
-        >
-          Next
-        </EcButton>
+        </div>
+        <div className="md:w-1/2 mt-8 md:mt-0 text-white flex flex-col justify-center items-center">
+          <h2 className="text-5xl font-bold mb-4">Our Store Location</h2>
+          <div className="bg-white h-1 w-16 mb-4"></div>
+          <p className="text-xl text-center mb-4">
+            Explore our products in person at our Banani location in Dhaka,
+            Bangladesh.
+          </p>
+          <p className="text-lg text-center mb-8">
+            We're conveniently located at:
+          </p>
+          <p className="text-2xl font-bold">456 Store Avenue</p>
+          <p className="text-lg mb-4">Banani, Dhaka, Bangladesh</p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default MyStepper;
+export default StoreLocationPage;
