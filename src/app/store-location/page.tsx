@@ -1,4 +1,4 @@
-"use client";
+/* eslint-disable react/no-unescaped-entities */
 import Head from "next/head";
 
 const StoreLocationPage = () => {
@@ -49,7 +49,7 @@ const StoreLocationPage = () => {
             Bangladesh.
           </p>
           <p className="text-lg text-center mb-8">
-            We are conveniently located at:
+            We're conveniently located at:
           </p>
           <p className="text-2xl font-bold">456 Store Avenue</p>
           <p className="text-lg mb-4">Banani, Dhaka, Bangladesh</p>

@@ -1,5 +1,6 @@
 "use client";
 
+import EcButton from "@/components/EcButton/EcButton";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
@@ -16,7 +17,7 @@ const TrackOrderPage = () => {
   };
 
   return (
-    <>
+    <div className="my-5">
       <div className="my-8 mx-10">
         <div>
           <h2 className="text-4xl text-center text-dark-gray">
@@ -56,14 +57,14 @@ const TrackOrderPage = () => {
             )}
           </div>
         </div>
-        <button
-          className="BtnStyle ms-10 shadow-md bg-primary text-white font-bold py-2 px-4 rounded"
+        <EcButton
+          className=" ms-10  text-white  "
           onClick={handleSubmit(onSubmit)}
         >
           Track Order
-        </button>
+        </EcButton>
       </div>
-    </>
+    </div>
   );
 };
 
