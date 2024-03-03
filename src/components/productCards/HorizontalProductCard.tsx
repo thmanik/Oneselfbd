@@ -34,7 +34,7 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
             </>
           ) : (
             <>
-              <span className="text-2xl font-bold text-primary">
+              <span className="text-xl font-bold">
                 &#2547;
                 <span>{product.price}</span>
               </span>

@@ -1,3 +1,4 @@
+import BottomHeader from "./bottomHeader/BottomHeader";
 import MainHeader from "./components/MainHeader";
 import TopHeader from "./components/TopHeader";
 
@@ -6,6 +7,7 @@ const Header = () => {
     <div>
       <TopHeader />
       <MainHeader />
+      <BottomHeader />
     </div>
   );
 };

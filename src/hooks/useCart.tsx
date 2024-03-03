@@ -9,15 +9,15 @@ const useCart = () => {
   if (data?.success) {
     totalCartItem = data?.data?.cartItems.length;
     (data?.data as TCart)?.cartItems?.forEach(({ item }) => {
-      const price = item.product.price.salePrice
-        ? item.product.price.salePrice
-        : item.product.price.regularPrice;
-      const currentProductCost = item.quantity * price;
+      const price = item?.product?.price?.salePrice
+        ? item?.product?.price?.salePrice
+        : item?.product?.price?.regularPrice;
+      const currentProductCost = item?.quantity * price;
 
       totalCost += currentProductCost;
     });
   }
-  totalCost = Number(totalCost.toFixed(2));
+  totalCost = Number(totalCost.toFixed(2)) || 0;
   // console.log(totalCost);
   return { data, isLoading, totalCartItem, totalCost };
 };

@@ -10,7 +10,7 @@ type TThankYouPage = {
 
 const ThankYouPage = async ({ params }: TThankYouPage) => {
   const [{ data: orderInfo }] = await useQuery<TOrderInfo>(
-    `/orders/${params.orderId}`
+    `/orders/customer/${params.orderId}`
   );
 
   if (!orderInfo) {

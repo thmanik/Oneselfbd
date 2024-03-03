@@ -31,11 +31,11 @@ const ProductCardSecondary = ({ product }: { product: TProduct }) => {
                 &#2547;
                 <del>{product.price}</del>
               </span>
-              <span className="font-bold"> &#2547; {product.salePrice}</span>
+              <span className="font-bold"> &#2547;{product.salePrice}</span>
             </>
           ) : (
             <>
-              <span className="font-bold">{product.price}</span>
+              <span className="font-bold">&#2547;{product.price}</span>
             </>
           )}
         </div>
