@@ -3,7 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 const UseOfTheProduct = () => {
   return (
     <div className="my-10">
-      <div className="md:w-2/3  py-4  rounded-full text-center bg-[#D9F6E9]  mx-auto sm:px-5 mt-4 mb-10">
+      <div className="md:w-3/5  py-4  rounded-full text-center bg-[#D9F6E9]  mx-auto sm:px-5 mt-4 mb-10">
         <p className="text-2xl font-bold  text-[#203B56] sm:pb-2">
           লাইটা আপনি যে সমস্ত জায়গায় ব্যবহার করতে পারেন
         </p>
@@ -11,7 +11,7 @@ const UseOfTheProduct = () => {
       {/*  ------------------card row-1---------------- */}
       <div className="flex justify-center items-center my-10">
         <div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="bg-[#1D4935] w-[350px] h-[355px] rounded-[15px] flex flex-col items-center">
               <div className="mt-5">
                 <Image
@@ -67,7 +67,7 @@ const UseOfTheProduct = () => {
       {/* --------------card row-2---------------- */}
       <div className="flex justify-center items-center my-10">
         <div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="bg-[#1D4935] w-[350px] h-[295px] rounded-[15px] flex flex-col items-center">
               <div className="mt-5">
                 <Image
@@ -122,7 +122,7 @@ const UseOfTheProduct = () => {
 
       {/* ------------------card row-3---------------- */}
       <div className="flex justify-center items-center my-10">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <div className="bg-[#1D4935] w-[350px] rounded-[15px] flex flex-col items-center">
             <div className="mt-5 h-[190px] overflow-hidden">
               <Image

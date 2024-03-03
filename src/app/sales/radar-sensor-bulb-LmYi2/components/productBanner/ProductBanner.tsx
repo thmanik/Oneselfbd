@@ -11,10 +11,15 @@ const ProductBanner = () => {
           borderRadius: "0 0 50% 50% / 0 0 18% 18%",
         }}
       >
-        <div className=" md:text-5xl  text-white font-bold mx-4 md:mt-14 mb-1">
-          <p>মানুষ এলেই জ্বলে উঠবে লাইট! আবার মানুষ চলে </p>
-          <p className="md:mt-4">গেলে লাইট নিজে নিজে বন্ধ হয়ে যাবে!</p>
+        <div className="text-white font-bold mx-4 md:mt-14 mb-1">
+          <p className="text-5xl md:text-5xl sm:text-xl xs:text-xl">
+            মানুষ এলেই জ্বলে উঠবে লাইট! আবার মানুষ চলে{" "}
+          </p>
+          <p className="md:mt-4 text-5xl md:text-5xl sm:text-xl xs:text-xl">
+            গেলে লাইট নিজে নিজে বন্ধ হয়ে যাবে!
+          </p>
         </div>
+
         <div
           className="w-96  py-4 rounded-full  mx-auto sm:px-5 my-3"
           style={{ backgroundColor: "#195B3D" }}
