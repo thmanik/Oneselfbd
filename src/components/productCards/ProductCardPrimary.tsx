@@ -17,37 +17,48 @@ const ProductCardPrimary = ({
     <Link
       href={`/product/${product._id}`}
       className={twMerge(
-        "bg-white w-[188px] border- p-4 flex flex-col gap-2 group",
+        "bg-white w-52 h-[328px] flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
         className
       )}
     >
-      <p className="text-xs text-muted">{product?.category?.name}</p>
-      <h2 className="text-secondary font-bold">{product.title}</h2>
-      <Image
-        src={`${baseUrl}/${product.image.src}`}
-        alt={product.image.alt}
-        height={400}
-        width={400}
-        className="w-28 h-28 aspect-square object-cover mx-auto"
-        priority
-      />
-      <div>
-        {product.salePrice ? (
-          <>
-            <span className="text-muted text-xs">
-              &#2547;
-              <del>{product.regularPrice}</del>
-            </span>
-            <span className="font-bold"> &#2547; {product.salePrice}</span>
-          </>
-        ) : (
-          <>
-            <span className="font-bold">{product.regularPrice}</span>
-          </>
-        )}
+      <div className="flex flex-col gap-2">
+        <div className="bg-base-100">
+          <Image
+            src={`${baseUrl}/${product.image.src}`}
+            alt={product.image.alt}
+            height={400}
+            width={400}
+            className="w-48 h-48 min-w-[100px] aspect-square object-cover mx-auto"
+            priority
+          />
+        </div>
+        <div className="flex flex-col gap-2 px-4">
+          <h2 className="font-semibold text-muted">
+            {product.title.length < 40 ? (
+              product.title
+            ) : (
+              <>{product.title.slice(0, 40)}...</>
+            )}
+          </h2>
+          <div>
+            {product.salePrice ? (
+              <>
+                <span className="text-muted text-xs">
+                  &#2547;
+                  <del>{product.regularPrice}</del>
+                </span>
+                <span className="font-bold"> &#2547;{product.salePrice}</span>
+              </>
+            ) : (
+              <>
+                <span className="font-bold">&#2547;{product.regularPrice}</span>
+              </>
+            )}
+          </div>
+        </div>
       </div>
-      <EcButton className="bg-gray-300 text-white group-hover:bg-primary font-bold">
-        Buy now
+      <EcButton className="flex-grow rounded-none font-semibold text-white max-h-[40px]">
+        View details
       </EcButton>
     </Link>
   );

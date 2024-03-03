@@ -15,7 +15,7 @@ import TShippingCharges from "@/types/shippingCharge";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import ShippingAddress from "../components/ShippingAddress";
-import OrderPaymentInfo from "./OrderPaymentInfo";
+import OrderNow from "./OrderNow";
 import PaymentsGateway from "./paymentGateway/PaymentsGateway";
 
 const CheckoutPageContent = ({
@@ -45,7 +45,7 @@ const CheckoutPageContent = ({
         <ShippingAddress />
       </div>
       <div className="order-4 lg:order-3">
-        <OrderPaymentInfo
+        <OrderNow
           setErrorMessages={setErrorMessages}
           shippingCharges={shippingCharges}
           errorMessages={errorMessages}

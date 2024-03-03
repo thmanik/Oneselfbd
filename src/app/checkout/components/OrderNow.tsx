@@ -12,7 +12,7 @@ import { Dispatch, SetStateAction } from "react";
 import { MdErrorOutline } from "react-icons/md";
 import { useSelector } from "react-redux";
 
-const OrderPaymentInfo = ({
+const OrderNow = ({
   shippingCharges,
   setErrorMessages,
   errorMessages,
@@ -77,7 +77,8 @@ const OrderPaymentInfo = ({
     } catch (error) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const res = (error as any).data as TGenericErrorResponse;
-      const errorMessages = res?.errorMessages?.map((error) => error.message);
+      const errorMessages =
+        res?.errorMessages?.map((error) => error.message) || [];
       setErrorMessages([...errorMessages]);
     }
   };
@@ -88,9 +89,9 @@ const OrderPaymentInfo = ({
         <CartTotalCalculations shippingCharges={shippingCharges} />
         {errorMessages.length ? (
           <div className="py-5">
-            {errorMessages.map((message) => (
+            {errorMessages.map((message, index) => (
               <div
-                key={message}
+                key={index}
                 className="flex gap-1 items-center text-red-600 "
               >
                 <MdErrorOutline />
@@ -112,4 +113,4 @@ const OrderPaymentInfo = ({
   );
 };
 
-export default OrderPaymentInfo;
+export default OrderNow;
