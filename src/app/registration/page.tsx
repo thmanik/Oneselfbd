@@ -1,16 +1,23 @@
 "use client";
 import EcButton from "@/components/EcButton/EcButton";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
+import { setUser } from "@/redux/features/auth/authSlice";
+import { TUser } from "@/redux/features/auth/interface";
+import { useCreateCustomerMutation } from "@/redux/features/user/userApi";
+import { useAppDispatch } from "@/redux/hooks";
+import decodeJWT from "@/utilities/decodeJWT";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
   phoneNumber: yup
-    .number()
-    .integer("Phone Number must be an integer")
-    .required("Phone Number is required")
-    .typeError("Phone Number must be a number"),
+    .string()
+    .required("Mobile is required")
+    .matches(/^[0-9+]+$/, "Invalid mobile number")
+    .max(15, "Invalid mobile number"),
   password: yup
     .string()
     .required("Password is required")
@@ -22,6 +29,10 @@ const schema = yup.object().shape({
 });
 
 const RegistrationPage = () => {
+  const dispatch = useAppDispatch();
+  const [createCustomer] = useCreateCustomerMutation();
+  const router = useRouter();
+  const { toast } = useToast();
   const {
     register,
     handleSubmit,
@@ -30,10 +41,23 @@ const RegistrationPage = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: unknown) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-    // You can handle form submission logic here
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const res = await createCustomer(data).unwrap();
+      const user = decodeJWT(res.data.accessToken) as TUser;
+      dispatch(setUser({ user: user, token: res.data.accessToken }));
+      toast({
+        title: res.message,
+      });
+      router.push("/");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      // console.log(error)
+      toast({
+        variant: "destructive",
+        title: error?.data?.message,
+      });
+    }
   };
 
   return (
@@ -43,7 +67,9 @@ const RegistrationPage = () => {
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
         <div>
-          <h4 className="my-3 font-bold text-2xl ">Registration Page</h4>
+          <h4 className="text-center my-3 font-bold text-2xl ">
+            Registration Page
+          </h4>
         </div>
         <div className="mb-4">
           <label
