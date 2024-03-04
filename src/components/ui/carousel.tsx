@@ -10,7 +10,12 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-type CarouselApi = UseEmblaCarouselType[1];
+type TCustomCarouselComponent = {
+  CarouselNextPMiddle?: React.ReactNode;
+  CarouselPreviousPMiddle?: React.ReactNode;
+};
+
+type CarouselApi = UseEmblaCarouselType[1] & TCustomCarouselComponent;
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
 type CarouselPlugin = UseCarouselParameters[1];
@@ -253,11 +258,24 @@ const CarouselNext = React.forwardRef<
 });
 CarouselNext.displayName = "CarouselNext";
 
+const CarouselNextPMiddle = () => {
+  return (
+    <CarouselNext className="top-1/2 -translate-y-1/2 left-full md:left-full -translate-x-full hover:bg-primary" />
+  );
+};
+const CarouselPreviousPMiddle = () => {
+  return (
+    <CarouselPrevious className="top-1/2 -translate-y-1/2 hover:bg-primary" />
+  );
+};
+
 export {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
+  CarouselNextPMiddle,
   CarouselPrevious,
+  CarouselPreviousPMiddle,
   type CarouselApi,
 };
