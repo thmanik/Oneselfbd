@@ -11,7 +11,7 @@ const useQuery = async <T,>(
 
   if (!reqConfig?.cache) {
     const newData = {
-      catch: "no-store",
+      catch: "no-cache",
       ...reqConfig,
     };
     reqConfig = newData;
