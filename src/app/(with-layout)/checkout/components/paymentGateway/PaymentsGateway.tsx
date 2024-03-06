@@ -4,7 +4,7 @@ import BoxHeading from "@/components/ui/ec/BoxHeading";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useBaseUrl } from "@/hooks/useBaseUrl";
+import config from "@/config/config";
 import useCart from "@/hooks/useCart";
 import {
   setPaymentInfo,
@@ -34,7 +34,6 @@ const PaymentsGateway = ({
   const findSelectedPaymentMethod = paymentMethods.find(
     (item) => item._id === selectedPaymentMethod
   );
-  const baseUrl = useBaseUrl();
 
   const {
     register,
@@ -124,7 +123,7 @@ const PaymentsGateway = ({
                     </div>
                     <div>
                       <Image
-                        src={`${baseUrl}/${findSelectedPaymentMethod?.image?.src}`}
+                        src={`${config.base_url}/${findSelectedPaymentMethod?.image?.src}`}
                         alt={findSelectedPaymentMethod?.image?.alt as string}
                         width={200}
                         height={200}
