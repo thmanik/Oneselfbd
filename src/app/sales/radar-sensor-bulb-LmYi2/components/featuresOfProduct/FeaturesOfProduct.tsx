@@ -39,23 +39,22 @@ const FeaturesOfProduct = () => {
         <div className="flex flex-col items-center justify-center ">
           <div className="text-[#203B56] text-[20px] w-[85%]">
             {features.map((feature) => (
-              <>
-                <div key={feature?.id} className="flex my-4 items-center">
-                  <div className="w-25 h-22 mr-2 flex-shrink-0">
-                    <FaCheckCircle />
-                  </div>
-                  <div>
-                    <p className="mt-1 ml-3">{feature?.title}</p>
-                  </div>
+              <div
+                key={feature?.id}
+                className="flex py-4 items-center border-b-[1px] border-b-gray-300"
+              >
+                <div className="w-25 h-22 mr-2 flex-shrink-0">
+                  <FaCheckCircle />
                 </div>
-
-                <hr />
-              </>
+                <div>
+                  <p className="mt-1 ml-3">{feature?.title}</p>
+                </div>
+              </div>
             ))}
           </div>
           <div className="my-10">
             <div className="flex justify-center">
-              <a href="#">
+              <a href="#order-form">
                 <button className="md:w-96  px-5 bg-[#00C1F2] py-4 rounded-full mx-auto  relative hover:bg-gradient-to-r from-[#63D6E8] to-[#241F21] transition-background-color duration-600 ease-in-out">
                   <p className="md:text-2xl font-bold text-white flex items-center justify-center">
                     <span>অর্ডার করতে ক্লিক করুন</span>{" "}

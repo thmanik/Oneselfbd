@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const OurServices = () => {
   return (
-    <div className="my-10">
+    <section className="my-10">
       <div className="sm:w-4/6 md:w-2/5 lg:w-2/5 py-4 rounded-full text-center bg-[#edf7fa] mx-auto sm:px-5 mt-4 mb-10">
         <p className="text-2xl font-bold text-[#203B56]">
           <span className="text-[#203B56]">আমাদের কাছ থেকে</span>{" "}
@@ -88,7 +88,7 @@ const OurServices = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

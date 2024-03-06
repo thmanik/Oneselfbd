@@ -8,11 +8,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useToast } from "@/components/ui/use-toast";
+import { useBaseUrl } from "@/hooks/useBaseUrl";
 import useCart from "@/hooks/useCart";
 import { useDeleteFromCartMutation } from "@/redux/features/cart/cartApi";
 import { TCartItem } from "@/types/cart";
 import CartItemSkeleton from "./components/CartItemSkeleton";
-import { useBaseUrl } from "@/hooks/useBaseUrl";
 
 const CartItems = () => {
   const baseUrl = useBaseUrl();
@@ -46,7 +46,7 @@ const CartItems = () => {
             <TableHead className="text-center">Product</TableHead>
             <TableHead>Price</TableHead>
             <TableHead className="text-center">Quantity</TableHead>
-            <TableHead>Attributes</TableHead>
+            {/* <TableHead>Attributes</TableHead> */}
             <TableHead className="text-right">Subtotal</TableHead>
           </TableRow>
         </TableHeader>
