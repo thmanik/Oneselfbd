@@ -72,21 +72,21 @@ const CartItem = ({
         </Link>
       </TableCell>
       <TableCell className="min-w-24">&#2547; {price}</TableCell>
-      <TableCell className="flex items-center">
+      <TableCell className="flex justify-center items-center">
         <CartQuantityChangeBtn
           quantity={quantity}
           setQuantity={setQuantity}
           callBack={callBack}
         />
       </TableCell>
-      <TableCell>
-        {cartItem.attributes.map((item) => (
-          <div key={item._id} className="uppercase">
+      {/* <TableCell>
+        {cartItem?.attributes?.map((item) => (
+          <div key={item?._id} className="uppercase">
             <span className="capitalize font-semibold">{item.name}</span> :{" "}
             <span className="block pl-2">{item.value}</span>
           </div>
         ))}
-      </TableCell>
+      </TableCell> */}
       <TableCell className="text-right min-w-24">
         {isLoading ? (
           "Loading..."

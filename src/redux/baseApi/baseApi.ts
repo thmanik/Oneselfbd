@@ -1,3 +1,4 @@
+import { baseUrlFn } from "@/hooks/useBaseUrl";
 import {
   BaseQueryFn,
   createApi,
@@ -6,7 +7,7 @@ import {
 import { logOut, setUser } from "../features/auth/authSlice";
 import { RootState } from "../store";
 
-const baseUrl = "http://localhost:5000/api/v1";
+const baseUrl = `${baseUrlFn()}/api/v1`;
 
 const baseQuery = fetchBaseQuery({
   baseUrl,

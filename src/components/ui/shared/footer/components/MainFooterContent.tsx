@@ -55,7 +55,7 @@ const MainFooterContent = () => {
             </div>
             <address className="font-semibold">
               <p>Address</p>
-              <p>88, Bankra, assasuni satkhira</p>
+              <p>Khulna, bangladesh</p>
               {/* TODO: Change the address */}
             </address>
           </div>

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -81,7 +85,3 @@
 .container {
   @apply max-w-7xl mx-auto px-2 2xl:px-0;
 }
-
-/* .nav-btn {
-  @apply 
-} */

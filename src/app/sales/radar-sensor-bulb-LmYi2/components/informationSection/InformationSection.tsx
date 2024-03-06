@@ -1,6 +1,6 @@
 const InformationSection = () => {
   return (
-    <div className="relative grid bg-[#116b80] my-5 place-items-center w-full h-[375px]">
+    <section className="relative grid bg-[#116b80] my-5 place-items-center w-full h-[375px]">
       {/* Background overlay */}
       <div className="absolute inset-0 bg-black opacity-20"></div>
       <div className="relative z-10">
@@ -14,7 +14,7 @@ const InformationSection = () => {
           মূল্যঃ = ৪৮০ টাকা ।
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 
