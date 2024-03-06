@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { useBaseUrl } from "@/hooks/useBaseUrl";
+import config from "@/config/config";
 import { TProduct } from "@/types/products/product";
 import Image from "next/image";
 import Link from "next/link";
 
 const CarouselUi = ({ product }: { product: TProduct }) => {
-  const baseUrl = useBaseUrl();
   return (
     <div className="relative md:py-10 py-20 px-2 md:px-10">
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
@@ -33,7 +32,7 @@ const CarouselUi = ({ product }: { product: TProduct }) => {
         </div>
         <div className="hidden md:block">
           <Image
-            src={`${baseUrl}/${product.image.src}`}
+            src={`${config.base_url}/${product.image.src}`}
             alt={product.image.alt}
             height={600}
             width={600}

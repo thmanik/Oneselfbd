@@ -8,14 +8,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useToast } from "@/components/ui/use-toast";
-import { useBaseUrl } from "@/hooks/useBaseUrl";
 import useCart from "@/hooks/useCart";
 import { useDeleteFromCartMutation } from "@/redux/features/cart/cartApi";
 import { TCartItem } from "@/types/cart";
 import CartItemSkeleton from "./components/CartItemSkeleton";
 
 const CartItems = () => {
-  const baseUrl = useBaseUrl();
   const [deleteFromCart] = useDeleteFromCartMutation();
   const { data: cartItems, isLoading } = useCart();
   const { toast } = useToast();
@@ -59,7 +57,6 @@ const CartItems = () => {
                 <CartItem
                   key={item._id}
                   cartItem={item.item}
-                  basUrl={baseUrl}
                   handleRemoveFromCart={handleRemoveFromCart}
                 />
               ))}

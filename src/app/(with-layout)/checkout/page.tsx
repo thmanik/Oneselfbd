@@ -9,6 +9,7 @@ const Checkout = async () => {
     await useQuery<TShippingCharges[]>("/shipping-charges");
   const [{ data: paymentMethods = [] }] =
     await useQuery<TPaymentMethod[]>("/payment-method");
+
   return (
     <section className="mt-20">
       <ContainerMax>
