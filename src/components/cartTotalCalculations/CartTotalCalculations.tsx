@@ -25,8 +25,8 @@ const CartTotalCalculations = ({
     if (!selectedShipping._id) {
       dispatch(
         setShipping({
-          _id: shippingCharges![0]?._id,
-          amount: shippingCharges![0]?.amount,
+          _id: shippingCharges?.length && shippingCharges![0]?._id,
+          amount: shippingCharges?.length && shippingCharges![0]?.amount,
         })
       );
     }

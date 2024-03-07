@@ -48,14 +48,16 @@ const SingleProductPage = async ({ params }: TSingleProductPage) => {
             <Box className="space-y-4">
               <Link
                 className="text-sm text-muted"
-                href={`/category/${category._id._id}`}
+                href={`/category/${category?._id?._id}`}
               >
                 {category._id.name}
               </Link>
               <h2 className="font-semibold text-xl lg:text-2xl">{title}</h2>
               <Rating style={{ maxWidth: 80 }} value={3.5} readOnly />
               <div className="flex gap-5">
-                <p className="text-md text-muted">{brand[0].name}</p>
+                <p className="text-md text-muted">
+                  {brand.length && brand[0]?.name}
+                </p>
                 <p>
                   <span className="text-muted">Availability: </span>
                   <span className="font-semibold">
