@@ -8,7 +8,7 @@ const ProductCardSecondary = ({ product }: { product: TProduct }) => {
     <div className="grid grid-cols-4 w-80 gap-3 p-2">
       <div>
         <Image
-          src={`${config.base_url}/${product.image.src}`}
+          src={`${config.base_url}/${product.image?.src}`}
           alt={product.image.alt}
           width={300}
           height={300}
