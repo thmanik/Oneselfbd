@@ -27,7 +27,7 @@ const CopyrightContent = async () => {
               <Image
                 key={item.name}
                 src={`${config.base_url}/${item.image?.src}`}
-                alt={item.image.alt}
+                alt={item.image?.alt}
                 width={50}
                 height={50}
                 className="w-8 md:w-10 rounded-md"
