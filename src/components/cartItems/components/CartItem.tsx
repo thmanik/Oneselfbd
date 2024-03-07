@@ -1,6 +1,7 @@
 "use client";
 import CartQuantityChangeBtn from "@/components/cartQuantityChangeBtn/CartQuantityChangeBtn";
 import { useToast } from "@/components/ui/use-toast";
+import config from "@/config/config";
 import { useUpdateCartQuantityMutation } from "@/redux/features/cart/cartApi";
 import { TCartItemData } from "@/types/cart";
 import Image from "next/image";
@@ -11,11 +12,9 @@ import EcButton from "../../EcButton/EcButton";
 import { TableCell, TableRow } from "../../ui/table";
 const CartItem = ({
   cartItem,
-  basUrl,
   handleRemoveFromCart,
 }: {
   cartItem: TCartItemData;
-  basUrl?: string;
   // eslint-disable-next-line no-unused-vars
   handleRemoveFromCart: (itemId: string) => void;
 }) => {
@@ -62,7 +61,7 @@ const CartItem = ({
           className="hover:text-secondary flex-grow flex flex-col gap-3 justify-center items-center font-semibold flex-wrap text-center"
         >
           <Image
-            src={`${basUrl}/${cartItem?.product?.image?.thumbnail?.src}`}
+            src={`${config.base_url}/${cartItem?.product?.image?.thumbnail?.src}`}
             alt={cartItem?.product?.image?.thumbnail?.alt}
             height={200}
             width={200}
@@ -72,21 +71,21 @@ const CartItem = ({
         </Link>
       </TableCell>
       <TableCell className="min-w-24">&#2547; {price}</TableCell>
-      <TableCell className="flex items-center">
+      <TableCell className="flex justify-center items-center">
         <CartQuantityChangeBtn
           quantity={quantity}
           setQuantity={setQuantity}
           callBack={callBack}
         />
       </TableCell>
-      <TableCell>
-        {cartItem.attributes.map((item) => (
-          <div key={item._id} className="uppercase">
+      {/* <TableCell>
+        {cartItem?.attributes?.map((item) => (
+          <div key={item?._id} className="uppercase">
             <span className="capitalize font-semibold">{item.name}</span> :{" "}
             <span className="block pl-2">{item.value}</span>
           </div>
         ))}
-      </TableCell>
+      </TableCell> */}
       <TableCell className="text-right min-w-24">
         {isLoading ? (
           "Loading..."

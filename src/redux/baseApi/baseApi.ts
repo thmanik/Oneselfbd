@@ -1,3 +1,4 @@
+import config from "@/config/config";
 import {
   BaseQueryFn,
   createApi,
@@ -6,7 +7,7 @@ import {
 import { logOut, setUser } from "../features/auth/authSlice";
 import { RootState } from "../store";
 
-const baseUrl = "http://localhost:5000/api/v1";
+const baseUrl = `${config.base_url}/api/v1`;
 
 const baseQuery = fetchBaseQuery({
   baseUrl,
