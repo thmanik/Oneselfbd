@@ -2,7 +2,7 @@ import { FaShoppingCart } from "react-icons/fa";
 
 const ProductBanner = () => {
   return (
-    <div>
+    <section>
       <div
         className="text-center py-8 bg-[#116b80] relative"
         style={{
@@ -40,7 +40,7 @@ const ProductBanner = () => {
       </div>
       <div>
         <div className="flex justify-center">
-          <a href="#">
+          <a href="#order-form">
             {" "}
             <button
               className="md:w-96 px-5 bg-[#00C1F2] py-4 rounded-full mx-auto relative hover:bg-gradient-to-r from-[#63D6E8] to-[#241F21] transition-background-color duration-600 ease-in-out"
@@ -57,7 +57,7 @@ const ProductBanner = () => {
           </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

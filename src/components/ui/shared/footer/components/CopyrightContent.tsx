@@ -1,12 +1,11 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
-import { useBaseUrl } from "@/hooks/useBaseUrl";
+import config from "@/config/config";
 import useQuery from "@/hooks/useQuery";
 import { TPaymentMethod } from "@/types/paymentMethod";
 import Image from "next/image";
 import Link from "next/link";
 
 const CopyrightContent = async () => {
-  const baseUrl = useBaseUrl();
   const [{ data: paymentMethods = [] }] =
     await useQuery<TPaymentMethod[]>("/payment-method");
 
@@ -27,7 +26,7 @@ const CopyrightContent = async () => {
             {paymentMethods.map((item) => (
               <Image
                 key={item.name}
-                src={`${baseUrl}/${item.image.src}`}
+                src={`${config.base_url}/${item.image.src}`}
                 alt={item.image.alt}
                 width={50}
                 height={50}

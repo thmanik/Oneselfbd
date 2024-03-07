@@ -1,7 +1,7 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import ErrorMessage from "@/components/errorMessage/ErrorMessage";
 import Box from "@/components/ui/ec/Box";
-import { useBaseUrl } from "@/hooks/useBaseUrl";
+import config from "@/config/config";
 import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
 import { TSingleProduct } from "@/types/products/singleProduct";
@@ -20,7 +20,6 @@ type TSingleProductPage = {
 };
 
 const SingleProductPage = async ({ params }: TSingleProductPage) => {
-  const baseUrl = useBaseUrl();
   const [{ data: product, success: isSingleProductSuccess }] =
     await useQuery<TSingleProduct>(`/products/${params.id}`);
 
@@ -91,7 +90,7 @@ const SingleProductPage = async ({ params }: TSingleProductPage) => {
                 <SingleProductClientContent product={product} />
               </div>
               <ProductSharing
-                productUrl={`${baseUrl}/product/${product?._id}`}
+                productUrl={`${config.base_url}/product/${product?._id}`}
               />
             </Box>
             <div className="col-span-1 md:col-span-2 mt-10">

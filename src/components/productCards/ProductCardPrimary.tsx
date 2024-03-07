@@ -1,4 +1,4 @@
-import { useBaseUrl } from "@/hooks/useBaseUrl";
+import config from "@/config/config";
 import { TProduct } from "@/types/products/product";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +12,6 @@ const ProductCardPrimary = ({
   product: TProduct;
   className?: string;
 }) => {
-  const baseUrl = useBaseUrl();
   return (
     <Link
       href={`/product/${product._id}`}
@@ -24,7 +23,7 @@ const ProductCardPrimary = ({
       <div className="flex flex-col gap-2">
         <div className="bg-base-100">
           <Image
-            src={`${baseUrl}/${product.image.src}`}
+            src={`${config.base_url}/${product.image.src}`}
             alt={product.image.alt}
             height={400}
             width={400}
