@@ -23,8 +23,8 @@ const ProductCardPrimary = ({
       <div className="flex flex-col gap-2">
         <div className="bg-base-100">
           <Image
-            src={`${config.base_url}/${product.image.src}`}
-            alt={product.image.alt}
+            src={`${config.base_url}/${product.image?.src}`}
+            alt={product.image?.alt}
             height={400}
             width={400}
             className="w-48 h-48 min-w-[100px] aspect-square object-cover mx-auto"
