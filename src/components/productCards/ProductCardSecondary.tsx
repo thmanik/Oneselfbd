@@ -9,7 +9,7 @@ const ProductCardSecondary = ({ product }: { product: TProduct }) => {
       <div>
         <Image
           src={`${config.base_url}/${product.image?.src}`}
-          alt={product.image.alt}
+          alt={product.image?.alt}
           width={300}
           height={300}
           className="w-20 h-20 object-cover"
