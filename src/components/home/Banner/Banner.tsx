@@ -2,8 +2,8 @@ import ContainerMax from "@/components/containerMax/ContainerMax";
 import HorizontalProductCard from "@/components/productCards/HorizontalProductCard";
 import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
-import BannerCarousel from "./components/BannerCarousel";
 import FacilitiesButtons from "./FacilitiesButtons/FacilitiesButtons";
+import BannerCarousel from "./components/BannerCarousel";
 
 const Banner = async () => {
   const [{ data: bannerSideProducts = [] }] =
@@ -16,7 +16,7 @@ const Banner = async () => {
             <BannerCarousel />
             <FacilitiesButtons />
           </div>
-          <div className="col-span-8 md:col-span-4 lg:col-span-4  my-3 space-y-5">
+          <div className="col-span-8 md:col-span-4 lg:col-span-4  my-4 space-y-5">
             {bannerSideProducts
               ?.slice(0, 3)
               ?.map((product) => (

@@ -4,11 +4,11 @@ import PopularProducts from "@/components/home/popularProducts/PopularProducts";
 import ProductsGallery from "@/components/home/productsGallery/ProductsGallery";
 // import SuggestedProducts from "@/components/home/suggestedProducts/suggestedProducts";
 // import TrendingProducts from "@/components/home/trendingProducts/TrendingProducts";
-import useQuery from "@/hooks/useQuery";
-import CategorySection from "./shop/components/CategorySection";
-import TCategory from "@/types/categories/categories";
-import AllProducts from "@/components/home/AllProducts/AllProducts";
 import ContainerMax from "@/components/containerMax/ContainerMax";
+import AllProducts from "@/components/home/AllProducts/AllProducts";
+import useQuery from "@/hooks/useQuery";
+import TCategory from "@/types/categories/categories";
+import CategorySection from "./shop/components/CategorySection";
 
 const Home = async () => {
   const [{ data: categories = [] }] =
