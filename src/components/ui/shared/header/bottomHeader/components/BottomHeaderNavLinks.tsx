@@ -15,7 +15,7 @@ import Link from "next/link";
 import React from "react";
 type TProps = {
   isHorizontal?: boolean;
-  categories: TCategory[];
+  categories?: TCategory[];
 };
 const BottomHeaderNavLinks = ({ isHorizontal, categories }: TProps) => {
   const menuLinks = [
@@ -30,7 +30,7 @@ const BottomHeaderNavLinks = ({ isHorizontal, categories }: TProps) => {
     {
       title: "Categories",
       href: "/category",
-      subMenus: categories.map(({ name }) => ({
+      subMenus: categories?.map(({ name }) => ({
         title: name,
         href: "/electric-bulb",
       })),
