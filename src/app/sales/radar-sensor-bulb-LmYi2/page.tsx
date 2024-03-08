@@ -14,6 +14,7 @@ const RadarSensorBulbLmYi2Page = async () => {
   const [{ data: product }] = await useQuery<TSingleProduct>(
     "/products/65df30dce597e397119892a0"
   );
+
   return (
     <>
       <ProductBanner />

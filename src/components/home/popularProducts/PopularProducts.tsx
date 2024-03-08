@@ -18,7 +18,7 @@ const PopularProducts = async () => {
   return (
     <section className="pt-20">
       <ContainerMax>
-        <SectionTitle title="Popular products" href="/products" />
+        <SectionTitle title="Popular products" href="/shop" />
         <div>
           <Carousel>
             <CarouselContent className="p-4">
