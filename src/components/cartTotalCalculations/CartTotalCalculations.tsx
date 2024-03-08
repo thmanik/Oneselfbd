@@ -15,7 +15,6 @@ const CartTotalCalculations = ({
     (state: TRootState) => state.shippingClass
   );
   const { totalCost, isLoading } = useCart();
-
   return (
     <div>
       <div className="flex gap-2 justify-between items-center py-5 px-2 border-b-2">
