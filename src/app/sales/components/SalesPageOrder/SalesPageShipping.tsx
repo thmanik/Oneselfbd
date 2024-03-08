@@ -1,7 +1,7 @@
 "use client";
-import CartItems from "@/components/cartItems/CartItems";
-import Box from "@/components/ui/ec/Box";
-import BoxHeading from "@/components/ui/ec/BoxHeading";
+import OrderNow from "@/app/(with-layout)/checkout/components/OrderNow";
+import ShippingAddress from "@/app/(with-layout)/checkout/components/ShippingAddress";
+import PaymentsGateway from "@/app/(with-layout)/checkout/components/paymentGateway/PaymentsGateway";
 import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
 import {
   setPaymentInfo,
@@ -18,11 +18,8 @@ import TShippingCharges from "@/types/shippingCharge";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ShippingAddress from "../components/ShippingAddress";
-import OrderNow from "./OrderNow";
-import PaymentsGateway from "./paymentGateway/PaymentsGateway";
 
-const CheckoutPageContent = ({
+const SalesPageShipping = ({
   shippingCharges,
   paymentMethods,
 }: {
@@ -39,7 +36,7 @@ const CheckoutPageContent = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // order placing
+  // handle orders
   const shippingInfo = useSelector((state: TRootState) => state.shippingInfo);
   const paymentInfo = useSelector((state: TRootState) => state.paymentInfo);
   const shippingClass = useSelector((state: TRootState) => state.shippingClass);
@@ -104,11 +101,7 @@ const CheckoutPageContent = ({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
-      <Box className="col-span-1 lg:col-span-2 mt-10">
-        <BoxHeading>Added items</BoxHeading>
-        <CartItems />
-      </Box>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 pb-5 mt-10">
       <div>
         <ShippingAddress />
       </div>
@@ -127,4 +120,4 @@ const CheckoutPageContent = ({
   );
 };
 
-export default CheckoutPageContent;
+export default SalesPageShipping;

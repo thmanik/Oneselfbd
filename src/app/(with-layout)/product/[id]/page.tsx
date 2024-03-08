@@ -48,22 +48,22 @@ const SingleProductPage = async ({ params }: TSingleProductPage) => {
             <Box className="space-y-4">
               <Link
                 className="text-sm text-muted"
-                href={`/category/${category._id._id}`}
+                href={`/category/${category?._id?._id}`}
               >
-                {category._id.name}
+                {category?._id?.name}
               </Link>
               <h2 className="font-semibold text-xl lg:text-2xl">{title}</h2>
               <Rating style={{ maxWidth: 80 }} value={3.5} readOnly />
               <div className="flex gap-5">
-                <p className="text-md text-muted">{brand[0].name}</p>
+                <p className="text-md text-muted">{brand[0]?.name}</p>
                 <p>
                   <span className="text-muted">Availability: </span>
                   <span className="font-semibold">
-                    {inventory.stockQuantity <= 0 ? (
+                    {inventory?.stockQuantity <= 0 ? (
                       <span className="text-red-600">Out of stock</span>
                     ) : (
                       <span className="text-green-600">
-                        {inventory.stockQuantity} In stock
+                        {inventory?.stockQuantity} In stock
                       </span>
                     )}
                   </span>
@@ -75,22 +75,22 @@ const SingleProductPage = async ({ params }: TSingleProductPage) => {
                 className="text-muted"
               ></div>
               <h2 className="text-3xl my-2">
-                {price.salePrice ? (
+                {price?.salePrice ? (
                   <>
                     <del className="text-muted text-base">
-                      {price.regularPrice}&#2547;
+                      {price?.regularPrice}&#2547;
                     </del>
-                    <span> {price.salePrice}&#2547; </span>
+                    <span> {price?.salePrice}&#2547; </span>
                   </>
                 ) : (
-                  <span>{price.salePrice}&#2547; </span>
+                  <span>{price?.salePrice}&#2547; </span>
                 )}
               </h2>
               <div>
                 <SingleProductClientContent product={product} />
               </div>
               <ProductSharing
-                productUrl={`${config.base_url}/product/${product?._id}`}
+                productUrl={`${config?.base_url}/product/${product?._id}`}
               />
             </Box>
             <div className="col-span-1 md:col-span-2 mt-10">

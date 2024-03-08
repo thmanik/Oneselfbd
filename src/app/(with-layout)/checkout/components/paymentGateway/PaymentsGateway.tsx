@@ -74,7 +74,7 @@ const PaymentsGateway = ({
   }, [Object.keys(errors).length, dispatch, errors]);
 
   return (
-    <Box>
+    <Box className="bg-white">
       <BoxHeading>Payment info</BoxHeading>
       <SelectPaymentMethod
         paymentMethods={paymentMethods}
