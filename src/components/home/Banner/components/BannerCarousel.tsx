@@ -14,7 +14,7 @@ const BannerCarousel = async () => {
     await useQuery<TProduct[]>("/products"); // TODO: change endpoint
   return (
     <>
-      <Carousel>
+      <Carousel className="">
         <CarouselContent>
           {carouselProducts?.slice(0, 5)?.map((product) => (
             <CarouselItem key={product._id}>
