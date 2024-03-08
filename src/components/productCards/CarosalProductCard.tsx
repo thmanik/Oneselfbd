@@ -5,7 +5,7 @@ import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import EcButton from "../EcButton/EcButton";
 
-const ProductCardPrimary = ({
+const CarosalProductsCard = ({
   product,
   className,
 }: {
@@ -16,7 +16,7 @@ const ProductCardPrimary = ({
     <Link
       href={`/product/${product._id}`}
       className={twMerge(
-        "bg-white h-fit flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
+        "bg-white w-52 h-[328px] flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
         className
       )}
     >
@@ -74,4 +74,4 @@ const ProductCardPrimary = ({
   );
 };
 
-export default ProductCardPrimary;
+export default CarosalProductsCard;

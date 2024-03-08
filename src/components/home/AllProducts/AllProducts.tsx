@@ -11,7 +11,7 @@ const AllProducts = async () => {
     <section className="pt-20">
       <ContainerMax>
         <SectionTitle title="All products" href="/shop" />
-        <div className="flex gap-x-3 gap-y-10 flex-wrap justify-center mt-5">
+        <div className="grid  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl: 2xl:grid-cols-5  gap-8  justify-center mt-5">
           {products?.map((product) => (
             // <ProductCardSecondary key={product._id} product={product} />
             <ProductCardPrimary product={product} key={product._id} />
