@@ -1,5 +1,10 @@
 import CategoryCard from "@/components/categoryCards/CategoryCard";
-import { Carousel, CarouselContent } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselNextPMiddle,
+  CarouselPreviousPMiddle,
+} from "@/components/ui/carousel";
 import Box from "@/components/ui/ec/Box";
 import TCategory from "@/types/categories/categories";
 
@@ -13,6 +18,8 @@ const CategorySection = ({ categories }: { categories: TCategory[] }) => {
             <CategoryCard key={category._id} category={category} />
           ))}
         </CarouselContent>
+        <CarouselPreviousPMiddle />
+        <CarouselNextPMiddle />
       </Carousel>
     </Box>
   );

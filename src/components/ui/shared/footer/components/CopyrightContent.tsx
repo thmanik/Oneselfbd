@@ -22,6 +22,18 @@ const CopyrightContent = async () => {
               <span>All right reserved</span>
             </p>
           </div>
+          <div>
+            <p className="text-muted">
+              Developed and maintained by{" "}
+              <a
+                href="http://www.flexsoftr.com"
+                className="font-bold underline"
+                target="_blank"
+              >
+                Flexsoftr
+              </a>
+            </p>
+          </div>
           <div className="flex gap-3">
             {paymentMethods.map((item) => (
               <Image

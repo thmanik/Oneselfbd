@@ -17,8 +17,8 @@ const SingleProductPageImageGallery = ({ image }: { image: TGalleryImage }) => {
         items={galleryImages}
         lazyLoad
         showNav={false}
-        //  autoPlay TODO: enable this
-        // infinite TODO: enable this
+        autoPlay // TODO: enable this
+        infinite //TODO: enable this
       />
     </>
   );

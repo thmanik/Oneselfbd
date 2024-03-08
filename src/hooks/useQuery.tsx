@@ -27,7 +27,7 @@ const useQuery = async <T,>(
   let data: null | TGenericResponse<T> = {};
 
   try {
-    const req = await fetch(url, { cache: "no-cache" });
+    const req = await fetch(url);
     const res = (await req.json()) as TGenericResponse<T>;
     if (res.success) {
       data = res;

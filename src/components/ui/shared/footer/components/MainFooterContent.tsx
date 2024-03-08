@@ -24,11 +24,15 @@ const quickLinks = [
 const socialLinks = [
   {
     icon: "/images/social_icons/facebook.png",
-    url: "/refund-policy",
+    url: "https://www.facebook.com/oneselfbd?mibextid=ZbWKwL",
   },
   {
     icon: "/images/social_icons/whatsapp.png",
-    url: "/refund-policy",
+    url: "https://api.whatsapp.com/send?phone=+8801967214215&text=Is%20anyone%20available?",
+  },
+  {
+    icon: "/images/social_icons/groups.png",
+    url: "https://www.facebook.com/groups/1246098009387414/?ref=share&mibextid=adzO7l&paipv=0&eav=AfZUgPMBGmrQ-r6t7oD9pFOoIp28bG6IiWtZxAAnmkGDRyF_TDU_jjII4g3pMojA1dI&_rdr",
   },
 ];
 const MainFooterContent = () => {
@@ -50,7 +54,7 @@ const MainFooterContent = () => {
               <BiSupport className="w-12 h-12" />
               <div>
                 <p className="text-xs">Have a question? Call us right now</p>
-                <p className="text-xl font-semibold">+8801789-699367</p>
+                <p className="text-xl font-semibold">+8801967214215</p>
               </div>
             </div>
             <address className="font-semibold">
@@ -78,7 +82,7 @@ const MainFooterContent = () => {
               <h2 className="font-bold mb-2 text-secondary">Social links</h2>
               <div className="flex gap-2">
                 {socialLinks.map((item, index) => (
-                  <Link href={item.url} key={index}>
+                  <Link href={item.url} key={index} target="_blank">
                     <Image
                       src={item.icon}
                       alt="Social icon"
