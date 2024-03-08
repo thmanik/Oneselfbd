@@ -39,20 +39,31 @@ const ProductCardPrimary = ({
               <>{product.title.slice(0, 40)}...</>
             )}
           </h2>
-          <div>
-            {product.salePrice ? (
-              <>
-                <span className="text-muted text-xs">
-                  &#2547;
-                  <del>{product.regularPrice}</del>
-                </span>
-                <span className="font-bold"> &#2547;{product.salePrice}</span>
-              </>
-            ) : (
-              <>
-                <span className="font-bold">&#2547;{product.regularPrice}</span>
-              </>
-            )}
+          <div className="flex justify-between">
+            <div>
+              {product.salePrice ? (
+                <>
+                  <span className="text-muted text-xs">
+                    &#2547;
+                    <del>{product.price && product.regularPrice}</del>
+                  </span>
+                  <span className="font-bold"> &#2547;{product.salePrice}</span>
+                </>
+              ) : (
+                <>
+                  <span className="font-bold">
+                    &#2547;{product.regularPrice}
+                  </span>
+                </>
+              )}
+            </div>
+            <div>
+              {product.stockAvailable ? (
+                <span className="text-green-600 text-xs">In stock</span>
+              ) : (
+                <span className="text-red-500 text-xs">Out of stock</span>
+              )}
+            </div>
           </div>
         </div>
       </div>

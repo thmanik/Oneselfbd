@@ -13,7 +13,7 @@ const ProductsGallery = async () => {
       <ContainerMax>
         <SectionTitle title="Great Deal" href="/shop" />
         <div className="flex gap-3 flex-wrap justify-center mt-5">
-          {products?.map((product) => (
+          {products?.slice(0, 6)?.map((product) => (
             <ProductCardSecondary key={product._id} product={product} />
             // <ProductCardPrimary product={product} key={product._id}/>
           ))}
