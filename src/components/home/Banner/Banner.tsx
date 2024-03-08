@@ -3,6 +3,7 @@ import HorizontalProductCard from "@/components/productCards/HorizontalProductCa
 import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
 import BannerCarousel from "./components/BannerCarousel";
+import FacilitiesButtons from "./FacilitiesButtons/FacilitiesButtons";
 
 const Banner = async () => {
   const [{ data: bannerSideProducts = [] }] =
@@ -13,6 +14,7 @@ const Banner = async () => {
         <div className="grid grid-cols-8 lg:grid-cols-12 mt-5 gap-5 justify-between">
           <div className="col-span-8">
             <BannerCarousel />
+            <FacilitiesButtons />
           </div>
           <div className="col-span-8 md:col-span-4 lg:col-span-4  my-3 space-y-5">
             {bannerSideProducts

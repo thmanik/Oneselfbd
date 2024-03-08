@@ -14,7 +14,7 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
           width={600}
           height={400}
           priority
-          className="aspect-square w-24 rounded-md"
+          className="aspect-square w-28 rounded-md"
         />
       </div>
       <div>
