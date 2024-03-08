@@ -1,17 +1,18 @@
 import { CarouselItem } from "@/components/ui/carousel";
+import config from "@/config/config";
 import TCategory from "@/types/categories/categories";
 import Image from "next/image";
 import Link from "next/link";
 
 const CategoryCard = ({ category }: { category: TCategory }) => {
   return (
-    <CarouselItem className="basis-1/2 sm:basis-1/3 md:basis-1/6 mx-5">
+    <CarouselItem className="basis-1/2 sm:basis-1/3 md:basis-1/6 mx-5 border rounded-md">
       <Link
-        href={`/product-category/${category._id}`}
-        className="block text-center p-4 "
+        href={`/shop?category${category._id}`}
+        className="block text-center p-4"
       >
         <Image
-          src="/images/social_icons/facebook.png" //TODO: Change image Path
+          src={`${config.base_url}/${category?.image?.src}`} //TODO: Change image Path
           alt={category.name}
           width={200}
           height={200}

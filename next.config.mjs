@@ -31,10 +31,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "i.ibb.co",
       },
-      // {
-      //   protocol: "https",
-      //   hostname: "",
-      // },
+      {
+        protocol: "http",
+        hostname: "89.116.134.144",
+      },
       {
         protocol: "http",
         hostname: "localhost",

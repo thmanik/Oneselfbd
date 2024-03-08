@@ -10,10 +10,11 @@ import {
 } from "@/redux/features/order/shippingInfo";
 import { shippingInfo } from "@/schemas/shippingInfo";
 import { TShippingInfo } from "@/types/order/shippingInfo";
+import { TRootState } from "@/types/rootState";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ShippingAddress = () => {
   const {
@@ -22,6 +23,9 @@ const ShippingAddress = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(shippingInfo), shouldFocusError: false });
   const dispatch = useDispatch();
+  const shippingInfoData = useSelector(
+    (state: TRootState) => state.shippingInfo
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
@@ -41,8 +45,9 @@ const ShippingAddress = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
+
   return (
-    <Box>
+    <Box className="bg-white">
       <BoxHeading>Shipping information</BoxHeading>
       <form onBlur={handleSubmit(onSubmit)} className="space-y-5">
         <div>
@@ -50,6 +55,7 @@ const ShippingAddress = () => {
           <Input
             placeholder="Write down your full name"
             {...register("fullName")}
+            value={shippingInfoData?.data?.fullName}
           />
           {errors.fullName && (
             <ErrorMessage message={errors.fullName.message} />
@@ -62,6 +68,7 @@ const ShippingAddress = () => {
           <Input
             placeholder="Write down your phone number"
             {...register("phoneNumber")}
+            value={shippingInfoData?.data?.phoneNumber}
           />
           {errors.phoneNumber && (
             <ErrorMessage message={errors.phoneNumber.message} />
@@ -74,6 +81,7 @@ const ShippingAddress = () => {
           <Input
             placeholder="Write down your address"
             {...register("fullAddress")}
+            value={shippingInfoData?.data?.fullAddress}
           />
           {errors.fullAddress && (
             <ErrorMessage message={errors.fullAddress.message} />
@@ -83,7 +91,11 @@ const ShippingAddress = () => {
           <Label className="font-bold pl-2 pb-2 block">
             Your email (Optional)
           </Label>
-          <Input placeholder="Enter your email " {...register("email")} />
+          <Input
+            placeholder="Enter your email "
+            {...register("email")}
+            value={shippingInfoData?.data?.email}
+          />
           {errors.email && <ErrorMessage message={errors.email.message} />}
         </div>
         <div>
@@ -94,6 +106,7 @@ const ShippingAddress = () => {
             placeholder="Additional information"
             {...register("notes")}
             className="w-full h-28 ring-2 ring-gray-100 rounded-md p-2"
+            value={shippingInfoData?.data?.notes}
           ></textarea>
           {errors.notes && <ErrorMessage message={errors.notes.message} />}
         </div>

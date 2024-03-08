@@ -13,19 +13,19 @@ import { TProduct } from "@/types/products/product";
 
 const PopularProducts = async () => {
   const [{ data: popularProducts = [] }] =
-    await useQuery<TProduct[]>("/products/featured"); // TODO: Change endpoint
+    await useQuery<TProduct[]>("/products"); // TODO: Change endpoint
 
   return (
     <section className="pt-20">
       <ContainerMax>
-        <SectionTitle title="Popular products" href="/products" />
+        <SectionTitle title="Popular products" href="/shop" />
         <div>
           <Carousel>
             <CarouselContent className="p-4">
               {popularProducts?.map((product) => (
                 <CarouselItem
                   key={product._id}
-                  className="basis-1/2 sm:basis-1/3 md:basis-1/5"
+                  className="basis-1/2 sm:basis-1/3 md:basis-1/4 xl:basis-1/6 mx-5"
                 >
                   <ProductCardPrimary product={product} />
                 </CarouselItem>

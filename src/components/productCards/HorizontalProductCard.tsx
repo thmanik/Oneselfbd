@@ -6,15 +6,15 @@ import { IoIosArrowDroprightCircle } from "react-icons/io";
 
 const HorizontalProductCard = ({ product }: { product: TProduct }) => {
   return (
-    <div className="bg-base-100 grid grid-cols-2 gap-5 justify-center items-center p-5 rounded-lg">
-      <div className="flex justify-end">
+    <div className="bg-base-100 grid grid-cols-2 gap-5 justify-between items-center p-5 rounded-lg">
+      <div className="flex justify-center">
         <Image
           src={`${config.base_url}/${product.image?.src}`}
           alt={product.image?.alt}
           width={600}
           height={400}
           priority
-          className="aspect-square w-24 rounded-md"
+          className="aspect-square w-28 rounded-md"
         />
       </div>
       <div>
