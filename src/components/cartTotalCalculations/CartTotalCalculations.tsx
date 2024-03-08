@@ -3,7 +3,7 @@ import useCart from "@/hooks/useCart";
 import { TRootState } from "@/types/rootState";
 import TShippingCharges from "@/types/shippingCharge";
 import { useSelector } from "react-redux";
-import SelectShippingMethod from "../selectShippingMethod/selectShippingMethod";
+import SelectShippingMethod from "../selectShippingMethod/SelectShippingMethod";
 import { Skeleton } from "../ui/skeleton";
 
 const CartTotalCalculations = ({
