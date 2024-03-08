@@ -8,6 +8,7 @@ import useQuery from "@/hooks/useQuery";
 import CategorySection from "./shop/components/CategorySection";
 import TCategory from "@/types/categories/categories";
 import AllProducts from "@/components/home/AllProducts/AllProducts";
+import ContainerMax from "@/components/containerMax/ContainerMax";
 
 const Home = async () => {
   const [{ data: categories = [] }] =
@@ -16,7 +17,9 @@ const Home = async () => {
   return (
     <>
       <Banner />
-      <CategorySection categories={categories} />
+      <ContainerMax>
+        <CategorySection categories={categories} />
+      </ContainerMax>
       {/* <SuggestedProducts /> */}
       {/* <TrendingProducts /> */}
       {/* <PopularProducts /> */}

@@ -25,7 +25,7 @@ const PopularProducts = async () => {
               {popularProducts?.map((product) => (
                 <CarouselItem
                   key={product._id}
-                  className="basis-1/2 sm:basis-1/3 md:basis-1/5"
+                  className="basis-1/2 sm:basis-1/3 md:basis-1/5 mx-4"
                 >
                   <ProductCardPrimary product={product} />
                 </CarouselItem>
