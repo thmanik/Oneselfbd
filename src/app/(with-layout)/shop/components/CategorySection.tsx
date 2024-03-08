@@ -6,6 +6,7 @@ import TCategory from "@/types/categories/categories";
 const CategorySection = ({ categories }: { categories: TCategory[] }) => {
   return (
     <Box className="bg-white">
+      <h1 className="text-2xl font-bold border-b">Categories</h1>
       <Carousel>
         <CarouselContent>
           {categories.map((category) => (

@@ -56,7 +56,7 @@ const SingleProductPage = async ({ params }: TSingleProductPage) => {
               <Rating style={{ maxWidth: 80 }} value={3.5} readOnly />
               <div className="flex gap-5">
                 <p className="text-md text-muted">
-                  {brand.length && brand[0]?.name}
+                  {brand.length ? brand[0]?.name : null}
                 </p>
                 <p>
                   <span className="text-muted">Availability: </span>

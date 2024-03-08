@@ -1,4 +1,5 @@
 import { CarouselItem } from "@/components/ui/carousel";
+import config from "@/config/config";
 import TCategory from "@/types/categories/categories";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +12,7 @@ const CategoryCard = ({ category }: { category: TCategory }) => {
         className="block text-center p-4 "
       >
         <Image
-          src="/images/social_icons/facebook.png" //TODO: Change image Path
+          src={`${config.base_url}/${category?.image?.src}`} //TODO: Change image Path
           alt={category.name}
           width={200}
           height={200}
