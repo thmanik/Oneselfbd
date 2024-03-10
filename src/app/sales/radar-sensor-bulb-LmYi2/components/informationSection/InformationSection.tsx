@@ -7,12 +7,15 @@ const InformationSection = () => {
         <h3 className="text-[#2cfa2c] text-center text-xl md:text-2xl lg:text-3xl font-bold">
           যে কোন তথ্যের জন্য যোগাযোগ করুন
         </h3>
-        <p className="text-white text-center text-lg md:text-xl lg:text-2xl font-bold my-3">
-          মোবাইলঃ +8801991165435
+        <p className="text-white text-center text-xl md:text-2xl lg:text-3xl font-bold my-3">
+          মোবাইলঃ +8801967214215
         </p>
-        <p className="text-[#ff2b2b] my-4 text-center text-4xl md:text-5xl lg:text-6xl font-bold">
-          মূল্যঃ = ৪৮০ টাকা ।
-        </p>
+
+        <div className="text-center  md:py-5 flex justify-center items-center">
+          <p className="italic text-2xl text-red-600 font-bold bg-yellow-400 w-[95%] md:px-10 py-5 rounded-full">
+            লাইটের মুল্য- ৪৮০ টাকা
+          </p>
+        </div>
       </div>
     </section>
   );

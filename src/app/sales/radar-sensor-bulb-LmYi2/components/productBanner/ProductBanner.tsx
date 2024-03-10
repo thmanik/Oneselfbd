@@ -12,20 +12,20 @@ const ProductBanner = () => {
         }}
       >
         <div className="text-[#FFFFFF] font-bold mx-4 md:mt-14 mb-1">
-          <p className="text-3xl md:text-5xl">
+          <p className="text-3xl md:text-6xl">
             মানুষ এলেই জ্বলে উঠবে লাইট! আবার মানুষ চলে{" "}
           </p>
-          <p className="md:mt-4 text-3xl md:text-5xl">
+          <p className="md:mt-4 text-3xl md:text-6xl">
             গেলে লাইট নিজে নিজে বন্ধ হয়ে যাবে!
           </p>
         </div>
 
-        <div className="w-96 py-4 rounded-full bg-[#1d96b4] mx-auto sm:px-5 my-3">
+        <div className="w-80 md:w-96 py-4 rounded-full bg-[#1d96b4] mx-auto sm:px-5 my-3">
           <p className="text-xl md:text-2xl font-bold text-[#90EE90]">
             Radar motion sensor light
           </p>
         </div>
-        <div className="leading-relaxed mt-8  text-[#FFFFFF] pb-5">
+        <div className="leading-relaxed mt-8 text-xl  text-[#FFFFFF] pb-5">
           <p>
             মোশন সেন্সর লাইট বিদ্যুৎ সাশ্রয়ী। <br />
             কারণ যখন আপনি লাইটের নিচে যাবেন , তখন লাইটটি জ্বলবে; আবার যখন আপনি
