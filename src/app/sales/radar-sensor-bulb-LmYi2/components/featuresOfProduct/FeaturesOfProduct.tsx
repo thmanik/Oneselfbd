@@ -30,7 +30,7 @@ const FeaturesOfProduct = () => {
   return (
     <section className="sm:mx-10 my-6">
       <div>
-        <div className="w-96  py-4  rounded-full text-center bg-[#edf7fa]  mx-auto sm:px-5 mt-4 mb-10">
+        <div className="w-80 md:w-96  py-4  rounded-full text-center bg-[#edf7fa]  mx-auto sm:px-5 mt-4 mb-10">
           <p className="text-2xl font-bold  text-[#203B56]">
             লাইটি ব্যবহারের সুবিধাসমূহ
           </p>
