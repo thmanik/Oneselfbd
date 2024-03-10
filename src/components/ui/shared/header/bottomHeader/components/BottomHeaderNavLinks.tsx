@@ -10,31 +10,33 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import TCategory from "@/types/categories/categories";
 import Link from "next/link";
 import React from "react";
-
-const menuLinks = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Shop",
-    href: "/shop",
-  },
-  {
-    title: "Categories",
-    href: "/category",
-    subMenus: [
-      {
-        title: "Electric Bulb",
+type TProps = {
+  isHorizontal?: boolean;
+  categories?: TCategory[];
+};
+const BottomHeaderNavLinks = ({ isHorizontal, categories }: TProps) => {
+  const menuLinks = [
+    {
+      title: "Home",
+      href: "/",
+    },
+    {
+      title: "Shop",
+      href: "/shop",
+    },
+    {
+      title: "Categories",
+      href: "/category",
+      subMenus: categories?.map(({ name }) => ({
+        title: name,
         href: "/electric-bulb",
-      },
-    ],
-  },
-];
+      })),
+    },
+  ];
 
-const BottomHeaderNavLinks = ({ isHorizontal }: { isHorizontal?: boolean }) => {
   return (
     <>
       <NavigationMenu>

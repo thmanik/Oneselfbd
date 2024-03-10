@@ -1,3 +1,6 @@
+import useQuery from "@/hooks/useQuery";
+import { TSingleProduct } from "@/types/products/singleProduct";
+import SalesPageOrder from "../components/SalesPageOrder/SalesPageOrder";
 import FeaturesOfProduct from "./components/featuresOfProduct/FeaturesOfProduct";
 import InformationSection from "./components/informationSection/InformationSection";
 import OurServices from "./components/ourServices/OurServices";
@@ -7,9 +10,13 @@ import ProductReplacement from "./components/productReplacement/ProductReplaceme
 import ProductVideo from "./components/productVideo/ProductVideo";
 import UseOfTheProduct from "./components/useOfTheProduct/UseOfTheProduct";
 
-const RadarSensorBulbLmYi2Page = () => {
+const RadarSensorBulbLmYi2Page = async () => {
+  const [{ data: product }] = await useQuery<TSingleProduct>(
+    "/products/65df30dce597e397119892a0"
+  );
+
   return (
-    <div className="font-hind-siliguri ">
+    <>
       <ProductBanner />
       <ProductVideo />
       <ProductPrice />
@@ -18,7 +25,8 @@ const RadarSensorBulbLmYi2Page = () => {
       <InformationSection />
       <OurServices />
       <ProductReplacement />
-    </div>
+      <SalesPageOrder product={product} />
+    </>
   );
 };
 

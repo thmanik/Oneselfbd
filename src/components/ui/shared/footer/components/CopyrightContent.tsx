@@ -1,12 +1,11 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
-import { useBaseUrl } from "@/hooks/useBaseUrl";
+import config from "@/config/config";
 import useQuery from "@/hooks/useQuery";
 import { TPaymentMethod } from "@/types/paymentMethod";
 import Image from "next/image";
 import Link from "next/link";
 
 const CopyrightContent = async () => {
-  const baseUrl = useBaseUrl();
   const [{ data: paymentMethods = [] }] =
     await useQuery<TPaymentMethod[]>("/payment-method");
 
@@ -23,12 +22,24 @@ const CopyrightContent = async () => {
               <span>All right reserved</span>
             </p>
           </div>
+          <div>
+            <p className="text-muted">
+              Developed and maintained by{" "}
+              <a
+                href="http://www.flexsoftr.com"
+                className="font-bold underline"
+                target="_blank"
+              >
+                Flexsoftr
+              </a>
+            </p>
+          </div>
           <div className="flex gap-3">
             {paymentMethods.map((item) => (
               <Image
-                key={item.name}
-                src={`${baseUrl}/${item.image.src}`}
-                alt={item.image.alt}
+                key={item?.name}
+                src={`${config.base_url}/${item?.image?.src}`}
+                alt={item?.image?.alt}
                 width={50}
                 height={50}
                 className="w-8 md:w-10 rounded-md"
