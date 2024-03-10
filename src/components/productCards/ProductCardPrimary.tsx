@@ -5,16 +5,19 @@ import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import EcButton from "../EcButton/EcButton";
 
-const ProductCardPrimary = ({
-  product,
-  className,
-}: {
+type TProps = {
   product: TProduct;
   className?: string;
-}) => {
+};
+const ProductCardPrimary = ({ product, className }: TProps) => {
   return (
     <Link
-      href={`/product/${product._id}`}
+      href={{
+        pathname: `/product/${product._id}/${product.slug}`,
+        // query: {
+        //   id: product._id,
+        // },
+      }}
       className={twMerge(
         "bg-white h-fit flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
         className

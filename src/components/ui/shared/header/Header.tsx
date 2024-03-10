@@ -4,11 +4,11 @@ import TopHeader from "./components/TopHeader";
 
 const Header = () => {
   return (
-    <div>
+    <header>
       <TopHeader />
       <MainHeader />
       <BottomHeader />
-    </div>
+    </header>
   );
 };
 

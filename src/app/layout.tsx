@@ -4,7 +4,7 @@ import "@smastrom/react-rating/style.css";
 import { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
 import { ReactNode } from "react";
-import "../globals.css";
+import "./globals.css";
 
 const hindSiliguri = Hind_Siliguri({ subsets: ["bengali"], weight: "400" });
 
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     default: "Oneself",
     template: "%s | Oneself",
   },
+  description: "Oneself",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -20,7 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <StoreProvider>
       <html lang="en">
         <body className={`${hindSiliguri.className} text-accent`}>
-          <main>{children}</main>
+          {children}
           <Toaster />
         </body>
       </html>

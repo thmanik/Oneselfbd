@@ -14,7 +14,7 @@ const CarosalProductsCard = ({
 }) => {
   return (
     <Link
-      href={`/product/${product._id}`}
+      href={`/product/${product._id}/${product.slug}`}
       className={twMerge(
         "bg-white w-52 h-[328px] flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
         className

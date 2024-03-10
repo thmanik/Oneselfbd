@@ -5,20 +5,20 @@ type Props = {
   children: ReactNode;
 };
 
-const Layout = ({ children }: Props) => {
+const UserAccountLayout = ({ children }: Props) => {
   return (
-    <div className="px-6 py-8">
+    <section className="px-6 py-8">
       {/* Main Content */}
-      <main className="grid md:grid-cols-12  px-4 py-6">
+      <div className="grid md:grid-cols-12  px-4 py-6">
         <div className="md:col-span-4 sm:col-span-12">
           <Sidebar />
         </div>
         <div className="md:col-span-8 sm:col-span-12 md:mx-6 my-4">
           {children}
         </div>
-      </main>
-    </div>
+      </div>
+    </section>
   );
 };
 
-export default Layout;
+export default UserAccountLayout;

@@ -17,7 +17,7 @@ const ProductCardSecondary = ({ product }: { product: TProduct }) => {
       </div>
       <div className="col-span-3 space-y-1">
         <Link
-          href={`/product/${product._id}`}
+          href={`/product/${product._id}/${product.slug}`}
           className="font-semibold text-secondary hover:text-primary"
         >
           {product.title}

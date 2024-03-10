@@ -12,16 +12,31 @@ import ProductSharing from "./components/ProductSharing";
 import RelatedProduct from "./components/RelatedProduct";
 import SingleProductClientContent from "./components/SingleProductClientContent";
 import SingleProductPageImageGallery from "./components/SingleProductPageImageGallery";
+// import getAllProducts from "@/components/home/AllProducts/lib/getAllProducts";
+// import { notFound } from "next/navigation";
 
-type TSingleProductPage = {
+type TProps = {
   params: {
+    slug: string;
     id: string;
   };
 };
 
-const SingleProductPage = async ({ params }: TSingleProductPage) => {
+export async function generateMetadata({ params }: TProps) {
+  const product = await fetch(
+    `${config.base_url}/api/v1/products/${params.slug[0]}`
+  ).then((res) => res.json());
+  // const [{ data: product}] =
+  //   await useQuery<TSingleProduct>(`/products/${params.id}`);
+  return {
+    title: product.data?.title,
+    description: product.data?.body,
+  };
+}
+
+const SingleProductPage = async ({ params }: TProps) => {
   const [{ data: product, success: isSingleProductSuccess }] =
-    await useQuery<TSingleProduct>(`/products/${params.id}`);
+    await useQuery<TSingleProduct>(`/products/${params.slug[0]}`);
 
   const [{ data: relatedProduct }] = await useQuery<TProduct[]>(
     `/products?category=${product?.category?._id?._id}`
@@ -33,6 +48,7 @@ const SingleProductPage = async ({ params }: TSingleProductPage) => {
         className="text-center text-2xl py-5"
       />
     );
+    // notFound()
   }
   const { image, category, brand, inventory, title, shortDescription, price } =
     product as TSingleProduct;
@@ -109,3 +125,13 @@ const SingleProductPage = async ({ params }: TSingleProductPage) => {
 };
 
 export default SingleProductPage;
+
+// in case of product fix, use generateStaticParams
+// Return a list of `params` to populate the [slug] dynamic segment
+// export async function generateStaticParams() {
+//   const products = await getAllProducts();
+
+//   return products.map((product: { slug: string }) => ({
+//     slug: product.slug,
+//   }));
+// }
