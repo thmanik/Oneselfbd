@@ -53,7 +53,7 @@ const UseOfTheProduct = () => {
                 key={index}
                 className="basis-1/1 sm:basis-1/2 md:basis-1/3 px-2"
               >
-                <div className="bg-[#116b80] w-96 h-80 flex flex-col items-center rounded-xl">
+                <div className="bg-[#116b80] w-96 h-80 flex flex-col items-center rounded-xl ">
                   <div className="mt-5">
                     <Image
                       width={300}
@@ -70,7 +70,7 @@ const UseOfTheProduct = () => {
               </div>
             ))}
             <div className="basis-1/1 sm:basis-1/2 md:basis-1/3">
-              <div className="bg-[#116b80] w-96 h-80 flex justify-center items-center rounded-xl">
+              <div className="bg-[#116b80] w-96  h-80 flex  items-center rounded-xl">
                 <p className="text-white text-xl font-bold p-2 md:p-5 text-center">
                   এ ছাড়া আপনি আপনার সুবিধা মতে যে কোন যায়গায় ব্যবহার করতে পারেন
                   ।
@@ -83,7 +83,7 @@ const UseOfTheProduct = () => {
             <div className="flex justify-center">
               <a href="#order-form">
                 <button className="md:w-96  px-5 bg-[#00C1F2] py-4 rounded-full mx-auto  relative hover:bg-gradient-to-r from-[#63D6E8] to-[#241F21] transition-background-color duration-600 ease-in-out">
-                  <p className="md:text-2xl font-bold text-[#FFFFFF] flex items-center justify-center">
+                  <p className="md:text-3xl font-bold text-[#FFFFFF] flex items-center justify-center">
                     <span>অর্ডার করতে ক্লিক করুন</span>{" "}
                     <FaShoppingCart className="mt-1 ms-2" />
                   </p>
