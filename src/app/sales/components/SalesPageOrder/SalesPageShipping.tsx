@@ -2,7 +2,7 @@
 import OrderNow from "@/app/(with-layout)/checkout/components/OrderNow";
 import ShippingAddress from "@/app/(with-layout)/checkout/components/ShippingAddress";
 import PaymentsGateway from "@/app/(with-layout)/checkout/components/paymentGateway/PaymentsGateway";
-import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
+import { useCreateOrderFromSalesPageMutation } from "@/redux/features/order/orderApi";
 import {
   setPaymentInfo,
   setPaymentInfoError,
@@ -12,6 +12,7 @@ import {
   setShippingInfoError,
 } from "@/redux/features/order/shippingInfo";
 import { TPaymentMethod } from "@/types/paymentMethod";
+import { TSingleProduct } from "@/types/products/singleProduct";
 import TGenericResponse, { TGenericErrorResponse } from "@/types/response";
 import { TRootState } from "@/types/rootState";
 import TShippingCharges from "@/types/shippingCharge";
@@ -22,10 +23,15 @@ import { useDispatch, useSelector } from "react-redux";
 const SalesPageShipping = ({
   shippingCharges,
   paymentMethods,
+  product,
 }: {
   shippingCharges: TShippingCharges[];
   paymentMethods: TPaymentMethod[];
+  product?: TSingleProduct;
 }) => {
+  const totalCost = product?.price?.salePrice
+    ? product?.price?.salePrice
+    : product?.price?.regularPrice;
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -42,7 +48,7 @@ const SalesPageShipping = ({
   const shippingClass = useSelector((state: TRootState) => state.shippingClass);
   const router = useRouter();
 
-  const [createOrder, { isLoading }] = useCreateOrderMutation();
+  const [createOrder, { isLoading }] = useCreateOrderFromSalesPageMutation();
 
   const handleOrder = async () => {
     setErrorMessages([]);
@@ -81,7 +87,9 @@ const SalesPageShipping = ({
         email: shippingInfo.data?.email || undefined,
         notes: shippingInfo.data?.notes,
       },
-      orderFrom: "Website",
+      orderFrom: "Landing page - 1",
+      productId: product?._id,
+      quantity: 20,
     };
 
     try {
@@ -111,10 +119,14 @@ const SalesPageShipping = ({
           isLoading={isLoading}
           shippingCharges={shippingCharges}
           errorMessages={errorMessages}
+          totalCost={totalCost}
         />
       </div>
       <div className="order-3 lg:order-4">
-        <PaymentsGateway paymentMethods={paymentMethods} />
+        <PaymentsGateway
+          paymentMethods={paymentMethods}
+          totalCost={totalCost}
+        />
       </div>
     </div>
   );

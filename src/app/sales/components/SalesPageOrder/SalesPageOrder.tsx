@@ -24,6 +24,7 @@ const SalesPageOrder = async ({ product }: { product?: TSingleProduct }) => {
         <SalesPageShipping
           paymentMethods={paymentMethods}
           shippingCharges={shippingCharges}
+          product={product}
         />
       </ContainerMax>
     </section>
