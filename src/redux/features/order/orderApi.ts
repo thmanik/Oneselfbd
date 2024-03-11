@@ -10,7 +10,15 @@ const orderApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["carts"],
     }),
+    createOrderFromSalesPage: builder.mutation({
+      query: (orderData) => ({
+        url: "/orders/landing-page",
+        method: "POST",
+        body: orderData,
+      }),
+    }),
   }),
 });
 
-export const { useCreateOrderMutation } = orderApi;
+export const { useCreateOrderMutation, useCreateOrderFromSalesPageMutation } =
+  orderApi;

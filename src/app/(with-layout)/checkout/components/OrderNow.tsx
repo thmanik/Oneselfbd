@@ -11,17 +11,25 @@ const OrderNow = ({
   errorMessages,
   handleOrder,
   isLoading,
+  totalCost,
+  costLoading,
 }: {
   shippingCharges: TShippingCharges[];
   errorMessages: string[];
   handleOrder: () => Promise<void>;
   isLoading?: boolean;
+  totalCost?: number;
+  costLoading?: boolean;
 }) => {
   return (
     <>
       <Box className="bg-white">
         <BoxHeading>Your order</BoxHeading>
-        <CartTotalCalculations shippingCharges={shippingCharges} />
+        <CartTotalCalculations
+          shippingCharges={shippingCharges}
+          totalCost={totalCost}
+          costLoading={costLoading}
+        />
         {errorMessages.length ? (
           <div className="py-5">
             {errorMessages.map((message, index) => (

@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import config from "@/config/config";
-import useCart from "@/hooks/useCart";
 import {
   setPaymentInfo,
   setPaymentInfoError,
@@ -20,8 +19,12 @@ import { useDispatch, useSelector } from "react-redux";
 import SelectPaymentMethod from "./SelectPaymentMethod";
 const PaymentsGateway = ({
   paymentMethods,
+  totalCost,
+  costLoading = false,
 }: {
   paymentMethods: TPaymentMethod[];
+  totalCost?: number;
+  costLoading?: boolean;
 }) => {
   const dispatch = useDispatch();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
@@ -30,7 +33,6 @@ const PaymentsGateway = ({
   const selectedShippingClass = useSelector(
     (state: TRootState) => state.shippingClass
   );
-  const { totalCost, isLoading } = useCart();
   const findSelectedPaymentMethod = paymentMethods.find(
     (item) => item._id === selectedPaymentMethod
   );
@@ -90,13 +92,13 @@ const PaymentsGateway = ({
 
             <div className="font-semibold flex gap-2 items-center mt-2">
               You need to pay
-              {isLoading ? (
+              {costLoading ? (
                 <>
                   <Skeleton className="h-4 w-[100px]" />
                 </>
               ) : (
                 <span className="text-secondary font-bold">
-                  &#2547; {totalCost + selectedShippingClass.amount}
+                  &#2547; {Number(totalCost) + selectedShippingClass.amount}
                 </span>
               )}
             </div>

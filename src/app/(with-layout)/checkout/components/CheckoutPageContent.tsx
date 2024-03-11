@@ -2,6 +2,7 @@
 import CartItems from "@/components/cartItems/CartItems";
 import Box from "@/components/ui/ec/Box";
 import BoxHeading from "@/components/ui/ec/BoxHeading";
+import useCart from "@/hooks/useCart";
 import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
 import {
   setPaymentInfo,
@@ -29,6 +30,7 @@ const CheckoutPageContent = ({
   shippingCharges: TShippingCharges[];
   paymentMethods: TPaymentMethod[];
 }) => {
+  const { totalCost, isLoading: cartCostLoading } = useCart();
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -118,10 +120,15 @@ const CheckoutPageContent = ({
           isLoading={isLoading}
           shippingCharges={shippingCharges}
           errorMessages={errorMessages}
+          totalCost={totalCost}
+          costLoading={cartCostLoading}
         />
       </div>
       <div className="order-3 lg:order-4">
-        <PaymentsGateway paymentMethods={paymentMethods} />
+        <PaymentsGateway
+          paymentMethods={paymentMethods}
+          totalCost={totalCost}
+        />
       </div>
     </div>
   );
