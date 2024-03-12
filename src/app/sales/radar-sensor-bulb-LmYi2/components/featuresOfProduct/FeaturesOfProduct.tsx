@@ -1,4 +1,5 @@
 import { FaCheckCircle, FaShoppingCart } from "react-icons/fa";
+import OrderButton from "../ui/orderButton/OrderButton";
 const FeaturesOfProduct = () => {
   const features = [
     {
@@ -28,9 +29,9 @@ const FeaturesOfProduct = () => {
     },
   ];
   return (
-    <section className="sm:mx-10 my-6">
+    <section className="sm:mx-10 my-8">
       <div>
-        <div className="w-80 md:w-96  py-4  rounded-full text-center bg-[#edf7fa]  mx-auto sm:px-5 mt-4 mb-10">
+        <div className="w-80 md:w-96  py-4  rounded-full text-center bg-[#edf7fa]  mx-auto sm:px-5 mt-4 mb-14">
           <p className="text-2xl font-bold  text-[#203B56]">
             লাইটি ব্যবহারের সুবিধাসমূহ
           </p>
@@ -44,7 +45,7 @@ const FeaturesOfProduct = () => {
                 className="flex py-4 items-center border-b-[1px] border-b-gray-300"
               >
                 <div className="w-25 h-22 mr-2 flex-shrink-0">
-                  <FaCheckCircle />
+                  <FaCheckCircle className="text-green-600" />
                 </div>
                 <div>
                   <p className="mt-1 ml-3">{feature?.title}</p>
@@ -52,18 +53,14 @@ const FeaturesOfProduct = () => {
               </div>
             ))}
           </div>
-          <div className="my-10">
-            <div className="flex justify-center">
-              <a href="#order-form">
-                <button className="md:w-96  px-5 bg-[#00C1F2] py-4 rounded-full mx-auto  relative hover:bg-gradient-to-r from-[#63D6E8] to-[#241F21] transition-background-color duration-600 ease-in-out">
-                  <p className="md:text-2xl font-bold text-white flex items-center justify-center">
-                    <span>অর্ডার করতে ক্লিক করুন</span>{" "}
-                    <FaShoppingCart className="mt-1 ms-2" />
-                  </p>
-                </button>
-              </a>
-            </div>
-          </div>
+        </div>
+        <div className="my-8">
+          <OrderButton>
+            <p className="md:text-2xl font-bold  flex items-center justify-center">
+              <span>অর্ডার করতে ক্লিক করুন</span>{" "}
+              <FaShoppingCart className="mt-1 ms-2" />
+            </p>
+          </OrderButton>
         </div>
       </div>
     </section>

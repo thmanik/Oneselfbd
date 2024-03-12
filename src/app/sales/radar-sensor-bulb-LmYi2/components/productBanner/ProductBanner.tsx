@@ -1,4 +1,5 @@
 import { FaShoppingCart } from "react-icons/fa";
+import BuyButton from "../ui/orderButton/OrderButton";
 
 const ProductBanner = () => {
   return (
@@ -39,23 +40,18 @@ const ProductBanner = () => {
         </div>
       </div>
       <div>
-        <div className="flex justify-center">
-          <a href="#order-form">
-            {" "}
-            <button
-              className="md:w-96 px-5 bg-[#00C1F2] py-4 rounded-full mx-auto relative hover:bg-gradient-to-r from-[#63D6E8] to-[#241F21] transition-background-color duration-600 ease-in-out"
-              style={{
-                zIndex: 1,
-                top: "-1rem",
-              }}
-            >
-              <p className="md:text-2xl font-bold text-white flex items-center justify-center">
-                <span>অর্ডার করতে ক্লিক করুন</span>{" "}
-                <FaShoppingCart className="mt-1 ms-2" />
-              </p>
-            </button>
-          </a>
-        </div>
+        <BuyButton
+          style={{
+            zIndex: 1,
+            top: "-2rem",
+            position: "relative",
+          }}
+        >
+          <p className="md:text-2xl font-bold  flex items-center justify-center">
+            <span>অর্ডার করতে ক্লিক করুন</span>{" "}
+            <FaShoppingCart className="mt-1 ms-2" />
+          </p>
+        </BuyButton>
       </div>
     </section>
   );

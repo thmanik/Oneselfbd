@@ -29,7 +29,7 @@ const PaymentsGateway = ({
   const dispatch = useDispatch();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     string | null
-  >(paymentMethods[1]?._id);
+  >(paymentMethods[0]?._id);
   const selectedShippingClass = useSelector(
     (state: TRootState) => state.shippingClass
   );

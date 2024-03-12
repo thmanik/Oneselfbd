@@ -1,6 +1,7 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
+import OrderButton from "../ui/orderButton/OrderButton";
 
 const useCases = [
   {
@@ -42,7 +43,7 @@ const UseOfTheProduct = () => {
     <section>
       <ContainerMax>
         <div className="my-10">
-          <div className="md:w-3/6 py-4 rounded-full text-center bg-[#edf7fa] mx-auto sm:px-5 m-4">
+          <div className="md:w-3/6 py-4 mb-8 rounded-full text-center bg-[#edf7fa] mx-auto sm:px-5 m-4">
             <p className="text-xl md:text-2xl font-semibold text-[#203B56]">
               লাইটা আপনি যে সমস্ত জায়গায় ব্যবহার করতে পারেন
             </p>
@@ -79,17 +80,13 @@ const UseOfTheProduct = () => {
             </div>
           </div>
           {/*---------------- order button------------------ */}
-          <div className="my-4">
-            <div className="flex justify-center">
-              <a href="#order-form">
-                <button className="md:w-96  px-5 bg-[#00C1F2] py-4 rounded-full mx-auto  relative hover:bg-gradient-to-r from-[#63D6E8] to-[#241F21] transition-background-color duration-600 ease-in-out">
-                  <p className="md:text-3xl font-bold text-[#FFFFFF] flex items-center justify-center">
-                    <span>অর্ডার করতে ক্লিক করুন</span>{" "}
-                    <FaShoppingCart className="mt-1 ms-2" />
-                  </p>
-                </button>
-              </a>
-            </div>
+          <div className="my-8">
+            <OrderButton>
+              <p className="md:text-2xl font-bold  flex items-center justify-center">
+                <span>অর্ডার করতে ক্লিক করুন</span>{" "}
+                <FaShoppingCart className="mt-1 ms-2" />
+              </p>
+            </OrderButton>
           </div>
         </div>
       </ContainerMax>
