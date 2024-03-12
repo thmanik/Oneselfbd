@@ -13,29 +13,28 @@ const ProductBanner = () => {
         }}
       >
         <div className="text-[#FFFFFF] font-bold mx-4 md:mt-14 mb-1">
-          <p className="text-3xl md:text-6xl">
-            মানুষ এলেই জ্বলে উঠবে লাইট! আবার মানুষ চলে{" "}
+          <p className="text-2xl md:text-6xl">
+            ডে নাইট সেন্সর বাল্ব হলো এক ধরণের{" "}
           </p>
-          <p className="md:mt-4 text-3xl md:text-6xl">
-            গেলে লাইট নিজে নিজে বন্ধ হয়ে যাবে!
+          <p className="md:mt-4 text-2xl md:text-6xl">
+            উন্নত LED বাল্ব । এই বাল্প টা সন্ধ্যা হওয়া মাত্র, অটোমেটিক
+          </p>
+          <p className="md:mt-4 text-2xl md:text-6xl">
+            জলে উঠে আবার সকাল হওয়া মাত্র অটোমেটিক বন্ধ হয়ে যায়
           </p>
         </div>
 
         <div className="w-80 md:w-96 py-4 rounded-full bg-[#1d96b4] mx-auto sm:px-5 my-3">
           <p className="text-xl md:text-2xl font-bold text-[#90EE90]">
-            Radar motion sensor light
+            Day-Night Motion Sensor Light
           </p>
         </div>
         <div className="leading-relaxed mt-8 text-xl  text-[#FFFFFF] pb-5">
           <p>
-            মোশন সেন্সর লাইট বিদ্যুৎ সাশ্রয়ী। <br />
-            কারণ যখন আপনি লাইটের নিচে যাবেন , তখন লাইটটি জ্বলবে; আবার যখন আপনি
-            লাইটের নিচ থেকে <br />
-            চলে আসবেন , লাইটি নিজে নিজে বন্ধ হয়ে যাবে। <br />
+            বিভিন্ন পণ্যের দাম বৃদ্ধির পাশাপাশি বাংলাদেশের বিদ্যুৎ বিলও বেড়েছে{" "}
             <br />
-            ফলে এতে অতিরিক্ত বিদ্যুৎ খরচের কোনো সম্ভাবনা নেই। <br />
-            এছাড়া, স্বয়ংক্রিয়ভাবে এই লাইটি জ্বলা কিংবা বন্ধ হওয়ায়। স্যুইচ
-            অন - অফ করার কোনো প্রয়োজন নেই ।
+            তাই আপনি চাইলে আমাদের এই অটো ডে নাইট সেন্সর বাল্পটা ব্যবহার করে আপনি
+            কমাতে পারেন আপনার অতিরিক্ত বিদ্যুৎ বিল
           </p>
         </div>
       </div>

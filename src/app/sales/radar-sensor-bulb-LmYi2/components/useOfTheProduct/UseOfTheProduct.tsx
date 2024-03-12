@@ -6,35 +6,35 @@ import OrderButton from "../ui/orderButton/OrderButton";
 const useCases = [
   {
     title: "বাসার দরজার সামনে, বেলকনি ও করিডোরে ব্যবহার করতে পারবেন।",
-    image: "/images/landing_page/example1.jpg",
+    image: "/images/radar-sensor/example1.jpg",
   },
   {
     title: "বাড়ির মেন গেটে।",
-    image: "/images/landing_page/example2.jpg",
+    image: "/images/radar-sensor/example2.jpg",
   },
   {
     title: "সিঁড়ি ঘরে।",
-    image: "/images/landing_page/example3.jpg",
+    image: "/images/radar-sensor/example3.jpg",
   },
   {
     title: "বাথরুমে।",
-    image: "/images/landing_page/example4.jpg",
+    image: "/images/radar-sensor/example4.jpg",
   },
   {
     title: "গ্যারেজে।",
-    image: "/images/landing_page/example5.jpg",
+    image: "/images/radar-sensor/example5.jpg",
   },
   {
     title: "পার্কে।",
-    image: "/images/landing_page/example6.jpg",
+    image: "/images/radar-sensor/example6.jpg",
   },
   {
     title: "আপনার খামারকে নিরাপদ রাখতে ব্যবহার করতে পারেন।",
-    image: "/images/landing_page/example7.jpg",
+    image: "/images/radar-sensor/example7.jpg",
   },
   {
     title: "দোকানের গোডাউনে বা যে কোন স্টোর রুমে।",
-    image: "/images/landing_page/example8.jpg",
+    image: "/images/radar-sensor/example8.jpg",
   },
 ];
 
