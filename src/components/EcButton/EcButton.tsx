@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 const EcButton = ({
   children,
   className,
+  id,
   variant,
   loading = false,
   disabled = false,
@@ -19,6 +20,7 @@ const EcButton = ({
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   type?: "simple" | "icon" | "submit";
+  id?: string;
   variant?:
     | "link"
     | "default"
@@ -35,6 +37,7 @@ const EcButton = ({
       return (
         <Button
           disabled
+          id={id}
           className={twMerge(
             "bg-base-100 flex justify-center items-center text-xs",
             className
@@ -49,6 +52,7 @@ const EcButton = ({
       <Button
         disabled={disabled}
         variant={variant}
+        id={id}
         className={twMerge(
           "active:scale-95 transition-all select-none aspect-square",
           className
@@ -63,7 +67,7 @@ const EcButton = ({
   }
   if (loading) {
     return (
-      <Button disabled {...props} className={twMerge(className)}>
+      <Button disabled {...props} className={twMerge(className)} id={id}>
         Loading...
       </Button>
     );
@@ -77,6 +81,7 @@ const EcButton = ({
         className
       )}
       onClick={onClick}
+      id={id}
       {...props}
     >
       {children}
