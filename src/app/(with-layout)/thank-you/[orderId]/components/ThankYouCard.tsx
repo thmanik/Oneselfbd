@@ -46,7 +46,7 @@ const ThankYouCard = ({ orderInfo }: { orderInfo?: TOrderInfo }) => {
 
           <p className="mb-5 text-center">
             আপনার অর্ডারটি সঠিকভাবে সম্পূর্ণ হয়েছে, অনুগ্রহ করে অপেক্ষা করুন
-            আমাদের প্রতিনিধি আপনার নির্ধারিত সময়ের মধ্যে কল দিয়ে অর্ডারটি
+            আমাদের প্রতিনিধি আপনার সাথে নির্ধারিত সময়ের মধ্যে কল দিয়ে অর্ডারটি
             কনফার্ম করবে।
           </p>
           <div className="mb-6">
@@ -125,7 +125,7 @@ const ThankYouCard = ({ orderInfo }: { orderInfo?: TOrderInfo }) => {
         </motion.div>
       </div>
       <div className="flex flex-col gap-5 justify-center items-center">
-        <p className="max-w-sm text-center text-xl">
+        <p className="max-w-sm text-center text-xl text-primary">
           প্রডাক্ট নিয়ে পরবর্তীতে কোন সমস্যার সম্মুখীন হলে সমাধানের জন্য নিচের
           গ্রুপে জয়ের হয়ে থাকুন।{" "}
         </p>
