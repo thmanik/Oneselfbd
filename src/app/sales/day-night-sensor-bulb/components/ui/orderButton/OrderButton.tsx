@@ -63,7 +63,11 @@ const OrderButton = ({ children, style }: OrderButtonProps) => {
             style={{ cursor: "pointer", width: "100%" }}
             aria-label="Order Button"
           >
-            <div className="text-[#FFFF00]">{children}</div>
+            <div className="text-[#FFFF00]">
+              <div className="!text-xl !md:text-2xl font-bold flex items-center justify-center">
+                {children}
+              </div>
+            </div>
           </a>
         </div>
       </div>

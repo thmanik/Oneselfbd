@@ -46,10 +46,12 @@ const ProductBanner = () => {
             position: "relative",
           }}
         >
-          <p className="md:text-2xl font-bold  flex items-center justify-center">
-            <span>অর্ডার করতে ক্লিক করুন</span>{" "}
+          <div>
+            <span>অর্ডার করতে ক্লিক করুন</span>
+          </div>
+          <div>
             <FaShoppingCart className="mt-1 ms-2" />
-          </p>
+          </div>
         </OrderButton>
       </div>
     </section>

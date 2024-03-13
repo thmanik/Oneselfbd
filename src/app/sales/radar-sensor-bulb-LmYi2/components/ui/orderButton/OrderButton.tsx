@@ -2,12 +2,15 @@
 import Lottie from "lottie-react";
 import React, { ReactNode, useEffect, useState } from "react";
 
+import { twMerge } from "tailwind-merge";
+
 type OrderButtonProps = {
   children: ReactNode;
   style?: React.CSSProperties;
+  className?: string;
 };
 
-const OrderButton = ({ children, style }: OrderButtonProps) => {
+const OrderButton = ({ children, style, className }: OrderButtonProps) => {
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -25,7 +28,7 @@ const OrderButton = ({ children, style }: OrderButtonProps) => {
   }, []);
 
   return (
-    <div className="flex justify-center">
+    <div className={`${twMerge("flex justify-center", className)}`}>
       <div
         style={{
           position: "relative",

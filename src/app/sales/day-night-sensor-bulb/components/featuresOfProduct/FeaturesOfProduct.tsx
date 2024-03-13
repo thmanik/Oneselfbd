@@ -37,8 +37,8 @@ const FeaturesOfProduct = () => {
   return (
     <section className="sm:mx-10 my-8">
       <div>
-        <div className="w-80 md:w-96 py-4 rounded-full text-center bg-[#edf7fa] mx-auto sm:px-5 mt-4 mb-14">
-          <p className="text-2xl font-bold text-[#203B56]">
+        <div className="w-80 md:w-96 py-4 rounded-full text-center bg-[#F58921] mx-auto sm:px-5 mt-4 mb-14">
+          <p className="text-2xl font-bold  text-accent">
             লাইটি ব্যবহারের সুবিধাসমূহ
           </p>
         </div>
@@ -62,10 +62,12 @@ const FeaturesOfProduct = () => {
         </div>
         <div className="my-8">
           <OrderButton>
-            <p className="md:text-2xl font-bold flex items-center justify-center">
-              <span>অর্ডার করতে ক্লিক করুন</span>{" "}
+            <div>
+              <span>অর্ডার করতে ক্লিক করুন</span>
+            </div>
+            <div>
               <FaShoppingCart className="mt-1 ms-2" />
-            </p>
+            </div>
           </OrderButton>
         </div>
       </div>

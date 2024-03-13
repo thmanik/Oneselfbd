@@ -26,16 +26,13 @@ const ProductBanner = () => {
             Radar motion sensor light
           </p>
         </div>
-        <div className="leading-relaxed mt-8 text-xl  text-[#FFFFFF] pb-5">
+        <div className="leading-relaxed mt-8 text-xl  text-white pb-5 text-center px-2">
           <p>
-            মোশন সেন্সর লাইট বিদ্যুৎ সাশ্রয়ী। <br />
-            কারণ যখন আপনি লাইটের নিচে যাবেন , তখন লাইটটি জ্বলবে; আবার যখন আপনি
-            লাইটের নিচ থেকে <br />
-            চলে আসবেন , লাইটি নিজে নিজে বন্ধ হয়ে যাবে। <br />
-            <br />
-            ফলে এতে অতিরিক্ত বিদ্যুৎ খরচের কোনো সম্ভাবনা নেই। <br />
-            এছাড়া, স্বয়ংক্রিয়ভাবে এই লাইটি জ্বলা কিংবা বন্ধ হওয়ায়। স্যুইচ
-            অন - অফ করার কোনো প্রয়োজন নেই ।
+            মোশন সেন্সর লাইট বিদ্যুৎ সাশ্রয়ী। কারণ যখন আপনি লাইটের নিচে যাবেন ,
+            তখন লাইটটি জ্বলবে; আবার যখন আপনি লাইটের নিচ থেকে চলে আসবেন , লাইটি
+            নিজে নিজে বন্ধ হয়ে যাবে। ফলে এতে অতিরিক্ত বিদ্যুৎ খরচের কোনো
+            সম্ভাবনা নেই। এছাড়া, স্বয়ংক্রিয়ভাবে এই লাইটি জ্বলা কিংবা বন্ধ
+            হওয়ায়। স্যুইচ অন - অফ করার কোনো প্রয়োজন নেই ।
           </p>
         </div>
       </div>
@@ -47,7 +44,7 @@ const ProductBanner = () => {
             position: "relative",
           }}
         >
-          <p className="md:text-2xl font-bold  flex items-center justify-center">
+          <p className="!text-xl !md:text-2xl font-bold  flex items-center justify-center">
             <span>অর্ডার করতে ক্লিক করুন</span>{" "}
             <FaShoppingCart className="mt-1 ms-2" />
           </p>

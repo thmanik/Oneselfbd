@@ -62,8 +62,9 @@ const PaymentsGateway = ({
     };
     dispatch(setPaymentInfo(paymentInfo));
     dispatch(setPaymentInfoError([]));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedPaymentMethod]);
+  }, [selectedPaymentMethod, findSelectedPaymentMethod]);
 
   useEffect(() => {
     if (Object.keys(errors).length) {

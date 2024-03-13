@@ -16,9 +16,12 @@ const ProductPrice = () => {
       </div>
       <div className=" mt-5 mb-10">
         <OrderButton>
-          <p className="md:text-2xl font-bold  flex items-center justify-center">
-            <span> অর্ডার করুন</span> <FaShoppingCart className="mt-1 ms-2" />
-          </p>
+          <div>
+            <span>অর্ডার করতে ক্লিক করুন</span>
+          </div>
+          <div>
+            <FaShoppingCart className="mt-1 ms-2" />
+          </div>
         </OrderButton>
       </div>
     </section>
