@@ -40,8 +40,8 @@ const nextConfig = {
         hostname: "localhost",
       },
       {
-        protocol: "http",
-        hostname: "89.116.134.144",
+        protocol: "https",
+        hostname: "api.oneselfbd.com",
       },
     ],
   },

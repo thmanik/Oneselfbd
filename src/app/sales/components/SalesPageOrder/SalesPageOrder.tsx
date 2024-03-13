@@ -15,7 +15,7 @@ const SalesPageOrder = async ({ product }: { product?: TSingleProduct }) => {
     await useQuery<TPaymentMethod[]>("/payment-method");
 
   return (
-    <section id="order-form" className="bg-red-100">
+    <section id="order-form" className="bg-red-0">
       <ContainerMax>
         <SalesHeadingPrimary
           title="তাই আর দেরি না করে আজই অর্ডার করুন"
