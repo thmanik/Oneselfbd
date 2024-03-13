@@ -55,7 +55,7 @@ const ShippingAddress = () => {
           <Input
             placeholder="এখানে আপনার নাম লিখুন"
             {...register("fullName")}
-            value={shippingInfoData?.data?.fullName}
+            defaultValue={shippingInfoData?.data?.fullName}
           />
           {errors.fullName && (
             <ErrorMessage message={errors.fullName.message} />
@@ -66,7 +66,7 @@ const ShippingAddress = () => {
           <Input
             placeholder="আপনার ফোন নাম্বারটি লিখুন"
             {...register("phoneNumber")}
-            value={shippingInfoData?.data?.phoneNumber}
+            defaultValue={shippingInfoData?.data?.phoneNumber}
           />
           {errors.phoneNumber && (
             <ErrorMessage message={errors.phoneNumber.message} />
@@ -77,7 +77,7 @@ const ShippingAddress = () => {
           <Input
             placeholder="আপনার সম্পূর্ণ ঠিকানা লিখুন"
             {...register("fullAddress")}
-            value={shippingInfoData?.data?.fullAddress}
+            defaultValue={shippingInfoData?.data?.fullAddress}
           />
           {errors.fullAddress && (
             <ErrorMessage message={errors.fullAddress.message} />
@@ -88,7 +88,7 @@ const ShippingAddress = () => {
           <Input
             placeholder="আপনার কোন ই-মেইল থাকলে লিখুন"
             {...register("email")}
-            value={shippingInfoData?.data?.email}
+            defaultValue={shippingInfoData?.data?.email}
           />
           {errors.email && <ErrorMessage message={errors.email.message} />}
         </div>
@@ -100,7 +100,7 @@ const ShippingAddress = () => {
             placeholder="অন্যান্য কোন তথ্য থাকলে তা লিখুন"
             {...register("notes")}
             className="w-full h-28 ring-2 ring-gray-100 rounded-md p-2"
-            value={shippingInfoData?.data?.notes}
+            defaultValue={shippingInfoData?.data?.notes}
           ></textarea>
           {errors.notes && <ErrorMessage message={errors.notes.message} />}
         </div>

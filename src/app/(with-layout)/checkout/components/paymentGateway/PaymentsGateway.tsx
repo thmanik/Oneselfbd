@@ -29,7 +29,7 @@ const PaymentsGateway = ({
   const dispatch = useDispatch();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     string | null
-  >(paymentMethods[1]?._id);
+  >(paymentMethods[0]?._id);
   const selectedShippingClass = useSelector(
     (state: TRootState) => state.shippingClass
   );
@@ -62,8 +62,9 @@ const PaymentsGateway = ({
     };
     dispatch(setPaymentInfo(paymentInfo));
     dispatch(setPaymentInfoError([]));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedPaymentMethod, paymentMethods]);
+  }, [selectedPaymentMethod, findSelectedPaymentMethod]);
 
   useEffect(() => {
     if (Object.keys(errors).length) {

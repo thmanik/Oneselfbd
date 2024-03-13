@@ -1,7 +1,7 @@
 const ProductVideo = () => {
   return (
     <section>
-      <div className="w-full mx-auto p-3 border md:my-6 max-w-screen-lg rounded-xl">
+      <div className="w-full mx-auto p-3 border-2 border-primary md:my-6 max-w-screen-lg rounded-xl shadow-md">
         <iframe
           className="mx-auto w-[98%] aspect-video rounded-xl"
           src="https://www.youtube.com/embed/AQIe4-hWNPw?si=8JSha6d46HPJB_8j"
