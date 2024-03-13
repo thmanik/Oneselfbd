@@ -31,8 +31,8 @@ const FeaturesOfProduct = () => {
   return (
     <section className="sm:mx-10 my-8">
       <div>
-        <div className="w-80 md:w-96  py-4  rounded-full text-center bg-[#edf7fa]  mx-auto sm:px-5 mt-4 mb-14">
-          <p className="text-2xl font-bold  text-[#203B56]">
+        <div className="w-80 md:w-96 py-4 rounded-full text-center bg-[#F58921] mx-auto sm:px-5 mb-8">
+          <p className="text-2xl font-bold  text-accent">
             লাইটি ব্যবহারের সুবিধাসমূহ
           </p>
         </div>
@@ -42,7 +42,7 @@ const FeaturesOfProduct = () => {
             {features.map((feature) => (
               <div
                 key={feature?.id}
-                className="flex py-4 items-center border-b-[1px] border-b-gray-300"
+                className="flex py-2 items-center border-b-[1px] border-b-gray-300"
               >
                 <div className="w-25 h-22 mr-2 flex-shrink-0">
                   <FaCheckCircle className="text-green-600" />
@@ -56,7 +56,7 @@ const FeaturesOfProduct = () => {
         </div>
         <div className="my-8">
           <OrderButton>
-            <p className="md:text-2xl font-bold  flex items-center justify-center">
+            <p className="!text-xl !md:text-2xl font-bold  flex items-center justify-center">
               <span>অর্ডার করতে ক্লিক করুন</span>{" "}
               <FaShoppingCart className="mt-1 ms-2" />
             </p>

@@ -34,7 +34,7 @@ const CheckoutPageContent = ({
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPaymentInfo({ selectedPaymentMethod: paymentMethods[1] }));
+    dispatch(setPaymentInfo({ selectedPaymentMethod: paymentMethods[0] }));
     dispatch(setPaymentInfoError({ errors: null }));
     dispatch(setShippingInfo({ data: null }));
     dispatch(setShippingInfoError({ errors: null }));

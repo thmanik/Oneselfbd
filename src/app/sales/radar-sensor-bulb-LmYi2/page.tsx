@@ -12,7 +12,7 @@ import UseOfTheProduct from "./components/useOfTheProduct/UseOfTheProduct";
 
 const RadarSensorBulbLmYi2Page = async () => {
   const [{ data: product }] = await useQuery<TSingleProduct>(
-    "/products/65eb0c91e1aa722f00f24fea"
+    "/products/65eb25a2e1aa722f00f253f4"
   );
 
   return (

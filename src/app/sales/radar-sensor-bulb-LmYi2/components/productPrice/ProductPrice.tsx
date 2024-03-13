@@ -13,10 +13,11 @@ const ProductPrice = () => {
           </div>
         </ContainerMax>
       </div>
-      <div className=" mt-5 mb-10">
+      <div className="mt-5">
         <OrderButton>
-          <p className="md:text-2xl font-bold  flex items-center justify-center">
-            <span> অর্ডার করুন</span> <FaShoppingCart className="mt-1 ms-2" />
+          <p className="!text-xl !md:text-2xl font-bold  flex items-center justify-center">
+            <span> অর্ডার করুন</span>
+            <FaShoppingCart className="mt-1 ms-2" />
           </p>
         </OrderButton>
       </div>
