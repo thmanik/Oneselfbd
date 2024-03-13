@@ -60,6 +60,7 @@ const AddToCartAndBuyNow = ({
             className="flex-grow text-white"
             onClick={handleAddToCart}
             disabled={isLoading}
+            id="addToCart"
           >
             Add to cart
           </EcButton>

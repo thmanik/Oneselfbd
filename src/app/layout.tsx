@@ -1,3 +1,4 @@
+import FacebookPixel from "@/components/FacebookPixel";
 import { Toaster } from "@/components/ui/toaster";
 import StoreProvider from "@/redux/StoreProvider";
 import "@smastrom/react-rating/style.css";
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <StoreProvider>
       <html lang="en">
         <body className={`${hindSiliguri.className} text-accent`}>
+          <FacebookPixel />
           {children}
           <Toaster />
         </body>
