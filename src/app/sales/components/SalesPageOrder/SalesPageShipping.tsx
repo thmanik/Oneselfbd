@@ -1,7 +1,7 @@
 "use client";
-import OrderNow from "@/app/(with-layout)/checkout/components/OrderNow";
 import ShippingAddress from "@/app/(with-layout)/checkout/components/ShippingAddress";
 import PaymentsGateway from "@/app/(with-layout)/checkout/components/paymentGateway/PaymentsGateway";
+import SalesPageOrderNow from "@/app/(with-layout)/checkout/components/paymentGateway/SalesPageOrderNow";
 import { useCreateOrderFromSalesPageMutation } from "@/redux/features/order/orderApi";
 import {
   setPaymentInfo,
@@ -29,9 +29,13 @@ const SalesPageShipping = ({
   paymentMethods: TPaymentMethod[];
   product?: TSingleProduct;
 }) => {
-  const totalCost = product?.price?.salePrice
-    ? product?.price?.salePrice
-    : product?.price?.regularPrice;
+  const [quantity, setQuantity] = useState(1);
+  const totalCost =
+    Number(
+      product?.price?.salePrice
+        ? product?.price?.salePrice
+        : product?.price?.regularPrice
+    ) * quantity;
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -89,7 +93,7 @@ const SalesPageShipping = ({
       },
       orderFrom: "Landing page - 1",
       productId: product?._id,
-      quantity: 20,
+      quantity,
     };
 
     try {
@@ -114,12 +118,15 @@ const SalesPageShipping = ({
         <ShippingAddress />
       </div>
       <div className="order-4 lg:order-3">
-        <OrderNow
+        <SalesPageOrderNow
           handleOrder={handleOrder}
           isLoading={isLoading}
           shippingCharges={shippingCharges}
           errorMessages={errorMessages}
           totalCost={totalCost}
+          product={product}
+          quantity={quantity}
+          setQuantity={setQuantity}
         />
       </div>
       <div className="order-3 lg:order-4">

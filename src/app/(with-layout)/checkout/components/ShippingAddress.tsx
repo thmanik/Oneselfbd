@@ -51,9 +51,9 @@ const ShippingAddress = () => {
       <BoxHeading>Shipping information</BoxHeading>
       <form onBlur={handleSubmit(onSubmit)} className="space-y-5">
         <div>
-          <Label className="font-bold pl-2 pb-2 block">Your full name*</Label>
+          <Label className="font-bold pl-2 pb-2 block">নাম*</Label>
           <Input
-            placeholder="Write down your full name"
+            placeholder="এখানে আপনার নাম লিখুন"
             {...register("fullName")}
             value={shippingInfoData?.data?.fullName}
           />
@@ -62,11 +62,9 @@ const ShippingAddress = () => {
           )}
         </div>
         <div>
-          <Label className="font-bold pl-2 pb-2 block">
-            Your phone number*
-          </Label>
+          <Label className="font-bold pl-2 pb-2 block">ফোন নাম্বার*</Label>
           <Input
-            placeholder="Write down your phone number"
+            placeholder="আপনার ফোন নাম্বারটি লিখুন"
             {...register("phoneNumber")}
             value={shippingInfoData?.data?.phoneNumber}
           />
@@ -75,11 +73,9 @@ const ShippingAddress = () => {
           )}
         </div>
         <div>
-          <Label className="font-bold pl-2 pb-2 block">
-            Your full address*
-          </Label>
+          <Label className="font-bold pl-2 pb-2 block">ঠিকানা*</Label>
           <Input
-            placeholder="Write down your address"
+            placeholder="আপনার সম্পূর্ণ ঠিকানা লিখুন"
             {...register("fullAddress")}
             value={shippingInfoData?.data?.fullAddress}
           />
@@ -88,11 +84,9 @@ const ShippingAddress = () => {
           )}
         </div>
         <div>
-          <Label className="font-bold pl-2 pb-2 block">
-            Your email (Optional)
-          </Label>
+          <Label className="font-bold pl-2 pb-2 block">ই-মেইল (Optional)</Label>
           <Input
-            placeholder="Enter your email "
+            placeholder="আপনার কোন ই-মেইল থাকলে লিখুন"
             {...register("email")}
             value={shippingInfoData?.data?.email}
           />
@@ -100,10 +94,10 @@ const ShippingAddress = () => {
         </div>
         <div>
           <Label className="font-bold pl-2 pb-2 block">
-            Order notes (Optional)
+            অন্যান্য তথ্য (Optional)
           </Label>
           <textarea
-            placeholder="Additional information"
+            placeholder="অন্যান্য কোন তথ্য থাকলে তা লিখুন"
             {...register("notes")}
             className="w-full h-28 ring-2 ring-gray-100 rounded-md p-2"
             value={shippingInfoData?.data?.notes}
