@@ -4,6 +4,7 @@ import { TSingleProduct } from "@/types/products/singleProduct";
 import { useState } from "react";
 import * as fbq from "../../../../../lib/connectors/FacebookPixel";
 import AddToCartAndBuyNow from "../components/AddToCartAndBuyNow";
+
 const SingleProductClientContent = ({
   product,
 }: {
@@ -13,7 +14,7 @@ const SingleProductClientContent = ({
   const [quantity, setQuantity] = useState(1);
   const [addToCart, addToCartStatus] = useAddToCartMutation();
   const addToCartHandler = () => {
-    fbq.event("Purchase", {
+    fbq.event("AddToCart", {
       content_name: product?.title,
       content_category: product?.category,
       content_ids: [product?._id],
