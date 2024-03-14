@@ -50,6 +50,14 @@ const CheckoutPageContent = ({
   const [createOrder, { isLoading }] = useCreateOrderMutation();
 
   const handleOrder = async () => {
+    // ReactPixel.track("Purchase", {
+    //   content_name: "Product Name",
+    //   content_category: "Product Category",
+    //   content_ids: ["Product ID"],
+    //   content_type: "product",
+    //   value: 10.0, // Product price
+    //   currency: "USD",
+    // });
     setErrorMessages([]);
     if (shippingInfo.errors?.length || paymentInfo.errors?.length) {
       setErrorMessages([

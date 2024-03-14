@@ -19,6 +19,7 @@ import TShippingCharges from "@/types/shippingCharge";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import * as fbq from "../../../../lib/connectors/FacebookPixel";
 
 const SalesPageShipping = ({
   shippingCharges,
@@ -55,6 +56,14 @@ const SalesPageShipping = ({
   const [createOrder, { isLoading }] = useCreateOrderFromSalesPageMutation();
 
   const handleOrder = async () => {
+    fbq.event("Purchase", {
+      content_name: product?.title,
+      content_category: product?.category,
+      content_ids: [product?._id],
+      content_type: "product",
+      value: totalCost, // Product price
+      currency: "BDT",
+    });
     setErrorMessages([]);
     if (shippingInfo.errors?.length || paymentInfo.errors?.length) {
       setErrorMessages([
