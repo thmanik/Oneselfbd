@@ -5,28 +5,28 @@ const OurServices = () => {
     {
       id: "01",
       title: "আমাদের প্রডাক্টে 1 বছরের গ্রান্টি পাচ্ছেন",
-      image: "/images/radar-sensor/icon1.png",
+      image: "/images/day-night-sensor/day_night_icon1.png",
     },
     {
       id: "02",
       title: "আপনি প্রডাক্ট হাতে পেয়ে , দেখে টাকা পরিশোধ করবেন ।",
-      image: "/images/radar-sensor/icon2.png",
+      image: "/images/day-night-sensor/day_night_icon2.png",
     },
     {
       id: "03",
       title: "পুরা বাংলাদেশে হোম ডেলিভারির সু-ব্যবস্তা",
-      image: "/images/radar-sensor/icon3.png",
+      image: "/images/day-night-sensor/day_night_icon3.png",
     },
     {
       id: "04",
       title: "২৪ ঘন্টা কাস্টমার সাপোর্ট",
-      image: "/images/radar-sensor/icon4.png",
+      image: "/images/day-night-sensor/day_night_icon4.png",
     },
   ];
   return (
     <section className="my-10">
       <div className="sm:w-4/6 md:w-2/5 lg:w-2/5 py-4 rounded-full text-center bg-[#F58921] mx-auto sm:px-5 mt-4 mb-10">
-        <p className="text-2xl font-bold text-accent">
+        <p className="text-2xl font-bold text-accent  ">
           আমাদের কাছ থেকে কেন কিনবেন?
         </p>
       </div>

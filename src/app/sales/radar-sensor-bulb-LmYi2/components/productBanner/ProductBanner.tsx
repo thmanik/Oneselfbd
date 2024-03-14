@@ -1,5 +1,5 @@
 import { FaShoppingCart } from "react-icons/fa";
-import BuyButton from "../ui/orderButton/OrderButton";
+import OrderButton from "../ui/orderButton/OrderButton";
 
 const ProductBanner = () => {
   return (
@@ -36,13 +36,19 @@ const ProductBanner = () => {
           </p>
         </div>
       </div>
-      <div className="overflow-hidden py-5">
-        <BuyButton className="-m-5">
-          <p className="md:text-2xl font-bold  flex items-center justify-center">
+      <div>
+        <OrderButton
+          style={{
+            zIndex: 1,
+            top: "-2rem",
+            position: "relative",
+          }}
+        >
+          <p className="!text-xl !md:text-2xl font-bold  flex items-center justify-center">
             <span>অর্ডার করতে ক্লিক করুন</span>{" "}
             <FaShoppingCart className="mt-1 ms-2" />
           </p>
-        </BuyButton>
+        </OrderButton>
       </div>
     </section>
   );

@@ -6,35 +6,35 @@ import OrderButton from "../ui/orderButton/OrderButton";
 const useCases = [
   {
     title: "বাসার দরজার সামনে, বেলকনি ও করিডোরে ব্যবহার করতে পারবেন।",
-    image: "/images/landing_page/example1.jpg",
+    image: "/images/radar-sensor/example1.jpg",
   },
   {
     title: "বাড়ির মেন গেটে।",
-    image: "/images/landing_page/example2.jpg",
+    image: "/images/radar-sensor/example2.jpg",
   },
   {
     title: "সিঁড়ি ঘরে।",
-    image: "/images/landing_page/example3.jpg",
+    image: "/images/radar-sensor/example3.jpg",
   },
   {
     title: "বাথরুমে।",
-    image: "/images/landing_page/example4.jpg",
+    image: "/images/radar-sensor/example4.jpg",
   },
   {
     title: "গ্যারেজে।",
-    image: "/images/landing_page/example5.jpg",
+    image: "/images/radar-sensor/example5.jpg",
   },
   {
     title: "পার্কে।",
-    image: "/images/landing_page/example6.jpg",
+    image: "/images/radar-sensor/example6.jpg",
   },
   {
     title: "আপনার খামারকে নিরাপদ রাখতে ব্যবহার করতে পারেন।",
-    image: "/images/landing_page/example7.jpg",
+    image: "/images/radar-sensor/example7.jpg",
   },
   {
     title: "দোকানের গোডাউনে বা যে কোন স্টোর রুমে।",
-    image: "/images/landing_page/example8.jpg",
+    image: "/images/radar-sensor/example8.jpg",
   },
 ];
 
@@ -48,42 +48,41 @@ const UseOfTheProduct = () => {
               লাইটা আপনি যে সমস্ত জায়গায় ব্যবহার করতে পারেন
             </p>
           </div>
-          <div className="flex justify-center flex-wrap gap-y-5 items-center">
+          <div className="flex justify-center flex-wrap gap-y-3 items-center w-full max-w-screen-xl mx-auto">
             {useCases.map((useCase, index) => (
               <div
                 key={index}
-                className="basis-1/1 sm:basis-1/2 md:basis-1/3 px-2"
+                className="basis-1/1 sm:basis-1/2 md:basis-1/3 px-2 md:py-2 flex justify-center"
               >
-                <div>
-                  <div className="bg-[#116b80] w-80 flex flex-col items-center rounded-xl ">
-                    <div className="mt-5">
-                      <Image
-                        width={300}
-                        height={300}
-                        className="w-[310px] aspect-video rounded-xl"
-                        src={useCase.image}
-                        alt={useCase.title}
-                      />
-                    </div>
-                    <p className="text-white text-xl font-bold p-2 md:p-5 text-center">
-                      {useCase.title}
-                    </p>
+                <div className="bg-[#116b80] px-2 w-full max-w-[300px] flex flex-col items-center rounded-xl">
+                  <div className="mt-5">
+                    <Image
+                      width={300}
+                      height={300}
+                      className="w-[100%] aspect-video rounded-xl"
+                      src={useCase.image}
+                      alt={useCase.title}
+                    />
                   </div>
+                  <p className="text-white text-xl font-bold p-2 md:p-5 text-center">
+                    {useCase.title}
+                  </p>
                 </div>
               </div>
             ))}
-            <div className="basis-1/1 sm:basis-1/2 md:basis-1/3">
-              <div className="bg-[#116b80] w-80 py-10 flex  items-center rounded-xl">
+            <div className="basis-1/1 sm:basis-1/2 md:basis-1/3 flex justify-center items-center">
+              <div className="bg-[#116b80] w-full max-w-[300px] py-6 sm:mx-5 sm:py-12 md:py-16 flex items-center rounded-xl">
                 <p className="text-white text-xl font-bold p-2 md:p-5 text-center">
                   এ ছাড়া আপনি আপনার সুবিধা মতে যে কোন যায়গায় ব্যবহার করতে পারেন।
                 </p>
               </div>
             </div>
           </div>
+
           {/*---------------- order button------------------ */}
           <div className="my-8">
             <OrderButton>
-              <p className="md:text-2xl font-bold  flex items-center justify-center">
+              <p className="!text-xl !md:text-2xl font-bold  flex items-center justify-center">
                 <span>অর্ডার করতে ক্লিক করুন</span>{" "}
                 <FaShoppingCart className="mt-1 ms-2" />
               </p>
