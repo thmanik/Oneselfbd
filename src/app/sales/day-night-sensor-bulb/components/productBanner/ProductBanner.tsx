@@ -24,9 +24,9 @@ const ProductBanner = () => {
           </p>
         </div>
 
-        <div className="w-80 md:w-96 py-4 rounded-full bg-[#1d96b4] mx-auto sm:px-5 my-3">
-          <p className="text-xl md:text-2xl font-bold text-[#90EE90]">
-            Day-Night Motion Sensor Light
+        <div className="w-80 md:w-96 py-4 rounded-full bg-[#FFD700] mx-auto sm:px-5 my-3">
+          <p className="text-xl md:text-2xl font-bold text-[#0a1b2e]">
+            Day-Night Sensor Light
           </p>
         </div>
         <div className="leading-relaxed mt-8 text-xl  text-[#FFFFFF] pb-5">
