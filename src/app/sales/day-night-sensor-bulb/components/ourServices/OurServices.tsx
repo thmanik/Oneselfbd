@@ -25,8 +25,8 @@ const OurServices = () => {
   ];
   return (
     <section className="my-10">
-      <div className="sm:w-4/6 md:w-2/5 lg:w-2/5 py-4 rounded-full text-center bg-[#F58921] mx-auto sm:px-5 mt-4 mb-10">
-        <p className="text-2xl font-bold text-accent  ">
+      <div className="sm:w-4/6 md:w-2/5 lg:w-2/5 py-4 rounded-full text-center bg-[#FFD700] mx-auto sm:px-5 mt-4 mb-10">
+        <p className="text-2xl font-bold text-[#0a1b2e]  ">
           আমাদের কাছ থেকে কেন কিনবেন?
         </p>
       </div>
