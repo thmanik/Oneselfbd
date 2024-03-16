@@ -1,7 +1,6 @@
 "use client";
 import EcButton from "@/components/EcButton/EcButton";
 import CartQuantityChangeBtn from "@/components/cartQuantityChangeBtn/CartQuantityChangeBtn";
-import { toast } from "@/components/ui/use-toast";
 import TGenericResponse from "@/types/response";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
@@ -24,22 +23,13 @@ const AddToCartAndBuyNow = ({
   const { data, isLoading } = addToCartStatus;
   const router = useRouter();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     addToCartHandler();
   };
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     addToCartHandler();
-    setNeedRedirect(needRedirect + 1);
+    setNeedRedirect(1);
   };
-
-  useEffect(() => {
-    if (data?.success) {
-      toast({
-        title: "Success",
-        description: data?.message,
-      });
-    }
-  }, [data?.success, data?.message]);
 
   useEffect(() => {
     if (needRedirect) {

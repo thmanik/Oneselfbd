@@ -52,11 +52,6 @@ const SalesPageOrderNow = ({
               />
               <div className="space-y-2">
                 <h2>{product?.title}</h2>
-                {/* <h2>
-                  {product?.price?.salePrice
-                    ? product?.price?.salePrice
-                    : product?.price?.regularPrice}
-                </h2> */}
                 <Input
                   value={quantity}
                   type="number"
@@ -93,6 +88,7 @@ const SalesPageOrderNow = ({
           variant="secondary"
           onClick={handleOrder}
           loading={isLoading}
+          disabled={isLoading}
         >
           Order now
         </EcButton>
