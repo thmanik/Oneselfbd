@@ -19,10 +19,10 @@ import TShippingCharges from "@/types/shippingCharge";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import * as fbq from "../../../../lib/connectors/FacebookPixel";
 import ShippingAddress from "../components/ShippingAddress";
 import OrderNow from "./OrderNow";
 import PaymentsGateway from "./paymentGateway/PaymentsGateway";
-
 const CheckoutPageContent = ({
   shippingCharges,
   paymentMethods,
@@ -50,14 +50,6 @@ const CheckoutPageContent = ({
   const [createOrder, { isLoading }] = useCreateOrderMutation();
 
   const handleOrder = async () => {
-    // ReactPixel.track("Purchase", {
-    //   content_name: "Product Name",
-    //   content_category: "Product Category",
-    //   content_ids: ["Product ID"],
-    //   content_type: "product",
-    //   value: 10.0, // Product price
-    //   currency: "USD",
-    // });
     setErrorMessages([]);
     if (shippingInfo.errors?.length || paymentInfo.errors?.length) {
       setErrorMessages([
@@ -102,6 +94,14 @@ const CheckoutPageContent = ({
         orderData
       ).unwrap()) as TGenericResponse<{ orderId: string }>;
       if (result.success) {
+        fbq.event("Purchase", {
+          content_name: "Multiple products",
+          content_category: "",
+          content_ids: [""],
+          content_type: "product",
+          value: totalCost, // Product price
+          currency: "BDT",
+        });
         router.push(`/thank-you/${result?.data?.orderId}`);
       }
     } catch (error) {
