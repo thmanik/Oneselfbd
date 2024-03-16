@@ -1,69 +1,51 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import Image from "next/image";
-import {
-  FaBuilding,
-  FaHome,
-  FaIndustry,
-  FaRegBuilding,
-  FaShoppingCart,
-} from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import OrderButton from "../ui/orderButton/OrderButton";
 
 const useCasesInHome = [
   {
-    title: "বারান্দা",
+    title: "বাড়ির মেন গেটে।",
     image: "/images/day-night-sensor/day_night_1.jpg",
   },
   {
-    title: "মেনগেট",
+    title: "বাড়ির চারি-পাশে নিরাপত্তার জন্য।",
     image: "/images/day-night-sensor/day_night_2.jpg",
   },
   {
-    title: "বাড়ির চারি পাশা",
+    title: "দোকানের সামনে।",
     image: "/images/day-night-sensor/day_night_3.jpg",
   },
-];
-
-const useCasesInOffice = [
   {
-    title: "করিডোর",
+    title: "অফিসে নিরাপত্তার জন্য।",
     image: "/images/day-night-sensor/day_night_4.jpg",
   },
   {
-    title: "স্টোর রুম",
+    title: "স্কুল কলেজে ব্যবহার করতে পারবেন।",
     image: "/images/day-night-sensor/day_night_5.jpg",
   },
   {
-    title: "অফিসের সামনে",
+    title: "পার্কে।",
     image: "/images/day-night-sensor/day_night_6.jpg",
   },
-];
-
-const useCasesInIndustry = [
   {
-    title: "কারখানার ভেতর",
+    title: "মাছের প্রজেক্টে।",
     image: "/images/day-night-sensor/day_night_7.jpg",
   },
   {
-    title: "গুদামজাত ঘর",
+    title: "পশু পাখির খামারে।",
     image: "/images/day-night-sensor/day_night_8.jpg",
   },
-];
-
-const useCasesInGovtInstitutions = [
   {
-    title: "স্কুল, কলেজ",
+    title: "কবরস্থানে।",
     image: "/images/day-night-sensor/day_night_9.jpg",
   },
   {
-    title: "হাসপাতাল",
+    title: "রাস্তায়",
     image: "/images/day-night-sensor/day_night_10.jpg",
   },
-  {
-    title: "রাস্তা",
-    image: "/images/day-night-sensor/day_night_11.jpg",
-  },
 ];
+
 const UseOfTheProduct = () => {
   return (
     <section>
@@ -76,14 +58,14 @@ const UseOfTheProduct = () => {
           </div>
           {/* ------বাসাবাড়ি ----------- */}
           <div className="flex my-14 flex-col items-center justify-center">
-            <div className="flex mb-6 justify-center items-center rounded-xl bg-white border-2 border-[#0a1b2e] shadow-xl py-2 px-8 w-72">
+            {/* <div className="flex mb-6 justify-center items-center rounded-xl bg-white border-2 border-[#0a1b2e] shadow-xl py-2 px-8 w-72">
               <div className="border-4 rounded-full border-[#0a1b2e] p-1 bg-[#116b80] text-white shadow-md">
                 <FaHome className="text-lg md:text-xl" />
               </div>
               <div className="ml-2">
                 <p className="font-bold text-xl text-[#0a1b2e]">বাসাবাড়ি-</p>
               </div>
-            </div>
+            </div> */}
 
             <div className="flex justify-center flex-wrap gap-y-3 items-center w-full max-w-screen-xl mx-auto">
               {useCasesInHome.map((useCase, index) => (
@@ -110,121 +92,11 @@ const UseOfTheProduct = () => {
             </div>
           </div>
 
-          {/* ------অফিস------ */}
-          <div className="flex my-14 flex-col items-center justify-center">
-            <div className="flex mb-6 justify-center items-center rounded-xl bg-white border-2 border-[#0a1b2e] shadow-xl py-2 px-8 w-72">
-              <div className="border-4 rounded-full border-[#0a1b2e] p-1 bg-[#116b80] text-white shadow-md">
-                <FaBuilding className="text-lg md:text-xl" />
-              </div>
-              <div className="ml-2">
-                <p className="font-bold text-xl text-[#0a1b2e]">অফিস-</p>
-              </div>
-            </div>
-
-            <div className="flex justify-center flex-wrap gap-y-3 items-center w-full max-w-screen-xl mx-auto">
-              {useCasesInOffice.map((useCase, index) => (
-                <div
-                  key={index}
-                  className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 flex justify-center"
-                >
-                  <div className="bg-[#116b80] px-2 w-full max-w-[300px] flex flex-col items-center rounded-xl">
-                    <div className="mt-5">
-                      <Image
-                        width={300}
-                        height={300}
-                        className="w-[100%] aspect-video rounded-xl"
-                        src={useCase.image}
-                        alt={useCase.title}
-                      />
-                    </div>
-                    <p className="text-white text-lg font-bold p-2 md:p-5 text-center">
-                      {useCase.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ------শিল্প-প্রতিষ্ঠান-------- */}
-          <div className="flex my-14 flex-col items-center justify-center">
-            <div className="flex mb-6 justify-center items-center rounded-xl bg-white border-2 border-[#0a1b2e] shadow-xl py-2 px-8 w-72">
-              <div className="border-4 rounded-full border-[#0a1b2e] p-1 bg-[#116b80] text-white shadow-md">
-                <FaIndustry className="text-lg md:text-xl" />
-              </div>
-              <div className="ml-2">
-                <p className="font-bold text-xl text-[#0a1b2e]">
-                  শিল্প-প্রতিষ্ঠান-
-                </p>
-              </div>
-            </div>
-
-            <div className="flex justify-center flex-wrap gap-y-3 items-center w-full max-w-screen-xl mx-auto">
-              {useCasesInIndustry.map((useCase, index) => (
-                <div
-                  key={index}
-                  className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 flex justify-center"
-                >
-                  <div className="bg-[#116b80] px-2 w-full max-w-[300px] flex flex-col items-center rounded-xl">
-                    <div className="mt-5">
-                      <Image
-                        width={300}
-                        height={300}
-                        className="w-[100%] aspect-video rounded-xl"
-                        src={useCase.image}
-                        alt={useCase.title}
-                      />
-                    </div>
-                    <p className="text-white text-lg font-bold p-2 md:p-5 text-center">
-                      {useCase.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ------সরকারি প্রতিষ্ঠান-------- */}
-          <div className="flex my-14 flex-col items-center justify-center">
-            <div className="flex mb-6 justify-center items-center rounded-xl bg-white border-2 border-[#0a1b2e] shadow-xl py-2 px-8 w-72">
-              <div className="border-4 rounded-full border-[#0a1b2e] p-1 bg-[#116b80] text-white shadow-md">
-                <FaRegBuilding className="text-lg md:text-xl" />
-              </div>
-              <div className="ml-2">
-                <p className="font-bold text-xl text-[#0a1b2e]">
-                  সরকারি প্রতিষ্ঠান-
-                </p>
-              </div>
-            </div>
-
-            <div className="flex justify-center flex-wrap gap-y-3 items-center w-full max-w-screen-xl mx-auto">
-              {useCasesInGovtInstitutions.map((useCase, index) => (
-                <div
-                  key={index}
-                  className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 flex justify-center"
-                >
-                  <div className="bg-[#116b80] px-2 w-full max-w-[300px] flex flex-col items-center rounded-xl">
-                    <div className="mt-5">
-                      <Image
-                        width={300}
-                        height={300}
-                        className="w-[100%] aspect-video rounded-xl"
-                        src={useCase.image}
-                        alt={useCase.title}
-                      />
-                    </div>
-                    <p className="text-white text-lg font-bold p-2 md:p-5 text-center">
-                      {useCase.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
           <div className="w-full  mx-auto mt-12 mb-6">
             <div className="text-center">
-              <p className="text-3xl md:text-4xl font-bold ">
-                এ ছাড়া আপনি আপনার সুবিধা মতে যে কোন যায়গায় ব্যবহার করতে পারেন।
+              <p className="text-2xl md:text-3xl font-bold ">
+                অথবা এমন জাইগা যেখানে আপনাকে রাতের বেলা লাইট জলিয়ে দিতে হয় আবার
+                সকাল বেলা লাইট বন্ধ করতে হয়।
               </p>
             </div>
           </div>

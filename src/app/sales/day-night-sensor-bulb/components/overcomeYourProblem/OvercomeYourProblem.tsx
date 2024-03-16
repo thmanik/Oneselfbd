@@ -34,7 +34,7 @@ const OvercomeYourProblem = () => {
   return (
     <div className="container mx-auto px-6 md:px-20 py-8 md:py-12">
       <div>
-        <h1 className="text-3xl md:text-5xl mx-2 font-bold text-[#197084] mb-8">
+        <h1 className="text-3xl md:text-5xl text-center mx-2 font-bold text-[#197084] mb-8">
           আপনার কি এই সমস্যাগুলোর সম্মুখীন হতে হয়?
         </h1>
       </div>
@@ -53,7 +53,7 @@ const OvercomeYourProblem = () => {
         <div className="text-4xl mt-4 text-[#197084]">
           <FaCheckCircle />
         </div>
-        <p className="text-xl  mt-5 md:ms-2 md:text-2xl text-[#197084] font-semibold">
+        <p className="text-xl mt-5 md:ms-2 md:text-2xl text-[#197084] font-semibold">
           যদি উত্তর <span className="text-red-600 mx-1">"হ্যাঁ"</span> হয়,
           তাহলে ডে নাইট সেন্সর বাল্ব আপনার জন্য আদর্শ সমাধান!
         </p>
