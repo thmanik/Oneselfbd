@@ -1,5 +1,3 @@
-import React from "react";
-
 const InformationSection = () => {
   return (
     <section className="relative grid bg-[#116b80] my-5 place-items-center w-full h-[375px]">
@@ -14,8 +12,8 @@ const InformationSection = () => {
         </p>
 
         <div className="text-center  md:py-5 flex justify-center items-center">
-          <p className="italic text-2xl text-red-600 font-bold bg-yellow-400 w-[95%] md:px-10 py-5 rounded-full">
-            লাইটের মুল্য- ৪৮০ টাকা
+          <p className=" text-2xl text-red-600 font-bold bg-yellow-400 w-[95%] md:px-10 py-5 rounded-full">
+            লাইটের মুল্য- ৪৭০ টাকা
           </p>
         </div>
       </div>
