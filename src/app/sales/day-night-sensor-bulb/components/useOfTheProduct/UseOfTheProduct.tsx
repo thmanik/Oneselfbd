@@ -56,17 +56,8 @@ const UseOfTheProduct = () => {
               লাইটা আপনি যে সমস্ত জায়গায় ব্যবহার করতে পারেন
             </p>
           </div>
-          {/* ------বাসাবাড়ি ----------- */}
-          <div className="flex my-14 flex-col items-center justify-center">
-            {/* <div className="flex mb-6 justify-center items-center rounded-xl bg-white border-2 border-[#0a1b2e] shadow-xl py-2 px-8 w-72">
-              <div className="border-4 rounded-full border-[#0a1b2e] p-1 bg-[#116b80] text-white shadow-md">
-                <FaHome className="text-lg md:text-xl" />
-              </div>
-              <div className="ml-2">
-                <p className="font-bold text-xl text-[#0a1b2e]">বাসাবাড়ি-</p>
-              </div>
-            </div> */}
 
+          <div className="flex my-14 flex-col items-center justify-center">
             <div className="flex justify-center flex-wrap gap-y-3 items-center w-full max-w-screen-xl mx-auto">
               {useCasesInHome.map((useCase, index) => (
                 <div
@@ -78,7 +69,7 @@ const UseOfTheProduct = () => {
                       <Image
                         width={300}
                         height={300}
-                        className="w-[100%] aspect-video rounded-xl"
+                        className="w-[290px] h-[160px] aspect-video rounded-xl"
                         src={useCase.image}
                         alt={useCase.title}
                       />
@@ -94,7 +85,7 @@ const UseOfTheProduct = () => {
 
           <div className="w-full  mx-auto mt-12 mb-6">
             <div className="text-center">
-              <p className="text-2xl md:text-3xl font-bold ">
+              <p className="text-xl md:text-3xl font-bold ">
                 অথবা এমন জাইগা যেখানে আপনাকে রাতের বেলা লাইট জলিয়ে দিতে হয় আবার
                 সকাল বেলা লাইট বন্ধ করতে হয়।
               </p>
