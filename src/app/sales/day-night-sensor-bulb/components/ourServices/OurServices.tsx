@@ -37,9 +37,9 @@ const OurServices = () => {
             {services.map((service) => (
               <div
                 key={service?.id}
-                className="bg-[#00C1F2] w-[255px] h-[260px] rounded-[15px] flex flex-col items-center shadow-xl"
+                className="bg-[#00C1F2] w-[255px] h-[245px] rounded-[15px] flex flex-col items-center shadow-xl"
               >
-                <div className="bg-white w-[257px] h-[250px] rounded-[7px] flex flex-col mt-3 items-center shadow-md">
+                <div className="bg-white w-[257px] h-[235px] rounded-[7px] flex flex-col mt-3 items-center shadow-md">
                   <div className="mt-5">
                     <Image
                       width={120}
