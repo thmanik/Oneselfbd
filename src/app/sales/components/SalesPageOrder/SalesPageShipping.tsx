@@ -26,10 +26,12 @@ const SalesPageShipping = ({
   shippingCharges,
   paymentMethods,
   product,
+  orderFrom,
 }: {
   shippingCharges: TShippingCharges[];
   paymentMethods: TPaymentMethod[];
   product?: TSingleProduct;
+  orderFrom: string;
 }) => {
   const [quantity, setQuantity] = useState(1);
   const totalCost =
@@ -93,7 +95,7 @@ const SalesPageShipping = ({
         email: shippingInfo.data?.email || undefined,
         notes: shippingInfo.data?.notes,
       },
-      orderFrom: "Landing page - 1",
+      orderFrom,
       productId: product?._id,
       quantity,
     };
@@ -112,8 +114,8 @@ const SalesPageShipping = ({
           currency: "BDT",
         });
         toast({
-          title: "Success",
-          description: "Link copied to clipboard!",
+          title: "Thank you",
+          description: "Order completed.",
         });
         router.push(`/thank-you/${result?.data?.orderId}`);
       }
