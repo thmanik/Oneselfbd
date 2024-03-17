@@ -42,7 +42,7 @@ const OvercomeYourProblem = () => {
         {cardInfo.map((card) => (
           <div
             key={card.id}
-            className="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col justify-center items-center border border-gray-200"
+            className="bg-white px-6 pt-3 pb-2 rounded-lg shadow-lg text-center flex flex-col justify-center items-center border border-gray-200"
           >
             <div className="text-4xl mb-4 text-[#116B80]">{card.icon}</div>
             <p className="text-lg font-semibold mb-4">{card.title}</p>
@@ -50,7 +50,7 @@ const OvercomeYourProblem = () => {
         ))}
       </div>
       <div className="text-center mt-10 flex flex-col md:flex-row items-center justify-center">
-        <div className="text-4xl mt-4 text-[#197084]">
+        <div className="text-3xl mt-4 text-[#197084]">
           <FaCheckCircle />
         </div>
         <p className="text-xl mt-5 md:ms-2 md:text-2xl text-[#197084] font-semibold">
