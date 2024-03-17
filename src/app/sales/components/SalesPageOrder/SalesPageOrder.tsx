@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import useQuery from "@/hooks/useQuery";
 import { TPaymentMethod } from "@/types/paymentMethod";
@@ -7,8 +6,13 @@ import TShippingCharges from "@/types/shippingCharge";
 import SalesHeadingPrimary from "../ui/SalesHeadingPrimary/SalesHeadingPrimary";
 import SalesPageShipping from "./SalesPageShipping";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SalesPageOrder = async ({ product }: { product?: TSingleProduct }) => {
+const SalesPageOrder = async ({
+  product,
+  orderFrom,
+}: {
+  product?: TSingleProduct;
+  orderFrom: string;
+}) => {
   const [{ data: shippingCharges = [] }] =
     await useQuery<TShippingCharges[]>("/shipping-charges");
   const [{ data: paymentMethods = [] }] =
@@ -25,6 +29,7 @@ const SalesPageOrder = async ({ product }: { product?: TSingleProduct }) => {
           paymentMethods={paymentMethods}
           shippingCharges={shippingCharges}
           product={product}
+          orderFrom={orderFrom}
         />
       </ContainerMax>
     </section>
