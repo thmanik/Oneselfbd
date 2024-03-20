@@ -1,6 +1,8 @@
 "use client";
+import { toast } from "@/components/ui/use-toast";
 import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
 import { TSingleProduct } from "@/types/products/singleProduct";
+import TGenericResponse, { TGenericErrorResponse } from "@/types/response";
 import { useState } from "react";
 import * as fbq from "../../../../../lib/connectors/FacebookPixel";
 import AddToCartAndBuyNow from "../components/AddToCartAndBuyNow";
@@ -14,7 +16,8 @@ const SingleProductClientContent = ({
   const [quantity, setQuantity] = useState(1);
 
   const [addToCart, addToCartStatus] = useAddToCartMutation();
-  const addToCartHandler = () => {
+  const addToCartHandler = async (): Promise<boolean> => {
+    let success = false;
     fbq.event("AddToCart", {
       content_name: product?.title,
       content_category: product?.category,
@@ -37,9 +40,25 @@ const SingleProductClientContent = ({
         },
       ],
     };
-    addToCart(cartInfo);
+    try {
+      const result = (await addToCart(cartInfo).unwrap()) as TGenericResponse;
+      if (result.success) {
+        toast({
+          title: "Success",
+          description: result?.message,
+        });
+      }
+      success = true;
+    } catch (error) {
+      const sanitizedError = error as TGenericErrorResponse;
+      toast({
+        title: "Failed",
+        description: sanitizedError.message,
+      });
+      success = false;
+    }
+    return success;
   };
-
   return (
     <div>
       <AddToCartAndBuyNow

@@ -2,6 +2,7 @@
 import ShippingAddress from "@/app/(with-layout)/checkout/components/ShippingAddress";
 import PaymentsGateway from "@/app/(with-layout)/checkout/components/paymentGateway/PaymentsGateway";
 import SalesPageOrderNow from "@/app/(with-layout)/checkout/components/paymentGateway/SalesPageOrderNow";
+import { toast } from "@/components/ui/use-toast";
 import { useCreateOrderFromSalesPageMutation } from "@/redux/features/order/orderApi";
 import {
   setPaymentInfo,
@@ -25,11 +26,13 @@ type TProps = {
   shippingCharges: TShippingCharges[];
   paymentMethods: TPaymentMethod[];
   product?: TSingleProduct;
+  orderFrom: string;
 };
 const SalesPageShipping = ({
   shippingCharges,
   paymentMethods,
   product,
+  orderFrom,
 }: TProps) => {
   const [quantity, setQuantity] = useState(1);
   const totalCost =
@@ -57,14 +60,6 @@ const SalesPageShipping = ({
   const [createOrder, { isLoading }] = useCreateOrderFromSalesPageMutation();
 
   const handleOrder = async () => {
-    fbq.event("Purchase", {
-      content_name: product?.title,
-      content_category: product?.category,
-      content_ids: [product?._id],
-      content_type: "product",
-      value: totalCost, // Product price
-      currency: "BDT",
-    });
     setErrorMessages([]);
     if (shippingInfo.errors?.length || paymentInfo.errors?.length) {
       setErrorMessages([
@@ -101,7 +96,7 @@ const SalesPageShipping = ({
         email: shippingInfo.data?.email || undefined,
         notes: shippingInfo.data?.notes,
       },
-      orderFrom: "Landing page - 1",
+      orderFrom,
       productId: product?._id,
       quantity,
     };
@@ -111,6 +106,18 @@ const SalesPageShipping = ({
         orderData
       ).unwrap()) as TGenericResponse<{ orderId: string }>;
       if (result.success) {
+        fbq.event("Purchase", {
+          content_name: product?.title,
+          content_category: product?.category,
+          content_ids: [product?._id],
+          content_type: "product",
+          value: totalCost, // Product price
+          currency: "BDT",
+        });
+        toast({
+          title: "Thank you",
+          description: "Order completed.",
+        });
         router.push(`/thank-you/${result?.data?.orderId}`);
       }
     } catch (error) {

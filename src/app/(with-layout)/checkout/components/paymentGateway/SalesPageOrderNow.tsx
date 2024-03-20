@@ -68,7 +68,7 @@ const SalesPageOrderNow = ({
                 <Quantity quantity={quantity} setQuantity={setQuantity} />
               </div>
             </div>
-            <p>{totalCost} &#2547;</p>
+            <p className="min-w-14 text-center">{totalCost} &#2547; </p>
           </div>
         </div>
         <CartTotalCalculations

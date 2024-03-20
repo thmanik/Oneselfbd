@@ -25,8 +25,8 @@ const OurServices = () => {
   ];
   return (
     <section className="my-10">
-      <div className="sm:w-4/6 md:w-2/5 lg:w-2/5 py-4 rounded-full text-center bg-[#F58921] mx-auto sm:px-5 mt-4 mb-10">
-        <p className="text-2xl font-bold text-accent  ">
+      <div className="sm:w-4/6 md:w-2/5 lg:w-2/5 py-4 rounded-full text-center bg-[#FFD700] mx-auto sm:px-5 mt-4 mb-10">
+        <p className="text-2xl font-bold text-[#0a1b2e]  ">
           আমাদের কাছ থেকে কেন কিনবেন?
         </p>
       </div>
@@ -37,9 +37,9 @@ const OurServices = () => {
             {services.map((service) => (
               <div
                 key={service?.id}
-                className="bg-[#00C1F2] w-[255px] h-[260px] rounded-[15px] flex flex-col items-center shadow-xl"
+                className="bg-[#00C1F2] w-[255px] h-[245px] rounded-[15px] flex flex-col items-center shadow-xl"
               >
-                <div className="bg-white w-[257px] h-[250px] rounded-[7px] flex flex-col mt-3 items-center shadow-md">
+                <div className="bg-white w-[257px] h-[235px] rounded-[7px] flex flex-col mt-3 items-center shadow-md">
                   <div className="mt-5">
                     <Image
                       width={120}

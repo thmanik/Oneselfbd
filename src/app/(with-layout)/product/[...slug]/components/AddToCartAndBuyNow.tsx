@@ -25,12 +25,12 @@ const AddToCartAndBuyNow = ({
   const { data, isLoading } = addToCartStatus;
   const router = useRouter();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     addToCartHandler();
   };
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     addToCartHandler();
-    setNeedRedirect(needRedirect + 1);
+    setNeedRedirect(1);
   };
 
   useEffect(() => {

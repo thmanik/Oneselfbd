@@ -15,7 +15,7 @@ const Quantity = ({ quantity, setQuantity }: TProps) => {
   };
 
   return (
-    <div className="flex justify-center items-center gap-5 ">
+    <div className="flex justify-center items-center md:gap-5 gap-3 ">
       <button
         onClick={handleDecrement}
         disabled={quantity == 1 ? true : false}
