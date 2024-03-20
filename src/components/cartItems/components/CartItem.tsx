@@ -36,6 +36,7 @@ const CartItem = ({
       toast({
         title: "Success",
         description: res?.message,
+        className: "bg-success text-white text-2xl",
       });
     }
   };

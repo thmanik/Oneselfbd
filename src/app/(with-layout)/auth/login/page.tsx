@@ -27,6 +27,7 @@ const LoginPage = () => {
       const user = decodeJWT(res.data.accessToken) as TUser;
       dispatch(setUser({ user: user, token: res.data.accessToken }));
       toast({
+        className: "bg-success text-white text-2xl",
         title: res.message,
       });
       router.push("/");

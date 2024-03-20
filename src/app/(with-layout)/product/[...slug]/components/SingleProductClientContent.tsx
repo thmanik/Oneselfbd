@@ -12,6 +12,7 @@ const SingleProductClientContent = ({
 }) => {
   // add to cart handler
   const [quantity, setQuantity] = useState(1);
+
   const [addToCart, addToCartStatus] = useAddToCartMutation();
   const addToCartHandler = () => {
     fbq.event("AddToCart", {
@@ -19,7 +20,7 @@ const SingleProductClientContent = ({
       content_category: product?.category,
       content_ids: [product?._id],
       content_type: "product",
-      value: Number(product?.price) * quantity, // Product price
+      value: Number(product?.price) * (Number.isNaN(quantity) ? 0 : quantity), // Product price
       currency: "BDT",
     });
     const cartInfo = {

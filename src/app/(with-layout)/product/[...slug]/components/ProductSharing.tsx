@@ -46,11 +46,13 @@ const ProductSharing = ({ productUrl }: { productUrl: string }) => {
       toast({
         title: "Success",
         description: "Link copied to clipboard!",
+        className: "bg-success text-white text-2xl",
       });
     } catch (err) {
       toast({
         title: "Success",
         description: "Failed to copy",
+        variant: "destructive",
       });
     }
 

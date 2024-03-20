@@ -1,6 +1,7 @@
 "use client";
+import Quantity from "@/app/(with-layout)/checkout/components/paymentGateway/Quantity";
 import EcButton from "@/components/EcButton/EcButton";
-import CartQuantityChangeBtn from "@/components/cartQuantityChangeBtn/CartQuantityChangeBtn";
+// import CartQuantityChangeBtn from "@/components/cartQuantityChangeBtn/CartQuantityChangeBtn";
 import { toast } from "@/components/ui/use-toast";
 import TGenericResponse from "@/types/response";
 import { useRouter } from "next/navigation";
@@ -37,6 +38,7 @@ const AddToCartAndBuyNow = ({
       toast({
         title: "Success",
         description: data?.message,
+        className: "bg-success text-white text-2xl",
       });
     }
   }, [data?.success, data?.message]);
@@ -52,7 +54,8 @@ const AddToCartAndBuyNow = ({
     <>
       <div className="flex gap-3 items-center">
         <p>Quantity: </p>{" "}
-        <CartQuantityChangeBtn quantity={quantity} setQuantity={setQuantity} />
+        {/* <CartQuantityChangeBtn quantity={quantity} setQuantity={setQuantity} /> */}
+        <Quantity quantity={quantity} setQuantity={setQuantity} />
       </div>
       <div className="flex gap-3 mt-4">
         <div className="flex-grow flex gap-2">

@@ -21,22 +21,23 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as fbq from "../../../../lib/connectors/FacebookPixel";
 
+type TProps = {
+  shippingCharges: TShippingCharges[];
+  paymentMethods: TPaymentMethod[];
+  product?: TSingleProduct;
+};
 const SalesPageShipping = ({
   shippingCharges,
   paymentMethods,
   product,
-}: {
-  shippingCharges: TShippingCharges[];
-  paymentMethods: TPaymentMethod[];
-  product?: TSingleProduct;
-}) => {
+}: TProps) => {
   const [quantity, setQuantity] = useState(1);
   const totalCost =
     Number(
       product?.price?.salePrice
         ? product?.price?.salePrice
         : product?.price?.regularPrice
-    ) * quantity;
+    ) * (Number.isNaN(quantity) ? 0 : quantity);
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const dispatch = useDispatch();
   useEffect(() => {

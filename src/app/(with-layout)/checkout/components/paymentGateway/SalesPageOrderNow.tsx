@@ -3,13 +3,13 @@ import CartTotalCalculations from "@/components/cartTotalCalculations/CartTotalC
 import ErrorMessage from "@/components/errorMessage/ErrorMessage";
 import Box from "@/components/ui/ec/Box";
 import BoxHeading from "@/components/ui/ec/BoxHeading";
-import { Input } from "@/components/ui/input";
 import config from "@/config/config";
 import { TSingleProduct } from "@/types/products/singleProduct";
 import TShippingCharges from "@/types/shippingCharge";
 import Image from "next/image";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { MdErrorOutline } from "react-icons/md";
+import Quantity from "./Quantity";
 const SalesPageOrderNow = ({
   shippingCharges,
   errorMessages,
@@ -50,21 +50,22 @@ const SalesPageOrderNow = ({
                 height={100}
                 className="w-20 h-20 rounded-md"
               />
-              <div className="space-y-2">
+              <div className="flex flex-col justify-between">
                 <h2>{product?.title}</h2>
                 {/* <h2>
                   {product?.price?.salePrice
                     ? product?.price?.salePrice
                     : product?.price?.regularPrice}
                 </h2> */}
-                <Input
+                {/* <Input
                   value={quantity}
                   type="number"
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setQuantity(Number(e.target.value))
                   }
                   className="w-20"
-                />
+                /> */}
+                <Quantity quantity={quantity} setQuantity={setQuantity} />
               </div>
             </div>
             <p>{totalCost} &#2547;</p>
@@ -93,6 +94,7 @@ const SalesPageOrderNow = ({
           variant="secondary"
           onClick={handleOrder}
           loading={isLoading}
+          disabled={isLoading}
         >
           Order now
         </EcButton>
