@@ -83,7 +83,7 @@ const ShippingAddress = () => {
             <ErrorMessage message={errors.fullAddress.message} />
           )}
         </div>
-        <div>
+        {/* <div>
           <Label className="font-bold pl-2 pb-2 block">ই-মেইল (Optional)</Label>
           <Input
             placeholder="আপনার কোন ই-মেইল থাকলে লিখুন"
@@ -91,7 +91,7 @@ const ShippingAddress = () => {
             defaultValue={shippingInfoData?.data?.email}
           />
           {errors.email && <ErrorMessage message={errors.email.message} />}
-        </div>
+        </div> */}
         <div>
           <Label className="font-bold pl-2 pb-2 block">
             অন্যান্য তথ্য (Optional)
