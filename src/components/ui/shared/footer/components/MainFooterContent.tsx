@@ -47,14 +47,16 @@ const MainFooterContent = () => {
               alt="Company logo"
               width={400}
               height={200}
-              className="w-44 rounded-md shadow-md"
+              className="w-32 md:w-44 rounded-md shadow-md"
               priority
             />
             <div className="flex gap-2 items-center">
-              <BiSupport className="w-12 h-12" />
+              <BiSupport className="w-8 h-8 md:w-12 md:h-12" />
               <div>
                 <p className="text-xs">Have a question? Call us right now</p>
-                <p className="text-xl font-semibold">+8801967214215</p>
+                <p className="text-base md:text-xl font-semibold">
+                  +8801967214215
+                </p>
               </div>
             </div>
             <address className="font-semibold">

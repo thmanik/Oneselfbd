@@ -39,9 +39,11 @@ const ProductFilterContent = ({
       <div className="block lg:hidden">
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" className="gap-3 hover:text-white">
-              <FaBarsStaggered /> Open filter
-            </Button>
+            <div className="flex justify-end">
+              <Button variant="ghost" className="gap-3 hover:text-white">
+                <FaBarsStaggered /> Open filter
+              </Button>
+            </div>
           </SheetTrigger>
           <SheetContent>
             <SheetHeader className="p-4">

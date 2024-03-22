@@ -33,14 +33,6 @@ const MenuBar = async ({
         href: `/shop?category=${_id}`,
       })),
     },
-    {
-      title: "Nothing",
-      href: "/category2",
-      subMenus: categories?.map(({ name, _id }) => ({
-        title: name,
-        href: `/shop2?category=${_id}`,
-      })),
-    },
   ];
   return (
     <div>
@@ -52,7 +44,10 @@ const MenuBar = async ({
             return (
               <MenubarMenu key={menuItem.href}>
                 <MenubarTrigger>
-                  <Link href={menuItem.href} className="hover:text-primary">
+                  <Link
+                    href={menuItem.href}
+                    className="hover:text-primary font-semibold"
+                  >
                     {menuItem.title}
                   </Link>
                 </MenubarTrigger>
@@ -61,13 +56,16 @@ const MenuBar = async ({
           } else {
             return (
               <MenubarMenu key={menuItem.href}>
-                <MenubarTrigger className="hover:text-primary">
+                <MenubarTrigger className="hover:text-primary font-semibold">
                   {menuItem.title} <IoMdArrowDropdown />
                 </MenubarTrigger>
                 <MenubarContent className="-mt-3">
                   {menuItem.subMenus?.map((subMenu) => (
                     <MenubarItem key={subMenu.href}>
-                      <Link href={subMenu.href} className="hover:text-primary">
+                      <Link
+                        href={subMenu.href}
+                        className="hover:text-primary font-semibold"
+                      >
                         {subMenu.title}
                       </Link>
                     </MenubarItem>
