@@ -5,10 +5,11 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import TCategory from "@/types/categories/categories";
 import { FaBars } from "react-icons/fa";
-import BottomHeaderNavLinks from "../bottomHeader/components/BottomHeaderNavLinks";
+import MenuBar from "../menuBar/MenuBar";
 
-const NavLinks = () => {
+const NavLinks = ({ categories }: { categories?: TCategory[] }) => {
   return (
     <>
       <Sheet>
@@ -18,7 +19,7 @@ const NavLinks = () => {
         <SheetContent side="left" className="w-[300px] sm:w-[540px]">
           <SheetHeader>
             <SheetDescription className="pt-10">
-              <BottomHeaderNavLinks isHorizontal />
+              <MenuBar horizontal categories={categories} />
             </SheetDescription>
           </SheetHeader>
         </SheetContent>
