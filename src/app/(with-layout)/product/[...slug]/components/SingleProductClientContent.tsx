@@ -1,10 +1,10 @@
 "use client";
 import { toast } from "@/components/ui/use-toast";
+import * as fbq from "@/lib/connectors/FacebookPixel";
 import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
 import { TSingleProduct } from "@/types/products/singleProduct";
 import TGenericResponse, { TGenericErrorResponse } from "@/types/response";
 import { useState } from "react";
-import * as fbq from "../../../../../lib/connectors/FacebookPixel";
 import AddToCartAndBuyNow from "../components/AddToCartAndBuyNow";
 
 const SingleProductClientContent = ({
@@ -15,7 +15,7 @@ const SingleProductClientContent = ({
   // add to cart handler
   const [quantity, setQuantity] = useState(1);
 
-  const [addToCart, addToCartStatus] = useAddToCartMutation();
+  const [addToCart, { isLoading: isAddToCartLoading }] = useAddToCartMutation();
   const addToCartHandler = async (): Promise<boolean> => {
     let success = false;
     fbq.event("AddToCart", {
@@ -46,6 +46,7 @@ const SingleProductClientContent = ({
         toast({
           title: "Success",
           description: result?.message,
+          className: "bg-success text-white text-2xl",
         });
       }
       success = true;
@@ -65,8 +66,7 @@ const SingleProductClientContent = ({
         quantity={quantity}
         setQuantity={setQuantity}
         addToCartHandler={addToCartHandler}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        addToCartStatus={addToCartStatus as any}
+        isAddToCartLoading={isAddToCartLoading}
       />
     </div>
   );
