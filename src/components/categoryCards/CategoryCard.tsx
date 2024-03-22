@@ -8,7 +8,7 @@ const CategoryCard = ({ category }: { category: TCategory }) => {
   return (
     <CarouselItem className="basis-1/2 sm:basis-1/3 md:basis-1/6 mx-5 border rounded-md">
       <Link
-        href={`/shop?category${category._id}`}
+        href={`/shop?category=${category._id}`}
         className="block text-center p-4"
       >
         <Image

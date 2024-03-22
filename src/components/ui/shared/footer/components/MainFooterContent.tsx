@@ -5,7 +5,7 @@ import { BiSupport } from "react-icons/bi";
 const quickLinks = [
   {
     name: "Products",
-    url: "/store",
+    url: "/shop",
   },
   {
     name: "About",

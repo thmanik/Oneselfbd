@@ -3,6 +3,7 @@ import ShippingAddress from "@/app/(with-layout)/checkout/components/ShippingAdd
 import PaymentsGateway from "@/app/(with-layout)/checkout/components/paymentGateway/PaymentsGateway";
 import SalesPageOrderNow from "@/app/(with-layout)/checkout/components/paymentGateway/SalesPageOrderNow";
 import { toast } from "@/components/ui/use-toast";
+import * as fbq from "@/lib/connectors/FacebookPixel";
 import { useCreateOrderFromSalesPageMutation } from "@/redux/features/order/orderApi";
 import {
   setPaymentInfo,
@@ -20,7 +21,6 @@ import TShippingCharges from "@/types/shippingCharge";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as fbq from "../../../../lib/connectors/FacebookPixel";
 
 type TProps = {
   shippingCharges: TShippingCharges[];
