@@ -1,15 +1,12 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
-import BottomHeaderNavLinks from "./components/BottomHeaderNavLinks";
-import useQuery from "@/hooks/useQuery";
 import TCategory from "@/types/categories/categories";
+import MenuBar from "../menuBar/MenuBar";
 
-const BottomHeader = async () => {
-  const [{ data: categories = [] }] =
-    await useQuery<TCategory[]>("/categories");
+const BottomHeader = async ({ categories }: { categories?: TCategory[] }) => {
   return (
     <div className="py-2 border-b-[1px] hidden md:block">
       <ContainerMax>
-        <BottomHeaderNavLinks categories={categories} />
+        <MenuBar categories={categories} />
       </ContainerMax>
     </div>
   );

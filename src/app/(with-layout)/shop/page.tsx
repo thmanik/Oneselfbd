@@ -37,7 +37,7 @@ const ShopPage = async ({
         <CategorySection categories={categories} />
         <BoxHeading className="mt-20 mb-5">Shop</BoxHeading>
         <div className="grid grid-cols-1 md:grid-cols-7 gap-5">
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-7 md:col-span-2">
             <ProductFilterContent
               searchParams={searchParams}
               tags={tags}

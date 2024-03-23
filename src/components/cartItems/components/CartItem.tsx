@@ -1,5 +1,5 @@
 "use client";
-import CartQuantityChangeBtn from "@/components/cartQuantityChangeBtn/CartQuantityChangeBtn";
+import Quantity from "@/app/(with-layout)/checkout/components/paymentGateway/Quantity";
 import { useToast } from "@/components/ui/use-toast";
 import config from "@/config/config";
 import { useUpdateCartQuantityMutation } from "@/redux/features/cart/cartApi";
@@ -75,7 +75,7 @@ const CartItem = ({
       </TableCell>
       <TableCell className="min-w-24">&#2547; {price}</TableCell>
       <TableCell className="flex justify-center items-center">
-        <CartQuantityChangeBtn
+        <Quantity
           quantity={quantity}
           setQuantity={setQuantity}
           callBack={callBack}

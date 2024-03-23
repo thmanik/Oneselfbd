@@ -1,13 +1,17 @@
+import useQuery from "@/hooks/useQuery";
+import TCategory from "@/types/categories/categories";
 import BottomHeader from "./bottomHeader/BottomHeader";
 import MainHeader from "./components/MainHeader";
 import TopHeader from "./components/TopHeader";
 
-const Header = () => {
+const Header = async () => {
+  const [{ data: categories = [] }] =
+    await useQuery<TCategory[]>("/categories");
   return (
     <header>
       <TopHeader />
-      <MainHeader />
-      <BottomHeader />
+      <MainHeader categories={categories} />
+      <BottomHeader categories={categories} />
     </header>
   );
 };

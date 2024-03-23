@@ -1,12 +1,11 @@
 import EcButton from "@/components/EcButton/EcButton";
 import CartItems from "@/components/cartItems/CartItems";
-import CartTotalCalculations from "@/components/cartTotalCalculations/CartTotalCalculations";
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import Box from "@/components/ui/ec/Box";
 import useQuery from "@/hooks/useQuery";
 import TShippingCharges from "@/types/shippingCharge";
 import Link from "next/link";
-
+import CartCalculation from "./components/CartCalculation";
 const CartPage = async () => {
   const [{ data: shippingCharges }] =
     await useQuery<TShippingCharges[]>("/shipping-charges");
@@ -20,7 +19,7 @@ const CartPage = async () => {
           </Box>
           <Box>
             <h2 className="font-bold border-b-2 p-2">Cart total</h2>
-            <CartTotalCalculations shippingCharges={shippingCharges} />
+            <CartCalculation shippingCharges={shippingCharges} />
             <div>
               <Link href="/checkout" className="block">
                 <EcButton className="w-full mt-2 bg-muted hover:bg-secondary text-white">
