@@ -25,7 +25,7 @@ const DayNightSensorBulbPage = async () => {
       <InformationSection />
       <OurServices />
       <ProductReplacement />
-      <SalesPageOrder product={product} orderFrom="Landing page - 1" />
+      <SalesPageOrder product={product} />
     </div>
   );
 };

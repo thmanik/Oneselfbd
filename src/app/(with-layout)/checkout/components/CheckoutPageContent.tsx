@@ -3,6 +3,7 @@ import CartItems from "@/components/cartItems/CartItems";
 import Box from "@/components/ui/ec/Box";
 import BoxHeading from "@/components/ui/ec/BoxHeading";
 import useCart from "@/hooks/useCart";
+import PEventIdGenerator from "@/lib/ec/PEventIdGenerator";
 import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
 import {
   setPaymentInfo,
@@ -30,7 +31,7 @@ const CheckoutPageContent = ({
   shippingCharges: TShippingCharges[];
   paymentMethods: TPaymentMethod[];
 }) => {
-  const { totalCost, isLoading: cartCostLoading } = useCart();
+  const { data: cartData, totalCost, isLoading: cartCostLoading } = useCart();
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -50,6 +51,7 @@ const CheckoutPageContent = ({
   const [createOrder, { isLoading }] = useCreateOrderMutation();
 
   const handleOrder = async () => {
+    const eventId = PEventIdGenerator("P_");
     setErrorMessages([]);
     if (shippingInfo.errors?.length || paymentInfo.errors?.length) {
       setErrorMessages([
@@ -86,27 +88,33 @@ const CheckoutPageContent = ({
         email: shippingInfo.data?.email || undefined,
         notes: shippingInfo.data?.notes,
       },
-      orderFrom: "Website",
+      eventId,
+      orderSource: {
+        name: "Website",
+        url: window?.location?.href,
+      },
     };
 
     try {
       const result = (await createOrder(
         orderData
       ).unwrap()) as TGenericResponse<{ orderId: string }>;
-      if (result.success) {
+      if (result?.success) {
         fbq.event("Purchase", {
           content_name: "Multiple products",
           content_category: "",
-          content_ids: [""],
+          content_ids: [cartData?.data?.cartItems![0]?.item?.product?._id],
           content_type: "product",
           value: totalCost, // Product price
-          currency: "BDT",
+          currency: "bdt",
+          phone: shippingInfo?.data?.phoneNumber,
+          event_id: eventId,
         });
         router.push(`/thank-you/${result?.data?.orderId}`);
       }
     } catch (error) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const res = (error as any).data as TGenericErrorResponse;
+      const res = (error as Record<string, unknown>)
+        .data as TGenericErrorResponse;
       const errorMessages =
         res?.errorMessages?.map((error) => error.message) || [];
       setErrorMessages([...errorMessages]);
