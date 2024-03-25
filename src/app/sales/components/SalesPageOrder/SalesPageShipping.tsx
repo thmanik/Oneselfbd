@@ -4,6 +4,7 @@ import PaymentsGateway from "@/app/(with-layout)/checkout/components/paymentGate
 import SalesPageOrderNow from "@/app/(with-layout)/checkout/components/paymentGateway/SalesPageOrderNow";
 import { toast } from "@/components/ui/use-toast";
 import * as fbq from "@/lib/connectors/FacebookPixel";
+import PEventIdGenerator from "@/lib/ec/PEventIdGenerator";
 import { useCreateOrderFromSalesPageMutation } from "@/redux/features/order/orderApi";
 import {
   setPaymentInfo,
@@ -26,13 +27,11 @@ type TProps = {
   shippingCharges: TShippingCharges[];
   paymentMethods: TPaymentMethod[];
   product?: TSingleProduct;
-  orderFrom: string;
 };
 const SalesPageShipping = ({
   shippingCharges,
   paymentMethods,
   product,
-  orderFrom,
 }: TProps) => {
   const [quantity, setQuantity] = useState(1);
   const totalCost =
@@ -60,6 +59,7 @@ const SalesPageShipping = ({
   const [createOrder, { isLoading }] = useCreateOrderFromSalesPageMutation();
 
   const handleOrder = async () => {
+    const eventId = PEventIdGenerator("P_");
     setErrorMessages([]);
     if (shippingInfo.errors?.length || paymentInfo.errors?.length) {
       setErrorMessages([
@@ -96,9 +96,13 @@ const SalesPageShipping = ({
         email: shippingInfo.data?.email || undefined,
         notes: shippingInfo.data?.notes,
       },
-      orderFrom,
       productId: product?._id,
       quantity,
+      eventId,
+      orderSource: {
+        name: "Landing Page",
+        url: window?.location?.href,
+      },
     };
 
     try {
@@ -112,7 +116,9 @@ const SalesPageShipping = ({
           content_ids: [product?._id],
           content_type: "product",
           value: totalCost, // Product price
-          currency: "BDT",
+          currency: "bdt",
+          phone: shippingInfo?.data?.phoneNumber,
+          event_id: eventId,
         });
         toast({
           title: "Thank you",
