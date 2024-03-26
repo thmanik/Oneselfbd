@@ -2,7 +2,7 @@ const InstructionVideo = () => {
   return (
     <div className="my-6">
       <div>
-        <p className="mx-4 mb-1 text-xl">
+        <p className="mx-4 my-1 text-xl">
           বুঝতে অসুবিধা হলে নিচের ভিডিও দেখুনঃ-
         </p>
       </div>

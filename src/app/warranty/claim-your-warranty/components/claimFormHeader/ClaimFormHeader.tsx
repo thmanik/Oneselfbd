@@ -3,9 +3,9 @@ const ClaimFormHeader = () => {
     <div className="my-6">
       <div className="flex justify-between ">
         <div>
-          <h2 className="text-4xl ">Company Logo</h2>
+          <h2 className="text-2xl ">Company Logo</h2>
         </div>
-        <div className="text-end ">
+        <div className="text-end text-xl">
           <p>Oneself</p>
           <p>Khulna, bangladesh</p>
           <p>+8801967214215</p>
