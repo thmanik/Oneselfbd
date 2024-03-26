@@ -100,16 +100,20 @@ const CheckoutPageContent = ({
         orderData
       ).unwrap()) as TGenericResponse<{ orderId: string }>;
       if (result?.success) {
-        fbq.event("Purchase", {
-          content_name: "Multiple products",
-          content_category: "",
-          content_ids: [cartData?.data?.cartItems![0]?.item?.product?._id],
-          content_type: "product",
-          value: totalCost, // Product price
-          currency: "bdt",
-          phone: shippingInfo?.data?.phoneNumber,
-          event_id: eventId,
-        });
+        fbq.event(
+          "Purchase",
+          {
+            content_name: "Multiple products",
+            content_category: "",
+            content_ids: [cartData?.data?.cartItems![0]?.item?.product?._id],
+            content_type: "product",
+            value: totalCost, // Product price
+            currency: "bdt",
+            phone: shippingInfo?.data?.phoneNumber,
+            event_id: eventId,
+          },
+          eventId
+        );
         router.push(`/thank-you/${result?.data?.orderId}`);
       }
     } catch (error) {

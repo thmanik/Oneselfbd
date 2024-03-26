@@ -110,16 +110,20 @@ const SalesPageShipping = ({
         orderData
       ).unwrap()) as TGenericResponse<{ orderId: string }>;
       if (result.success) {
-        fbq.event("Purchase", {
-          content_name: product?.title,
-          content_category: product?.category,
-          content_ids: [product?._id],
-          content_type: "product",
-          value: totalCost, // Product price
-          currency: "bdt",
-          phone: shippingInfo?.data?.phoneNumber,
-          event_id: eventId,
-        });
+        fbq.event(
+          "Purchase",
+          {
+            content_name: product?.title,
+            content_category: product?.category,
+            content_ids: [product?._id],
+            content_type: "product",
+            value: totalCost, // Product price
+            currency: "bdt",
+            phone: shippingInfo?.data?.phoneNumber,
+            event_id: eventId,
+          },
+          eventId
+        );
         toast({
           title: "Thank you",
           description: "Order completed.",
