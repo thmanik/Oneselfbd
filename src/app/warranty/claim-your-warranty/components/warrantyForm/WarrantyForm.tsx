@@ -7,12 +7,13 @@ import { FaTrashAlt } from "react-icons/fa";
 
 type FormData = {
   purchaseDate: string;
-  productId: string;
+  warrantyCode: string;
   issueDescription: string;
   customerFiles: File[];
   customerName: string;
   mobileNumber: string;
   address: string;
+  orderedPhoneNumber: string;
 };
 
 const WarrantyForm = () => {
@@ -45,10 +46,9 @@ const WarrantyForm = () => {
   };
 
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      setSelectedFiles(Array.from(files));
-    }
+    const files = Array.from(e.target.files || []);
+
+    setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
   };
 
   const handleDeleteFile = (index: number) => {
@@ -100,20 +100,41 @@ const WarrantyForm = () => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="productId" className="block mb-2">
-                পন্যের আইডি-
+              <label htmlFor="warrantyCode" className="block mb-2">
+                পন্যের ওয়ারেন্টি কোড -
               </label>
               <input
                 type="text"
-                id="productId"
-                {...register("productId", { required: true })}
+                id="warrantyCode"
+                {...register("warrantyCode", { required: true })}
                 className="w-full border border-gray-300 rounded-md p-2"
-                placeholder="পন্যের আইডি"
+                placeholder="পন্যের ওয়ারেন্টি কোড টি  লিখুন"
               />
-              {errors.productId && (
-                <p className="text-red-500">পন্যের আইডি প্রয়োজন</p>
+              {errors.warrantyCode && (
+                <p className="text-red-500">পন্যের ওয়ারেন্টি কোড টি লিখুন</p>
               )}
             </div>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="orderedPhoneNumber" className="block mb-2">
+              অডারকৃত মোবাইল নম্বর-
+            </label>
+            <input
+              type="text"
+              id="orderedPhoneNumber"
+              {...register("orderedPhoneNumber", {
+                required: true,
+                pattern: /^[0-9]*$/,
+              })}
+              className="w-full border border-gray-300 rounded-md p-2"
+              placeholder="যে মোবাইল নম্বরথেকে পন্যটি অর্ডার করেছেন ঐ মোবাইল নম্বরটি লিখুন"
+            />
+            {errors.orderedPhoneNumber && (
+              <p className="text-red-500">
+                যে মোবাইল নম্বর থেকে পন্যটি অর্ডার করেছেন ঐ মোবাইল নম্বর টি
+                লিখুন
+              </p>
+            )}
           </div>
 
           <div className="mb-4">
@@ -124,12 +145,62 @@ const WarrantyForm = () => {
               id="issueDescription"
               {...register("issueDescription", { required: true })}
               className="w-full border h-[150px] border-gray-300 rounded-md p-2"
-              placeholder="সমস্যাটি বর্ণনা করুন"
+              placeholder="আপনি যে সমস্যা দেখে পরিবর্তন করতে চাচ্ছেন উক্ত সমস্যাটি বিস্তারিত ভাবে লিখুন"
             />
             {errors.issueDescription && (
-              <p className="text-red-500">সমস্যাটি বর্ণনা করুন প্রয়োজন</p>
+              <p className="text-red-500">
+                আপনি যে সমস্যা দেখে পরিবর্তন করতে চাচ্ছেন উক্ত সমস্যাটি
+                বিস্তারিত ভাবে লিখুন
+              </p>
             )}
           </div>
+
+          {/* File input field */}
+          <div className="flex flex-col  items-center justify-center ">
+            <div
+              className={`${
+                fileDragged ? "border-blue-500" : "border-gray-300"
+              } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+              style={{
+                minHeight: "160px",
+                width: "100%",
+                background: "#ffffff",
+                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+              }}
+              onClick={() => document.getElementById("customerFile")?.click()}
+            >
+              <input
+                type="file"
+                id="customerFile"
+                {...register("customerFiles", { required: true })}
+                className="hidden"
+                onChange={handleFileInputChange}
+                multiple
+                onClick={(e) => e.stopPropagation()}
+                style={{ width: "100%" }}
+              />
+
+              <label
+                htmlFor="customerFile"
+                className=" flex justify-center items-center text-black py-2  px-4 rounded-md cursor-pointer "
+                style={{
+                  borderRadius: "4px",
+                  transition: "background-color 0.3s ease-in-out",
+                }}
+              >
+                <AiOutlineCloudUpload size={30} className="mr-2" />
+                নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
+              </label>
+            </div>
+            {errors.customerFiles && (
+              <p className="text-red-500">
+                নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
+              </p>
+            )}
+          </div>
+          {renderSelectedFiles()}
 
           <h2 className="text-xl mb-4">ক্রেতার তথ্য</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -182,47 +253,6 @@ const WarrantyForm = () => {
             />
             {errors.address && <p className="text-red-500">ঠিকানা প্রয়োজন</p>}
           </div>
-          {/* File input field */}
-          <div className="flex flex-col  items-center justify-center ">
-            <div
-              className={`${
-                fileDragged ? "border-blue-500" : "border-gray-300"
-              } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
-              style={{
-                minHeight: "160px",
-                width: "100%",
-                background: "#ffffff",
-                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-              }}
-              onClick={() => document.getElementById("customerFile")?.click()}
-            >
-              <input
-                type="file"
-                id="customerFile"
-                {...register("customerFiles", { required: true })}
-                className="hidden"
-                onChange={handleFileInputChange}
-                multiple
-                onClick={(e) => e.stopPropagation()}
-                style={{ width: "100%" }}
-              />
-              <label
-                htmlFor="customerFile"
-                className=" flex justify-center items-center text-black py-2  px-4 rounded-md cursor-pointer "
-                style={{
-                  borderRadius: "4px",
-                  transition: "background-color 0.3s ease-in-out",
-                }}
-              >
-                <AiOutlineCloudUpload size={30} className="mr-2" /> ছবি/ভিডিও
-                নির্বাচন করুন
-              </label>
-            </div>
-          </div>
-
-          {renderSelectedFiles()}
 
           <button
             type="submit"
