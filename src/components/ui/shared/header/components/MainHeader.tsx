@@ -1,4 +1,5 @@
 import TCategory from "@/types/categories/categories";
+
 import Image from "next/image";
 import Link from "next/link";
 import CartLinksAndAccount from "./CartLinksAndAccount";
