@@ -5,7 +5,7 @@ import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import EcButton from "../EcButton/EcButton";
 
-const CarosalProductsCard = ({
+const CarousalProductsCard = ({
   product,
   className,
 }: {
@@ -74,4 +74,4 @@ const CarosalProductsCard = ({
   );
 };
 
-export default CarosalProductsCard;
+export default CarousalProductsCard;

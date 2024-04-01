@@ -1,72 +1,59 @@
 import Image from "next/image";
-import offer from "../../../../../public/images/offer.png";
-import return_product from "../../../../../public/images/return_product.png";
-import voucher from "../../../../../public/images/voucher.png";
-import warranty from "../../../../../public/images/warranty.png";
+import Link from "next/link";
+import { twMerge } from "tailwind-merge";
+
+const carousalFooterData = [
+  {
+    title: "Flash Sales",
+    image: "offer.png",
+    customClasses: "text-[#314997] from-indigo-400 to-cyan-40",
+    href: "/",
+  },
+  {
+    title: "Gift Voucher",
+    image: "voucher.png",
+    customClasses: "text-[#aa7b34] from-amber-200 to-yellow-400",
+    href: "/",
+  },
+  {
+    title: "Return product",
+    image: "return_product.png",
+    customClasses: "text-[#d13f3f] from-orange-300 to-orange-500",
+    href: "/",
+  },
+  {
+    title: "Get Warranty",
+    image: "warranty.png",
+    customClasses: "text-[#2c7a60] from-emerald-300 to-emerald-500",
+    href: "/warranty/find-your-product",
+  },
+];
+
 const FacilitiesButtons = () => {
   return (
-    <div className="flex gap-5 items-center justify-center border-red-500 mb-3 -mt-3">
-      <div
-        className="flex-1 cursor-pointer    flex px-3 gap-2 items-center text-[#314997] border rounded-md bg-gradient-to-r from-indigo-400 to-cyan-400 space-y-1 py-2"
-        style={{ backdropFilter: "blur(10px)" }}
-      >
-        <div className="flex justify-center items-center">
-          <Image
-            className="w-16"
-            src={offer}
-            alt="voucher"
-            width={100}
-            height={60}
-          />
-        </div>
-        <h1 className="text-sm font-bold text-center ">Flash Sales</h1>
-      </div>
-      <div
-        className="flex-1 cursor-pointer flex px-3 gap-2 items-center text-[#aa7b34] border rounded-md bg-gradient-to-r from-amber-200 to-yellow-400 space-y-1 py-2"
-        style={{ backdropFilter: "blur(10px)" }}
-      >
-        <div className="flex justify-center items-center">
-          <Image
-            className="w-16"
-            src={voucher}
-            alt="voucher"
-            width={100}
-            height={60}
-          />
-        </div>
-        <h1 className="text-sm font-bold text-center ">Gift Voucher</h1>
-      </div>
-      <div
-        className="flex-1 cursor-pointer    flex px-3 gap-2 items-center text-[#d13f3f] border rounded-md bg-gradient-to-r from-orange-300 to-orange-500 space-y-1 py-2"
-        style={{ backdropFilter: "blur(10px)" }}
-      >
-        <div className="flex justify-center items-center">
-          <Image
-            className="w-16"
-            src={return_product}
-            alt="voucher"
-            width={100}
-            height={60}
-          />
-        </div>
-        <h1 className="text-sm font-bold text-center ">Return product</h1>
-      </div>
-
-      <div
-        className="flex-1 cursor-pointer flex px-3 gap-2 items-center text-[#2c7a60] border rounded-md bg-gradient-to-r from-emerald-300 to-emerald-500 space-y-1 py-2"
-        style={{ backdropFilter: "blur(10px)" }}
-      >
-        <div className="flex justify-center items-center">
-          <Image
-            className="w-16"
-            src={warranty}
-            alt="voucher"
-            width={100}
-            height={60}
-          />
-        </div>
-        <h1 className="text-sm font-bold text-center ">Get Warranty</h1>
-      </div>
+    <div className="flex gap-5 items-center justify-center border-red-500 mb-3 -mt-3 flex-wrap">
+      {carousalFooterData.map((item) => (
+        <Link
+          href={item.href}
+          key={item.title}
+          className={twMerge(
+            "flex-1 cursor-pointer flex px-3 gap-2 items-center border rounded-md bg-gradient-to-r space-y-1 py-2 min-w-[150px] w-full",
+            item.customClasses
+          )}
+          style={{ backdropFilter: "blur(10px)" }}
+        >
+          <div className="flex justify-center items-center">
+            <Image
+              className="w-16"
+              src={`/images/${item.image}`}
+              alt={item.title}
+              width={100}
+              height={60}
+            />
+          </div>
+          <h2 className="text-sm font-bold text-center ">{item.title}</h2>
+        </Link>
+      ))}
     </div>
   );
 };
