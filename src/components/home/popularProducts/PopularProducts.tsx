@@ -1,5 +1,5 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
-import CarosalProductsCard from "@/components/productCards/CarosalProductCard";
+import CarousalProductsCard from "@/components/productCards/CarosalProductCard";
 
 import SectionTitle from "@/components/sectionTitle/SectionTitle";
 import {
@@ -26,9 +26,9 @@ const PopularProducts = async () => {
               {popularProducts?.map((product) => (
                 <CarouselItem
                   key={product._id}
-                  className="basis-1/2 sm:basis-1/3 md:basis-1/4 xl:basis-1/6 mx-5"
+                  className="basis-1/2 sm:basis-1/3 md:basis-1/4 xl:basis-1/6 mx-10 md:mx-5"
                 >
-                  <CarosalProductsCard product={product} />
+                  <CarousalProductsCard product={product} />
                 </CarouselItem>
               ))}
             </CarouselContent>

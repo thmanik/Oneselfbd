@@ -7,6 +7,7 @@ import TopHeader from "./components/TopHeader";
 const Header = async () => {
   const [{ data: categories = [] }] =
     await useQuery<TCategory[]>("/categories");
+
   return (
     <header>
       <TopHeader />
