@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
@@ -31,7 +31,7 @@ const WarrantyForm = () => {
     console.log("Form Data with Files:", formDataWithFiles);
   };
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>): void => {
     e.preventDefault();
     setFileDragged(true);
   };
@@ -41,13 +41,12 @@ const WarrantyForm = () => {
     setFileDragged(false);
     const files = Array.from(e.dataTransfer.files);
     if (files.length > 0) {
-      setSelectedFiles(files);
+      setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
     }
   };
 
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
-
     setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
   };
 
@@ -74,6 +73,10 @@ const WarrantyForm = () => {
       </div>
     );
   };
+
+  useEffect(() => {
+    console.log("Selected Files:", selectedFiles);
+  }, [selectedFiles]);
 
   return (
     <div className="my-10">
@@ -115,6 +118,7 @@ const WarrantyForm = () => {
               )}
             </div>
           </div>
+
           <div className="mb-4">
             <label htmlFor="orderedPhoneNumber" className="block mb-2">
               অডারকৃত মোবাইল নম্বর-
@@ -156,13 +160,19 @@ const WarrantyForm = () => {
           </div>
 
           {/* File input field */}
-          <div className="flex flex-col  items-center justify-center ">
+          <div className="flex flex-col items-center justify-center">
             <div
               className={`${
                 fileDragged ? "border-blue-500" : "border-gray-300"
               } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
+              onDragOver={(e) => {
+                e.preventDefault();
+                handleDragOver(e);
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                handleDrop(e);
+              }}
               style={{
                 minHeight: "160px",
                 width: "100%",
@@ -184,7 +194,7 @@ const WarrantyForm = () => {
 
               <label
                 htmlFor="customerFile"
-                className=" flex justify-center items-center text-black py-2  px-4 rounded-md cursor-pointer "
+                className="flex justify-center items-center text-black py-2 px-4 rounded-md cursor-pointer"
                 style={{
                   borderRadius: "4px",
                   transition: "background-color 0.3s ease-in-out",
@@ -200,6 +210,7 @@ const WarrantyForm = () => {
               </p>
             )}
           </div>
+
           {renderSelectedFiles()}
 
           <h2 className="text-xl mb-4">ক্রেতার তথ্য</h2>
