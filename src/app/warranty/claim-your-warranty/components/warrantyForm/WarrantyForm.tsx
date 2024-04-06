@@ -94,15 +94,13 @@ const WarrantyForm = () => {
                 ক্রয়ের তারিখ-
               </label>
               <input
-                type="date"
+                type="text"
                 id="purchaseDate"
-                {...register("purchaseDate", { required: true })}
+                {...register("purchaseDate")}
                 className="w-full border border-gray-300 rounded-md p-2"
-                placeholder="ক্রয়ের তারিখ"
+                defaultValue="2024-04-06"
+                readOnly
               />
-              {errors.purchaseDate && (
-                <p className="text-red-500">ক্রয়ের তারিখ প্রয়োজন</p>
-              )}
             </div>
 
             <div className="mb-4">
@@ -112,13 +110,11 @@ const WarrantyForm = () => {
               <input
                 type="text"
                 id="warrantyCode"
-                {...register("warrantyCode", { required: true })}
+                {...register("warrantyCode")}
                 className="w-full border border-gray-300 rounded-md p-2"
-                placeholder="পন্যের ওয়ারেন্টি কোড টি  লিখুন"
+                defaultValue="124105"
+                readOnly
               />
-              {errors.warrantyCode && (
-                <p className="text-red-500">পন্যের ওয়ারেন্টি কোড টি লিখুন</p>
-              )}
             </div>
           </div>
 
@@ -129,19 +125,11 @@ const WarrantyForm = () => {
             <input
               type="text"
               id="orderedPhoneNumber"
-              {...register("orderedPhoneNumber", {
-                required: true,
-                pattern: /^[0-9]*$/,
-              })}
+              {...register("orderedPhoneNumber")}
               className="w-full border border-gray-300 rounded-md p-2"
-              placeholder="যে মোবাইল নম্বরথেকে পন্যটি অর্ডার করেছেন ঐ মোবাইল নম্বরটি লিখুন"
+              defaultValue="0123415656"
+              readOnly
             />
-            {errors.orderedPhoneNumber && (
-              <p className="text-red-500">
-                যে মোবাইল নম্বর থেকে পন্যটি অর্ডার করেছেন ঐ মোবাইল নম্বর টি
-                লিখুন
-              </p>
-            )}
           </div>
 
           <div className="mb-4">
