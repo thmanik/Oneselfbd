@@ -1,12 +1,11 @@
 const Conditions = () => {
   return (
-    <div className="my-4">
-      <div>
-        <h2 className="text-3xl mb-10">ওয়ারেন্টি দাবি ফর্ম</h2>
-        <p className="mt-5 mb-1 text-xl ">
+    <div className="my-4 mx-auto w-full md:max-w-[1025px]">
+      <div className="mx-2">
+        <p className="mt-5 mb-1 text-xl font-bold ">
           নিচের শর্ত গুলোর সাপেক্ষে ওয়ারেন্টি দাবি করা যাবেঃ-
         </p>
-        <div className="border border-gray-200 bg-[#F3F3FE] text-[18px] rounded-md ">
+        <div className="border border-gray-200 bg-white text-[17px] rounded-md ">
           <div className="my-5 mx-6">
             <p>
               ১. পণ্য ক্রয়ের তারিখ ও ক্রেতার নাম, মোবাইল নম্বর, ঠিকানা সঠিকভাবে

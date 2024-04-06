@@ -81,6 +81,9 @@ const WarrantyForm = () => {
   return (
     <div className="my-10">
       <div>
+        <h2 className="text-3xl text-center mb-10 font-semibold">
+          ওয়ারেন্টি দাবি ফর্ম
+        </h2>
         <h3 className="text-3xl my-1">ক্রয়ের তথ্যঃ-</h3>
       </div>
       <div className="border border-gray-200 p-4 rounded-md">
@@ -267,7 +270,7 @@ const WarrantyForm = () => {
 
           <button
             type="submit"
-            className="bg-primary text-[#FFFF00] py-2 px-4 rounded-md "
+            className="bg-primary text-white py-2 px-4 rounded-md "
           >
             Submit
           </button>
