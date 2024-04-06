@@ -1,8 +1,8 @@
 const InstructionVideo = () => {
   return (
-    <div className="my-6">
+    <div className="my-4  mx-auto w-full md:max-w-[1025px]">
       <div>
-        <p className="mx-4 my-1 text-xl">
+        <p className="mx-2  text-xl md:mx-1 my-1">
           বুঝতে অসুবিধা হলে নিচের ভিডিও দেখুনঃ-
         </p>
       </div>
