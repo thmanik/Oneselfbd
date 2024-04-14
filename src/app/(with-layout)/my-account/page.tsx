@@ -14,15 +14,13 @@ const AccountData = () => {
         <Card className="w-[350px] ">
           <CardHeader>
             <CardTitle className="text-1xl mb-2">Contact Information</CardTitle>
-
             <div>
-              <h3>Display Name{""}</h3>
+              <h3>Display Name</h3>
             </div>
             <div>
-              <h3>usere@gmail.com{""}</h3>
+              <h3>usere@gmail.com</h3>
             </div>
           </CardHeader>
-
           <CardFooter className="flex justify-between text-blue-600">
             <Link href="/my-account/edit-account">
               <div className="cursor-pointer" title="Edit your account">

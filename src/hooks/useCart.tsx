@@ -7,7 +7,7 @@ const useCart = () => {
   let totalCartItem = 0;
   let totalCost = 0;
   if (data?.success) {
-    totalCartItem = data?.data?.cartItems.length;
+    totalCartItem = data?.data?.cartItems?.length;
     (data?.data as TCart)?.cartItems?.forEach(({ item }) => {
       const price = item?.product?.price?.salePrice
         ? item?.product?.price?.salePrice

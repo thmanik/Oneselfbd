@@ -23,7 +23,12 @@ const SingleProductClientContent = ({
       content_category: product?.category,
       content_ids: [product?._id],
       content_type: "product",
-      value: Number(product?.price) * (Number.isNaN(quantity) ? 0 : quantity), // Product price
+      value:
+        Number(
+          product?.price?.salePrice
+            ? product?.price?.salePrice
+            : product?.price?.regularPrice
+        ) * Number(quantity || 0),
       currency: "BDT",
     });
     const cartInfo = {

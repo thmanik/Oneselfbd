@@ -1,47 +1,99 @@
 "use client";
+import NavLink from "@/components/navLink/NavLink";
+import { toast } from "@/components/ui/use-toast";
+import { useLogoutMutation } from "@/redux/features/auth/authApi";
+import { logOut } from "@/redux/features/auth/authSlice";
+import TGenericResponse, { TGenericErrorResponse } from "@/types/response";
+import { useDispatch } from "react-redux";
 
-import Link from "next/link";
-import { useState } from "react";
+const links = [
+  {
+    name: "My account",
+    href: "/my-account",
+    isAuthRequired: true,
+  },
+  {
+    name: "Login",
+    href: `/auth/login?redirect_url=/my-account`,
+    isAuthRequired: false,
+  },
+  {
+    name: "My orders",
+    href: "/my-account/my-orders",
+    isAuthRequired: false,
+  },
+];
 
-const Sidebar = () => {
-  const [isActive, setIsActive] = useState<string>("/my-account");
+const Sidebar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+  const dispatch = useDispatch();
+  const [logout] = useLogoutMutation();
+  const handleLogOut = async () => {
+    try {
+      const result = (await logout({}).unwrap()) as TGenericResponse;
+      if (result?.success) {
+        dispatch(logOut());
+        window?.localStorage?.removeItem("persist:auth");
+        toast({
+          title: "Success",
+          description: "Logout successfully",
+        });
+      }
+    } catch (error) {
+      const err = error as TGenericErrorResponse;
+      toast({
+        title: "Error",
+        description: err.message,
+      });
+    }
+  };
 
   return (
     <div className="md:col-span-4">
       <div className="py-4">
-        <ul className="space-y-3">
-          <hr />
-          <li className="cursor-pointer">
-            <Link href="/my-account">
-              <h4
-                className={isActive === "/my-account" ? "font-bold" : ""}
-                onClick={() => setIsActive("/my-account")}
-              >
-                My Account
-              </h4>
-            </Link>
+        <ul className="select-none">
+          {links.map((link) => {
+            if (isLoggedIn) {
+              if (link.isAuthRequired) {
+                return (
+                  <li
+                    key={link.name}
+                    className="cursor-pointer border-b-[1px] border-gray-200"
+                  >
+                    <NavLink
+                      href={link.href}
+                      className="block py-2 pl-2"
+                      activeClassName="font-bold"
+                    >
+                      {link.name}
+                    </NavLink>
+                  </li>
+                );
+              } else {
+                return null;
+              }
+            } else {
+              return (
+                <li
+                  key={link.name}
+                  className="cursor-pointer border-b-[1px] border-gray-200"
+                >
+                  <NavLink
+                    href={link.href}
+                    className="block py-2 pl-2"
+                    activeClassName="font-bold"
+                  >
+                    {link.name}
+                  </NavLink>
+                </li>
+              );
+            }
+          })}
+          <li
+            className="cursor-pointer border-b-[1px] border-gray-200"
+            onClick={handleLogOut}
+          >
+            <p className="py-2 pl-2">Log out</p>
           </li>
-          <hr />
-          <li className="cursor-pointer">
-            <Link href="/my-account/my-orders">
-              <h4
-                className={
-                  isActive === "/my-account/my-orders" ? "font-bold" : ""
-                }
-                onClick={() => setIsActive("/my-account/my-orders")}
-              >
-                My Orders
-              </h4>
-            </Link>
-          </li>
-          <hr />
-          {/* Add more sidebar links as needed */}
-          <li className="cursor-pointer text-red-600">
-            <Link href="/logout">
-              <h4 onClick={() => setIsActive("/logout")}>Logout</h4>
-            </Link>
-          </li>
-          <hr />
         </ul>
       </div>
     </div>
