@@ -25,7 +25,7 @@ const RadarSensorBulbLmYi2Page = async () => {
       <InformationSection />
       <OurServices />
       <ProductReplacement />
-      <SalesPageOrder product={product} />
+      <SalesPageOrder product={product} lpNo="1" />
     </>
   );
 };

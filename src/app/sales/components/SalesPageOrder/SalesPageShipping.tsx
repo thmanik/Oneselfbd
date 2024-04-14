@@ -2,10 +2,9 @@
 import ShippingAddress from "@/app/(with-layout)/checkout/components/ShippingAddress";
 import PaymentsGateway from "@/app/(with-layout)/checkout/components/paymentGateway/PaymentsGateway";
 import SalesPageOrderNow from "@/app/(with-layout)/checkout/components/paymentGateway/SalesPageOrderNow";
-import { toast } from "@/components/ui/use-toast";
-import * as fbq from "@/lib/connectors/FacebookPixel";
 import PEventIdGenerator from "@/lib/ec/PEventIdGenerator";
-import { useCreateOrderFromSalesPageMutation } from "@/redux/features/order/orderApi";
+import createOrderFN from "@/lib/ec/createOrderFN";
+import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
 import {
   setPaymentInfo,
   setPaymentInfoError,
@@ -16,7 +15,6 @@ import {
 } from "@/redux/features/order/shippingInfo";
 import { TPaymentMethod } from "@/types/paymentMethod";
 import { TSingleProduct } from "@/types/products/singleProduct";
-import TGenericResponse, { TGenericErrorResponse } from "@/types/response";
 import { TRootState } from "@/types/rootState";
 import TShippingCharges from "@/types/shippingCharge";
 import { useRouter } from "next/navigation";
@@ -27,11 +25,13 @@ type TProps = {
   shippingCharges: TShippingCharges[];
   paymentMethods: TPaymentMethod[];
   product?: TSingleProduct;
+  lpNo: string;
 };
 const SalesPageShipping = ({
   shippingCharges,
   paymentMethods,
   product,
+  lpNo,
 }: TProps) => {
   const [quantity, setQuantity] = useState(1);
   const totalCost =
@@ -56,87 +56,49 @@ const SalesPageShipping = ({
   const shippingClass = useSelector((state: TRootState) => state.shippingClass);
   const router = useRouter();
 
-  const [createOrder, { isLoading }] = useCreateOrderFromSalesPageMutation();
+  const [createOrder, { isLoading }] = useCreateOrderMutation();
 
   const handleOrder = async () => {
     const eventId = PEventIdGenerator("P_");
-    setErrorMessages([]);
-    if (shippingInfo.errors?.length || paymentInfo.errors?.length) {
-      setErrorMessages([
-        ...(shippingInfo?.errors || []),
-        ...(paymentInfo?.errors || []),
-      ]);
-      return;
-    }
-    if (!shippingInfo?.data?.phoneNumber) {
-      setErrorMessages(["Please fill out shipping address."]);
-      return;
-    }
-
-    if (paymentInfo?.data?.selectedPaymentMethod?.isPaymentDetailsNeeded) {
-      if (
-        !paymentInfo?.data?.phoneNumber ||
-        !paymentInfo?.data?.transactionId
-      ) {
-        setErrorMessages(["Please fill out payment information."]);
-        return;
-      }
-    }
     const orderData = {
       payment: {
         paymentMethod: paymentInfo?.data?.selectedPaymentMethod?._id,
         phoneNumber: paymentInfo?.data?.phoneNumber || undefined,
         transactionId: paymentInfo?.data?.transactionId || undefined,
       },
-      shippingChargeId: shippingClass._id,
+      shippingCharge: shippingClass._id,
       shipping: {
         fullName: shippingInfo.data?.fullName,
         phoneNumber: shippingInfo.data?.phoneNumber,
-        fullAddress: shippingInfo.data.fullAddress,
+        fullAddress: shippingInfo?.data?.fullAddress || undefined,
         email: shippingInfo.data?.email || undefined,
         notes: shippingInfo.data?.notes,
       },
-      productId: product?._id,
-      quantity,
+      orderedProducts: [
+        {
+          quantity,
+          product: product?._id,
+        },
+      ],
       eventId,
       orderSource: {
         name: "Landing Page",
         url: window?.location?.href,
+        lpNo,
       },
+      salesPage: true,
     };
-
-    try {
-      const result = (await createOrder(
-        orderData
-      ).unwrap()) as TGenericResponse<{ orderId: string }>;
-      if (result.success) {
-        fbq.event(
-          "Purchase",
-          {
-            content_name: product?.title,
-            content_category: product?.category,
-            content_ids: [product?._id],
-            content_type: "product",
-            value: totalCost, // Product price
-            currency: "bdt",
-            phone: shippingInfo?.data?.phoneNumber,
-            event_id: eventId,
-          },
-          eventId
-        );
-        toast({
-          title: "Thank you",
-          description: "Order completed.",
-        });
-        router.push(`/thank-you/${result?.data?.orderId}`);
-      }
-    } catch (error) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const res = (error as any).data as TGenericErrorResponse;
-      const errorMessages =
-        res?.errorMessages?.map((error) => error.message) || [];
-      setErrorMessages([...errorMessages]);
-    }
+    await createOrderFN({
+      createOrder,
+      setErrorMessages,
+      shippingInfo,
+      paymentInfo,
+      product,
+      totalCost,
+      router,
+      orderData,
+      eventId,
+    });
   };
 
   return (

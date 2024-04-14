@@ -1,14 +1,15 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { FormEventHandler } from "react";
 import { FaSearch } from "react-icons/fa";
 const Search = () => {
+  const router = useRouter();
   const handleSearchSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     const searchValue = (
       event.target as unknown as { searchValue: { value: string } }
     ).searchValue.value;
-    // eslint-disable-next-line no-console
-    console.log(searchValue);
+    router.push(`/shop?search=${searchValue}`);
   };
   return (
     <form onSubmit={handleSearchSubmit}>

@@ -6,7 +6,13 @@ import TShippingCharges from "@/types/shippingCharge";
 import SalesHeadingPrimary from "../ui/SalesHeadingPrimary/SalesHeadingPrimary";
 import SalesPageShipping from "./SalesPageShipping";
 
-const SalesPageOrder = async ({ product }: { product?: TSingleProduct }) => {
+const SalesPageOrder = async ({
+  product,
+  lpNo,
+}: {
+  product?: TSingleProduct;
+  lpNo: string;
+}) => {
   const [{ data: shippingCharges = [] }] =
     await useQuery<TShippingCharges[]>("/shipping-charges");
   const [{ data: paymentMethods = [] }] =
@@ -23,6 +29,7 @@ const SalesPageOrder = async ({ product }: { product?: TSingleProduct }) => {
           paymentMethods={paymentMethods}
           shippingCharges={shippingCharges}
           product={product}
+          lpNo={lpNo}
         />
       </ContainerMax>
     </section>
