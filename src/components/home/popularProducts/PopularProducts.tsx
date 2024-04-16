@@ -17,7 +17,7 @@ const PopularProducts = async () => {
     await useQuery<TProduct[]>("/products"); // TODO: Change endpoint
 
   return (
-    <section className="pt-20">
+    <section className="pt-16">
       <ContainerMax>
         <SectionTitle title="Popular products" href="/shop" />
         <div>

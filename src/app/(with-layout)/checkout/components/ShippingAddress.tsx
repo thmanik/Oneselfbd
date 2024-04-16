@@ -1,5 +1,4 @@
 "use client";
-import ErrorMessage from "@/components/errorMessage/ErrorMessage";
 import Box from "@/components/ui/ec/Box";
 import BoxHeading from "@/components/ui/ec/BoxHeading";
 import { Input } from "@/components/ui/input";
@@ -57,19 +56,19 @@ const ShippingAddress = () => {
             {...register("fullName")}
             defaultValue={shippingInfoData?.data?.fullName}
           />
-          {errors.fullName && (
-            <ErrorMessage message={errors.fullName.message} />
+          {errors.orderId && (
+            <span className="text-red-500 text-sm">আপনার নাম লিখুন</span>
           )}
         </div>
         <div>
           <Label className="font-bold pl-2 pb-2 block">ফোন নাম্বার*</Label>
           <Input
-            placeholder="আপনার ফোন নাম্বারটি লিখুন"
+            placeholder="আপনার ফোন নম্বারটি লিখুন"
             {...register("phoneNumber")}
             defaultValue={shippingInfoData?.data?.phoneNumber}
           />
-          {errors.phoneNumber && (
-            <ErrorMessage message={errors.phoneNumber.message} />
+          {errors.orderId && (
+            <span className="text-red-500 text-sm">ফোন নম্বার লিখুন</span>
           )}
         </div>
         <div>
@@ -79,8 +78,8 @@ const ShippingAddress = () => {
             {...register("fullAddress")}
             defaultValue={shippingInfoData?.data?.fullAddress}
           />
-          {errors.fullAddress && (
-            <ErrorMessage message={errors.fullAddress.message} />
+          {errors.orderId && (
+            <span className="text-red-500 text-sm">আপনার ঠিকানা লিখুন</span>
           )}
         </div>
         {/* <div>
@@ -102,7 +101,6 @@ const ShippingAddress = () => {
             className="w-full h-28 ring-2 ring-gray-100 rounded-md p-2"
             defaultValue={shippingInfoData?.data?.notes}
           ></textarea>
-          {errors.notes && <ErrorMessage message={errors.notes.message} />}
         </div>
       </form>
     </Box>

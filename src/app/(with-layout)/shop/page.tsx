@@ -50,7 +50,7 @@ const ShopPage = async ({
                 <ProductCardPrimary
                   key={product._id}
                   product={product}
-                  className="rounded-md hover:scale-105 transition-all w-40 md:w-[188px]"
+                  className="rounded-md hover:scale-105 transition-all h-80 w-44 md:w-[190px]"
                 />
               ))}
               {!products.length ? (

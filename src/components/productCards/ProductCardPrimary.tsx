@@ -19,7 +19,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
         // },
       }}
       className={twMerge(
-        "bg-white h-fit flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
+        "bg-white h-full flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
         className
       )}
     >

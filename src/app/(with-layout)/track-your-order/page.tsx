@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 "use client";
 
 import EcButton from "@/components/EcButton/EcButton";
@@ -13,59 +14,66 @@ const TrackOrderPage = () => {
   } = useForm();
 
   const onSubmit = (data: object) => {
-    // eslint-disable-next-line no-console
     console.log(data);
   };
 
   return (
-    <section>
+    <section className="bg-gray-100 py-8 flex justify-center items-center">
       <ContainerMax>
-        <div className="my-5">
-          <div className="my-8 mx-10">
-            <div>
-              <h2 className="text-4xl text-center text-dark-gray">
-                Track your Order
-              </h2>
-              <p className="mb-4 mt-8 text-muted">
-                To track your order please enter your Order ID in the box below
-                and press the Track button. This was given to you on your
-                receipt and in the confirmation email you should have received.
-              </p>
-            </div>
-          </div>
-          <div className="max-w-xl space-y-5">
-            <div className="space-y-5">
-              <div className="md:col-span-6 sm:col-span-12">
-                <div className="font-bold ms-2">Order ID</div>
+        <div className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg">
+          <h2 className="text-3xl text-center text-dark-gray mb-6">
+            আপনার অর্ডার ট্র্যাক করুন
+          </h2>
+          <p className="text-center text-xl text-gray-600 mb-6">
+            আপনার অর্ডার ট্র্যাক করতে, আপনার অর্ডার আইডি এবং বিলিং ফোন নম্বর
+            নিচে লিখুন ।
+          </p>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="orderId" className="block font-semibold mb-2">
+                  অর্ডার আইডি
+                </label>
                 <Input
                   {...register("orderId", { required: true })}
+                  id="orderId"
                   className="w-full rounded border p-2"
                   type="text"
-                  placeholder="Found in your order Confirmation email"
+                  placeholder="আপনার অর্ডার নিশ্চিতকরণ মেসেজের সাথে পাঠানো হয়েছে"
                 />
                 {errors.orderId && (
-                  <span className="text-red-500">Order ID is required</span>
+                  <span className="text-red-500 text-sm">
+                    অর্ডার আইডি প্রয়োজন
+                  </span>
                 )}
               </div>
-              <div className="md:col-span-6 sm:col-span-12">
-                <div className="font-bold ms-2">Billing phone</div>
+              <div>
+                <label
+                  htmlFor="billingPhoneNumber"
+                  className="block font-semibold mb-2"
+                >
+                  বিলিং ফোন নম্বর
+                </label>
                 <Input
-                  {...register("billingEmail", { required: true })}
+                  {...register("billingPhoneNumber", { required: true })}
+                  id="billingPhoneNumber"
                   className="w-full rounded border p-2"
-                  type="email"
-                  placeholder="Email you used during checkout"
+                  type="PhoneNumber"
+                  placeholder="চেক-আউটের সময় আপনি যে ফোন নম্বর ব্যবহার করেছিলেন"
                 />
-                {errors.billingEmail && (
-                  <span className="text-red-500">
-                    Billing Email is required
+                {errors.billingPhoneNumber && (
+                  <span className="text-red-500 text-sm">
+                    বিলিং ফোন নম্বর প্রয়োজন
                   </span>
                 )}
               </div>
             </div>
-            <EcButton className="text-white" onClick={handleSubmit(onSubmit)}>
-              Track Order
-            </EcButton>
-          </div>
+            <div className="mt-8 flex justify-center">
+              <EcButton className=" text-white " type="submit">
+                অর্ডার ট্র্যাক করুন
+              </EcButton>
+            </div>
+          </form>
         </div>
       </ContainerMax>
     </section>
