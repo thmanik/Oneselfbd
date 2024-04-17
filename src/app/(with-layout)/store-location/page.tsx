@@ -42,7 +42,9 @@ const StoreLocationPage = () => {
           </div>
         </div>
         <div className="md:w-1/2 mt-8 md:mt-0 text-white flex flex-col justify-center items-center">
-          <h2 className="text-5xl font-bold mb-4">Our Store Location</h2>
+          <h2 className=" text-3xl md:text-5xl font-bold mb-4">
+            Our Store Location
+          </h2>
           <div className="bg-white h-1 w-16 mb-4"></div>
           <p className="text-xl text-center mb-4">
             Explore our products in person at our Banani location in Dhaka,
