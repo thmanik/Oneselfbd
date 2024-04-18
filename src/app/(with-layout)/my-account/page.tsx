@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardDescription,
@@ -6,20 +7,62 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+type ShippingAddress = {
+  fullName: string;
+  phoneNumber: string;
+  fullAddress: string;
+  notes: string;
+};
 
 const AccountData = () => {
+  const [customerHasAccount, setCustomerHasAccount] = useState(false);
+  const [shippingAddress, setShippingAddress] =
+    useState<ShippingAddress | null>(null);
+
+  useEffect(() => {
+    const hasAccount = checkCustomerAccount();
+    setCustomerHasAccount(hasAccount);
+
+    if (!hasAccount) {
+      const storedShippingAddress = localStorage.getItem("shippingAddress");
+      if (storedShippingAddress) {
+        setShippingAddress(JSON.parse(storedShippingAddress));
+      }
+    }
+  }, []);
+
+  const checkCustomerAccount = () => {
+    const isLoggedIn = false;
+    const hasAccountId = false;
+    return isLoggedIn || hasAccountId;
+  };
+
   return (
     <div className="grid md:grid-cols-12 md:ms-8 gap-5">
-      <div className="md:col-span-6 sm:col-span-12 ">
-        <Card className="w-[350px] ">
+      <div className="md:col-span-6 sm:col-span-12">
+        <Card className="w-[350px]">
           <CardHeader>
             <CardTitle className="text-1xl mb-2">Contact Information</CardTitle>
-            <div>
-              <h3>Display Name</h3>
-            </div>
-            <div>
-              <h3>usere@gmail.com</h3>
-            </div>
+            {customerHasAccount ? (
+              <div>
+                <h3>Display Name{""}</h3>
+              </div>
+            ) : (
+              <div>
+                <h3>{shippingAddress?.fullName}</h3>
+              </div>
+            )}
+            {customerHasAccount ? (
+              <div>
+                <h3>01xxxxxxxx{""}</h3>
+              </div>
+            ) : (
+              <div>
+                <h3>{shippingAddress?.phoneNumber}</h3>
+              </div>
+            )}
           </CardHeader>
           <CardFooter className="flex justify-between text-blue-600">
             <Link href="/my-account/edit-account">
@@ -40,10 +83,13 @@ const AccountData = () => {
           <CardHeader>
             <CardTitle className="text-1xl">Default Shipping Address</CardTitle>
             <CardDescription>
-              You have not set a default shipping address.
+              {customerHasAccount
+                ? "Shipping address from database"
+                : shippingAddress
+                  ? `Full Address: ${shippingAddress?.fullAddress}`
+                  : "You have not set a default shipping address."}
             </CardDescription>
           </CardHeader>
-
           <CardFooter className="flex justify-between">
             <Link href="/my-account/add-shipping-address">
               <div

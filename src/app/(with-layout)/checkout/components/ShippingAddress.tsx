@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 "use client";
 import ErrorMessage from "@/components/errorMessage/ErrorMessage";
+import { CardDescription, CardTitle } from "@/components/ui/card";
 import Box from "@/components/ui/ec/Box";
 import BoxHeading from "@/components/ui/ec/BoxHeading";
 import { Input } from "@/components/ui/input";
@@ -12,28 +14,78 @@ import { shippingInfo } from "@/schemas/shippingInfo";
 import { TShippingInfo } from "@/types/order/shippingInfo";
 import { TRootState } from "@/types/rootState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
+import { Card, CardFooter, CardHeader } from "@material-tailwind/react";
+import { Link } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+
+type FormData = {
+  fullName: string;
+  phoneNumber: string;
+  fullAddress: string;
+  notes?: string | null | undefined;
+  // Add other fields as needed
+};
 
 const ShippingAddress = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(shippingInfo), shouldFocusError: false });
+    setValue,
+  } = useForm({
+    resolver: yupResolver(shippingInfo),
+    shouldFocusError: false,
+  });
   const dispatch = useDispatch();
   const shippingInfoData = useSelector(
     (state: TRootState) => state.shippingInfo
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any) => {
+  const [customerHasAccount, setCustomerHasAccount] = useState(false);
+  const [shippingAddress, setShippingAddress] = useState<TShippingInfo | null>(
+    null
+  );
+
+  useEffect(() => {
+    const hasAccount = checkCustomerAccount();
+    setCustomerHasAccount(hasAccount);
+
+    if (!hasAccount) {
+      const storedShippingAddress = localStorage.getItem("shippingAddress");
+      if (storedShippingAddress) {
+        const parsedAddress = JSON.parse(storedShippingAddress);
+        setShippingAddress(parsedAddress);
+        // Set form field values using setValue
+        setValue("fullName", parsedAddress.fullName);
+        setValue("phoneNumber", parsedAddress.phoneNumber);
+        setValue("fullAddress", parsedAddress.fullAddress);
+        setValue("notes", parsedAddress.notes || "");
+      }
+    } else {
+      // If customer has an account, set shippingAddress to null or any default value
+      setShippingAddress(null);
+    }
+  }, [setValue, shippingInfoData]);
+
+  const checkCustomerAccount = () => {
+    const isLoggedIn = false;
+    const hasAccountId = false;
+    return isLoggedIn || hasAccountId;
+  };
+
+  const onSubmit = (data: FormData) => {
+    console.log("storedData", data);
+    const notes =
+      data.notes !== null && data.notes !== undefined ? data.notes : "";
     const shippingInfo: TShippingInfo = {
       ...data,
+      notes,
     };
     dispatch(setShippingInfo(shippingInfo));
     dispatch(setShippingInfoError({ errors: null }));
+    localStorage.setItem("shippingAddress", JSON.stringify(shippingInfo));
   };
 
   useEffect(() => {
@@ -43,19 +95,39 @@ const ShippingAddress = () => {
       );
       dispatch(setShippingInfoError({ errors: errorMessages }));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errors]);
+  }, [dispatch, errors]);
 
   return (
     <Box className="bg-white">
       <BoxHeading>Shipping information</BoxHeading>
+      {customerHasAccount && (
+        <Card className="w-[350px]" placeholder={undefined}>
+          <CardHeader placeholder={undefined}>
+            <CardTitle className="text-1xl">Default Shipping Address</CardTitle>
+            <CardDescription>
+              {shippingAddress
+                ? `Full Address: ${shippingAddress?.fullAddress}`
+                : "You have not set a default shipping address."}
+            </CardDescription>
+          </CardHeader>
+          <CardFooter className="flex justify-between" placeholder={undefined}>
+            <Link href="/my-account/add-shipping-address">
+              <div
+                className="cursor-pointer text-blue-600"
+                title="Edit Shipping Address"
+              >
+                Edit Address
+              </div>
+            </Link>
+          </CardFooter>
+        </Card>
+      )}
       <form onBlur={handleSubmit(onSubmit)} className="space-y-5">
         <div>
           <Label className="font-bold pl-2 pb-2 block">নাম*</Label>
           <Input
             placeholder="এখানে আপনার নাম লিখুন"
             {...register("fullName")}
-            defaultValue={shippingInfoData?.data?.fullName}
           />
           {errors.fullName && (
             <ErrorMessage message={errors.fullName.message} />
@@ -66,7 +138,6 @@ const ShippingAddress = () => {
           <Input
             placeholder="আপনার ফোন নাম্বারটি লিখুন"
             {...register("phoneNumber")}
-            defaultValue={shippingInfoData?.data?.phoneNumber}
           />
           {errors.phoneNumber && (
             <ErrorMessage message={errors.phoneNumber.message} />
@@ -77,21 +148,11 @@ const ShippingAddress = () => {
           <Input
             placeholder="আপনার সম্পূর্ণ ঠিকানা লিখুন"
             {...register("fullAddress")}
-            defaultValue={shippingInfoData?.data?.fullAddress}
           />
           {errors.fullAddress && (
             <ErrorMessage message={errors.fullAddress.message} />
           )}
         </div>
-        {/* <div>
-          <Label className="font-bold pl-2 pb-2 block">ই-মেইল (Optional)</Label>
-          <Input
-            placeholder="আপনার কোন ই-মেইল থাকলে লিখুন"
-            {...register("email")}
-            defaultValue={shippingInfoData?.data?.email}
-          />
-          {errors.email && <ErrorMessage message={errors.email.message} />}
-        </div> */}
         <div>
           <Label className="font-bold pl-2 pb-2 block">
             অন্যান্য তথ্য (Optional)
@@ -100,7 +161,6 @@ const ShippingAddress = () => {
             placeholder="অন্যান্য কোন তথ্য থাকলে তা লিখুন"
             {...register("notes")}
             className="w-full h-28 ring-2 ring-gray-100 rounded-md p-2"
-            defaultValue={shippingInfoData?.data?.notes}
           ></textarea>
           {errors.notes && <ErrorMessage message={errors.notes.message} />}
         </div>
