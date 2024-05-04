@@ -1,5 +1,6 @@
-/* eslint-disable no-console */
 "use client";
+import EcButton from "@/components/EcButton/EcButton";
+/* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineCloudUpload } from "react-icons/ai";
@@ -25,6 +26,12 @@ const WarrantyForm = () => {
 
   const [fileDragged, setFileDragged] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [addressOption, setAddressOption] = useState<"keep" | "change">("keep");
+  const [customerData, setCustomerData] = useState({
+    customerName: "John Doe",
+    mobileNumber: "01631205714",
+    address: "Dhaka, Bangladesh",
+  });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const formDataWithFiles = { ...data, customerFiles: selectedFiles };
@@ -204,64 +211,133 @@ const WarrantyForm = () => {
 
           {renderSelectedFiles()}
 
-          <h2 className="text-xl mb-4">ক্রেতার তথ্য</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="mb-4">
-              <label htmlFor="customerName" className="block mb-2">
-                ক্রেতার নাম-
-              </label>
-              <input
-                type="text"
-                id="customerName"
-                {...register("customerName", { required: true })}
-                className="w-full border border-gray-300 rounded-md p-2"
-                placeholder="ক্রেতার নাম"
-              />
-              {errors.customerName && (
-                <p className="text-red-500">ক্রেতার নাম প্রয়োজন</p>
-              )}
-            </div>
+          <div>
+            <h2 className="text-xl mb-4">ক্রেতার তথ্য</h2>
 
             <div className="mb-4">
-              <label htmlFor="mobileNumber" className="block mb-2">
-                মোবাইল নম্বর-
+              <input
+                type="radio"
+                id="keepAddress"
+                name="addressOption"
+                value="keep"
+                onChange={() => {
+                  setAddressOption("keep");
+                  setCustomerData({
+                    customerName: "John Doe",
+                    mobileNumber: "01631205714",
+                    address: "Dhaka, Bangladesh",
+                  });
+                }}
+                checked={addressOption === "keep"}
+              />
+              <label htmlFor="keepAddress" className="ml-2">
+                পূর্বের ঠিকানা রাখুন
+              </label>
+
+              <input
+                type="radio"
+                id="changeAddress"
+                name="addressOption"
+                value="change"
+                onChange={() => {
+                  setAddressOption("change");
+                  // Clear customer data if changing address
+                  setCustomerData({
+                    customerName: "",
+                    mobileNumber: "",
+                    address: "",
+                  });
+                }}
+                checked={addressOption === "change"}
+                className="ml-4"
+              />
+              <label htmlFor="changeAddress" className="ml-2">
+                ঠিকানা পরিবর্তন করুন
+              </label>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="mb-4">
+                <label htmlFor="customerName" className="block mb-2">
+                  ক্রেতার নাম-
+                </label>
+                <input
+                  type="text"
+                  id="customerName"
+                  {...register("customerName", { required: true })}
+                  className="w-full border border-gray-300 rounded-md p-2"
+                  placeholder="ক্রেতার নাম"
+                  value={customerData.customerName}
+                  readOnly={addressOption === "keep"}
+                  onChange={(e) =>
+                    setCustomerData((prev) => ({
+                      ...prev,
+                      customerName: e.target.value,
+                    }))
+                  }
+                />
+                {errors.customerName && (
+                  <p className="text-red-500">ক্রেতার নাম প্রয়োজন</p>
+                )}
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="mobileNumber" className="block mb-2">
+                  মোবাইল নম্বর-
+                </label>
+                <input
+                  type="text"
+                  id="mobileNumber"
+                  {...register("mobileNumber", {
+                    required: true,
+                    pattern: /^[0-9]*$/,
+                  })}
+                  className="w-full border border-gray-300 rounded-md p-2"
+                  placeholder="মোবাইল নম্বর"
+                  value={customerData.mobileNumber}
+                  readOnly={addressOption === "keep"}
+                  onChange={(e) =>
+                    setCustomerData((prev) => ({
+                      ...prev,
+                      mobileNumber: e.target.value,
+                    }))
+                  }
+                />
+                {errors.mobileNumber && (
+                  <p className="text-red-500">মোবাইল নম্বর প্রয়োজন</p>
+                )}
+              </div>
+            </div>
+            <div className="mb-4">
+              <label htmlFor="address" className="block mb-2">
+                ঠিকানা-
               </label>
               <input
                 type="text"
-                id="mobileNumber"
-                {...register("mobileNumber", {
-                  required: true,
-                  pattern: /^[0-9]*$/,
-                })}
+                id="address"
+                {...register("address", { required: true })}
                 className="w-full border border-gray-300 rounded-md p-2"
-                placeholder="মোবাইল নম্বর"
+                placeholder="ঠিকানা"
+                value={customerData.address}
+                readOnly={addressOption === "keep"}
+                onChange={(e) =>
+                  setCustomerData((prev) => ({
+                    ...prev,
+                    address: e.target.value,
+                  }))
+                }
               />
-              {errors.mobileNumber && (
-                <p className="text-red-500">মোবাইল নম্বর প্রয়োজন</p>
+              {errors.address && (
+                <p className="text-red-500">ঠিকানা প্রয়োজন</p>
               )}
             </div>
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="address" className="block mb-2">
-              ঠিকানা-
-            </label>
-            <input
-              type="text"
-              id="address"
-              {...register("address", { required: true })}
-              className="w-full border border-gray-300 rounded-md p-2"
-              placeholder="ঠিকানা"
-            />
-            {errors.address && <p className="text-red-500">ঠিকানা প্রয়োজন</p>}
+          <div className="flex justify-end">
+            <EcButton type="submit" className=" text-white ">
+              Submit
+            </EcButton>
           </div>
-
-          <button
-            type="submit"
-            className="bg-primary text-white py-2 px-4 rounded-md "
-          >
-            Submit
-          </button>
         </form>
       </div>
     </div>

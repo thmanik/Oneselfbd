@@ -2,6 +2,7 @@
 "use client";
 import EcButton from "@/components/EcButton/EcButton";
 import { useForm } from "react-hook-form";
+import contact_us from "../../../../public/images/contact_us.jpg";
 
 const ContactUsPage = () => {
   const {
@@ -22,7 +23,7 @@ const ContactUsPage = () => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('https://i.ibb.co/SxthxLM/2148430882.jpg')",
+              backgroundImage: `url(${contact_us.src})`,
             }}
           ></div>
           <div className="bg-gray-100 flex items-center justify-center">
