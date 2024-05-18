@@ -21,21 +21,21 @@ const SearchProduct = () => {
   };
 
   const handleAddCode = () => {
-    if (newWarrantyCode.trim() !== "") {
-      if (warrantyCodes.includes(newWarrantyCode.trim())) {
+    if (newWarrantyCode?.trim() !== "") {
+      if (warrantyCodes?.includes(newWarrantyCode?.trim())) {
         setError("দুঃখিত, এই ওয়ারেন্টি কোডটি ইতিমধ্যে যুক্ত করা হয়েছে");
         return;
       }
-      setWarrantyCodes([...warrantyCodes, newWarrantyCode.trim()]);
+      setWarrantyCodes([...warrantyCodes, newWarrantyCode?.trim()]);
       setNewWarrantyCode("");
     }
   };
 
   const handleRemoveCode = (index: number) => {
-    setWarrantyCodes(warrantyCodes.filter((_, i) => i !== index));
+    setWarrantyCodes(warrantyCodes?.filter((_, i) => i !== index));
 
     // Check if the orderedPhoneNumber length is less than 11 after removing digits
-    if (orderedPhoneNumber.length < 11) {
+    if (orderedPhoneNumber?.length < 11) {
       setSearched(false); // Reset searched state to false
     }
   };
@@ -53,7 +53,7 @@ const SearchProduct = () => {
     setOrderedPhoneNumber(phoneNumber);
     setPhoneNumberChanged(true); // Set the state to true when the phone number is changed
 
-    if (phoneNumber.length !== 11) {
+    if (phoneNumber?.length !== 11) {
       setPhoneNumberError("ফোন নম্বর ১১ টি সংখ্যা হতে হবে");
     } else {
       setPhoneNumberError("");
@@ -63,14 +63,14 @@ const SearchProduct = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (warrantyCodes.length === 0) {
+    if (warrantyCodes?.length === 0) {
       setError("পন্যের ওয়ারেন্টি কোডগুলি লিখুন");
       return;
     } else {
       setError("");
     }
 
-    if (orderedPhoneNumber.length !== 11) {
+    if (orderedPhoneNumber?.length !== 11) {
       setPhoneNumberError("অর্ডারকৃত ফোন নম্বরটি লিখুন");
       return;
     }
@@ -79,13 +79,12 @@ const SearchProduct = () => {
   };
 
   const shouldSkipApiCall =
-    !searched || phoneNumberError !== "" || orderedPhoneNumber.length < 11;
+    !searched || phoneNumberError !== "" || orderedPhoneNumber?.length < 11;
 
   const {
     data: searchResultData,
     isLoading,
     isError,
-    refetch,
   } = useCheckWarrantyQuery(
     {
       phoneNumber: orderedPhoneNumber,
@@ -97,25 +96,27 @@ const SearchProduct = () => {
   useEffect(() => {
     if (searched && !isError) {
       if (searchResultData) {
-        if (searchResultData.data.length === 0) {
+        if (searchResultData?.data?.length === 0) {
           setError("কোনো তথ্য পাওয়া যায়নি");
           setNotFoundProducts([]);
         } else {
           const foundCodes: string[] = [];
-          searchResultData.data.forEach((order: Product) => {
-            order.products.forEach((product: ProductItem) => {
-              if (product.warranty) {
-                product.warranty.warrantyCodes.forEach((code) => {
-                  foundCodes.push(code.code);
+          searchResultData?.data?.forEach((order: Product) => {
+            order?.products?.forEach((product: ProductItem) => {
+              if (product?.warranty) {
+                product?.warranty?.warrantyCodes?.forEach((code) => {
+                  foundCodes?.push(code.code);
                 });
               }
             });
           });
-          const notFound = warrantyCodes.filter(
+          const notFound = warrantyCodes?.filter(
             (code) => !foundCodes.includes(code)
           );
           setNotFoundProducts(notFound);
-          setError(notFound.length > 0 ? "এই ওয়ারেন্টি কোডগুলি সঠিক নয়" : null);
+          setError(
+            notFound?.length > 0 ? "এই ওয়ারেন্টি কোডগুলি সঠিক নয়" : null
+          );
         }
       } else {
         setNotFoundProducts([]);
@@ -132,7 +133,7 @@ const SearchProduct = () => {
             আপনার পন্য নির্বাচন করুন
           </h1>
           <p className="text-gray-700 text-md md:text-lg mx-5">
-            পন্যের প্যাকেটের গায়ে থাকা ওয়ারেন্টি কোড দিয়ে পন্য বাছাই করুন
+            পন্যের গায়ে থাকা ওয়ারেন্টি কোড দিয়ে পন্য বাছাই করুন
           </p>
         </div>
 
@@ -220,12 +221,12 @@ const SearchProduct = () => {
         </form>
 
         {isLoading && <p>Loading...</p>}
-        {isError && !notFoundProducts.length && <p>Internal Server Error</p>}
+        {isError && !notFoundProducts?.length && <p>Internal Server Error</p>}
 
         {/* Render the table with error message and not found products */}
         <div className="text-center w-full mt-5">
           {/* Render the error message above the table if there are notFoundProducts */}
-          {notFoundProducts.length > 0 && (
+          {notFoundProducts?.length > 0 && (
             <p className="text-red-500 text-sm mb-4">
               এই ওয়ারেন্টি কোডগুলি সঠিক নয়:{" "}
               {notFoundProducts.map((code, index) => (
