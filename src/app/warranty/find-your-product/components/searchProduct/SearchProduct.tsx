@@ -19,6 +19,7 @@ type ProductItem = {
     src: string;
     alt: string;
   };
+
   warranty: {
     duration: string;
     startDate: string;
@@ -37,6 +38,7 @@ const SearchProduct = () => {
   const [error, setError] = useState<string | null>(null);
   const [notFoundProducts, setNotFoundProducts] = useState<string[]>([]);
   const [searched, setSearched] = useState(false);
+  const [phoneNumberChanged, setPhoneNumberChanged] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewWarrantyCode(event.target.value);
@@ -44,6 +46,10 @@ const SearchProduct = () => {
 
   const handleAddCode = () => {
     if (newWarrantyCode.trim() !== "") {
+      if (warrantyCodes.includes(newWarrantyCode.trim())) {
+        setError("দুঃখিত, এই ওয়ারেন্টি কোডটি ইতিমধ্যে যুক্ত করা হয়েছে");
+        return;
+      }
       setWarrantyCodes([...warrantyCodes, newWarrantyCode.trim()]);
       setNewWarrantyCode("");
     }
@@ -51,6 +57,23 @@ const SearchProduct = () => {
 
   const handleRemoveCode = (index: number) => {
     setWarrantyCodes(warrantyCodes.filter((_, i) => i !== index));
+
+    // Check if the orderedPhoneNumber length is less than 11 after removing digits
+    if (orderedPhoneNumber.length < 11) {
+      setSearched(false); // Reset searched state to false
+    }
+  };
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const phoneNumber = e.target.value.trim();
+    setOrderedPhoneNumber(phoneNumber);
+    setPhoneNumberChanged(true); // Set the state to true when the phone number is changed
+
+    if (phoneNumber.length !== 11) {
+      setPhoneNumberError("ফোন নম্বর ১১ টি সংখ্যা হতে হবে");
+    } else {
+      setPhoneNumberError("");
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,11 +86,9 @@ const SearchProduct = () => {
       setError("");
     }
 
-    if (!orderedPhoneNumber.trim()) {
+    if (orderedPhoneNumber.length !== 11) {
       setPhoneNumberError("অর্ডারকৃত ফোন নম্বরটি লিখুন");
       return;
-    } else {
-      setPhoneNumberError("");
     }
 
     setSearched(true);
@@ -83,43 +104,38 @@ const SearchProduct = () => {
       phoneNumber: orderedPhoneNumber,
       warrantyCodes: warrantyCodes,
     },
-    { skip: !searched }
+    { skip: !searched || orderedPhoneNumber.length < 11 } // Skip the API call if the phone number digits are less than 11
   );
 
   useEffect(() => {
-    if (isError) {
-      setError("Internal Server Error");
-      setNotFoundProducts([]);
-    } else if (searchResultData) {
-      const foundCodes: string[] = [];
-      searchResultData.data.forEach((order: Product) => {
-        order.products.forEach((product: ProductItem) => {
-          if (product.warranty) {
-            product.warranty.warrantyCodes.forEach((code) =>
-              foundCodes.push(code.code)
-            );
-          }
-        });
-      });
-      const notFound = warrantyCodes.filter(
-        (code) => !foundCodes.includes(code)
-      );
-      setNotFoundProducts(notFound);
-      setError(notFound.length > 0 ? null : ""); // Set error to null if no products are not found
-    } else {
-      setNotFoundProducts([]);
-      setError("");
+    if (searched && !isError) {
+      if (searchResultData) {
+        if (searchResultData.data.length === 0) {
+          setError("কোনো তথ্য পাওয়া যায়নি");
+          setNotFoundProducts([]);
+        } else {
+          const foundCodes: string[] = [];
+          searchResultData.data.forEach((order: Product) => {
+            order.products.forEach((product: ProductItem) => {
+              if (product.warranty) {
+                product.warranty.warrantyCodes.forEach((code) => {
+                  foundCodes.push(code.code);
+                });
+              }
+            });
+          });
+          const notFound = warrantyCodes.filter(
+            (code) => !foundCodes.includes(code)
+          );
+          setNotFoundProducts(notFound);
+          setError(notFound.length > 0 ? "এই ওয়ারেন্টি কোডগুলি সঠিক নয়" : null);
+        }
+      } else {
+        setNotFoundProducts([]);
+        setError("");
+      }
     }
-  }, [isError, searchResultData, warrantyCodes]);
-
-  const handleSearchAgain = () => {
-    setSearched(false);
-    setWarrantyCodes([]);
-    setOrderedPhoneNumber("");
-    setError("");
-    setNotFoundProducts([]);
-    refetch();
-  };
+  }, [searched, isError, searchResultData, warrantyCodes]);
 
   return (
     <div className="flex justify-center items-center my-10 md:my-20">
@@ -146,7 +162,8 @@ const SearchProduct = () => {
                 <input
                   value={newWarrantyCode}
                   onChange={handleInputChange}
-                  className="appearance-none outline-none border border-gray-300 rounded-l-md py-2 px-3 focus:ring-0 w-full h-12"
+                  className="appearance-none outline-none border border-gray-300 rounded-l-md py-2 px-3 focus:ring-0 w-full
+                  h-12"
                   id="warrantyCode"
                   type="text"
                   placeholder="প্যাকেটের গায়ে থাকা ওয়ারেন্টি কোডটি লিখুন"
@@ -192,10 +209,7 @@ const SearchProduct = () => {
               </label>
               <input
                 value={orderedPhoneNumber}
-                onChange={(e) => {
-                  setOrderedPhoneNumber(e.target.value);
-                  setPhoneNumberError("");
-                }}
+                onChange={handlePhoneNumberChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12"
                 id="orderedPhoneNumber"
                 type="text"

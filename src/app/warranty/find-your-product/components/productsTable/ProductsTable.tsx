@@ -73,6 +73,9 @@ const ProductTable = ({ searchResult }: Props) => (
                     : `${remainingDays} days left`;
               }
 
+              const warrantyStatusClass =
+                remainingDays < 0 ? "text-red-500" : "text-green-500";
+
               return (
                 <TableRow
                   key={`${orderIndex}-${index}`}
@@ -102,7 +105,9 @@ const ProductTable = ({ searchResult }: Props) => (
                       ? `${product.warranty.startDate} — ${product.warranty.endsDate}`
                       : "N/A"}
                   </TableCell>
-                  <TableCell className="px-4 py-2">{warrantyStatus}</TableCell>
+                  <TableCell className={`px-4 py-2 ${warrantyStatusClass}`}>
+                    {warrantyStatus}
+                  </TableCell>
                   <TableCell className="px-4 py-2">
                     ${(product.unitPrice * product.quantity).toFixed(2)}
                   </TableCell>
@@ -111,7 +116,7 @@ const ProductTable = ({ searchResult }: Props) => (
                       className={`btn text-black ${
                         remainingDays < 0
                           ? "bg-gray-400 text-black rounded-sm cursor-not-allowed"
-                          : "border border-green-500 p-1  rounded-sm  hover:bg-green-600"
+                          : "border border-green-500 p-1 rounded-sm hover:bg-green-600"
                       }`}
                       disabled={remainingDays < 0}
                     >
