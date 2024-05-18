@@ -3,32 +3,8 @@
 "use client";
 import { useCheckWarrantyQuery } from "@/redux/features/api/apiSlice";
 import React, { useEffect, useState } from "react";
+import { Product, ProductItem } from "../commonTypes/CommonTypes";
 import ProductTable from "../productsTable/ProductsTable";
-
-type Product = {
-  _id: string;
-  orderId: string;
-  products: ProductItem[];
-};
-
-type ProductItem = {
-  _id: string;
-  productId: string;
-  title: string;
-  image: {
-    src: string;
-    alt: string;
-  };
-
-  warranty: {
-    duration: string;
-    startDate: string;
-    endsDate: string;
-    warrantyCodes: { code: string }[];
-  } | null;
-  unitPrice: number;
-  quantity: number;
-};
 
 const SearchProduct = () => {
   const [warrantyCodes, setWarrantyCodes] = useState<string[]>([]);
@@ -66,6 +42,14 @@ const SearchProduct = () => {
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const phoneNumber = e.target.value.trim();
+
+    // Check if the phone number contains only numeric digits
+    if (!/^\d+$/.test(phoneNumber)) {
+      setPhoneNumberError("ফোন নম্বর অবশ্যই সংখ্যার অংশ হতে হবে");
+      setOrderedPhoneNumber(phoneNumber); // Set the phone number state even if it's not a number
+      return;
+    }
+
     setOrderedPhoneNumber(phoneNumber);
     setPhoneNumberChanged(true); // Set the state to true when the phone number is changed
 
@@ -94,6 +78,9 @@ const SearchProduct = () => {
     setSearched(true);
   };
 
+  const shouldSkipApiCall =
+    !searched || phoneNumberError !== "" || orderedPhoneNumber.length < 11;
+
   const {
     data: searchResultData,
     isLoading,
@@ -104,7 +91,7 @@ const SearchProduct = () => {
       phoneNumber: orderedPhoneNumber,
       warrantyCodes: warrantyCodes,
     },
-    { skip: !searched || orderedPhoneNumber.length < 11 } // Skip the API call if the phone number digits are less than 11
+    { skip: shouldSkipApiCall }
   );
 
   useEffect(() => {
