@@ -24,10 +24,12 @@ const ShopPage = async ({
   const [{ data: categories = [] }] =
     await useQuery<TCategory[]>("/categories");
 
-  const [{ data: products = [], meta: productMeta }] = await useQuery<
-    TProduct[]
-  >(`/products`, searchParams);
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [{ data, meta: productMeta }] = await useQuery<any>(
+    `/products`,
+    searchParams
+  );
+  const products = (data?.products as TProduct[]) || [];
   const [{ data: tags = [] }] = await useQuery<TTag[]>(`/tags`);
 
   return (
