@@ -10,8 +10,10 @@ import { TProduct } from "@/types/products/product";
 import CarouselUi from "./CarouselUi";
 
 const BannerCarousel = async () => {
-  const [{ data: carouselProducts = [] }] =
-    await useQuery<TProduct[]>("/products"); // TODO: change endpoint
+  const [{ data }] =
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await useQuery<any>("/products"); // TODO: change endpoint
+  const carouselProducts = (data?.products as TProduct[]) || [];
   return (
     <>
       <Carousel className="">
