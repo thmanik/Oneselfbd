@@ -6,8 +6,10 @@ import FacilitiesButtons from "./FacilitiesButtons/FacilitiesButtons";
 import BannerCarousel from "./components/BannerCarousel";
 
 const Banner = async () => {
-  const [{ data: bannerSideProducts = [] }] =
-    await useQuery<TProduct[]>("/products"); // TODO: change endpoints
+  const [{ data }] =
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await useQuery<any>("/products"); // TODO: change endpoints
+  const bannerSideProducts = (data?.products as TProduct[]) || [];
   return (
     <section>
       <ContainerMax>

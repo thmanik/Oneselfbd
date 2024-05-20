@@ -6,8 +6,9 @@ import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
 
 const ProductsGallery = async () => {
-  const [{ data: products = [] }] = await useQuery<TProduct[]>("/products");
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [{ data }] = await useQuery<any>("/products");
+  const products = data?.products as TProduct[];
   return (
     <section className="pt-20">
       <ContainerMax>

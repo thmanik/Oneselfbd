@@ -38,9 +38,11 @@ const SingleProductPage = async ({ params }: TProps) => {
   const [{ data: product, success: isSingleProductSuccess }] =
     await useQuery<TSingleProduct>(`/products/${params.slug[0]}`);
 
-  const [{ data: relatedProduct }] = await useQuery<TProduct[]>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [{ data }] = await useQuery<any>(
     `/products?category=${product?.category?._id?._id}`
   );
+  const relatedProduct = (data?.products as TProduct[]) || [];
   if (!isSingleProductSuccess) {
     return (
       <ErrorMessage
