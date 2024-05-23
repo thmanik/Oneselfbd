@@ -1,9 +1,17 @@
+import Image from "next/image";
+import logo from "../../../../../../public/images/logo/logo.png";
 const ClaimFormHeader = () => {
   return (
     <div className="my-6">
       <div className="flex justify-between ">
         <div>
-          <h2 className="text-2xl ">Company Logo</h2>
+          <Image
+            width={150}
+            height={60}
+            src={logo}
+            className="mt-2"
+            alt={""}
+          ></Image>
         </div>
         <div className="text-end text-xl">
           <p>Oneself</p>

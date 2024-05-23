@@ -19,6 +19,7 @@ import { apiSlice } from "./features/api/apiSlice";
 import paymentInfo from "./features/order/paymentInfo";
 import shippingInfo from "./features/order/shippingInfo";
 import shippingClass from "./features/shippingClasses/shippingClass";
+import { tableDataSlice } from "./features/tableData/tableData";
 const persistConfig = {
   key: "auth",
   storage,
@@ -34,6 +35,7 @@ export const store = configureStore({
     shippingClass: shippingClass,
     paymentInfo: paymentInfo,
     shippingInfo: shippingInfo,
+    tableData: tableDataSlice.reducer,
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({

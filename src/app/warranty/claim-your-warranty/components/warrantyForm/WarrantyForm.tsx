@@ -1,37 +1,56 @@
 "use client";
 import EcButton from "@/components/EcButton/EcButton";
 /* eslint-disable no-console */
+import { TRootState } from "@/types/rootState";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 type FormData = {
   purchaseDate: string;
-  warrantyCode: string;
+  warrantyCodes: string;
   issueDescription: string;
   customerFiles: File[];
-  customerName: string;
-  mobileNumber: string;
-  address: string;
+  fullName: string;
+  phoneNumber: string;
+  fullAddress: string;
   orderedPhoneNumber: string;
 };
 
 const WarrantyForm = () => {
+  const TableData = useSelector((state: TRootState) => state.tableData);
+  const initialCustomerData = {
+    fullName: TableData[0]?.shippingDetails?.fullName || "",
+    phoneNumber: TableData[0]?.shippingDetails?.phoneNumber || "",
+    fullAddress: TableData[0]?.shippingDetails?.fullAddress || "",
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-
   const [fileDragged, setFileDragged] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [addressOption, setAddressOption] = useState<"keep" | "change">("keep");
-  const [customerData, setCustomerData] = useState({
-    customerName: "John Doe",
-    mobileNumber: "01631205714",
-    address: "Dhaka, Bangladesh",
-  });
+  const [customerData, setCustomerData] = useState(initialCustomerData);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check if customerData is empty and addressOption is not set to "change"
+    if (
+      !customerData.fullName &&
+      !customerData.phoneNumber &&
+      !customerData.fullAddress &&
+      addressOption !== "change"
+    ) {
+      router.push("/warranty/find-your-product");
+    }
+  }, [customerData, addressOption, router]);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const formDataWithFiles = { ...data, customerFiles: selectedFiles };
@@ -81,10 +100,6 @@ const WarrantyForm = () => {
     );
   };
 
-  useEffect(() => {
-    console.log("Selected Files:", selectedFiles);
-  }, [selectedFiles]);
-
   return (
     <div className="my-10">
       <div>
@@ -97,46 +112,32 @@ const WarrantyForm = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="mb-4">
-              <label htmlFor="purchaseDate" className="block mb-2">
-                ক্রয়ের তারিখ-
+              <label htmlFor="orderedPhoneNumber" className="block mb-2">
+                অডারকৃত মোবাইল নম্বর-
               </label>
               <input
                 type="text"
-                id="purchaseDate"
-                {...register("purchaseDate")}
+                id="orderedPhoneNumber"
+                {...register("orderedPhoneNumber")}
                 className="w-full border border-gray-300 rounded-md p-2"
-                defaultValue="2024-04-06"
+                defaultValue={TableData[0]?.shippingDetails?.phoneNumber}
                 readOnly
               />
             </div>
 
             <div className="mb-4">
-              <label htmlFor="warrantyCode" className="block mb-2">
+              <label htmlFor="warrantyCodes" className="block mb-2">
                 পন্যের ওয়ারেন্টি কোড -
               </label>
               <input
                 type="text"
-                id="warrantyCode"
-                {...register("warrantyCode")}
+                id="warrantyCodes"
+                {...register("warrantyCodes")}
                 className="w-full border border-gray-300 rounded-md p-2"
-                defaultValue="124105"
+                defaultValue={TableData[0]?.warrantyCodes.join(", ") || ""}
                 readOnly
               />
             </div>
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="orderedPhoneNumber" className="block mb-2">
-              অডারকৃত মোবাইল নম্বর-
-            </label>
-            <input
-              type="text"
-              id="orderedPhoneNumber"
-              {...register("orderedPhoneNumber")}
-              className="w-full border border-gray-300 rounded-md p-2"
-              defaultValue="0123415656"
-              readOnly
-            />
           </div>
 
           <div className="mb-4">
@@ -222,11 +223,7 @@ const WarrantyForm = () => {
                 value="keep"
                 onChange={() => {
                   setAddressOption("keep");
-                  setCustomerData({
-                    customerName: "John Doe",
-                    mobileNumber: "01631205714",
-                    address: "Dhaka, Bangladesh",
-                  });
+                  setCustomerData(initialCustomerData);
                 }}
                 checked={addressOption === "keep"}
               />
@@ -243,9 +240,9 @@ const WarrantyForm = () => {
                   setAddressOption("change");
                   // Clear customer data if changing address
                   setCustomerData({
-                    customerName: "",
-                    mobileNumber: "",
-                    address: "",
+                    fullName: "",
+                    phoneNumber: "",
+                    fullAddress: "",
                   });
                 }}
                 checked={addressOption === "change"}
@@ -258,83 +255,83 @@ const WarrantyForm = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="mb-4">
-                <label htmlFor="customerName" className="block mb-2">
+                <label htmlFor="fullName" className="block mb-2">
                   ক্রেতার নাম-
                 </label>
                 <input
                   type="text"
-                  id="customerName"
-                  {...register("customerName", { required: true })}
+                  id="fullName"
+                  {...register("fullName", { required: true })}
                   className="w-full border border-gray-300 rounded-md p-2"
                   placeholder="ক্রেতার নাম"
-                  value={customerData.customerName}
+                  value={customerData.fullName}
                   readOnly={addressOption === "keep"}
                   onChange={(e) =>
                     setCustomerData((prev) => ({
                       ...prev,
-                      customerName: e.target.value,
+                      fullName: e.target.value,
                     }))
                   }
                 />
-                {errors.customerName && (
+                {errors.fullName && (
                   <p className="text-red-500">ক্রেতার নাম প্রয়োজন</p>
                 )}
               </div>
 
               <div className="mb-4">
-                <label htmlFor="mobileNumber" className="block mb-2">
+                <label htmlFor="phoneNumber" className="block mb-2">
                   মোবাইল নম্বর-
                 </label>
                 <input
                   type="text"
-                  id="mobileNumber"
-                  {...register("mobileNumber", {
+                  id="phoneNumber"
+                  {...register("phoneNumber", {
                     required: true,
                     pattern: /^[0-9]*$/,
                   })}
                   className="w-full border border-gray-300 rounded-md p-2"
                   placeholder="মোবাইল নম্বর"
-                  value={customerData.mobileNumber}
+                  value={customerData.phoneNumber}
                   readOnly={addressOption === "keep"}
                   onChange={(e) =>
                     setCustomerData((prev) => ({
                       ...prev,
-                      mobileNumber: e.target.value,
+                      phoneNumber: e.target.value,
                     }))
                   }
                 />
-                {errors.mobileNumber && (
+                {errors.phoneNumber && (
                   <p className="text-red-500">মোবাইল নম্বর প্রয়োজন</p>
                 )}
               </div>
             </div>
             <div className="mb-4">
-              <label htmlFor="address" className="block mb-2">
+              <label htmlFor="fullAddress" className="block mb-2">
                 ঠিকানা-
               </label>
               <input
                 type="text"
-                id="address"
-                {...register("address", { required: true })}
+                id="fullAddress"
+                {...register("fullAddress", { required: true })}
                 className="w-full border border-gray-300 rounded-md p-2"
                 placeholder="ঠিকানা"
-                value={customerData.address}
+                value={customerData.fullAddress}
                 readOnly={addressOption === "keep"}
                 onChange={(e) =>
                   setCustomerData((prev) => ({
                     ...prev,
-                    address: e.target.value,
+                    fullAddress: e.target.value,
                   }))
                 }
               />
-              {errors.address && (
+              {errors.fullAddress && (
                 <p className="text-red-500">ঠিকানা প্রয়োজন</p>
               )}
             </div>
           </div>
 
           <div className="flex justify-end">
-            <EcButton type="submit" className=" text-white ">
+            <EcButton type="submit" className="text-white">
               Submit
             </EcButton>
           </div>

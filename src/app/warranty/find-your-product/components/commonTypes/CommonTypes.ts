@@ -1,4 +1,11 @@
+export type Shipping = {
+  fullAddress: string;
+  fullName: string;
+  phoneNumber: string;
+};
 export type Product = {
+  shipping: Shipping;
+  phoneNumber: string;
   warranty: Warranty | null;
   image: ImageInfo;
   title: string;
