@@ -1,10 +1,16 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useCheckWarrantyQuery } from "@/redux/features/api/apiSlice";
 import React, { useEffect, useState } from "react";
 import { Product, ProductItem } from "../commonTypes/CommonTypes";
 import ProductTable from "../productsTable/ProductsTable";
+type ApiError = {
+  data?: {
+    errorMessages?: {
+      path: string;
+      message: string;
+    }[];
+  };
+};
 
 const SearchProduct = () => {
   const [warrantyCodes, setWarrantyCodes] = useState<string[]>([]);
@@ -13,8 +19,7 @@ const SearchProduct = () => {
   const [phoneNumberError, setPhoneNumberError] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [notFoundProducts, setNotFoundProducts] = useState<string[]>([]);
-  const [searched, setSearched] = useState(false);
-  const [phoneNumberChanged, setPhoneNumberChanged] = useState(false);
+  const [searched, setSearched] = useState<boolean>(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewWarrantyCode(event.target.value);
@@ -34,29 +39,25 @@ const SearchProduct = () => {
   const handleRemoveCode = (index: number) => {
     setWarrantyCodes(warrantyCodes?.filter((_, i) => i !== index));
 
-    // Check if the orderedPhoneNumber length is less than 11 after removing digits
     if (orderedPhoneNumber?.length < 11) {
-      setSearched(false); // Reset searched state to false
+      setSearched(false);
     }
   };
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const phoneNumber = e.target.value.trim();
 
-    // Check if the phone number contains only numeric digits
     if (!/^\d+$/.test(phoneNumber)) {
       setPhoneNumberError("ফোন নম্বর অবশ্যই সংখ্যার অংশ হতে হবে");
-      setOrderedPhoneNumber(phoneNumber); // Set the phone number state even if it's not a number
+      setOrderedPhoneNumber(phoneNumber);
       return;
     }
 
     setOrderedPhoneNumber(phoneNumber);
-    setPhoneNumberChanged(true); // Set the state to true when the phone number is changed
+    setPhoneNumberError("");
 
     if (phoneNumber?.length !== 11) {
       setPhoneNumberError("ফোন নম্বর ১১ টি সংখ্যা হতে হবে");
-    } else {
-      setPhoneNumberError("");
     }
   };
 
@@ -66,8 +67,6 @@ const SearchProduct = () => {
     if (warrantyCodes?.length === 0) {
       setError("পন্যের ওয়ারেন্টি কোডগুলি লিখুন");
       return;
-    } else {
-      setError("");
     }
 
     if (orderedPhoneNumber?.length !== 11) {
@@ -85,6 +84,7 @@ const SearchProduct = () => {
     data: searchResultData,
     isLoading,
     isError,
+    error: apiError,
   } = useCheckWarrantyQuery(
     {
       phoneNumber: orderedPhoneNumber,
@@ -94,36 +94,39 @@ const SearchProduct = () => {
   );
 
   useEffect(() => {
-    if (searched && !isError) {
-      if (searchResultData) {
-        if (searchResultData?.data?.length === 0) {
-          setError("কোনো তথ্য পাওয়া যায়নি");
-          setNotFoundProducts([]);
-        } else {
-          const foundCodes: string[] = [];
-          searchResultData?.data?.forEach((order: Product) => {
-            order?.products?.forEach((product: ProductItem) => {
-              if (product?.warranty) {
-                product?.warranty?.warrantyCodes?.forEach((code) => {
-                  foundCodes?.push(code.code);
-                });
-              }
-            });
-          });
-          const notFound = warrantyCodes?.filter(
-            (code) => !foundCodes.includes(code)
-          );
-          setNotFoundProducts(notFound);
-          setError(
-            notFound?.length > 0 ? "এই ওয়ারেন্টি কোডগুলি সঠিক নয়" : null
-          );
-        }
-      } else {
+    if (searched && !isError && searchResultData) {
+      if (searchResultData?.data?.length === 0) {
+        setError("কোনো তথ্য পাওয়া যায়নি");
         setNotFoundProducts([]);
-        setError("");
+      } else {
+        const foundCodes: string[] = [];
+        searchResultData?.data?.forEach((order: Product) => {
+          order?.products?.forEach((product: ProductItem) => {
+            if (product?.warranty) {
+              product?.warranty?.warrantyCodes?.forEach((code) => {
+                foundCodes?.push(code.code);
+              });
+            }
+          });
+        });
+        const notFound = warrantyCodes?.filter(
+          (code) => !foundCodes.includes(code)
+        );
+        setNotFoundProducts(notFound);
+        setError(notFound?.length > 0 ? "এই ওয়ারেন্টি কোডগুলি সঠিক নয়" : null);
       }
+    } else {
+      setNotFoundProducts([]);
+      setError("");
     }
-  }, [searched, isError, searchResultData, warrantyCodes]);
+
+    if (isError && apiError) {
+      const errorMessage =
+        (apiError as ApiError).data?.errorMessages?.[0]?.message ||
+        "Unknown error";
+      setError(errorMessage);
+    }
+  }, [searched, isError, searchResultData, warrantyCodes, apiError]);
 
   return (
     <div className="flex justify-center items-center my-10 md:my-20">
@@ -151,7 +154,7 @@ const SearchProduct = () => {
                   value={newWarrantyCode}
                   onChange={handleInputChange}
                   className="appearance-none outline-none border border-gray-300 rounded-l-md py-2 px-3 focus:ring-0 w-full
-                  h-12"
+                    h-12"
                   id="warrantyCode"
                   type="text"
                   placeholder="প্যাকেটের গায়ে থাকা ওয়ারেন্টি কোডটি লিখুন"
@@ -221,11 +224,8 @@ const SearchProduct = () => {
         </form>
 
         {isLoading && <p>Loading...</p>}
-        {isError && !notFoundProducts?.length && <p>Internal Server Error</p>}
 
-        {/* Render the table with error message and not found products */}
         <div className="text-center w-full mt-5">
-          {/* Render the error message above the table if there are notFoundProducts */}
           {notFoundProducts?.length > 0 && (
             <p className="text-red-500 text-sm mb-4">
               এই ওয়ারেন্টি কোডগুলি সঠিক নয়:{" "}
@@ -245,11 +245,9 @@ const SearchProduct = () => {
           />
         </div>
 
-        {/* Display not found products */}
         <div className="my-10">
-          {/* Render the error message below the table if there are no notFoundProducts */}
           {!notFoundProducts.length && error && (
-            <p className="text-red-500 text-sm">{error}</p>
+            <p className="text-red-500 text-[18px] mx-3">{error}</p>
           )}
 
           {notFoundProducts.length > 0 && (

@@ -1,6 +1,12 @@
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import config from "@/config/config";
+import {
+  ProductToClaim,
+  setTableDataToClaim,
+} from "@/redux/features/tableData/tableData";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 import { Product } from "../commonTypes/CommonTypes";
 
 type Props = {
@@ -12,7 +18,8 @@ type Props = {
 const ProductTable = ({ searchResult }: Props) => {
   const productsWithWarranty: JSX.Element[] = [];
   const productsWithoutWarranty: JSX.Element[] = [];
-
+  const dispatch = useDispatch();
+  const router = useRouter();
   searchResult.forEach((order, orderIndex) => {
     order.products.forEach((product, index) => {
       let warrantyStatus = "No Warranty";
@@ -66,16 +73,37 @@ const ProductTable = ({ searchResult }: Props) => {
       );
 
       if (remainingDays >= 0) {
-        productsWithWarranty?.push(productRow);
+        productsWithWarranty.push(productRow);
       } else {
-        productsWithoutWarranty?.push(productRow);
+        productsWithoutWarranty.push(productRow);
       }
     });
   });
 
+  const handleClaimAllClick = () => {
+    const productsToClaim = searchResult.reduce(
+      (acc: ProductToClaim[], order) => {
+        order.products.forEach((product) => {
+          if (product.warranty) {
+            acc.push({
+              warrantyCodes: product.warranty.warrantyCodes.map(
+                (wc) => wc.code
+              ),
+              shippingDetails: order.shipping,
+            });
+          }
+        });
+        return acc;
+      },
+      []
+    );
+
+    dispatch(setTableDataToClaim(productsToClaim));
+    router.push("/warranty/claim-your-warranty");
+  };
   return (
     <div className="overflow-x-auto">
-      {productsWithWarranty?.length > 0 && (
+      {productsWithWarranty.length > 0 && (
         <>
           <Table className="w-[85%] ms:w-[97%] mx-auto border-collapse border border-gray-300 mb-8">
             <thead>
@@ -92,14 +120,17 @@ const ProductTable = ({ searchResult }: Props) => {
             <TableBody>{productsWithWarranty}</TableBody>
           </Table>
           <div className="w-[85%] ms:w-[97%] mx-auto">
-            <button className="btn border border-blue-500 p-2 rounded-sm hover:bg-blue-600 text-black hover:text-white w-full">
+            <button
+              onClick={handleClaimAllClick}
+              className="btn border mt-2 border-blue-500 p-2 rounded-sm hover:bg-blue-500 text-black hover:text-white w-full"
+            >
               Claim All
             </button>
           </div>
         </>
       )}
 
-      {productsWithoutWarranty?.length > 0 && (
+      {productsWithoutWarranty.length > 0 && (
         <>
           <Table className="w-[85%] ms:w-[97%] mx-auto border-collapse border border-gray-300 mt-8">
             <thead>
