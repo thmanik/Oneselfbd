@@ -25,8 +25,15 @@ export const apiSlice = baseApi.injectEndpoints({
         body: { phoneNumber, warrantyCodes },
       }),
     }),
+    claimRequest: builder.mutation({
+      query: (formData) => ({
+        url: "/warranty-claim/",
+        method: "POST",
+        body: formData,
+      }),
+    }),
   }),
 });
 
-export const { useCheckWarrantyQuery } = apiSlice;
+export const { useCheckWarrantyQuery, useClaimRequestMutation } = apiSlice;
 // Corrected capitalization

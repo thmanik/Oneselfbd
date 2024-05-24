@@ -1,7 +1,9 @@
 "use client";
 import EcButton from "@/components/EcButton/EcButton";
-/* eslint-disable no-console */
+import { useToast } from "@/components/ui/use-toast";
+import { useClaimRequestMutation } from "@/redux/features/api/apiSlice";
 import { TRootState } from "@/types/rootState";
+import { ToastAction } from "@radix-ui/react-toast";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -37,11 +39,12 @@ const WarrantyForm = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [addressOption, setAddressOption] = useState<"keep" | "change">("keep");
   const [customerData, setCustomerData] = useState(initialCustomerData);
-
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const router = useRouter();
 
+  const [claimRequest, { isLoading }] = useClaimRequestMutation();
+
   useEffect(() => {
-    // Check if customerData is empty and addressOption is not set to "change"
     if (
       !customerData.fullName &&
       !customerData.phoneNumber &&
@@ -51,10 +54,53 @@ const WarrantyForm = () => {
       router.push("/warranty/find-your-product");
     }
   }, [customerData, addressOption, router]);
+  const { toast } = useToast();
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const formData = new FormData();
+    formData.append("phoneNumber", TableData[0]?.shippingDetails?.phoneNumber);
+    formData.append("problemInDetails", data.issueDescription);
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    const formDataWithFiles = { ...data, customerFiles: selectedFiles };
-    console.log("Form Data with Files:", formDataWithFiles);
+    // Append warranty codes as an array
+    const warrantyCodesArray = data.warrantyCodes
+      .split(",")
+      .map((code) => code.trim());
+    warrantyCodesArray.forEach((code) =>
+      formData.append("warrantyCodes[]", code)
+    );
+
+    // Append shipping details
+    formData.append("shipping[fullName]", data.fullName);
+    formData.append("shipping[fullAddress]", data.fullAddress);
+    formData.append("shipping[phoneNumber]", data.phoneNumber);
+
+    // Append selected files with the correct field name
+    selectedFiles.forEach((file) => {
+      formData.append("files", file, file.name);
+    });
+
+    try {
+      await claimRequest(formData).unwrap();
+      toast({
+        description: "Warranty claim request submitted successfully",
+        className: "text-green-500",
+        action: (
+          <ToastAction
+            altText="Go back home"
+            onClick={() => {
+              router.push("/");
+            }}
+          >
+            <EcButton className="text-white">Go back home</EcButton>
+          </ToastAction>
+        ),
+      });
+      setIsFormSubmitted(true);
+    } catch (error: unknown) {
+      toast({
+        description: "Error submitting warranty claim request",
+        className: "text-red-500",
+      });
+    }
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>): void => {
@@ -124,7 +170,6 @@ const WarrantyForm = () => {
                 readOnly
               />
             </div>
-
             <div className="mb-4">
               <label htmlFor="warrantyCodes" className="block mb-2">
                 পন্যের ওয়ারেন্টি কোড -
@@ -139,7 +184,6 @@ const WarrantyForm = () => {
               />
             </div>
           </div>
-
           <div className="mb-4">
             <label htmlFor="issueDescription" className="block mb-2">
               সমস্যাটি বর্ণনা করুন-
@@ -148,7 +192,7 @@ const WarrantyForm = () => {
               id="issueDescription"
               {...register("issueDescription", { required: true })}
               className="w-full border h-[150px] border-gray-300 rounded-md p-2"
-              placeholder="আপনি যে সমস্যা দেখে পরিবর্তন করতে চাচ্ছেন উক্ত সমস্যাটি বিস্তারিত ভাবে লিখুন"
+              placeholder="আপনি যে সমস্যা দেখে পরিবর্তন করতে চাচ্ছেন   উক্ত সমস্যাটি বিস্তারিত ভাবে লিখুন"
             />
             {errors.issueDescription && (
               <p className="text-red-500">
@@ -157,8 +201,6 @@ const WarrantyForm = () => {
               </p>
             )}
           </div>
-
-          {/* File input field */}
           <div className="flex flex-col items-center justify-center">
             <div
               className={`${
@@ -190,7 +232,6 @@ const WarrantyForm = () => {
                 onClick={(e) => e.stopPropagation()}
                 style={{ width: "100%" }}
               />
-
               <label
                 htmlFor="customerFile"
                 className="flex justify-center items-center text-black py-2 px-4 rounded-md cursor-pointer"
@@ -209,12 +250,9 @@ const WarrantyForm = () => {
               </p>
             )}
           </div>
-
           {renderSelectedFiles()}
-
           <div>
             <h2 className="text-xl mb-4">ক্রেতার তথ্য</h2>
-
             <div className="mb-4">
               <input
                 type="radio"
@@ -230,7 +268,6 @@ const WarrantyForm = () => {
               <label htmlFor="keepAddress" className="ml-2">
                 পূর্বের ঠিকানা রাখুন
               </label>
-
               <input
                 type="radio"
                 id="changeAddress"
@@ -238,7 +275,6 @@ const WarrantyForm = () => {
                 value="change"
                 onChange={() => {
                   setAddressOption("change");
-                  // Clear customer data if changing address
                   setCustomerData({
                     fullName: "",
                     phoneNumber: "",
@@ -252,7 +288,6 @@ const WarrantyForm = () => {
                 ঠিকানা পরিবর্তন করুন
               </label>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="mb-4">
                 <label htmlFor="fullName" className="block mb-2">
@@ -277,7 +312,6 @@ const WarrantyForm = () => {
                   <p className="text-red-500">ক্রেতার নাম প্রয়োজন</p>
                 )}
               </div>
-
               <div className="mb-4">
                 <label htmlFor="phoneNumber" className="block mb-2">
                   মোবাইল নম্বর-
@@ -329,11 +363,21 @@ const WarrantyForm = () => {
               )}
             </div>
           </div>
-
           <div className="flex justify-end">
-            <EcButton type="submit" className="text-white">
-              Submit
-            </EcButton>
+            {!isFormSubmitted && ( // Render the button only if the form is not submitted
+              <EcButton
+                type="submit"
+                className="text-white"
+                disabled={isLoading}
+              >
+                {isLoading ? "Submitting..." : "Submit"}
+              </EcButton>
+            )}
+            {isFormSubmitted && (
+              <EcButton type="submit" className="text-white" disabled>
+                Form Submitted
+              </EcButton>
+            )}
           </div>
         </form>
       </div>

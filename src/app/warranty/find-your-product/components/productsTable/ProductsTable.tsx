@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import config from "@/config/config";
 import {
