@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 "use client";
 import ErrorMessage from "@/components/errorMessage/ErrorMessage";
 import { CardDescription, CardTitle } from "@/components/ui/card";
@@ -19,7 +18,6 @@ import { Link } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-
 type FormData = {
   fullName: string;
   phoneNumber: string;
@@ -63,10 +61,11 @@ const ShippingAddress = () => {
         setValue("fullAddress", parsedAddress.fullAddress);
         setValue("notes", parsedAddress.notes || "");
       }
-    } else {
-      // If customer has an account, set shippingAddress to null or any default value
-      setShippingAddress(null);
     }
+    //  else {
+    //   // If customer has an account, set shippingAddress to null or any default value
+    //   setShippingAddress(null);
+    // }
   }, [setValue, shippingInfoData]);
 
   const checkCustomerAccount = () => {
@@ -76,7 +75,6 @@ const ShippingAddress = () => {
   };
 
   const onSubmit = (data: FormData) => {
-    console.log("storedData", data);
     const notes =
       data.notes !== null && data.notes !== undefined ? data.notes : "";
     const shippingInfo: TShippingInfo = {
