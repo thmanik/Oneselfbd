@@ -16,12 +16,12 @@ const Search = () => {
       <div className="flex justify-center items-center overflow-hidden rounded-full">
         <input
           type="search"
-          className="p-5 w-[90%] outline-none border-2 rounded-full rounded-r-none border-r-0 border-secondary h-[45px]"
+          className="p-5 w-[90%] outline-none border-2 rounded-full rounded-r-none border-r-0 border-primary h-[45px]"
           placeholder="Search for products"
           name="searchValue"
         />
 
-        <button className="font-bold w-[10%] flex justify-center items-center bg-secondary h-[45px] text-white">
+        <button className="font-bold w-[10%] flex justify-center items-center bg-primary h-[45px] text-white">
           <FaSearch className="w-6 h-6" />
         </button>
       </div>

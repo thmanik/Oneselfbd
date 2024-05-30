@@ -6,6 +6,7 @@ import ProductsGallery from "@/components/home/productsGallery/ProductsGallery";
 // import TrendingProducts from "@/components/home/trendingProducts/TrendingProducts";
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import AllProducts from "@/components/home/AllProducts/AllProducts";
+import FacilitiesButtons from "@/components/home/Banner/FacilitiesButtons/FacilitiesButtons";
 import useQuery from "@/hooks/useQuery";
 import TCategory from "@/types/categories/categories";
 import CategorySection from "./shop/components/CategorySection";
@@ -17,6 +18,9 @@ const Home = async () => {
   return (
     <>
       <Banner />
+      <ContainerMax>
+        <FacilitiesButtons />
+      </ContainerMax>
       <ContainerMax>
         <CategorySection categories={categories} />
       </ContainerMax>
