@@ -37,7 +37,7 @@ const MenuBar = async ({
   return (
     <div>
       <Menubar
-        className={`${horizontal && "flex flex-col items-start"} border-0`}
+        className={`${horizontal && "flex flex-col  items-start"} bg-none bg-md-primary bg-lg-primary border-0`}
       >
         {menuLinks.map((menuItem) => {
           if (!menuItem.subMenus?.length) {
@@ -46,7 +46,7 @@ const MenuBar = async ({
                 <MenubarTrigger>
                   <Link
                     href={menuItem.href}
-                    className="hover:text-primary font-semibold"
+                    className=" hover:text-white font-semibold text-md"
                   >
                     {menuItem.title}
                   </Link>
@@ -56,7 +56,7 @@ const MenuBar = async ({
           } else {
             return (
               <MenubarMenu key={menuItem.href}>
-                <MenubarTrigger className="hover:text-primary font-semibold">
+                <MenubarTrigger className="hover:text-white font-semibold">
                   {menuItem.title} <IoMdArrowDropdown />
                 </MenubarTrigger>
                 <MenubarContent className="-mt-3">

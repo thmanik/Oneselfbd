@@ -10,7 +10,7 @@ const ProductsGallery = async () => {
   const [{ data }] = await useQuery<any>("/products");
   const products = data?.products as TProduct[];
   return (
-    <section className="pt-20">
+    <section className="pt-8">
       <ContainerMax>
         <SectionTitle title="Great Deal" href="/shop" />
         <div className="flex gap-3 flex-wrap justify-center mt-5">
