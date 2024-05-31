@@ -62,7 +62,9 @@ const ProductFilter = ({
   return (
     <>
       <Box className="bg-white space-y-3">
-        <BoxHeading>Filter by price</BoxHeading>
+        <BoxHeading className="bg-gray-100 py-1 px-2 mx-2">
+          Filter by price
+        </BoxHeading>
         <PriceRangePicker
           initialState={priceFilterInitialState}
           setInitialState={setPriceFilterInitialState}

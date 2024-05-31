@@ -33,11 +33,11 @@ const ShopPage = async ({
   const [{ data: tags = [] }] = await useQuery<TTag[]>(`/tags`);
 
   return (
-    <section className="pt-16 relative">
+    <section className=" relative">
       <div className="absolute inset-0 -z-10 h-full w-full bg-base-100 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
       <ContainerMax>
         <CategorySection categories={categories} />
-        <BoxHeading className="mt-20 mb-5">Shop</BoxHeading>
+        <BoxHeading className="mt-12 mb-5">Shop</BoxHeading>
         <div className="grid grid-cols-1 md:grid-cols-7 gap-5">
           <div className="col-span-7 md:col-span-2">
             <ProductFilterContent
@@ -46,14 +46,10 @@ const ShopPage = async ({
               categories={categories}
             />
           </div>
-          <div className="col-span-7 lg:col-span-5 pt-5">
-            <div className="flex flex-wrap gap-5 justify-center">
+          <div className="col-span-7 lg:col-span-5 ">
+            <div className="grid grid-cols-2 xls:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl: 2xl:grid-cols-5 gap-4 md:gap-7 justify-center ">
               {products.map((product) => (
-                <ProductCardPrimary
-                  key={product._id}
-                  product={product}
-                  className="rounded-md hover:scale-105 transition-all h-80 w-44 md:w-[190px]"
-                />
+                <ProductCardPrimary key={product._id} product={product} />
               ))}
               {!products.length ? (
                 <ErrorMessage message="No products found" />
