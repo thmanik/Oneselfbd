@@ -22,7 +22,7 @@ const CustomBreadcrumb: React.FC<BreadcrumbProps> = ({ paths }) => {
             <BreadcrumbItem>
               <BreadcrumbLink
                 href={path.url}
-                className="flex items-center text-gray-500 hover:text-blue-800"
+                className="flex items-center text-gray-500 hover:text-primary"
               >
                 {index === 0 && <FaHome className="mr-2" />}
                 {path.name}
