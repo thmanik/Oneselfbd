@@ -43,7 +43,7 @@ const PriceRangePicker = ({
 
   return (
     <div>
-      <form className="grid grid-cols-2 gap-3" ref={formRef}>
+      <form className="grid grid-cols-2 gap-3 mx-2" ref={formRef}>
         <Input
           type="number"
           defaultValue={initialState[0] !== 0 ? initialState[0] : undefined}
@@ -61,7 +61,7 @@ const PriceRangePicker = ({
           placeholder="Max"
         />
       </form>
-      <div className="col-span-2 mt-5">
+      <div className="col-span-2 mt-5 mx-2">
         <span className="text-muted font-semibold">Price:</span>
         <span className="font-bold">
           {initialState[0]}&#2547; - {initialState[1]}&#2547;

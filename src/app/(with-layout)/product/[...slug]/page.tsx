@@ -60,10 +60,10 @@ const SingleProductPage = async ({ params }: TProps) => {
       <section className="my-10">
         <ContainerMax>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <Box className="shadow-none">
+            <Box className="shadow-none ring-2 ">
               <SingleProductPageImageGallery image={image} />
             </Box>
-            <Box className="space-y-4">
+            <Box className="space-y-4 shadow-none ring-0">
               <Link
                 className="text-sm text-muted"
                 href={`/category/${category?._id?._id}`}
