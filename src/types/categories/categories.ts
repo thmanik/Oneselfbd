@@ -1,4 +1,5 @@
 type TCategory = {
+  slug: string | string[] | undefined;
   _id: string;
   name: string;
   image: {

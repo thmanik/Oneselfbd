@@ -1,4 +1,5 @@
 import React from "react";
+import { FaChevronRight, FaHome } from "react-icons/fa";
 
 import {
   Breadcrumb,
@@ -14,14 +15,24 @@ type BreadcrumbProps = {
 
 const CustomBreadcrumb: React.FC<BreadcrumbProps> = ({ paths }) => {
   return (
-    <Breadcrumb>
-      <BreadcrumbList>
+    <Breadcrumb className="p-2 bg-[#F2F4F5] border w-full ">
+      <BreadcrumbList className="flex items-center space-x-2 text-lg">
         {paths.map((path, index) => (
           <React.Fragment key={index}>
             <BreadcrumbItem>
-              <BreadcrumbLink href={path.url}>{path.name}</BreadcrumbLink>
+              <BreadcrumbLink
+                href={path.url}
+                className="flex items-center text-gray-500 hover:text-blue-800"
+              >
+                {index === 0 && <FaHome className="mr-2" />}
+                {path.name}
+              </BreadcrumbLink>
             </BreadcrumbItem>
-            {index !== paths.length - 1 && <BreadcrumbSeparator />}
+            {index !== paths.length - 1 && (
+              <BreadcrumbSeparator>
+                <FaChevronRight className="text-gray-500" />
+              </BreadcrumbSeparator>
+            )}
           </React.Fragment>
         ))}
       </BreadcrumbList>
