@@ -10,6 +10,7 @@ import { TTag } from "@/types/tags/tag";
 import { Metadata } from "next";
 import CategorySection from "./components/CategorySection";
 import ProductFilterContent from "./components/ProductFilterContent";
+import CustomBreadcrumb from "./components/customBreadcrumb/CustomBreadcrumb"; // Importing the CustomBreadcrumb component
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -31,12 +32,19 @@ const ShopPage = async ({
   );
   const products = (data?.products as TProduct[]) || [];
   const [{ data: tags = [] }] = await useQuery<TTag[]>(`/tags`);
-
+  const hasCategoryParam = !!searchParams.category;
   return (
     <section className=" relative">
       <div className="absolute inset-0 -z-10 h-full w-full bg-base-100 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
       <ContainerMax>
-        <CategorySection categories={categories} />
+        {/* Render the CustomBreadcrumb component */}
+        <CustomBreadcrumb
+          paths={[
+            { name: "Home", url: "/" },
+            { name: "Shop", url: "/shop" },
+          ]}
+        />
+        {!hasCategoryParam && <CategorySection categories={categories} />}
         <BoxHeading className="mt-12 mb-5">Shop</BoxHeading>
         <div className="grid grid-cols-1 md:grid-cols-7 gap-5">
           <div className="col-span-7 md:col-span-2">
