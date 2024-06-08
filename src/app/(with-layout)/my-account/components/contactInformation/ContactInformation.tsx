@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 "use client";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import config from "@/config/config";
@@ -7,7 +8,7 @@ import Link from "next/link";
 
 const ContactInformation = () => {
   const { data } = useGetUserDataQuery(undefined);
-
+  console.log("for checking", data);
   const { email, fullName, phoneNumber, profilePicture } = data?.data || {};
   return (
     <div>
