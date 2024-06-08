@@ -16,7 +16,7 @@
 
 import baseApi from "@/redux/baseApi/baseApi";
 
-export const apiSlice = baseApi.injectEndpoints({
+export const warrantyApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     checkWarranty: builder.query({
       query: ({ phoneNumber, warrantyCodes }) => ({
@@ -35,5 +35,6 @@ export const apiSlice = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCheckWarrantyQuery, useClaimRequestMutation } = apiSlice;
+export const { useCheckWarrantyQuery, useClaimRequestMutation } =
+  warrantyApiSlice;
 // Corrected capitalization

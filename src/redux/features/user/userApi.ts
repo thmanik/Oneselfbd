@@ -1,6 +1,6 @@
 import baseApi from "@/redux/baseApi/baseApi";
 
-const userApi = baseApi.injectEndpoints({
+export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createCustomer: builder.mutation({
       query: (userInfo) => ({
@@ -9,7 +9,10 @@ const userApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+    getUserData: builder.query({
+      query: () => "/users/profile",
+    }),
   }),
 });
 
-export const { useCreateCustomerMutation } = userApi;
+export const { useCreateCustomerMutation, useGetUserDataQuery } = userApi;
