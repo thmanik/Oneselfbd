@@ -31,13 +31,13 @@ const carousalFooterData = [
 
 const FacilitiesButtons = () => {
   return (
-    <div className="flex gap-5 items-center justify-center border-red-500 mb-3 -mt-3 flex-wrap">
+    <div className="flex gap-5   items-center justify-center border-red-500  flex-wrap">
       {carousalFooterData.map((item) => (
         <Link
           href={item.href}
           key={item.title}
           className={twMerge(
-            "flex-1 cursor-pointer flex px-3 gap-2 items-center border rounded-md bg-gradient-to-r space-y-1 py-2 min-w-[150px] w-full",
+            "flex-1 cursor-pointer flex px-3 gap-2 items-center border rounded-md bg-gradient-to-r space-y-1 py-3 min-w-[150px] w-full",
             item.customClasses
           )}
           style={{ backdropFilter: "blur(10px)" }}

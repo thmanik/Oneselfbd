@@ -4,7 +4,7 @@ import MenuBar from "../menuBar/MenuBar";
 
 const BottomHeader = async ({ categories }: { categories?: TCategory[] }) => {
   return (
-    <div className="py-2 border-b-[1px] hidden md:block">
+    <div className="py-2 border-b-[1px] hidden bg-primary  md:block">
       <ContainerMax>
         <MenuBar categories={categories} />
       </ContainerMax>

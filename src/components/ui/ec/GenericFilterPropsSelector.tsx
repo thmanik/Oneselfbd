@@ -53,8 +53,8 @@ const GenericFilterPropsSelector = ({
         onOpenChange={setIsOpen}
         className="w-full space-y-2"
       >
-        <div className="flex items-center justify-between space-x-4">
-          <BoxHeading className="mb-0">{title}</BoxHeading>
+        <div className="flex items-center justify-between space-x-4 bg-gray-100  px-2">
+          <BoxHeading className="mb-0 ">{title}</BoxHeading>
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm" className="w-9 p-0">
               <ChevronsUpDown className="h-4 w-4" />

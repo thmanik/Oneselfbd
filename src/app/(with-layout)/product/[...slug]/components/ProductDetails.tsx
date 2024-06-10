@@ -11,7 +11,7 @@ const ProductDetails = ({ product }: { product?: TSingleProduct }) => {
           </TabsTrigger>
           <TabsTrigger value="shipping&Return">Shipping & Return</TabsTrigger>
         </TabsList>
-        <hr className="w-full" />
+        <hr className="w-full " />
         <TabsContent value="description">
           <div
             dangerouslySetInnerHTML={{ __html: product?.description as string }}

@@ -19,11 +19,11 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
         // },
       }}
       className={twMerge(
-        "bg-white h-full flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
+        "bg-white h-full  flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
         className
       )}
     >
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-5">
         <div className="bg-base-100">
           <Image
             src={`${config.base_url}/${product.image?.src}`}
