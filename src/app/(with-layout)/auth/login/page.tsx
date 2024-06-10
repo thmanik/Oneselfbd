@@ -53,16 +53,16 @@ const LoginPage = () => {
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="phoneNumber"
+            htmlFor="phoneEmailOrUid"
           >
             Phone Number
           </label>
           <Input
-            className={`shadow appearance-none border ${errors.phoneNumber ? "border-red-500" : "border-gray-200"} rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+            className={`shadow appearance-none border ${errors.phoneEmailOrUid ? "border-red-500" : "border-gray-200"} rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
             type="tel"
             placeholder="Enter Your Phone Number"
-            id="phoneNumber"
-            {...register("phoneNumber")}
+            id="phoneEmailOrUid"
+            {...register("phoneEmailOrUid")}
           />
         </div>
         <div className="mb-6">
