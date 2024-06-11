@@ -1,7 +1,7 @@
 import ContactInformation from "./components/contactInformation/ContactInformation";
 import DefaultShippingAddress from "./components/defaultShippingAddress/DefaultShippingAddress";
 
-const AccountData = () => {
+const MyAccoutPage = () => {
   return (
     <div className="grid md:grid-cols-12 md:ms-8 gap-5">
       <div className="md:col-span-6 sm:col-span-12 ">
@@ -14,4 +14,4 @@ const AccountData = () => {
   );
 };
 
-export default AccountData;
+export default MyAccoutPage;
