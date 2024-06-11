@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 "use client";
 import {
   Card,
@@ -10,7 +11,7 @@ import { useGetUserDataQuery } from "@/redux/features/user/userApi";
 import Link from "next/link";
 const DefaultShippingAddress = () => {
   const { data } = useGetUserDataQuery(undefined);
-
+  console.log("data form", data);
   return (
     <div>
       <Card className="w-[350px]">

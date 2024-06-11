@@ -12,7 +12,14 @@ export const userApi = baseApi.injectEndpoints({
     getUserData: builder.query({
       query: () => "/users/profile",
     }),
+    getOrderedProducts: builder.query({
+      query: () => "",
+    }),
   }),
 });
 
-export const { useCreateCustomerMutation, useGetUserDataQuery } = userApi;
+export const {
+  useCreateCustomerMutation,
+  useGetUserDataQuery,
+  useGetOrderedProductsQuery,
+} = userApi;
