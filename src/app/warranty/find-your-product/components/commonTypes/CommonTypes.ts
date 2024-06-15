@@ -1,9 +1,14 @@
+import { ReactNode } from "react";
+
 export type Shipping = {
   fullAddress: string;
   fullName: string;
   phoneNumber: string;
 };
 export type Product = {
+  total: number;
+  status: ReactNode;
+  updatedAt: string | number | Date;
   shipping: Shipping;
   phoneNumber: string;
   warranty: Warranty | null;

@@ -8,106 +8,116 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"; // Adjust the import path according to your project structure
+} from "@/components/ui/table";
+import { useGetOrderedProductsQuery } from "@/redux/features/user/userApi";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-type Invoice = {
-  orderID: string;
-  date: string;
-  ship_to: string;
-  totalAmount: string;
-  paymentStatus: string;
+type Product = {
+  orderId: string;
+  total: number;
+  status: string;
+  updatedAt: string;
 };
-
-const invoices: Invoice[] = [
-  {
-    orderID: "INV001",
-    date: "01/02/2024",
-    ship_to: "Manik",
-    totalAmount: "$250.00",
-    paymentStatus: "Unpaid",
-  },
-  {
-    orderID: "INV002",
-    date: "05/02/2024",
-    ship_to: "Manik",
-    totalAmount: "$200.00",
-    paymentStatus: "Paid",
-  },
-  {
-    orderID: "INV003",
-    date: "04/02/2024",
-    ship_to: "Manik",
-    totalAmount: "$300.00",
-    paymentStatus: "Pending",
-  },
-];
 
 const OrderProductTable = () => {
   const [totalAmount, setTotalAmount] = useState<number>(0);
+  const { data, isLoading } = useGetOrderedProductsQuery(undefined);
 
   useEffect(() => {
-    const calculateTotalAmount = () => {
-      let total = 0;
-      invoices.forEach((invoice) => {
-        const amount = parseFloat(invoice.totalAmount.replace("$", ""));
-        if (!isNaN(amount)) {
-          total += amount;
-        }
-      });
+    if (data?.data) {
+      const total = data.data.reduce(
+        (sum: number, product: Product) =>
+          sum + (isNaN(product.total) ? 0 : product.total),
+        0
+      );
       setTotalAmount(total);
-    };
+    }
+  }, [data]);
 
-    calculateTotalAmount();
-  }, []);
+  const sortedData = data?.data
+    ?.slice()
+    .sort(
+      (a: Product, b: Product) =>
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    );
 
   return (
-    <div className="overflow-x-auto">
-      <div className="inline-block align-middle">
-        <Table className="min-w-full border-collapse">
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px] font-bold text-black">
-                Orders ID
-              </TableHead>
-              <TableHead className="font-bold text-black">DATE</TableHead>
-              <TableHead className="font-bold text-black">Ship To</TableHead>
-              <TableHead className="font-bold text-black">
-                Order Total
-              </TableHead>
-              <TableHead className="font-bold text-black">Status</TableHead>
-              <TableHead className="text-right font-bold text-black">
-                Action
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {invoices.map((invoice) => (
-              <TableRow key={invoice.orderID}>
-                <TableCell className="font-medium">{invoice.orderID}</TableCell>
-                <TableCell>{invoice.date}</TableCell>
-                <TableCell>{invoice.ship_to}</TableCell>
-                <TableCell>{invoice.totalAmount}</TableCell>
-                <TableCell>{invoice.paymentStatus}</TableCell>
-                <TableCell className="text-right">
-                  <Link href="#">View Order</Link>
-                </TableCell>
+    <div className="overflow-x-auto p-2">
+      <div className="align-middle border rounded-lg shadow-md max-w-4xl mx-auto lg:max-w-5xl">
+        {isLoading ? (
+          <div className="text-center py-4">Loading...</div>
+        ) : (
+          <Table className="min-w-full border-collapse">
+            <TableCaption className="text-lg font-semibold mb-4">
+              A list of your recent invoices.
+            </TableCaption>
+            <TableHeader>
+              <TableRow className="bg-gray-200">
+                <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
+                  Order ID
+                </TableHead>
+                <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
+                  Date
+                </TableHead>
+                <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
+                  Order Total
+                </TableHead>
+                <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
+                  Status
+                </TableHead>
+                <TableHead className="w-[100px] lg:w-[120px] text-right font-bold text-black py-3 px-4">
+                  Action
+                </TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TableCell className="font-bold" colSpan={5}>
-                {invoices.length} Item(s)
-              </TableCell>
-              <TableCell className="text-right font-bold">
-                ${totalAmount.toFixed(2)}
-              </TableCell>
-            </TableRow>
-          </TableFooter>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {sortedData?.length > 0 ? (
+                sortedData.map((product: Product) => (
+                  <TableRow key={product.orderId} className="hover:bg-gray-100">
+                    <TableCell className="font-medium py-3 px-4">
+                      {product.orderId}
+                    </TableCell>
+                    <TableCell className="py-3 px-4">
+                      {new Date(product.updatedAt).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="py-3 px-4">{`$${product.total.toFixed(2)}`}</TableCell>
+                    <TableCell className="py-3 px-4">
+                      {product.status}
+                    </TableCell>
+                    <TableCell className="text-right py-3 px-2">
+                      <Link
+                        href={`my-account/my-orders/order-details/${product.orderId}`}
+                      >
+                        <button className="text-blue-500 hover:text-blue-700">
+                          View Order
+                        </button>
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center py-3 px-4">
+                    No Orders found
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+            {sortedData?.length > 0 && (
+              <TableFooter>
+                <TableRow className="bg-gray-200">
+                  <TableCell className="font-bold py-3 px-4" colSpan={4}>
+                    {sortedData.length} Item(s)
+                  </TableCell>
+                  <TableCell className="text-right font-bold py-3 px-4">
+                    ${totalAmount.toFixed(2)}
+                  </TableCell>
+                </TableRow>
+              </TableFooter>
+            )}
+          </Table>
+        )}
       </div>
     </div>
   );

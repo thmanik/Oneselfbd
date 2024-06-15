@@ -1,29 +1,18 @@
-/* eslint-disable no-console */
 "use client";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import config from "@/config/config";
 import { useGetUserDataQuery } from "@/redux/features/user/userApi";
-import Image from "next/image";
 import Link from "next/link";
 
 const ContactInformation = () => {
-  const { data } = useGetUserDataQuery(undefined);
-  console.log("for checking", data);
-  const { email, fullName, phoneNumber, profilePicture } = data?.data || {};
+  const { data } = useGetUserDataQuery({});
+
+  const { email, fullName, phoneNumber } = data?.data || {};
   return (
     <div>
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle className="text-2xl mb-2 ">Contact Information</CardTitle>
-          <div>
-            <Image
-              width={60}
-              height={60}
-              src={`${config.base_url}/${profilePicture}`}
-              alt={profilePicture}
-              className="rounded-full"
-            />
-          </div>
+
           <div>
             <div>
               <span className="font-bold text-gray-800 ">Name: </span>

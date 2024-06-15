@@ -18,64 +18,16 @@ const ShippingAddressForm = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label
-              htmlFor="fullName"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Full Name
-            </label>
-            <Input
-              type="text"
-              id="fullName"
-              {...register("fullName")}
-              placeholder="Enter your full name"
-              className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email
-            </label>
-            <Input
-              type="email"
-              id="email"
-              {...register("email")}
-              placeholder="example@example.com"
-              readOnly
-              value="example@example.com"
-              className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none "
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="phoneNumber"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Phone Number
-            </label>
-            <Input
-              type="tel"
-              id="phoneNumber"
-              {...register("phoneNumber")}
-              placeholder="Enter your phone number"
-              className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none "
-            />
-          </div>
-          <div className="mb-4">
-            <label
               htmlFor="fullAddress"
               className="block text-sm font-medium text-gray-700"
             >
-              Full Address
+              Add New Address
             </label>
             <Input
               type="text"
               id="fullAddress"
               {...register("fullAddress")}
-              placeholder="Enter your full address"
+              placeholder="Enter a new address"
               className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none  "
             />
           </div>

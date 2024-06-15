@@ -8,7 +8,7 @@ type Props = {
 };
 
 const UserAccountLayout = ({ children }: Props) => {
-  const isLoggedIn = !!cookies()?.get("refreshToken")?.value;
+  const isLoggedIn = !!cookies()?.get("__app.ec.rt")?.value;
   return (
     <section className="px-6 py-8">
       {/* Main Content */}

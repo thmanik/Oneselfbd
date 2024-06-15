@@ -50,7 +50,6 @@ const SingleProductPage = async ({ params }: TProps) => {
         className="text-center text-2xl py-5"
       />
     );
-    // notFound()
   }
   const { image, category, brand, inventory, title, shortDescription, price } =
     product as TSingleProduct;

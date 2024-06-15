@@ -9,11 +9,24 @@ export const userApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+
     getUserData: builder.query({
       query: () => "/users/profile",
+      providesTags: ["UserProfile"],
     }),
     getOrderedProducts: builder.query({
-      query: () => "",
+      query: () => "/orders/customer",
+    }),
+    getOrderProductById: builder.query({
+      query: (orderId) => `/orders/${orderId}`,
+    }),
+    updateUserData: builder.mutation({
+      query: (updatedData) => ({
+        url: "/customers",
+        method: "PATCH",
+        body: updatedData,
+      }),
+      invalidatesTags: ["UserProfile"],
     }),
   }),
 });
@@ -22,4 +35,6 @@ export const {
   useCreateCustomerMutation,
   useGetUserDataQuery,
   useGetOrderedProductsQuery,
+  useGetOrderProductByIdQuery,
+  useUpdateUserDataMutation,
 } = userApi;
