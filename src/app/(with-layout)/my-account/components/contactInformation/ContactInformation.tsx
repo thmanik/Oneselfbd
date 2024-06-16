@@ -4,7 +4,7 @@ import { useGetUserDataQuery } from "@/redux/features/user/userApi";
 import Link from "next/link";
 
 const ContactInformation = () => {
-  const { data } = useGetUserDataQuery({});
+  const { data } = useGetUserDataQuery(undefined);
 
   const { email, fullName, phoneNumber } = data?.data || {};
   return (

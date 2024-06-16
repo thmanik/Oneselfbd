@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Card,
   CardDescription,
@@ -8,8 +9,12 @@ import {
 } from "@/components/ui/card";
 import { useGetUserDataQuery } from "@/redux/features/user/userApi";
 import Link from "next/link";
+
 const DefaultShippingAddress = () => {
   const { data } = useGetUserDataQuery(undefined);
+
+  // Extract address details from data
+  const address = data?.data?.address;
 
   return (
     <div>
@@ -17,13 +22,20 @@ const DefaultShippingAddress = () => {
         <CardHeader>
           <CardTitle className="text-1xl">Default Shipping Address</CardTitle>
           <CardDescription>
-            {data?.data?.address ||
-              "You have not set a default shipping address."}
+            {address ? (
+              <div>
+                <p>{address.fullAddress}</p>
+                <p>{address.city}</p>
+                <p>{address.country}</p>
+              </div>
+            ) : (
+              "You have not set a default shipping address."
+            )}
           </CardDescription>
         </CardHeader>
 
         <CardFooter className="flex justify-between">
-          <Link href="/my-account/add-shipping-address">
+          <Link href="/my-account/edit-account">
             <div
               className="cursor-pointer text-blue-600"
               title="Edit Shipping Address"

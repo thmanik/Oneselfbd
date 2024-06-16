@@ -26,6 +26,18 @@ const schema = yup.object().shape({
       /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
       "Password must contain at least one uppercase letter and one special character"
     ),
+  address: yup
+    .object()
+    .shape({
+      fullAddress: yup.string().required("Full address is required"),
+    })
+    .required("Address is required"),
+  personalInfo: yup
+    .object()
+    .shape({
+      fullName: yup.string().required("Full name is required"),
+    })
+    .required("Personal info is required"),
 });
 
 const RegistrationPage = () => {
@@ -53,10 +65,10 @@ const RegistrationPage = () => {
       router.push("/");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      // console.log(error)
       toast({
         variant: "destructive",
         title: error?.data?.message,
+        className: "bg-gray-300 text-red-500 text-2xl",
       });
     }
   };
@@ -73,6 +85,46 @@ const RegistrationPage = () => {
           </h4>
         </div>
         <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="fullName"
+          >
+            Full Name
+          </label>
+          <Input
+            className={`shadow appearance-none border ${errors.personalInfo?.fullName ? "border-red-500" : "border-gray-200"} rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+            type="text"
+            placeholder="Enter Your Full Name"
+            id="fullName"
+            {...register("personalInfo.fullName")}
+          />
+          {errors.personalInfo?.fullName && (
+            <p className="text-red-500 text-xs italic">
+              {errors.personalInfo.fullName.message}
+            </p>
+          )}
+        </div>
+        <div className="mb-6">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="fullAddress"
+          >
+            Full Address
+          </label>
+          <Input
+            className={`shadow appearance-none border ${errors.address?.fullAddress ? "border-red-500" : "border-gray-200"} rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline`}
+            type="text"
+            id="fullAddress"
+            placeholder="Enter Your Full Address"
+            {...register("address.fullAddress")}
+          />
+          {errors.address?.fullAddress && (
+            <p className="text-red-500 text-xs italic">
+              {errors.address.fullAddress.message}
+            </p>
+          )}
+        </div>
+        <div className="mb-6">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="phoneNumber"
