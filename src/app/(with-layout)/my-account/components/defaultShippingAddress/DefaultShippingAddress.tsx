@@ -13,7 +13,6 @@ import Link from "next/link";
 const DefaultShippingAddress = () => {
   const { data } = useGetUserDataQuery(undefined);
 
-  // Extract address details from data
   const address = data?.data?.address;
 
   return (

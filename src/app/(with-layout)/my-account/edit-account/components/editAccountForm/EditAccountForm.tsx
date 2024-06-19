@@ -1,5 +1,4 @@
 "use client";
-/* eslint-disable no-console */
 import EcButton from "@/components/EcButton/EcButton";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
@@ -7,6 +6,7 @@ import {
   useGetUserDataQuery,
   useUpdateUserDataMutation,
 } from "@/redux/features/user/userApi";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 type FormData = {
@@ -18,41 +18,89 @@ type FormData = {
 
 const EditAccountForm = () => {
   const { data } = useGetUserDataQuery({});
+
   const {
     email: initialEmail = "",
-    personalInfo: { fullName: initialFullName = "" } = {},
+    fullName: initialFullName = "",
     phoneNumber: initialPhoneNumber = "",
     address: { fullAddress: initialFullAddress = "" } = {},
   } = data?.data || {};
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { isSubmitting },
   } = useForm<FormData>();
+
   const [updateUserData] = useUpdateUserDataMutation();
   const { toast } = useToast();
 
+  useEffect(() => {
+    setValue("fullName", initialFullName);
+    setValue("email", initialEmail);
+    setValue("phoneNumber", initialPhoneNumber);
+    setValue("fullAddress", initialFullAddress);
+  }, [
+    initialFullName,
+    initialEmail,
+    initialPhoneNumber,
+    initialFullAddress,
+    setValue,
+  ]);
+
   const onSubmit = async (formData: FormData) => {
+    const updateData: Partial<FormData> = {};
+
+    if (formData.fullName !== initialFullName) {
+      updateData.fullName = formData.fullName;
+    }
+    if (formData.email !== initialEmail) {
+      updateData.email = formData.email;
+    }
+    if (formData.phoneNumber !== initialPhoneNumber) {
+      updateData.phoneNumber = formData.phoneNumber;
+    }
+    if (formData.fullAddress !== initialFullAddress) {
+      updateData.fullAddress = formData.fullAddress;
+    }
+
     try {
-      await updateUserData({
-        ...formData,
-        personalInfo: {
-          fullName: formData.fullName,
-        },
-        address: {
-          fullAddress: formData.fullAddress,
-        },
-      }).unwrap();
+      if (Object.keys(updateData).length > 0) {
+        await updateUserData({
+          ...updateData,
+          personalInfo: {
+            fullName: updateData.fullName || initialFullName,
+          },
+          address: {
+            fullAddress: updateData.fullAddress || initialFullAddress,
+          },
+        }).unwrap();
+        toast({
+          description: "Update successful",
+          className: "text-green-500",
+        });
+      } else {
+        toast({
+          description: "No changes to update",
+          className: "text-yellow-500",
+        });
+      }
+    } catch (error: unknown) {
+      let errorMessage = "Error updating account information";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (
+        typeof error === "object" &&
+        error !== null &&
+        "message" in error
+      ) {
+        errorMessage = (error as { message: string }).message;
+      }
       toast({
-        description: "Update successful",
-        className: "text-green-500",
-      });
-    } catch (error) {
-      toast({
-        description: "Error updating account information",
+        description: errorMessage,
         className: "text-red-500",
       });
-      console.error("Error updating account:", error);
     }
   };
 
@@ -74,7 +122,6 @@ const EditAccountForm = () => {
               {...register("fullName")}
               placeholder="Enter your full name"
               className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
-              defaultValue={initialFullName}
             />
           </div>
           <div className="mb-4">
@@ -89,12 +136,10 @@ const EditAccountForm = () => {
               id="phoneNumber"
               {...register("phoneNumber")}
               placeholder="Enter your phone number"
-              defaultValue={initialPhoneNumber}
               className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
             />
           </div>
 
-          {/* Email input */}
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -107,12 +152,10 @@ const EditAccountForm = () => {
               id="email"
               {...register("email")}
               placeholder="example@example.com"
-              defaultValue={initialEmail}
               className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
             />
           </div>
 
-          {/* Add New Address input */}
           <div className="mb-4">
             <label
               htmlFor="fullAddress"
@@ -125,12 +168,10 @@ const EditAccountForm = () => {
               id="fullAddress"
               {...register("fullAddress")}
               placeholder="Enter a new address"
-              defaultValue={initialFullAddress}
               className="mt-1 block w-full max-w-lg shadow-sm sm:text-sm border-gray-300 rounded-md outline-none"
             />
           </div>
 
-          {/* Submit button */}
           <EcButton type="submit" className="px-4 py-2" disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Save"}
           </EcButton>

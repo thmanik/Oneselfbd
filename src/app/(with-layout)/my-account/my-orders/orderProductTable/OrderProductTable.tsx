@@ -10,19 +10,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useGetOrderedProductsQuery } from "@/redux/features/user/userApi";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-type Product = {
-  orderId: string;
-  total: number;
-  status: string;
-  updatedAt: string;
-};
-
+import { Product } from "../components/productType/ProductType";
 const OrderProductTable = () => {
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const { data, isLoading } = useGetOrderedProductsQuery(undefined);
+  const router = useRouter();
 
   useEffect(() => {
     if (data?.data) {
@@ -39,8 +33,12 @@ const OrderProductTable = () => {
     ?.slice()
     .sort(
       (a: Product, b: Product) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
+
+  const handleViewOrder = (_id: string) => {
+    router.push(`/my-account/my-orders/${_id}`);
+  };
 
   return (
     <div className="overflow-x-auto p-2">
@@ -74,25 +72,28 @@ const OrderProductTable = () => {
             <TableBody>
               {sortedData?.length > 0 ? (
                 sortedData.map((product: Product) => (
-                  <TableRow key={product.orderId} className="hover:bg-gray-100">
+                  <TableRow key={product._id} className="hover:bg-gray-100">
                     <TableCell className="font-medium py-3 px-4">
                       {product.orderId}
                     </TableCell>
                     <TableCell className="py-3 px-4">
-                      {new Date(product.updatedAt).toLocaleDateString()}
+                      {product.createdAt
+                        ? new Date(product.createdAt).toLocaleDateString()
+                        : "-"}
                     </TableCell>
-                    <TableCell className="py-3 px-4">{`$${product.total.toFixed(2)}`}</TableCell>
+                    <TableCell className="py-3 px-4">
+                      ${product.total.toFixed(2)}
+                    </TableCell>
                     <TableCell className="py-3 px-4">
                       {product.status}
                     </TableCell>
                     <TableCell className="text-right py-3 px-2">
-                      <Link
-                        href={`my-account/my-orders/order-details/${product.orderId}`}
+                      <button
+                        className="text-blue-500 hover:text-blue-700"
+                        onClick={() => handleViewOrder(product._id)}
                       >
-                        <button className="text-blue-500 hover:text-blue-700">
-                          View Order
-                        </button>
-                      </Link>
+                        View Order
+                      </button>
                     </TableCell>
                   </TableRow>
                 ))
@@ -111,7 +112,7 @@ const OrderProductTable = () => {
                     {sortedData.length} Item(s)
                   </TableCell>
                   <TableCell className="text-right font-bold py-3 px-4">
-                    ${totalAmount.toFixed(2)}
+                    ৳ {totalAmount.toFixed(2)}
                   </TableCell>
                 </TableRow>
               </TableFooter>

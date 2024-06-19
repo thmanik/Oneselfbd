@@ -11,11 +11,10 @@ const ChangePasswordPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: object) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-    // Here you can handle form submission
-  };
+  // const onSubmit = (data: object) => {
+
+  // };
+  const onSubmit = () => {};
 
   return (
     <form

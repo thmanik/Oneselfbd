@@ -18,7 +18,7 @@ export const userApi = baseApi.injectEndpoints({
       query: () => "/orders/customer",
     }),
     getOrderProductById: builder.query({
-      query: (orderId) => `/orders/${orderId}`,
+      query: (_id) => `/orders/customer/${_id}`,
     }),
     updateUserData: builder.mutation({
       query: (updatedData) => ({
