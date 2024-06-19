@@ -1,5 +1,5 @@
 "use client";
-import { useCheckWarrantyQuery } from "@/redux/features/api/apiSlice";
+import { useCheckWarrantyQuery } from "@/redux/features/warrantyApi/warrantyApiSlice";
 import React, { useEffect, useState } from "react";
 import { Product, ProductItem } from "../commonTypes/CommonTypes";
 import ProductTable from "../productsTable/ProductsTable";

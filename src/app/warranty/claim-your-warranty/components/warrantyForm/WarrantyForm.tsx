@@ -1,7 +1,7 @@
 "use client";
 import EcButton from "@/components/EcButton/EcButton";
 import { useToast } from "@/components/ui/use-toast";
-import { useClaimRequestMutation } from "@/redux/features/api/apiSlice";
+import { useClaimRequestMutation } from "@/redux/features/warrantyApi/warrantyApiSlice";
 import { TRootState } from "@/types/rootState";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useRouter } from "next/navigation";
