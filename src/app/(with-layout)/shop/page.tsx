@@ -34,7 +34,7 @@ const ShopPage = async ({ searchParams }: ShopPageProps) => {
     `/products`,
     searchParams
   );
-  const products = (data?.products as TProduct[]) || [];
+  const products = (data as unknown as TProduct[]) || [];
   const [{ data: tags = [] }] = await useQuery<TTag[]>(`/tags`);
   const hasCategoryParam = !!searchParams.category;
 

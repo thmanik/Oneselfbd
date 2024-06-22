@@ -16,7 +16,8 @@ const PopularProducts = async () => {
   const [{ data }] =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await useQuery<any>("/products"); // TODO: Change endpoint
-  const popularProducts = data?.products as TProduct[];
+  const popularProducts = data as TProduct[];
+
   return (
     <section className="pt-8">
       <ContainerMax>
