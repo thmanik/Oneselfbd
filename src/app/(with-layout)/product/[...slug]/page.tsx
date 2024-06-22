@@ -42,7 +42,7 @@ const SingleProductPage = async ({ params }: TProps) => {
   const [{ data }] = await useQuery<any>(
     `/products?category=${product?.category?._id?._id}`
   );
-  const relatedProduct = (data?.products as TProduct[]) || [];
+  const relatedProduct = (data as TProduct[]) || [];
   if (!isSingleProductSuccess) {
     return (
       <ErrorMessage

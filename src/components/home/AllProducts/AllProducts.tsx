@@ -8,7 +8,7 @@ import { TProduct } from "@/types/products/product";
 const AllProducts = async () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [{ data }] = await useQuery<any>("/products");
-  const products = data?.products as TProduct[];
+  const products = data as TProduct[];
   return (
     <section className="pt-6">
       <ContainerMax>

@@ -8,7 +8,7 @@ const Banner = async () => {
   const [{ data }] =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await useQuery<any>("/products"); // TODO: change endpoints
-  const bannerSideProducts = (data?.products as TProduct[]) || [];
+  const bannerSideProducts = (data as TProduct[]) || [];
   return (
     <section>
       <ContainerMax>
