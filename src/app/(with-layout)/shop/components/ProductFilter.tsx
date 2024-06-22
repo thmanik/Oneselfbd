@@ -1,3 +1,112 @@
+// "use client";
+// import EcButton from "@/components/EcButton/EcButton";
+// import Box from "@/components/ui/ec/Box";
+// import BoxHeading from "@/components/ui/ec/BoxHeading";
+// import TCategory from "@/types/categories/categories";
+// import { TTag } from "@/types/tags/tag";
+// import { useRouter } from "next/navigation";
+// import { RefObject, useEffect, useState } from "react";
+// import CategorySelector from "./filters/CategorySelector";
+// import PriceRangePicker from "./filters/PriceRangePicker";
+// import TagSelector from "./filters/TagSelector";
+
+// const ProductFilter = ({
+//   searchParams,
+//   tags,
+//   categories,
+//   sheetCloseRef,
+// }: {
+//   searchParams: Record<string, string | string[] | undefined>;
+//   tags: TTag[];
+//   categories: TCategory[];
+//   sheetCloseRef: RefObject<HTMLButtonElement>;
+// }) => {
+//   const [csSearchParams, setCsSearchParams] = useState(searchParams);
+//   const [filters, setFilters] = useState("");
+//   const [priceFilterInitialState, setPriceFilterInitialState] = useState<
+//     number[]
+//   >([0, 0]);
+//   const [tagParams, setTagParams] = useState<string>("");
+//   const [categoryParams, setCategoryParams] = useState<string>("");
+
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     let newSearchParams = "";
+//     if (priceFilterInitialState.length) {
+//       const minPrice =
+//         priceFilterInitialState[0] === 0
+//           ? ""
+//           : `&minPrice=${priceFilterInitialState[0]}`;
+//       const maxPrice =
+//         priceFilterInitialState[0] === 0
+//           ? ""
+//           : `&minPrice=${priceFilterInitialState[1]}`;
+//       newSearchParams = `${minPrice}${maxPrice}`;
+//     }
+//     if (tagParams) {
+//       // newSearchParams += tagParams;
+//       newSearchParams = `${newSearchParams}&${tagParams}`;
+//     }
+//     if (categoryParams) {
+//       newSearchParams = `${newSearchParams}&${categoryParams}`;
+//     }
+//     setFilters(newSearchParams);
+//   }, [priceFilterInitialState, tagParams, categoryParams]);
+
+//   const handleClearAllFilters = () => {
+//     setCsSearchParams({});
+//     sheetCloseRef?.current?.click();
+//     router.push(`?`);
+//   };
+//   return (
+//     <>
+//       <Box className="bg-white space-y-3">
+//         <BoxHeading className="bg-gray-100 py-1 px-2 mx-2">
+//           Filter by price
+//         </BoxHeading>
+//         <PriceRangePicker
+//           initialState={priceFilterInitialState}
+//           setInitialState={setPriceFilterInitialState}
+//           searchParams={csSearchParams}
+//         />
+//         <TagSelector
+//           tags={tags}
+//           setTagParams={setTagParams}
+//           searchParams={csSearchParams}
+//         />
+//         <CategorySelector
+//           categories={categories}
+//           searchParams={csSearchParams}
+//           setCategoryParams={setCategoryParams}
+//         />
+//         <div className="flex gap-2">
+//           <EcButton
+//             className="px-6 font-bold text-white"
+//             onClick={() => {
+//               router.push(`?${filters}`);
+//               sheetCloseRef?.current?.click();
+//             }}
+//             disabled={!filters}
+//           >
+//             Find
+//           </EcButton>
+//           <EcButton
+//             className="px-6 font-bold hover:text-white"
+//             onClick={() => handleClearAllFilters()}
+//             variant="ghost"
+//             disabled={!Object.keys(searchParams).length}
+//           >
+//             Clear all filters
+//           </EcButton>
+//         </div>
+//       </Box>
+//     </>
+//   );
+// };
+
+// export default ProductFilter;
+
 "use client";
 import EcButton from "@/components/EcButton/EcButton";
 import Box from "@/components/ui/ec/Box";
@@ -6,26 +115,29 @@ import TCategory from "@/types/categories/categories";
 import { TTag } from "@/types/tags/tag";
 import { useRouter } from "next/navigation";
 import { RefObject, useEffect, useState } from "react";
+import PriceRangeSlider from "../components/priceRange/PriceRange";
 import CategorySelector from "./filters/CategorySelector";
-import PriceRangePicker from "./filters/PriceRangePicker";
 import TagSelector from "./filters/TagSelector";
 
-const ProductFilter = ({
-  searchParams,
-  tags,
-  categories,
-  sheetCloseRef,
-}: {
+type ProductFilterProps = {
   searchParams: Record<string, string | string[] | undefined>;
   tags: TTag[];
   categories: TCategory[];
   sheetCloseRef: RefObject<HTMLButtonElement>;
+};
+
+const ProductFilter: React.FC<ProductFilterProps> = ({
+  searchParams,
+  tags,
+  categories,
+  sheetCloseRef,
 }) => {
-  const [csSearchParams, setCsSearchParams] = useState(searchParams);
-  const [filters, setFilters] = useState("");
+  const [csSearchParams, setCsSearchParams] =
+    useState<Record<string, string | string[] | undefined>>(searchParams);
+  const [filters, setFilters] = useState<string>("");
   const [priceFilterInitialState, setPriceFilterInitialState] = useState<
     number[]
-  >([0, 0]);
+  >([Number(searchParams.minPrice) || 0, Number(searchParams.maxPrice) || 805]);
   const [tagParams, setTagParams] = useState<string>("");
   const [categoryParams, setCategoryParams] = useState<string>("");
 
@@ -35,17 +147,16 @@ const ProductFilter = ({
     let newSearchParams = "";
     if (priceFilterInitialState.length) {
       const minPrice =
-        priceFilterInitialState[0] === 0
-          ? ""
-          : `&minPrice=${priceFilterInitialState[0]}`;
+        priceFilterInitialState[0] !== 0
+          ? `minPrice=${priceFilterInitialState[0]}`
+          : "";
       const maxPrice =
-        priceFilterInitialState[0] === 0
-          ? ""
-          : `&minPrice=${priceFilterInitialState[1]}`;
-      newSearchParams = `${minPrice}${maxPrice}`;
+        priceFilterInitialState[1] !== 805
+          ? `maxPrice=${priceFilterInitialState[1]}`
+          : "";
+      newSearchParams = `${minPrice ? `&${minPrice}` : ""}${maxPrice ? `&${maxPrice}` : ""}`;
     }
     if (tagParams) {
-      // newSearchParams += tagParams;
       newSearchParams = `${newSearchParams}&${tagParams}`;
     }
     if (categoryParams) {
@@ -56,52 +167,53 @@ const ProductFilter = ({
 
   const handleClearAllFilters = () => {
     setCsSearchParams({});
+    setPriceFilterInitialState([0, 805]);
+    setTagParams("");
+    setCategoryParams("");
     sheetCloseRef?.current?.click();
     router.push(`?`);
   };
+
   return (
-    <>
-      <Box className="bg-white space-y-3">
-        <BoxHeading className="bg-gray-100 py-1 px-2 mx-2">
-          Filter by price
-        </BoxHeading>
-        <PriceRangePicker
-          initialState={priceFilterInitialState}
-          setInitialState={setPriceFilterInitialState}
-          searchParams={csSearchParams}
-        />
-        <TagSelector
-          tags={tags}
-          setTagParams={setTagParams}
-          searchParams={csSearchParams}
-        />
-        <CategorySelector
-          categories={categories}
-          searchParams={csSearchParams}
-          setCategoryParams={setCategoryParams}
-        />
-        <div className="flex gap-2">
-          <EcButton
-            className="px-6 font-bold text-white"
-            onClick={() => {
-              router.push(`?${filters}`);
-              sheetCloseRef?.current?.click();
-            }}
-            disabled={!filters}
-          >
-            Find
-          </EcButton>
-          <EcButton
-            className="px-6 font-bold hover:text-white"
-            onClick={() => handleClearAllFilters()}
-            variant="ghost"
-            disabled={!Object.keys(searchParams).length}
-          >
-            Clear all filters
-          </EcButton>
-        </div>
-      </Box>
-    </>
+    <Box className="bg-white space-y-3">
+      <BoxHeading className="bg-gray-100 py-1 px-2 mx-2">
+        Filter by price
+      </BoxHeading>
+      <PriceRangeSlider
+        initialState={priceFilterInitialState}
+        setInitialState={setPriceFilterInitialState}
+      />
+      <TagSelector
+        tags={tags}
+        setTagParams={setTagParams}
+        searchParams={csSearchParams}
+      />
+      <CategorySelector
+        categories={categories}
+        searchParams={csSearchParams}
+        setCategoryParams={setCategoryParams}
+      />
+      <div className="flex gap-2">
+        <EcButton
+          className="px-6 font-bold text-white"
+          onClick={() => {
+            router.push(`?${filters}`);
+            sheetCloseRef?.current?.click();
+          }}
+          disabled={!filters}
+        >
+          Find
+        </EcButton>
+        <EcButton
+          className="px-6 font-bold hover:text-white"
+          onClick={handleClearAllFilters}
+          variant="ghost"
+          disabled={!Object.keys(searchParams).length}
+        >
+          Clear all filters
+        </EcButton>
+      </div>
+    </Box>
   );
 };
 
