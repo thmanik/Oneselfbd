@@ -97,7 +97,7 @@ const MainFooterContent = () => {
                       alt="Social icon"
                       width={100}
                       height={100}
-                      className="w-10 h-10 md:w-12 md:h-12 hover:scale-110 transition-transform"
+                      className="w-6 h-6 md:w-8 md:h-8 hover:scale-110 transition-transform"
                     />
                   </Link>
                 ))}

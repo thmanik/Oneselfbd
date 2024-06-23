@@ -38,7 +38,7 @@ const ContactInformation = () => {
               Edit
             </div>
           </Link>
-          <Link href="/my-account/change-password">
+          <Link href="/auth/change-password">
             <div className="cursor-pointer" title="Change Your Password">
               Change Password
             </div>
