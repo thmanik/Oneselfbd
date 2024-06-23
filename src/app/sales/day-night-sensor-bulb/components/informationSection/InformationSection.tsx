@@ -13,7 +13,7 @@ const InformationSection = () => {
 
         <div className="text-center  md:py-5 flex justify-center items-center">
           <p className=" text-2xl text-red-600 font-bold bg-yellow-400 w-[95%] md:px-10 py-5 rounded-full">
-            লাইটের মুল্য- ৪৭০ টাকা
+            লাইটের মুল্য- ৪৮০ টাকা
           </p>
         </div>
       </div>
