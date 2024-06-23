@@ -85,3 +85,17 @@
 .container {
   @apply max-w-7xl mx-auto px-2;
 }
+
+/* Add this in your global CSS file */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 60s linear infinite;
+}

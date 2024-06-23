@@ -46,7 +46,7 @@ const MenuBar = async ({
                 <MenubarTrigger>
                   <Link
                     href={menuItem.href}
-                    className=" hover:text-white font-semibold text-md"
+                    className="text-white hover:text-secondary font-semibold text-md"
                   >
                     {menuItem.title}
                   </Link>
@@ -56,7 +56,7 @@ const MenuBar = async ({
           } else {
             return (
               <MenubarMenu key={menuItem.href}>
-                <MenubarTrigger className="hover:text-white font-semibold">
+                <MenubarTrigger className="text-white hover:text-secondery  font-semibold">
                   {menuItem.title} <IoMdArrowDropdown />
                 </MenubarTrigger>
                 <MenubarContent className="-mt-3">
