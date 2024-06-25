@@ -1,4 +1,6 @@
-const InformationSection = () => {
+import { TSingleProduct } from "@/types/products/singleProduct";
+
+const InformationSection = ({ product }: { product: TSingleProduct }) => {
   return (
     <section className="relative grid bg-[#116b80] my-5 place-items-center w-full h-[375px]">
       {/* Background overlay */}
@@ -13,7 +15,7 @@ const InformationSection = () => {
 
         <div className="text-center  md:py-5 flex justify-center items-center">
           <p className=" text-2xl text-red-600 font-bold bg-yellow-400 w-[95%] md:px-10 py-5 rounded-full">
-            লাইটের মুল্য- ৪৮০ টাকা
+            লাইটের মুল্য- <span>{product?.price?.salePrice}</span> টাকা
           </p>
         </div>
       </div>

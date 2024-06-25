@@ -1,6 +1,7 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
+import { TSingleProduct } from "@/types/products/singleProduct";
 
-const InformationSection = () => {
+const InformationSection = ({ product }: { product: TSingleProduct }) => {
   return (
     <section className="bg-[#116b80] my-5 w-full py-5 md:py-10">
       <ContainerMax>
@@ -14,7 +15,7 @@ const InformationSection = () => {
 
           <div className="text-center  md:py-5 flex justify-center items-center">
             <p className="italic text-2xl text-red-600 font-bold bg-yellow-400 w-[95%] md:px-10 py-5 rounded-full">
-              লাইটের মুল্য- ৪৮০ টাকা
+              লাইটের মুল্য- <span>{product?.price?.salePrice}</span> টাকা
             </p>
           </div>
         </div>
