@@ -15,14 +15,17 @@ const RadarSensorBulbLmYi2Page = async () => {
     "/products/65eb25a2e1aa722f00f253f4"
   );
 
+  if (!product) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <ProductBanner />
       <ProductVideo />
-      <ProductPrice />
+      <ProductPrice product={product} />
       <FeaturesOfProduct />
       <UseOfTheProduct />
-      <InformationSection />
+      <InformationSection product={product} />
       <OurServices />
       <ProductReplacement />
       <SalesPageOrder product={product} lpNo="1" />
