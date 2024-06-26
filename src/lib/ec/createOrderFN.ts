@@ -51,7 +51,7 @@ const createOrderFN = async ({
   }
   try {
     const result = (await createOrder(orderData).unwrap()) as TGenericResponse<{
-      orderId: string;
+      _id?: string;
     }>;
     if (result.success) {
       fbq.event(
@@ -72,7 +72,7 @@ const createOrderFN = async ({
         title: "Thank you",
         description: "Order completed.",
       });
-      router.push(`/thank-you/${result?.data?.orderId}`);
+      router.push(`/thank-you/${result?.data?._id}`);
     }
   } catch (error) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
