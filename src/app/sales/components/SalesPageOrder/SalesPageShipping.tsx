@@ -33,6 +33,7 @@ const SalesPageShipping = ({
   product,
   lpNo,
 }: TProps) => {
+  const [isSuccess, setIsSuccess] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const totalCost =
     Number(
@@ -47,8 +48,7 @@ const SalesPageShipping = ({
     dispatch(setPaymentInfoError({ errors: null }));
     dispatch(setShippingInfo({ data: null }));
     dispatch(setShippingInfoError({ errors: null }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, paymentMethods]);
 
   // handle orders
   const shippingInfo = useSelector((state: TRootState) => state.shippingInfo);
@@ -98,6 +98,7 @@ const SalesPageShipping = ({
       router,
       orderData,
       eventId,
+      setIsSuccess,
     });
   };
 
@@ -116,6 +117,7 @@ const SalesPageShipping = ({
           product={product}
           quantity={quantity}
           setQuantity={setQuantity}
+          isSuccess={isSuccess}
         />
       </div>
       <div className="order-3 lg:order-4">

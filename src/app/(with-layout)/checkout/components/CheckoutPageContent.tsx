@@ -31,6 +31,7 @@ const CheckoutPageContent = ({
   shippingCharges: TShippingCharges[];
   paymentMethods: TPaymentMethod[];
 }) => {
+  const [isSuccess, setIsSuccess] = useState(false);
   const { data: cartData, totalCost, isLoading: cartCostLoading } = useCart();
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const dispatch = useDispatch();
@@ -88,6 +89,7 @@ const CheckoutPageContent = ({
       router,
       orderData,
       eventId,
+      setIsSuccess,
     });
   };
 
@@ -108,6 +110,7 @@ const CheckoutPageContent = ({
           errorMessages={errorMessages}
           totalCost={totalCost}
           costLoading={cartCostLoading}
+          isSuccess={isSuccess}
         />
       </div>
       <div className="order-3 lg:order-4">
