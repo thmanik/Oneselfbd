@@ -1,12 +1,16 @@
 "use client";
+import ErrorMessage from "@/components/errorMessage/ErrorMessage";
 import Box from "@/components/ui/ec/Box";
-import { TOrderInfo } from "@/types/order/orderInfo";
+import { useSingleOrderQuery } from "@/redux/features/order/orderApi";
 import { format } from "date-fns";
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import { useEffect } from "react";
 
-const ThankYouCard = ({ orderInfo }: { orderInfo?: TOrderInfo }) => {
+const ThankYouCard = ({ orderId }: { orderId?: string }) => {
+  const { data, isLoading } = useSingleOrderQuery({ id: orderId });
+
+  const orderInfo = data?.data;
   const controls = useAnimation();
   useEffect(() => {
     const animationSequence = async () => {
@@ -23,6 +27,17 @@ const ThankYouCard = ({ orderInfo }: { orderInfo?: TOrderInfo }) => {
 
     animationSequence();
   }, [controls]);
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
+  if (!orderInfo) {
+    return (
+      <ErrorMessage
+        className="text-center py-3 block"
+        message="No order found with this ID."
+      />
+    );
+  }
   return (
     <section className="py-10">
       <div className="flex flex-col items-center justify-center bg-cover bg-center">
