@@ -12,6 +12,7 @@ const EcButton = ({
   onClick,
   type = "simple",
   ref,
+  loadingText,
   ...props
 }: {
   children: ReactNode;
@@ -31,6 +32,7 @@ const EcButton = ({
     | null
     | undefined;
   ref?: Ref<HTMLButtonElement>;
+  loadingText?: string;
 }) => {
   if (type === "icon") {
     if (loading) {
@@ -68,7 +70,7 @@ const EcButton = ({
   if (loading) {
     return (
       <Button disabled {...props} className={twMerge(className)} id={id}>
-        Loading...
+        {loadingText ? loadingText : "Loading..."}
       </Button>
     );
   }

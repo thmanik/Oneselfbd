@@ -13,6 +13,7 @@ const OrderNow = ({
   isLoading,
   totalCost,
   costLoading,
+  isSuccess,
 }: {
   shippingCharges: TShippingCharges[];
   errorMessages: string[];
@@ -20,6 +21,7 @@ const OrderNow = ({
   isLoading?: boolean;
   totalCost?: number;
   costLoading?: boolean;
+  isSuccess?: boolean;
 }) => {
   return (
     <>
@@ -47,7 +49,9 @@ const OrderNow = ({
           className="w-full font-bold text-white"
           variant="secondary"
           onClick={handleOrder}
-          loading={isLoading}
+          loading={isLoading || isSuccess}
+          disabled={isLoading || isSuccess}
+          loadingText="Creating order"
         >
           Order now
         </EcButton>
