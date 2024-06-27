@@ -16,6 +16,8 @@ import {
 import baseApi from "./baseApi/baseApi";
 import paymentInfo from "./features/order/paymentInfo";
 import shippingInfo from "./features/order/shippingInfo";
+
+import { searchProductApi } from "./features/searchProduct/searchProuctApi";
 import shippingClass from "./features/shippingClasses/shippingClass";
 import { tableDataSlice } from "./features/tableData/tableData";
 import { userApi } from "./features/user/userApi";
@@ -33,6 +35,7 @@ export const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
     warrantyApiSlice: warrantyApiSlice.reducer,
     userApi: userApi.reducer,
+    searchProductApi: searchProductApi.reducer,
     auth: persistedAuthReducer,
     shippingClass: shippingClass,
     paymentInfo: paymentInfo,
