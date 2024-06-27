@@ -20,6 +20,7 @@ const SalesPageOrderNow = ({
   product,
   quantity,
   setQuantity,
+  isSuccess,
 }: {
   shippingCharges: TShippingCharges[];
   errorMessages: string[];
@@ -30,6 +31,7 @@ const SalesPageOrderNow = ({
   product?: TSingleProduct;
   quantity: number;
   setQuantity: Dispatch<SetStateAction<number>>;
+  isSuccess: boolean;
 }) => {
   return (
     <>
@@ -93,8 +95,9 @@ const SalesPageOrderNow = ({
           className="w-full font-bold text-white"
           variant="secondary"
           onClick={handleOrder}
-          loading={isLoading}
-          disabled={isLoading}
+          loading={isLoading || isSuccess}
+          disabled={isLoading || isSuccess}
+          loadingText="Creating order"
         >
           Order now
         </EcButton>

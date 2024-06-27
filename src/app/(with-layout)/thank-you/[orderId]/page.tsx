@@ -1,7 +1,4 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
-import ErrorMessage from "@/components/errorMessage/ErrorMessage";
-import useQuery from "@/hooks/useQuery";
-import { TOrderInfo } from "@/types/order/orderInfo";
 import ThankYouCard from "./components/ThankYouCard";
 
 type TThankYouPage = {
@@ -9,23 +6,10 @@ type TThankYouPage = {
 };
 
 const ThankYouPage = async ({ params }: TThankYouPage) => {
-  const [{ data: orderInfo }] = await useQuery<TOrderInfo>(
-    `/orders/customer/${params.orderId}`
-  );
-
-  if (!orderInfo) {
-    return (
-      <ErrorMessage
-        className="text-center py-3 block"
-        message="No order found with this ID."
-      />
-    );
-  }
-
   return (
     <section>
       <ContainerMax>
-        <ThankYouCard orderInfo={orderInfo} />
+        <ThankYouCard orderId={params.orderId} />
       </ContainerMax>
     </section>
   );

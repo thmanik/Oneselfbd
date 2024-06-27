@@ -10,7 +10,10 @@ const orderApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["carts"],
     }),
+    singleOrder: builder.query({
+      query: (data) => `/orders/customer/${data.id}`,
+    }),
   }),
 });
 
-export const { useCreateOrderMutation } = orderApi;
+export const { useCreateOrderMutation, useSingleOrderQuery } = orderApi;

@@ -12,7 +12,7 @@ import {
   persistReducer,
   persistStore,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+// import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import baseApi from "./baseApi/baseApi";
 import paymentInfo from "./features/order/paymentInfo";
 import shippingInfo from "./features/order/shippingInfo";
@@ -22,6 +22,7 @@ import shippingClass from "./features/shippingClasses/shippingClass";
 import { tableDataSlice } from "./features/tableData/tableData";
 import { userApi } from "./features/user/userApi";
 import { warrantyApiSlice } from "./features/warrantyApi/warrantyApiSlice";
+import storage from "./storage";
 const persistConfig = {
   key: "auth",
   storage,
