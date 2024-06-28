@@ -70,8 +70,8 @@ const CheckoutPageContent = ({
         phoneNumber: shippingInfo?.data?.phoneNumber,
         fullAddress: shippingInfo?.data?.fullAddress,
         email: shippingInfo?.data?.email || undefined,
-        notes: shippingInfo?.data?.notes,
       },
+      orderNotes: shippingInfo?.data?.notes,
       eventId,
       orderSource: {
         name: "Website",

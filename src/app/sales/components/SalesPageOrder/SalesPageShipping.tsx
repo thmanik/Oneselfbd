@@ -72,8 +72,8 @@ const SalesPageShipping = ({
         phoneNumber: shippingInfo.data?.phoneNumber,
         fullAddress: shippingInfo?.data?.fullAddress || undefined,
         email: shippingInfo.data?.email || undefined,
-        notes: shippingInfo.data?.notes,
       },
+      orderNotes: shippingInfo.data?.notes,
       orderedProducts: [
         {
           quantity,
