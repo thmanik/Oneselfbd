@@ -18,6 +18,7 @@ const createOrderFN = async ({
   orderData,
   eventId,
   setIsSuccess,
+  setLimitModalStatus,
 }: {
   setErrorMessages: any;
   shippingInfo: TShippingInfoState;
@@ -29,6 +30,7 @@ const createOrderFN = async ({
   orderData: any;
   eventId: string;
   setIsSuccess?: Dispatch<SetStateAction<boolean>>;
+  setLimitModalStatus: Dispatch<SetStateAction<boolean>>;
 }) => {
   setErrorMessages([]);
   if (shippingInfo.errors?.length || paymentInfo.errors?.length) {
@@ -79,11 +81,13 @@ const createOrderFN = async ({
       router.push(`/thank-you/${result?.data?._id}`);
     }
   } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const res = (error as any).data as TGenericErrorResponse;
+    const res = (error as { data: TGenericErrorResponse }).data;
     const errorMessages =
       res?.errorMessages?.map((error) => error.message) || [];
     setErrorMessages([...errorMessages]);
+    if (res.message === "Reached order limit") {
+      setLimitModalStatus(true);
+    }
   }
 };
 
