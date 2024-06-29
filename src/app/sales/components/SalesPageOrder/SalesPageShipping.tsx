@@ -2,6 +2,7 @@
 import ShippingAddress from "@/app/(with-layout)/checkout/components/ShippingAddress";
 import PaymentsGateway from "@/app/(with-layout)/checkout/components/paymentGateway/PaymentsGateway";
 import SalesPageOrderNow from "@/app/(with-layout)/checkout/components/paymentGateway/SalesPageOrderNow";
+import OrderLimit from "@/components/orderLimit/OrderLimit";
 import PEventIdGenerator from "@/lib/ec/PEventIdGenerator";
 import createOrderFN from "@/lib/ec/createOrderFN";
 import { useCreateOrderMutation } from "@/redux/features/order/orderApi";
@@ -34,6 +35,7 @@ const SalesPageShipping = ({
   lpNo,
 }: TProps) => {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [limitModalStatus, setLimitModalStatus] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const totalCost =
     Number(
@@ -72,8 +74,8 @@ const SalesPageShipping = ({
         phoneNumber: shippingInfo.data?.phoneNumber,
         fullAddress: shippingInfo?.data?.fullAddress || undefined,
         email: shippingInfo.data?.email || undefined,
-        notes: shippingInfo.data?.notes,
       },
+      orderNotes: shippingInfo.data?.notes,
       orderedProducts: [
         {
           quantity,
@@ -99,34 +101,41 @@ const SalesPageShipping = ({
       orderData,
       eventId,
       setIsSuccess,
+      setLimitModalStatus,
     });
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 pb-5 mt-10">
-      <div>
-        <ShippingAddress />
+    <>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 pb-5 mt-10">
+        <div>
+          <ShippingAddress />
+        </div>
+        <div className="order-4 lg:order-3">
+          <SalesPageOrderNow
+            handleOrder={handleOrder}
+            isLoading={isLoading}
+            shippingCharges={shippingCharges}
+            errorMessages={errorMessages}
+            totalCost={totalCost}
+            product={product}
+            quantity={quantity}
+            setQuantity={setQuantity}
+            isSuccess={isSuccess}
+          />
+        </div>
+        <div className="order-3 lg:order-4">
+          <PaymentsGateway
+            paymentMethods={paymentMethods}
+            totalCost={totalCost}
+          />
+        </div>
       </div>
-      <div className="order-4 lg:order-3">
-        <SalesPageOrderNow
-          handleOrder={handleOrder}
-          isLoading={isLoading}
-          shippingCharges={shippingCharges}
-          errorMessages={errorMessages}
-          totalCost={totalCost}
-          product={product}
-          quantity={quantity}
-          setQuantity={setQuantity}
-          isSuccess={isSuccess}
-        />
-      </div>
-      <div className="order-3 lg:order-4">
-        <PaymentsGateway
-          paymentMethods={paymentMethods}
-          totalCost={totalCost}
-        />
-      </div>
-    </div>
+      <OrderLimit
+        limitModalStatus={limitModalStatus}
+        setLimitModalStatus={setLimitModalStatus}
+      />
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 "use client";
 import CartItems from "@/components/cartItems/CartItems";
+import OrderLimit from "@/components/orderLimit/OrderLimit";
 import Box from "@/components/ui/ec/Box";
 import BoxHeading from "@/components/ui/ec/BoxHeading";
 import useCart from "@/hooks/useCart";
@@ -31,6 +32,7 @@ const CheckoutPageContent = ({
   shippingCharges: TShippingCharges[];
   paymentMethods: TPaymentMethod[];
 }) => {
+  const [limitModalStatus, setLimitModalStatus] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { data: cartData, totalCost, isLoading: cartCostLoading } = useCart();
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
@@ -70,8 +72,8 @@ const CheckoutPageContent = ({
         phoneNumber: shippingInfo?.data?.phoneNumber,
         fullAddress: shippingInfo?.data?.fullAddress,
         email: shippingInfo?.data?.email || undefined,
-        notes: shippingInfo?.data?.notes,
       },
+      orderNotes: shippingInfo?.data?.notes,
       eventId,
       orderSource: {
         name: "Website",
@@ -90,36 +92,43 @@ const CheckoutPageContent = ({
       orderData,
       eventId,
       setIsSuccess,
+      setLimitModalStatus,
     });
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
-      <Box className="col-span-1 lg:col-span-2 mt-10">
-        <BoxHeading>Added items</BoxHeading>
-        <CartItems />
-      </Box>
-      <div>
-        <ShippingAddress />
+    <>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+        <Box className="col-span-1 lg:col-span-2 mt-10">
+          <BoxHeading>Added items</BoxHeading>
+          <CartItems />
+        </Box>
+        <div>
+          <ShippingAddress />
+        </div>
+        <div className="order-4 lg:order-3">
+          <OrderNow
+            handleOrder={handleOrder}
+            isLoading={isLoading}
+            shippingCharges={shippingCharges}
+            errorMessages={errorMessages}
+            totalCost={totalCost}
+            costLoading={cartCostLoading}
+            isSuccess={isSuccess}
+          />
+        </div>
+        <div className="order-3 lg:order-4">
+          <PaymentsGateway
+            paymentMethods={paymentMethods}
+            totalCost={totalCost}
+          />
+        </div>
       </div>
-      <div className="order-4 lg:order-3">
-        <OrderNow
-          handleOrder={handleOrder}
-          isLoading={isLoading}
-          shippingCharges={shippingCharges}
-          errorMessages={errorMessages}
-          totalCost={totalCost}
-          costLoading={cartCostLoading}
-          isSuccess={isSuccess}
-        />
-      </div>
-      <div className="order-3 lg:order-4">
-        <PaymentsGateway
-          paymentMethods={paymentMethods}
-          totalCost={totalCost}
-        />
-      </div>
-    </div>
+      <OrderLimit
+        limitModalStatus={limitModalStatus}
+        setLimitModalStatus={setLimitModalStatus}
+      />
+    </>
   );
 };
 
