@@ -40,7 +40,7 @@ const Search = () => {
     setShowSuggestions(true);
   };
 
-  const handleProductClick = (productId: string) => {
+  const handleProductClick = (productId: string): void => {
     router.push(`/product/${productId}`);
     setShowSuggestions(false);
   };
@@ -74,7 +74,7 @@ const Search = () => {
       {showSuggestions && searchValue.trim() !== "" && (
         <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-10">
           {isLoading && <p className="p-2">Loading...</p>}
-          {isError && <p className="p-2">Error fetching results.</p>}
+
           {!isLoading && !isError && products.length > 0 ? (
             products.map((product: Product) => (
               <div
