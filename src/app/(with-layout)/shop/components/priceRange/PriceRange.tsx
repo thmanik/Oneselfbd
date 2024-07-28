@@ -44,7 +44,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
           style={{
             width: "60px",
             textAlign: "center",
-            border: "1px solid #ccc",
+            border: "1px solid #00c1f3",
             borderRadius: "4px",
             padding: "5px",
             marginRight: "10px",
@@ -57,7 +57,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
           style={{
             width: "60px",
             textAlign: "center",
-            border: "1px solid #ccc",
+            border: "1px solid #00c1f3",
             borderRadius: "4px",
             padding: "5px",
             marginLeft: "10px",
@@ -89,7 +89,7 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
                 borderRadius: "4px",
                 background: getTrackBackground({
                   values,
-                  colors: ["#ccc", "#548BF4", "#ccc"],
+                  colors: ["#ccc", "#00c1f3", "#ccc"],
                   min: MIN,
                   max: MAX,
                 }),
@@ -113,14 +113,14 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
               justifyContent: "center",
               alignItems: "center",
               boxShadow: "0px 2px 6px #AAA",
-              border: isDragged ? "3px solid #548BF4" : "3px solid #CCC",
+              border: isDragged ? "3px solid #00c1f3" : "3px solid #00c1f3",
             }}
           >
             <div
               style={{
                 height: "16px",
                 width: "5px",
-                backgroundColor: isDragged ? "#548BF4" : "#CCC",
+                backgroundColor: isDragged ? "#00c1f3" : "#00c1f3",
               }}
             />
           </div>
