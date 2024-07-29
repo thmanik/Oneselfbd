@@ -33,6 +33,7 @@ const Search = () => {
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push(`/shop?search=${encodeURIComponent(searchValue)}`);
+    setShowSuggestions(false);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

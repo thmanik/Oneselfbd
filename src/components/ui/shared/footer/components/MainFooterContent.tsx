@@ -41,7 +41,7 @@ const socialLinks = [
 const MainFooterContent = () => {
   return (
     <div className="relative pb-10 pt-10 text-white">
-      <div className="absolute inset-0 -z-10 h-full w-full bg-neutral-950 bg-[radial-gradient(ellipse_90%_90%_at_50%_-30%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+      <div className="absolute inset-0 -z-10 h-full w-full bg-[#252E3C] bg-[radial-gradient(ellipse_90%_90%_at_50%_-30%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
       <ContainerMax>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="md:col-span-2 space-y-5">
