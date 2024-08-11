@@ -11,7 +11,7 @@ const CopyrightContent = async () => {
 
   return (
     <div className="relative h-24 md:h-14 flex flex-col justify-center">
-      <div className="absolute top-0 z-[-2] h-24 md:h-14 w-full bg-[#0E131F] border-[#121a2c] "></div>
+      <div className="absolute top-0 z-[-2] h-24 md:h-14 w-full bg-[#283242] border-[#04070e] "></div>
       <ContainerMax>
         <div className="flex flex-col md:flex-row justify-center md:justify-between items-center flex-wrap">
           <div className="text-muted">
