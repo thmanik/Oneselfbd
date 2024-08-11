@@ -20,7 +20,7 @@ const AboutPage: React.FC = () => {
           <h1 className="text-2xl md:text-4xl  font-bold mb-4">
             Welcome to oneselfbd
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mx-auto">
+          <p className="text-md md:text-xl text-gray-600 mx-auto">
             Your destination for high-quality, innovative, and sustainable
             lighting solutions.
           </p>
