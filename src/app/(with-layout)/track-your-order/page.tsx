@@ -17,6 +17,41 @@ const TrackOrderPage = () => {
     console.log(data);
   };
 
+  // const statuses = [
+  //   {
+  //     status: "অর্ডারটি গ্রহন করা হয়েছে কনফার্মেশনের জন্য অপেক্ষমান।",
+  //     title: "Order Placed",
+  //     date: "05 May 2024",
+  //     time: "10:42 PM",
+  //     icon: "check",
+  //     isActive: true,
+  //   },
+  //   {
+  //     status: "অর্ডারটি প্রস্তুত করা হচ্ছে",
+  //     title: "Packaging",
+  //     date: "05 May 2024",
+  //     time: "10:42 PM",
+  //     icon: "box",
+  //     isActive: true,
+  //   },
+  //   {
+  //     status: "অর্ডারটি কুরিয়ারের কাছে দেয়ার হয়েছে",
+  //     title: "On The Road",
+  //     date: "05 May 2024",
+  //     time: "10:42 PM",
+  //     icon: "truck",
+  //     isActive: false,
+  //   },
+  //   {
+  //     status: "অর্ডারটি ডেলিভারি দেয়া হয়েছে",
+  //     title: "Delivered",
+  //     date: "05 May 2024",
+  //     time: "10:42 PM",
+  //     icon: "home",
+  //     isActive: false,
+  //   },
+  // ];
+
   return (
     <section className="bg-gray-100 py-8 flex justify-center items-center">
       <ContainerMax>
@@ -74,6 +109,8 @@ const TrackOrderPage = () => {
               </EcButton>
             </div>
           </form>
+
+          {/* <Timeline statuses={statuses} /> */}
         </div>
       </ContainerMax>
     </section>

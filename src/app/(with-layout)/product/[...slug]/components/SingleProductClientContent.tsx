@@ -1,4 +1,5 @@
 "use client";
+
 import { toast } from "@/components/ui/use-toast";
 import * as fbq from "@/lib/connectors/FacebookPixel";
 import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
@@ -9,42 +10,44 @@ import AddToCartAndBuyNow from "../components/AddToCartAndBuyNow";
 
 const SingleProductClientContent = ({
   product,
+  selectedVariation,
 }: {
   product?: TSingleProduct;
+  selectedVariation?: TSingleProduct["variations"][0];
 }) => {
-  // add to cart handler
   const [quantity, setQuantity] = useState(1);
-
   const [addToCart, { isLoading: isAddToCartLoading }] = useAddToCartMutation();
+
   const addToCartHandler = async (): Promise<boolean> => {
     let success = false;
+
+    // Additional logging
+    // console.log("Selected Variation ID:", selectedVariation?._id);
+    // console.log("Selected Variation:", selectedVariation);
+
+    // Facebook Pixel event tracking
     fbq.event("AddToCart", {
       content_name: product?.title,
       content_category: product?.category,
       content_ids: [product?._id],
       content_type: "product",
+      variation: selectedVariation?._id,
       value:
         Number(
-          product?.price?.salePrice
-            ? product?.price?.salePrice
+          selectedVariation?.price?.salePrice
+            ? selectedVariation?.price?.salePrice
             : product?.price?.regularPrice
         ) * Number(quantity || 0),
       currency: "BDT",
     });
+
+    // Prepare cart info to match the server's expected format
     const cartInfo = {
       product: product?._id,
       quantity,
-      attributes: [
-        {
-          name: "Size",
-          value: "xl",
-        },
-        {
-          name: "brand",
-          value: "db",
-        },
-      ],
+      variation: selectedVariation?._id, // Send variation as a top-level field
     };
+
     try {
       const result = (await addToCart(cartInfo).unwrap()) as TGenericResponse;
       if (result.success) {
@@ -53,9 +56,10 @@ const SingleProductClientContent = ({
           description: result?.message,
           className: "bg-success text-white text-2xl",
         });
+        success = true;
       }
-      success = true;
     } catch (error) {
+      // Additional error handling
       const sanitizedError = error as TGenericErrorResponse;
       toast({
         title: "Failed",
@@ -65,6 +69,7 @@ const SingleProductClientContent = ({
     }
     return success;
   };
+
   return (
     <div>
       <AddToCartAndBuyNow

@@ -1,4 +1,5 @@
 "use client";
+
 import CartItem from "@/components/cartItems/components/CartItem";
 import {
   Table,
@@ -10,7 +11,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import useCart from "@/hooks/useCart";
 import { useDeleteFromCartMutation } from "@/redux/features/cart/cartApi";
-import { TCartItem } from "@/types/cart";
+import { TCartItemData } from "@/types/cart";
 import CartItemSkeleton from "./components/CartItemSkeleton";
 
 const CartItems = () => {
@@ -32,12 +33,13 @@ const CartItems = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast({
-        title: "Success",
+        title: "Error",
         description: error.message,
         variant: "destructive",
       });
     }
   };
+
   return (
     <>
       <Table>
@@ -54,10 +56,10 @@ const CartItems = () => {
             [1, 2, 3].map((item) => <CartItemSkeleton key={item} />)
           ) : (
             <>
-              {(cartItems?.data?.cartItems as TCartItem[])?.map((item) => (
+              {(cartItems?.data as TCartItemData[])?.map((item) => (
                 <CartItem
                   key={item._id}
-                  cartItem={item.item}
+                  cartItem={item}
                   handleRemoveFromCart={handleRemoveFromCart}
                 />
               ))}

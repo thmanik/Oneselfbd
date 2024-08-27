@@ -9,8 +9,8 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
     <div className="bg-base-100 grid grid-cols-2 gap-5 justify-between items-center px-4 py-3 rounded-lg">
       <div className="flex justify-center">
         <Image
-          src={`${config.base_url}/${product.image?.src}`}
-          alt={product.image?.alt}
+          src={`${config.base_url}/${product.thumbnail?.src}`}
+          alt={product.thumbnail?.alt}
           width={600}
           height={400}
           priority

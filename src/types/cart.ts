@@ -1,38 +1,43 @@
-import { TImage } from "./image";
+type TImage = {
+  alt: string;
+  src: string;
+  thumbnail: string;
+};
 
 type TProduct = {
-  image: {
-    thumbnail: TImage;
-  };
-  price: {
-    salePrice: number;
-    regularPrice: number;
-    _id: string;
-  };
-  slug: string;
-  title: string;
   _id: string;
+  title: string;
+  image: TImage;
+};
+
+type TPrice = {
+  regularPrice: number;
+  salePrice: number;
 };
 
 type TAttribute = {
-  _id: string;
   name: string;
   value: string;
 };
 
-export type TCartItemData = {
+type TVariation = {
   _id: string;
-  product: TProduct;
-  quantity: number;
   attributes: TAttribute[];
 };
 
-export type TCartItem = {
-  item: TCartItemData;
+export type TCartItemData = {
+  image: {
+    src: string;
+    alt: string;
+  };
   _id: string;
+  product: TProduct;
+  price: TPrice;
+  quantity: number;
+  variation: TVariation;
 };
 
 export type TCart = {
   _id: string;
-  cartItems: TCartItem[];
+  cartItems: TCartItemData[];
 };

@@ -23,8 +23,8 @@ const CarousalProductsCard = ({
       <div className="flex flex-col gap-2">
         <div className="bg-base-100">
           <Image
-            src={`${config.base_url}/${product.image?.src}`}
-            alt={product.image?.alt}
+            src={`${config.base_url}/${product?.thumbnail?.src}`}
+            alt={product?.thumbnail?.alt}
             height={400}
             width={400}
             className="w-48 h-48 min-w-[100px] aspect-square object-cover mx-auto"
@@ -33,36 +33,41 @@ const CarousalProductsCard = ({
         </div>
         <div className="flex flex-col gap-2 px-4">
           <h2 className="font-semibold text-muted">
-            {product.title.length < 40 ? (
-              product.title
+            {product?.title?.length < 40 ? (
+              product?.title
             ) : (
-              <>{product.title.slice(0, 40)}...</>
+              <>{product?.title?.slice(0, 40)}...</>
             )}
           </h2>
           <div className="flex justify-between">
             <div>
-              {product.salePrice ? (
+              {product?.salePrice ? (
                 <>
                   <span className="text-muted text-xs">
                     &#2547;
-                    <del>{product.price && product.regularPrice}</del>
+                    <del>{product?.price && product?.regularPrice}</del>
                   </span>
-                  <span className="font-bold"> &#2547;{product.salePrice}</span>
+                  <span className="font-bold">
+                    {" "}
+                    &#2547;{product?.salePrice}
+                  </span>
                 </>
               ) : (
                 <>
                   <span className="font-bold">
-                    &#2547;{product.regularPrice}
+                    &#2547;{product?.regularPrice}
                   </span>
                 </>
               )}
             </div>
             <div>
-              {product.stockAvailable ? (
-                <span className="text-green-600 text-xs">In stock</span>
-              ) : (
-                <span className="text-red-500 text-xs">Out of stock</span>
-              )}
+              {product?.stockStatus ? (
+                <span
+                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} text-xs`}
+                >
+                  {product?.stockStatus}
+                </span>
+              ) : null}
             </div>
           </div>
         </div>

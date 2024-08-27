@@ -8,6 +8,8 @@ type TProductBrand = {
 type TProductCategory = { _id: string; name: string };
 
 export type TProduct = {
+  thumbnail: TImage;
+  stockStatus: string;
   _id: string;
   title: string;
   slug: string;

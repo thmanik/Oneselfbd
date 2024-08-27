@@ -10,6 +10,7 @@ type TProps = {
   className?: string;
 };
 const ProductCardPrimary = ({ product, className }: TProps) => {
+  // console.log("checking product", product);
   return (
     <Link
       href={{
@@ -26,8 +27,8 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
       <div className="flex flex-col gap-5">
         <div className="bg-base-100">
           <Image
-            src={`${config.base_url}/${product.image?.src}`}
-            alt={product.image?.alt}
+            src={`${config.base_url}/${product.thumbnail?.src}`}
+            alt={product.thumbnail?.alt}
             height={400}
             width={400}
             className="w-48 h-48 min-w-[100px] aspect-square object-cover mx-auto"
@@ -61,11 +62,13 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
               )}
             </div>
             <div>
-              {product.stockAvailable ? (
-                <span className="text-green-600 text-xs">In stock</span>
-              ) : (
-                <span className="text-red-500 text-xs">Out of stock</span>
-              )}
+              {product.stockStatus ? (
+                <span
+                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} text-xs`}
+                >
+                  {product?.stockStatus}
+                </span>
+              ) : null}
             </div>
           </div>
         </div>
