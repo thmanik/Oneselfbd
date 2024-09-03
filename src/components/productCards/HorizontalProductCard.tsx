@@ -20,23 +20,17 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
       <div>
         <h2 className="font-semibold">{product.title}</h2>
         <div>
-          {product.salePrice ? (
+          {product?.salePrice ? (
             <>
-              <span className="text-muted">
+              <span className="text-muted text-xs">
                 &#2547;
-                <del className="text-sm">{product.price}</del>
+                <del>{product?.regularPrice}</del>
               </span>
-              <span className="text-xl font-bold">
-                &#2547;
-                <span>{product.salePrice}</span>
-              </span>
+              <span className="font-bold"> &#2547;{product?.salePrice}</span>
             </>
           ) : (
             <>
-              <span className="text-xl font-bold">
-                &#2547;
-                <span>{product.price}</span>
-              </span>
+              <span className="font-bold">&#2547;{product?.regularPrice}</span>
             </>
           )}
         </div>

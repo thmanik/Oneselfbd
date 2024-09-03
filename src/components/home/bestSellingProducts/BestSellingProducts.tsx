@@ -12,20 +12,20 @@ import {
 import useQuery from "@/hooks/useQuery";
 import { TProduct } from "@/types/products/product";
 
-const PopularProducts = async () => {
+const BestSellingProducts = async () => {
   const [{ data }] =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await useQuery<any>("/products"); // TODO: Change endpoint
-  const popularProducts = data as TProduct[];
+    await useQuery<any>("/products/best-selling"); // TODO: Change endpoint
+  const bestSellingProducts = data as TProduct[];
 
   return (
     <section className="pt-8">
       <ContainerMax>
-        <SectionTitle title="Popular products" href="/shop" />
+        <SectionTitle title="Best-selling" href="/shop" />
         <div>
           <Carousel>
             <CarouselContent className="p-4">
-              {popularProducts?.map((product) => (
+              {bestSellingProducts?.map((product) => (
                 <CarouselItem
                   key={product._id}
                   className="basis-1/2 sm:basis-1/3 md:basis-1/4 xl:basis-1/6 mx-4 md:mx-5"
@@ -43,4 +43,4 @@ const PopularProducts = async () => {
   );
 };
 
-export default PopularProducts;
+export default BestSellingProducts;

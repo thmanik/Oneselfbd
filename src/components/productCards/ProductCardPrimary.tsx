@@ -10,7 +10,6 @@ type TProps = {
   className?: string;
 };
 const ProductCardPrimary = ({ product, className }: TProps) => {
-  // console.log("checking product", product);
   return (
     <Link
       href={{
@@ -49,7 +48,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
                 <>
                   <span className="text-muted text-xs">
                     &#2547;
-                    <del>{product.price && product.regularPrice}</del>
+                    <del>{product.regularPrice}</del>
                   </span>
                   <span className="font-bold"> &#2547;{product.salePrice}</span>
                 </>

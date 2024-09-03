@@ -49,7 +49,7 @@ const fetchRelatedProducts = async (categoryId: string) => {
 const SingleProductPage = async ({ params }: TProps) => {
   const product = await fetchProductData(params.slug[0]);
   const relatedProducts = await fetchRelatedProducts(
-    product.category?._id?._id || ""
+    product?.category?._id?._id || ""
   );
 
   if (!product) {

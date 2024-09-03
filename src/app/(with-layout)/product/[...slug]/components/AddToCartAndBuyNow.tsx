@@ -9,17 +9,20 @@ const AddToCartAndBuyNow = ({
   setQuantity,
   addToCartHandler,
   isAddToCartLoading,
+  isDisabled, // Prop to control the disabled state
 }: {
   addToCartHandler: () => Promise<boolean>;
   quantity: number;
   setQuantity: Dispatch<SetStateAction<number>>;
   isAddToCartLoading: boolean;
+  isDisabled: boolean; // Prop type for disabling buttons
 }) => {
   const router = useRouter();
 
   const handleAddToCart = async () => {
     await addToCartHandler();
   };
+
   const handleBuyNow = async () => {
     const isSuccess = await addToCartHandler();
     if (isSuccess) {
@@ -38,7 +41,7 @@ const AddToCartAndBuyNow = ({
           <EcButton
             className="flex-grow text-white"
             onClick={handleAddToCart}
-            disabled={isAddToCartLoading}
+            disabled={isDisabled || isAddToCartLoading} // Disable if no variation is selected or loading
             id="addToCart"
           >
             Add to cart
@@ -46,7 +49,7 @@ const AddToCartAndBuyNow = ({
           <EcButton
             className="flex-grow text-white"
             onClick={handleBuyNow}
-            disabled={isAddToCartLoading}
+            disabled={isDisabled || isAddToCartLoading} // Disable if no variation is selected or loading
             variant="secondary"
           >
             Buy now

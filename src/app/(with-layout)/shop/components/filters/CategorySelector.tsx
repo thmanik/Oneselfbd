@@ -23,6 +23,7 @@ const CategorySelector = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedValues]);
+
   return (
     <GenericFilterPropsSelector
       filterBy="category"

@@ -1,6 +1,6 @@
 "use client";
-import config from "@/config/config";
 
+import config from "@/config/config";
 import { useFindSearchProductQuery } from "@/redux/features/searchProduct/searchProuctApi";
 import Image from "next/image";
 import Link from "next/link";
@@ -111,17 +111,36 @@ const CartLinksAndAccount = () => {
                         <Image
                           width={55}
                           height={55}
-                          src={`${config.base_url}/${product.image?.src}`}
-                          alt={product.title}
+                          src={`${config.base_url}/${product.thumbnail?.src}`}
+                          alt={product.thumbnail?.alt}
                           className="suggestion-image"
                         />
                         <div className="ml-2">
                           <p className="text-sm font-semibold">
                             {product.title}
                           </p>
-                          <p className="text-sm text-gray-600">
-                            &#2547;{product.price}
-                          </p>
+                          <div>
+                            {product.salePrice ? (
+                              <>
+                                <span className="text-muted text-xs">
+                                  &#2547;
+                                  <del>
+                                    {product.price && product.regularPrice}
+                                  </del>
+                                </span>
+                                <span className="font-bold ">
+                                  {" "}
+                                  &#2547;{product.salePrice}
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="font-bold">
+                                  &#2547;{product.regularPrice}
+                                </span>
+                              </>
+                            )}
+                          </div>
                         </div>
                       </div>
                     ))

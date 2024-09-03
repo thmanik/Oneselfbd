@@ -28,9 +28,9 @@ const MenuBar = async ({
     {
       title: "Categories",
       href: "/category",
-      subMenus: categories?.map(({ name, _id }) => ({
+      subMenus: categories?.map(({ name, slug }) => ({
         title: name,
-        href: `/shop?category=${_id}`,
+        href: `/shop?category=${slug}`,
       })),
     },
   ];

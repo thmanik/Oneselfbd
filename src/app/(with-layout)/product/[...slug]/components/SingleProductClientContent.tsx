@@ -1,3 +1,5 @@
+// SingleProductClientContent.tsx
+
 "use client";
 
 import { toast } from "@/components/ui/use-toast";
@@ -20,10 +22,6 @@ const SingleProductClientContent = ({
 
   const addToCartHandler = async (): Promise<boolean> => {
     let success = false;
-
-    // Additional logging
-    // console.log("Selected Variation ID:", selectedVariation?._id);
-    // console.log("Selected Variation:", selectedVariation);
 
     // Facebook Pixel event tracking
     fbq.event("AddToCart", {
@@ -59,7 +57,6 @@ const SingleProductClientContent = ({
         success = true;
       }
     } catch (error) {
-      // Additional error handling
       const sanitizedError = error as TGenericErrorResponse;
       toast({
         title: "Failed",
@@ -70,6 +67,13 @@ const SingleProductClientContent = ({
     return success;
   };
 
+  // Ensure isDisabled is a boolean value
+  const isDisabled = !!(
+    product?.variations &&
+    product.variations.length > 0 &&
+    !selectedVariation
+  );
+
   return (
     <div>
       <AddToCartAndBuyNow
@@ -77,6 +81,7 @@ const SingleProductClientContent = ({
         setQuantity={setQuantity}
         addToCartHandler={addToCartHandler}
         isAddToCartLoading={isAddToCartLoading}
+        isDisabled={isDisabled} // Pass the isDisabled prop
       />
     </div>
   );

@@ -1,7 +1,6 @@
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import ErrorMessage from "@/components/errorMessage/ErrorMessage";
 import ProductCardPrimary from "@/components/productCards/ProductCardPrimary";
-import BoxHeading from "@/components/ui/ec/BoxHeading";
 import CustomPagination from "@/components/ui/shared/customPagination/CustomPagination";
 import useQuery from "@/hooks/useQuery";
 import TCategory from "@/types/categories/categories";
@@ -34,6 +33,7 @@ const ShopPage = async ({ searchParams }: ShopPageProps) => {
     `/products`,
     searchParams
   );
+
   const products = (data as unknown as TProduct[]) || [];
   const [{ data: tags = [] }] = await useQuery<TTag[]>(`/tags`);
   const hasCategoryParam = !!searchParams.category;
@@ -44,13 +44,13 @@ const ShopPage = async ({ searchParams }: ShopPageProps) => {
   ];
   if (hasCategoryParam && typeof searchParams.category === "string") {
     const category = categories.find(
-      (cat) => cat._id === searchParams.category
+      (cat) => cat.slug === searchParams.category
     );
 
     if (category) {
       breadcrumbPaths.push({
         name: category.name,
-        url: `/shop?category=${category._id}`,
+        url: `/shop?category=${category.slug}`,
       });
     }
   }
@@ -61,8 +61,8 @@ const ShopPage = async ({ searchParams }: ShopPageProps) => {
       <ContainerMax>
         <CustomBreadcrumb paths={breadcrumbPaths} />
         {!hasCategoryParam && <CategorySection categories={categories} />}
-        <BoxHeading className="my-5 md:my-10">Shop</BoxHeading>
-        <div className="grid grid-cols-1 md:grid-cols-7 gap-5">
+        {/* <BoxHeading className="my-5 md:my-10">Shop</BoxHeading> */}
+        <div className="grid grid-cols-1 md:grid-cols-7 gap-5 my-4 md:my-16">
           <div className="col-span-7 md:col-span-2">
             <ProductFilterContent
               searchParams={searchParams}
