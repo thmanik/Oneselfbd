@@ -62,15 +62,26 @@ const Sidebar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               </li>
             </>
           ) : (
-            <li className="cursor-pointer border-b-[1px] border-gray-200">
-              <NavLink
-                href="/auth/login?redirect_url=/my-account"
-                className="block py-2 pl-2"
-                activeClassName="font-bold"
-              >
-                Login
-              </NavLink>
-            </li>
+            <>
+              <li className="cursor-pointer border-b-[1px] border-gray-200">
+                <NavLink
+                  href="/auth/login?redirect_url=/my-account"
+                  className="block py-2 pl-2"
+                  activeClassName="font-bold"
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li className="cursor-pointer border-b-[1px] border-gray-200">
+                <NavLink
+                  href="/my-account/my-orders"
+                  className="block py-2 pl-2"
+                  activeClassName="font-bold"
+                >
+                  My orders
+                </NavLink>
+              </li>
+            </>
           )}
         </ul>
       </div>
