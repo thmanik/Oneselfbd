@@ -4,8 +4,12 @@ import { TGalleryImage } from "@/types/products/singleProduct";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
-const SingleProductPageImageGallery = ({ image }: { image: TGalleryImage }) => {
-  const galleryImages = image?.gallery.map((image) => ({
+const SingleProductPageImageGallery = ({
+  gallery,
+}: {
+  gallery: TGalleryImage[];
+}) => {
+  const galleryImages = gallery?.map((image) => ({
     original: `${config.base_url}/${image?.src}`,
     thumbnail: `${config.base_url}/${image?.src}`,
     crossOrigin: "anonymous",

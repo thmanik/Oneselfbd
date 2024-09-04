@@ -11,12 +11,15 @@ export type TPrice = {
   _id: string;
   regularPrice: number;
   salePrice: number;
+
   discountPercent: number;
+  save: number;
 };
 
 export type TGalleryImage = {
-  thumbnail: TImage;
-  gallery: TImage[];
+  src: string;
+  alt: string;
+  gallery: TImage;
 };
 
 export type TInventory = {
@@ -44,6 +47,7 @@ export type TBrand = {
 };
 
 export type TCategory = {
+  name: string;
   _id: {
     _id: string;
     name: string;
@@ -81,10 +85,12 @@ export type TSingleProduct = {
   featured: boolean;
   review: boolean;
   price: TPrice;
+  thumbnail: TGalleryImage;
+  gallery: TGalleryImage[];
   image: TGalleryImage;
   inventory: TInventory;
   attribute: TAttribute[];
-  brand: TBrand[];
+  brand: TBrand;
   category: TCategory;
   tag: TTag[];
   publishedStatus: TPublishedStatus;
@@ -94,4 +100,23 @@ export type TSingleProduct = {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  variations: Tvariations[];
+};
+export type Tvariations = {
+  name: string;
+  _id: string;
+  length: number;
+  attributes: {
+    [key: string]: string;
+  };
+  price: TPrice;
+  inventory: TInventory;
+};
+
+export type VariationSelectorProps = {
+  variations: Tvariations[];
+  initialPrice: {
+    regularPrice: number;
+    salePrice: number;
+  };
 };

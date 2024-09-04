@@ -1,10 +1,14 @@
 export type Product = {
+  thumbnail: {
+    src: string;
+    alt: string;
+  };
+  stockStatus: string;
   _id: string;
   title: string;
+  regularPrice: number;
   price: number;
-  image: {
-    src: string;
-  };
+  salePrice: number;
 };
 
 export type ApiResponse = {

@@ -117,7 +117,6 @@ import { useRouter } from "next/navigation";
 import { RefObject, useEffect, useState } from "react";
 import PriceRangeSlider from "../components/priceRange/PriceRange";
 import CategorySelector from "./filters/CategorySelector";
-import TagSelector from "./filters/TagSelector";
 
 type ProductFilterProps = {
   searchParams: Record<string, string | string[] | undefined>;
@@ -128,7 +127,7 @@ type ProductFilterProps = {
 
 const ProductFilter: React.FC<ProductFilterProps> = ({
   searchParams,
-  tags,
+
   categories,
   sheetCloseRef,
 }) => {
@@ -183,11 +182,11 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
         initialState={priceFilterInitialState}
         setInitialState={setPriceFilterInitialState}
       />
-      <TagSelector
+      {/* <TagSelector
         tags={tags}
         setTagParams={setTagParams}
         searchParams={csSearchParams}
-      />
+      /> */}
       <CategorySelector
         categories={categories}
         searchParams={csSearchParams}

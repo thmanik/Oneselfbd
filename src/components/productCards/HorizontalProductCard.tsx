@@ -9,8 +9,8 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
     <div className="bg-base-100 grid grid-cols-2 gap-5 justify-between items-center px-4 py-3 rounded-lg">
       <div className="flex justify-center">
         <Image
-          src={`${config.base_url}/${product.image?.src}`}
-          alt={product.image?.alt}
+          src={`${config.base_url}/${product.thumbnail?.src}`}
+          alt={product.thumbnail?.alt}
           width={600}
           height={400}
           priority
@@ -20,23 +20,17 @@ const HorizontalProductCard = ({ product }: { product: TProduct }) => {
       <div>
         <h2 className="font-semibold">{product.title}</h2>
         <div>
-          {product.salePrice ? (
+          {product?.salePrice ? (
             <>
-              <span className="text-muted">
+              <span className="text-muted text-xs">
                 &#2547;
-                <del className="text-sm">{product.price}</del>
+                <del>{product?.regularPrice}</del>
               </span>
-              <span className="text-xl font-bold">
-                &#2547;
-                <span>{product.salePrice}</span>
-              </span>
+              <span className="font-bold"> &#2547;{product?.salePrice}</span>
             </>
           ) : (
             <>
-              <span className="text-xl font-bold">
-                &#2547;
-                <span>{product.price}</span>
-              </span>
+              <span className="font-bold">&#2547;{product?.regularPrice}</span>
             </>
           )}
         </div>

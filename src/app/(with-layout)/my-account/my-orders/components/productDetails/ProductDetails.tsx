@@ -7,7 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import config from "@/config/config";
 import { useGetOrderProductByIdQuery } from "@/redux/features/user/userApi";
 import Image from "next/image";
 import Link from "next/link";
@@ -91,7 +90,7 @@ const OrderDetails = () => {
           {/* Right side: Shipping information */}
           <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
             <h1 className="text-xl lg:text-2xl font-bold mb-4">
-              Shipping Information
+              Shipping Address
               <hr className="w-72 mt-1" />
             </h1>
             <div className="mb-4">
@@ -154,7 +153,7 @@ const OrderDetails = () => {
                     <Image
                       width={60}
                       height={60}
-                      src={`${config.base_url}/${product.image.src}`}
+                      src={product.image.src}
                       alt={product.image.alt}
                     />
                   </TableCell>

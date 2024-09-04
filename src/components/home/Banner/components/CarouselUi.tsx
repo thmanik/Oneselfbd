@@ -34,8 +34,8 @@ const CarouselUi = ({ product }: { product: TProduct }) => {
         </div>
         <div className=" md:block">
           <Image
-            src={`${config.base_url}/${product.image?.src}`}
-            alt={product.image?.alt}
+            src={`${config.base_url}/${product.thumbnail?.src}`}
+            alt={product.thumbnail?.alt}
             height={600}
             width={600}
           />

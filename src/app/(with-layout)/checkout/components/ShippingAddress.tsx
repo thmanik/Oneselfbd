@@ -97,7 +97,7 @@ const ShippingAddress = () => {
 
   return (
     <Box className="bg-white">
-      <BoxHeading>Shipping information</BoxHeading>
+      <BoxHeading>Shipping Address</BoxHeading>
       {customerHasAccount && (
         <Card className="w-[350px]" placeholder={undefined}>
           <CardHeader placeholder={undefined}>
