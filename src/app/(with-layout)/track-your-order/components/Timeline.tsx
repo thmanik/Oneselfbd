@@ -87,19 +87,19 @@ const Timeline: React.FC<TimelineProps> = ({ statuses }) => {
       <h2 className="text-xl font-semibold mb-6">
         Order Status{" "}
         <span className="text-teal-500">
-          {statuses.find((status) => status.isActive)?.title}...
+          {statuses?.find((status) => status?.isActive)?.title}...
         </span>
       </h2>
       <div className="relative">
-        {statuses.map((status, index) => (
+        {statuses?.map((status, index) => (
           <TimelineEvent
             key={index}
-            status={status.status}
-            title={status.title}
-            date={status.date}
-            time={status.time}
-            icon={getIcon(status.icon)}
-            isActive={status.isActive}
+            status={status?.status}
+            title={status?.title}
+            date={status?.date}
+            time={status?.time}
+            icon={getIcon(status?.icon)}
+            isActive={status?.isActive}
           />
         ))}
       </div>
