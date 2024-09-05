@@ -1,12 +1,12 @@
+/* eslint-disable no-unsafe-optional-chaining */
 "use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRouter } from "next/navigation";
-
 import ContainerMax from "@/components/containerMax/ContainerMax";
+import EcButton from "@/components/EcButton/EcButton";
 import { useOderTrackerQuery } from "@/redux/features/trackOrder/TrackOrder";
-import { useParams } from "next/navigation";
-import { useEffect } from "react";
+import Image from "next/image";
+import { useParams, useRouter } from "next/navigation";
 import Timeline from "./Timeline";
 
 const TrackOrderDetails = () => {
@@ -17,25 +17,43 @@ const TrackOrderDetails = () => {
   const { data, error, isLoading } = useOderTrackerQuery(orderId);
 
   const LoadingSpinner = () => (
-    <div className="text-center py-4">Loading...</div>
+    <div className="flex flex-col items-center justify-center gap-5 h-[100vh]">
+      <Image
+        src="/images/logo/logo.png"
+        alt="logo"
+        width={100}
+        height={100}
+        priority={true}
+      />
+      <h1 className="text-4xl">Loading... Please wait.</h1>
+      <Image
+        src="/images/animations/loading.gif"
+        alt="loading"
+        width={100}
+        height={100}
+        priority={true}
+      />
+    </div>
   );
 
-  const ErrorDisplay = () => (
-    <div className="text-center py-4">Error fetching data</div>
+  const ErrorDisplay = ({ message }: { message: string }) => (
+    <div className="text-center py-4 my-10 md:my-16">
+      <p className="text-red-500 text-md md:text-2xl">{message}</p>
+      <EcButton
+        onClick={() => router.back()}
+        className="mt-4 px-6 py-1 text-white   transition"
+      >
+        Go Back
+      </EcButton>
+    </div>
   );
-
-  useEffect(() => {
-    if (!orderId) {
-      router.push("/track-your-order");
-    }
-  }, [orderId, router]);
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
-  if (error || !data) {
-    return <ErrorDisplay />;
+  if (error || !data || !data?.data?.[0]) {
+    return <ErrorDisplay message="Invalid order ID, Order not found" />;
   }
 
   const orderData = data?.data?.[0];
@@ -53,31 +71,73 @@ const TrackOrderDetails = () => {
   const parcelTrackingLink = orderData?.parcelTrackingLink;
 
   return (
-    <section className="bg-gray-100 py-8 flex justify-center items-center">
+    <section className="py-8 flex justify-center items-center">
       <ContainerMax>
-        <div className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg">
-          <h2 className="text-2xl text-center text-dark-gray mb-6">
-            Order Status for Order ID: {orderId}
-          </h2>
-          <Timeline statuses={statuses} />
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Order Summary */}
+          <div className="lg:col-span-1 bg-gray-100 p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-bold mb-4 text-dark-gray">
+              Order Summary
+            </h3>{" "}
+            <hr className="border-t-4 border-gray-300 h-4" />
+            <div className="space-y-2">
+              <p>
+                <strong>Order ID: </strong> {orderId}
+              </p>
+              <p>
+                <strong>Status: </strong> {orderData?.status || "Unknown"}
+              </p>
+            </div>
+            {/* Shipping Information */}
+            <div className="mt-6 md:mt-16">
+              <h3 className="text-lg font-semibold mb-4 text-dark-gray">
+                Shipping Information
+              </h3>
+              <hr className="border-t-4 border-gray-300 h-4" />
+              <div className="text-gray-700 space-y-2">
+                <p>
+                  <strong>Name: </strong> {orderData?.shipping?.fullName}
+                </p>
+                <p>
+                  <strong>Address: </strong> {orderData?.shipping?.fullAddress}
+                </p>
+                <p>
+                  <strong>Phone: </strong> {orderData?.shipping?.phoneNumber}
+                </p>
+              </div>
+            </div>
+          </div>
 
-          {/* Conditionally render the tracking button */}
-          {parcelTrackingLink ? (
-            <div className="mt-6 text-center">
-              <a
-                href={parcelTrackingLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
-              >
-                Track Parcel
-              </a>
+          {/* Timeline and Tracking Info */}
+          <div className="lg:col-span-2">
+            <div className="p-6 bg-white shadow-md rounded-lg">
+              <h2 className="text-2xl font-bold text-center text-dark-gray mb-4">
+                Order Status History
+              </h2>
+              <hr className="border-t-4 border-gray-300 h-4" />
+
+              {/* Timeline */}
+              <Timeline statuses={statuses} />
+
+              {/* Parcel Tracking */}
+              {parcelTrackingLink ? (
+                <div className="mt-6 text-center">
+                  <a
+                    href={parcelTrackingLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-lg  transition"
+                  >
+                    Track Parcel
+                  </a>
+                </div>
+              ) : (
+                <div className="mt-6 text-center text-red-300">
+                  Parcel Tracking information not available
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="mt-6 text-center text-gray-500">
-              Parcel Tracking information not available
-            </div>
-          )}
+          </div>
         </div>
       </ContainerMax>
     </section>
