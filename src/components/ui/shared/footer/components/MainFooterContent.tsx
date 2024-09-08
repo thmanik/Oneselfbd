@@ -11,7 +11,7 @@ const quickLinks = [
   },
   {
     name: "About",
-    url: "/about",
+    url: "/about-us",
   },
   {
     name: "Store location",
