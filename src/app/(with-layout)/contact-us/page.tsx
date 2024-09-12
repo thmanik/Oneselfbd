@@ -1,121 +1,68 @@
 /* eslint-disable react/no-unescaped-entities */
-"use client";
-import EcButton from "@/components/EcButton/EcButton";
-import { useForm } from "react-hook-form";
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import contact_us from "../../../../public/images/contact_us.jpg";
 
 const ContactUsPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data: object) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-  };
-
   return (
     <div>
-      <div>
-        <div className="w-full relative">
+      <div className="w-full relative">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${contact_us.src})`,
+          }}
+        ></div>
+        <div className="bg-gray-100 flex items-center justify-center">
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="w-full h-[380px] bg-primary p-8 relative flex flex-col justify-center items-center"
             style={{
-              backgroundImage: `url(${contact_us.src})`,
+              background:
+                "linear-gradient(to right, rgba(0,193,241,0.5), rgba(36,31,33,0.5))",
             }}
-          ></div>
-          <div className="bg-gray-100 flex items-center justify-center">
-            <div
-              className="w-full h-[380px] bg-white p-8 relative flex flex-col justify-center items-center"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(0,193,241,0.5), rgba(36,31,33,0.5))",
-              }}
-            >
-              <h1 className="text-4xl font-bold text-center text-white mb-3">
-                Get in Touch
-              </h1>
-              <div className="bg-white h-1 w-16 mb-4"></div>
-              <p className="text-lg text-gray-100 text-center mb-8">
-                We're always ready to assist you. Whether you have
-                <br /> questions about our products, need help with your order,
-                or just want to say hello,
-                <br /> we'd love to hear from you.
-              </p>
-            </div>
+          >
+            <h1 className="text-4xl font-bold text-center text-white mb-3">
+              Get in Touch
+            </h1>
+            <div className="bg-white h-1 w-16 mb-4"></div>
+            <p className="text-lg text-gray-100 text-center mb-8">
+              We're always ready to assist you. Whether you have
+              <br /> questions about our products, need help with your order, or
+              just want to say hello,
+              <br /> we'd love to hear from you.
+            </p>
           </div>
         </div>
       </div>
-      {/* Contact form */}
-      <div className="h-full md:col-span-5 sm:col-span-12 bg-gray-100 flex items-center justify-center relative">
-        <div
-          className="md:w-2/6 bg-white p-8 rounded-lg shadow-lg"
-          style={{ position: "relative", zIndex: "1", top: "-6rem" }}
-        >
-          <h2 className="text-2xl font-semibold mb-6">Contact Us</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="phoneNumber"
-              >
-                Full Name
-              </label>
-              <input
-                {...register("name", { required: true })}
-                type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
-                placeholder="Your Name"
-              />
-              {errors.name && (
-                <span className="text-red-500">This field is required</span>
-              )}
+      <div className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+            Get in Touch with Us
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            {/* Phone Number */}
+            <div className="bg-white shadow-lg p-8 rounded-lg">
+              <FaPhoneAlt className="text-4xl text-cyan-600 mb-4 mx-auto" />
+              <h3 className="text-xl font-semibold mb-2">Phone</h3>
+              <p className="text-gray-600">+8801967214215</p>
+              <p className="text-gray-600">24/7 service</p>
             </div>
 
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="phoneNumber"
-              >
-                Email
-              </label>
-              <input
-                {...register("email", { required: true })}
-                type="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
-                placeholder="Your Email"
-              />
-              {errors.email && (
-                <span className="text-red-500">This field is required</span>
-              )}
+            {/* Email */}
+            <div className="bg-white shadow-lg p-8 rounded-lg">
+              <FaEnvelope className="text-4xl text-cyan-600 mb-4 mx-auto" />
+              <h3 className="text-xl font-semibold mb-2">Email</h3>
+              <p className="text-gray-600">oneselfbd@gmail.com</p>
+              <p className="text-gray-600">24/7 Online Support</p>
             </div>
 
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="phoneNumber"
-              >
-                Message
-              </label>
-              <textarea
-                {...register("message", { required: true })}
-                rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
-                placeholder="Your Message"
-              ></textarea>
-              {errors.message && (
-                <span className="text-red-500">This field is required</span>
-              )}
+            {/* Location */}
+            <div className="bg-white shadow-lg p-8 rounded-lg">
+              <FaMapMarkerAlt className="text-4xl text-cyan-600 mb-4 mx-auto" />
+              <h3 className="text-xl font-semibold mb-2">Location</h3>
+              <p className="text-gray-600">Khulna, Bangladesh</p>
+              <p className="text-gray-600">Visit Us Anytime</p>
             </div>
-
-            <div>
-              <EcButton type="submit" className="w-full text-white">
-                Submit
-              </EcButton>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

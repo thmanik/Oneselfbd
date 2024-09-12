@@ -167,7 +167,7 @@ const OrderDetails = () => {
                   <TableCell className="py-3 px-4">৳ {product.total}</TableCell>
                   <TableCell className="py-3 px-4 whitespace-nowrap">
                     {" "}
-                    <Link href={`/track-order/${product._id}`}>
+                    <Link href={`/track-your-order/${orderId}`}>
                       <span className="text-blue-500 hover:underline">
                         Track Order
                       </span>

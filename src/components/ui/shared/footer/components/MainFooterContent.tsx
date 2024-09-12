@@ -10,8 +10,12 @@ const quickLinks = [
     url: "/shop",
   },
   {
-    name: "About",
+    name: "About-us",
     url: "/about-us",
+  },
+  {
+    name: "Contact-us",
+    url: "/contact-us",
   },
   {
     name: "Store location",
@@ -20,6 +24,10 @@ const quickLinks = [
   {
     name: "Refund policy",
     url: "/refund-policy",
+  },
+  {
+    name: "Track Order",
+    url: "track-your-order",
   },
 ];
 

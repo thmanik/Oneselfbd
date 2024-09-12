@@ -1,6 +1,5 @@
 import config from "@/config/config";
 import { TProduct } from "@/types/products/product";
-import { Rating } from "@smastrom/react-rating";
 import Image from "next/image";
 import Link from "next/link";
 const ProductCardSecondary = ({ product }: { product: TProduct }) => {
@@ -22,7 +21,7 @@ const ProductCardSecondary = ({ product }: { product: TProduct }) => {
         >
           {product.title}
         </Link>
-        <Rating style={{ maxWidth: 80 }} value={3.5} readOnly />
+
         <div>
           {product.salePrice ? (
             <>
