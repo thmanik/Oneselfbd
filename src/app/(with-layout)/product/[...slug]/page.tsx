@@ -4,7 +4,6 @@ import Box from "@/components/ui/ec/Box";
 import config from "@/config/config";
 import { TProduct } from "@/types/products/product";
 import { TSingleProduct } from "@/types/products/singleProduct";
-import { Rating } from "@smastrom/react-rating";
 import Link from "next/link";
 import ProductClientWrapper from "./components/ProductClientWrapper"; // Import the client-side wrapper
 import ProductDetails from "./components/ProductDetails";
@@ -93,7 +92,7 @@ const SingleProductPage = async ({ params }: TProps) => {
               {category?._id?.name}
             </Link>
             <h2 className="font-semibold text-xl lg:text-2xl">{title}</h2>
-            <Rating style={{ maxWidth: 80 }} value={3.5} readOnly />
+
             <div className="flex gap-5">
               <p className="text-md text-muted">brand: {brand?.name || null}</p>
               <p>

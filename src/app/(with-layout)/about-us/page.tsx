@@ -28,7 +28,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Core Values */}
-      <section className="py-3 md:py-12 bg-gray-50">
+      <section className="py-3 md:py-8 bg-gray-50">
         <div className="container mx-auto px-6 md:px-12">
           <h2 className="text-2xl md:text-4xl mt-3 font-semibold text-gray-600 text-center mb-4 md:mb-8">
             Our Core Values

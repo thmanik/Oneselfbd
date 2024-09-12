@@ -3,28 +3,27 @@ import Head from "next/head";
 
 const StoreLocationPage = () => {
   return (
-    <div
-      className="min-h-screen flex items-center justify-center"
-      style={{ background: "linear-gradient(to right, #00C1F1, #241F21)" }}
-    >
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#00C1F1] to-[#241F21] p-6">
       <Head>
-        <title>Store Location - Banani, Dhaka | Your Company Name</title>
+        <title>Store Location - Khulna, Bangladesh | Your Company Name</title>
         <meta
           name="description"
-          content="Find our store location in Banani, Dhaka"
+          content="Find our store location in Khulna, Bangladesh"
         />
       </Head>
-      <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row">
-        <div className="md:w-1/2 relative">
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="container mx-auto px-4 py-12 flex flex-col md:flex-row items-center">
+        {/* Map Section */}
+        <div className="md:w-1/2 relative mb-8 md:mb-0">
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform transform hover:scale-105">
             <div className="h-96 relative">
               <iframe
                 className="w-full h-full rounded-t-lg"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.1068784985886!2d90.40931291538688!3d23.79314419438346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c717ea0e986b%3A0x5a5e160acef94391!2sBanani%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1645648631078!5m2!1sen!2sbd"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.9861474227663!2d89.56666931537636!3d22.84564118503652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a004f97c9d5bdb1%3A0x4baf0b0a13c1670b!2sKhulna%2C%20Bangladesh!5e0!3m2!1sen!2sbd!4v1645648631078!5m2!1sen!2sbd"
                 allowFullScreen
                 loading="lazy"
-                title="Google Map"
+                title="Google Map - Khulna"
               ></iframe>
+              {/* Map Marker */}
               <svg
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                 width="40"
@@ -41,20 +40,22 @@ const StoreLocationPage = () => {
             </div>
           </div>
         </div>
-        <div className="md:w-1/2 mt-8 md:mt-0 text-white flex flex-col justify-center items-center">
-          <h2 className=" text-3xl md:text-5xl font-bold mb-4">
+
+        {/* Info Section */}
+        <div className="md:w-1/2 flex flex-col justify-center items-center text-white">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 animate-pulse">
             Our Store Location
           </h2>
-          <div className="bg-white h-1 w-16 mb-4"></div>
-          <p className="text-xl text-center mb-4">
-            Explore our products in person at our Banani location in Dhaka,
-            Bangladesh.
+          <div className="bg-white h-1 w-24 rounded mb-6"></div>
+          <p className="text-lg md:text-xl text-center mb-4">
+            Explore our products in person at our Khulna location in Bangladesh.
           </p>
-          <p className="text-lg text-center mb-8">
+          <p className="text-md md:text-lg text-center mb-8 italic">
             We're conveniently located at:
           </p>
-          <p className="text-2xl font-bold">456 Store Avenue</p>
-          <p className="text-lg mb-4">Banani, Dhaka, Bangladesh</p>
+          <p className="text-2xl font-bold tracking-wide mb-2">
+            Khulna, Bangladesh
+          </p>
         </div>
       </div>
     </div>
