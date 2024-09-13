@@ -9,6 +9,14 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import Timeline from "./Timeline";
 
+// Utility function to capitalize each word in the status
+const capitalizeStatus = (status: string) => {
+  return status
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+};
+
 const TrackOrderDetails = () => {
   const params = useParams();
   const router = useRouter();
@@ -41,7 +49,7 @@ const TrackOrderDetails = () => {
       <p className="text-red-500 text-md md:text-2xl">{message}</p>
       <EcButton
         onClick={() => router.back()}
-        className="mt-4 px-6 py-1 text-white   transition"
+        className="mt-4 px-6 py-1 text-white transition"
       >
         Go Back
       </EcButton>
@@ -57,15 +65,31 @@ const TrackOrderDetails = () => {
   }
 
   const orderData = data?.data?.[0];
-  const statuses = orderData?.statusHistory?.map(
-    (statusEvent: any, index: number) => ({
-      status: statusEvent?.status || "N/A",
-      title: orderData?.status || "N/A",
-      date: new Date(statusEvent?.updatedAt).toLocaleDateString(),
-      time: new Date(statusEvent?.updatedAt).toLocaleTimeString(),
-      icon: index === 0 ? "box" : "truck",
-      isActive: index === 0,
-    })
+
+  const statuses = [
+    {
+      status: "Pending",
+      // title: "Pending",
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+      icon: "pending",
+      isActive: true,
+    },
+    ...orderData?.statusHistory
+      ?.slice(1)
+      .map((statusEvent: any, index: number) => ({
+        status: capitalizeStatus(statusEvent?.status || "N/A"),
+        // title: capitalizeStatus(statusEvent?.status || "N/A"),
+        date: new Date(statusEvent?.updatedAt).toLocaleDateString(),
+        time: new Date(statusEvent?.updatedAt).toLocaleTimeString(),
+        icon: index === 0 ? "box" : "truck",
+        isActive: true,
+      })),
+  ];
+
+  const latestStatus = capitalizeStatus(
+    orderData?.statusHistory?.[orderData?.statusHistory?.length - 1]?.status ||
+      "Unknown"
   );
 
   const parcelTrackingLink = orderData?.parcelTrackingLink;
@@ -78,14 +102,14 @@ const TrackOrderDetails = () => {
           <div className="lg:col-span-1 bg-gray-100 p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-bold mb-4 text-dark-gray">
               Order Summary
-            </h3>{" "}
+            </h3>
             <hr className="border-t-4 border-gray-300 h-4" />
             <div className="space-y-2">
               <p>
                 <strong>Order ID: </strong> {orderId}
               </p>
               <p>
-                <strong>Status: </strong> {orderData?.status || "Unknown"}
+                <strong>Current status: </strong> {latestStatus}
               </p>
             </div>
             {/* Shipping Information */}
@@ -117,7 +141,7 @@ const TrackOrderDetails = () => {
               <hr className="border-t-4 border-gray-300 h-4" />
 
               {/* Timeline */}
-              <Timeline statuses={statuses} />
+              <Timeline statuses={statuses} latestStatus={latestStatus} />
 
               {/* Parcel Tracking */}
               {parcelTrackingLink ? (
@@ -126,7 +150,7 @@ const TrackOrderDetails = () => {
                     href={parcelTrackingLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-lg  transition"
+                    className="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-lg transition"
                   >
                     Track Parcel
                   </a>
