@@ -13,7 +13,7 @@ type TimelineEventProps = {
 
 const TimelineEvent: React.FC<TimelineEventProps> = ({
   status,
-  title,
+  // title,
   date,
   time,
   icon,
@@ -42,14 +42,14 @@ const TimelineEvent: React.FC<TimelineEventProps> = ({
 
       {/* Content Container */}
       <div
-        className={`relative w-40 md:w-full flex ${isLeft ? "justify-start" : "justify-end"} px-4 sm:px-6`}
+        className={`relative w-40  md:w-full flex ${isLeft ? "justify-start" : "justify-end"} px-4 `}
       >
         <div
-          className={`p-4 rounded-lg shadow-xl border border-gray-100 bg-white ${
+          className={`p-4 xms:mx-4 xls:mx-2 rounded-lg shadow-xl border border-gray-100 bg-white ${
             isLeft ? "text-right" : "text-left"
           } flex-1 ${
-            isLeft ? "mr-10 md:mr-4" : "ml-10 md:ml-4"
-          } ${isLeft ? "sm:w-52 md:w-80" : "sm:w-52 md:w-80"} ${
+            isLeft ? " mr-10  md:mr-4" : "ml-10 md:ml-4"
+          } ${isLeft ? "xms:w-40 xls:w-40 sm:w-52 md:w-80" : "xms:w-40 xls:w-40 sm:w-52 md:w-80 "} ${
             isActive
               ? isLeft
                 ? "border-r-4 border-r-primary"
@@ -66,11 +66,11 @@ const TimelineEvent: React.FC<TimelineEventProps> = ({
               isActive ? "text-primary" : "text-gray-600"
             }`}
           >
-            {title}
-          </h3>
-          <p className="text-[10px] sm:text-xs md:text-sm text-gray-500">
             {status}
-          </p>
+          </h3>
+          {/* <p className="text-[10px] sm:text-xs md:text-sm text-gray-500">
+            {title}
+          </p> */}
           <p className="text-[10px] sm:text-xxs md:text-xs text-gray-400">
             {date}, {time}
           </p>
