@@ -8,6 +8,7 @@ type Status = {
   date: string;
   time: string;
   icon: string;
+  description: string;
   isActive: boolean;
 };
 
@@ -40,7 +41,7 @@ const Timeline: React.FC<TimelineProps> = ({ statuses, latestStatus }) => {
           <TimelineEvent
             key={index}
             status={status?.status}
-            title={status?.title}
+            description={status?.description}
             date={status?.date}
             time={status?.time}
             icon={getIcon(status?.icon)}
