@@ -1,4 +1,4 @@
-/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -16,7 +16,6 @@ const capitalizeStatus = (status: string) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
 };
-
 const TrackOrderDetails = () => {
   const params = useParams();
   const router = useRouter();
@@ -60,39 +59,30 @@ const TrackOrderDetails = () => {
     return <LoadingSpinner />;
   }
 
-  if (error || !data || !data?.data?.[0]) {
+  if (error || !data || !data?.success) {
     return <ErrorDisplay message="Invalid order ID, Order not found" />;
   }
 
-  const orderData = data?.data?.[0];
+  const orderData = data?.data;
 
-  const statuses = [
-    {
-      status: "Pending",
-      // title: "Pending",
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
-      icon: "pending",
-      isActive: true,
-    },
-    ...orderData?.statusHistory
-      ?.slice(1)
-      .map((statusEvent: any, index: number) => ({
+  // Check if statusHistory is present and is an array
+  const statuses = Array.isArray(orderData.statusHistory)
+    ? orderData.statusHistory.map((statusEvent: any, index: number) => ({
         status: capitalizeStatus(statusEvent?.status || "N/A"),
-        // title: capitalizeStatus(statusEvent?.status || "N/A"),
-        date: new Date(statusEvent?.updatedAt).toLocaleDateString(),
-        time: new Date(statusEvent?.updatedAt).toLocaleTimeString(),
+        description: statusEvent?.description?.bn || "No description available",
+        date: new Date(statusEvent?.createdAt).toLocaleDateString(),
+        time: new Date(statusEvent?.createdAt).toLocaleTimeString(),
         icon: index === 0 ? "box" : "truck",
         isActive: true,
-      })),
-  ];
+      }))
+    : [];
 
   const latestStatus = capitalizeStatus(
-    orderData?.statusHistory?.[orderData?.statusHistory?.length - 1]?.status ||
+    orderData.statusHistory?.[orderData.statusHistory?.length - 1]?.status ||
       "Unknown"
   );
 
-  const parcelTrackingLink = orderData?.parcelTrackingLink;
+  const parcelTrackingLink = orderData.parcelTrackingLink;
 
   return (
     <section className="py-8 flex justify-center items-center">
@@ -157,7 +147,9 @@ const TrackOrderDetails = () => {
                 </div>
               ) : (
                 <div className="mt-6 text-center text-red-300">
-                  Parcel Tracking information not available
+                  আপনার পন্য কুরিয়ার এ পাঠানোর পর আপনি এখানে "Track Parcel" বাটন
+                  দেখতে পাবেন। বাটন এ ক্লিক করে কুরিয়ারে ট্রেকিং করতে পারবেন।
+                  অনুগ্রহ করে অপেক্ষা করুন, ধন্যবাদ !
                 </div>
               )}
             </div>

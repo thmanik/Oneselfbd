@@ -61,9 +61,7 @@ const OrderProductTable = () => {
                 <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
                   Order Total
                 </TableHead>
-                <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
-                  Status
-                </TableHead>
+
                 <TableHead className="w-[100px] lg:w-[120px] text-right font-bold text-black py-3 px-4">
                   Action
                 </TableHead>
@@ -84,9 +82,7 @@ const OrderProductTable = () => {
                     <TableCell className="py-3 px-4">
                       ${product.total.toFixed(2)}
                     </TableCell>
-                    <TableCell className="py-3 px-4">
-                      {product.status}
-                    </TableCell>
+
                     <TableCell className="text-right py-3 px-2">
                       <button
                         className="text-blue-500 hover:text-blue-700"
@@ -108,7 +104,7 @@ const OrderProductTable = () => {
             {sortedData?.length > 0 && (
               <TableFooter>
                 <TableRow className="bg-gray-200">
-                  <TableCell className="font-bold py-3 px-4" colSpan={4}>
+                  <TableCell className="font-bold py-3 px-4" colSpan={3}>
                     {sortedData.length} Item(s)
                   </TableCell>
                   <TableCell className="text-right font-bold py-3 px-4">

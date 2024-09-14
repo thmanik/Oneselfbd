@@ -21,14 +21,10 @@ const quickLinks = [
     name: "Store location",
     url: "/store-location",
   },
-  {
-    name: "Refund policy",
-    url: "/refund-policy",
-  },
-  {
-    name: "Track Order",
-    url: "track-your-order",
-  },
+  // {
+  //   name: "Refund policy",
+  //   url: "/refund-policy",
+  // },
 ];
 
 const socialLinks = [
