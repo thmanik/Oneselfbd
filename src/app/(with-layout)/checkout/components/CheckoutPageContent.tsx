@@ -57,6 +57,7 @@ const CheckoutPageContent = ({
   const shippingInfo = useSelector((state: TRootState) => state.shippingInfo);
   const paymentInfo = useSelector((state: TRootState) => state.paymentInfo);
   const shippingClass = useSelector((state: TRootState) => state.shippingClass);
+  const couponInfo = useSelector((state: TRootState) => state.coupon);
 
   const handleOrder = async () => {
     const eventId = PEventIdGenerator("P_");
@@ -79,6 +80,7 @@ const CheckoutPageContent = ({
         name: "Website",
         url: window?.location?.href,
       },
+      coupon: couponInfo?.coupon,
     };
 
     await createOrderFN({

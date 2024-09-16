@@ -53,7 +53,7 @@ const CartItems = () => {
         </TableHeader>
         <TableBody>
           {isLoading ? (
-            [1, 2, 3].map((item) => <CartItemSkeleton key={item} />)
+            [1, 2, 3]?.map((item) => <CartItemSkeleton key={item} />)
           ) : (
             <>
               {(cartItems?.data as TCartItemData[])?.map((item) => (

@@ -17,6 +17,7 @@ import baseApi from "./baseApi/baseApi";
 import paymentInfo from "./features/order/paymentInfo";
 import shippingInfo from "./features/order/shippingInfo";
 
+import couponInfo from "./features/order/couponInfo";
 import { searchProductApi } from "./features/searchProduct/searchProuctApi";
 import shippingClass from "./features/shippingClasses/shippingClass";
 import { tableDataSlice } from "./features/tableData/tableData";
@@ -41,6 +42,7 @@ export const store = configureStore({
     paymentInfo: paymentInfo,
     shippingInfo: shippingInfo,
     tableData: tableDataSlice.reducer,
+    coupon: couponInfo,
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({
