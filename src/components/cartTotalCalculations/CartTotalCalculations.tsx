@@ -2,6 +2,7 @@
 import { TRootState } from "@/types/rootState";
 import TShippingCharges from "@/types/shippingCharge";
 import { useSelector } from "react-redux";
+
 import SelectShippingMethod from "../selectShippingMethod/SelectShippingMethod";
 import { Skeleton } from "../ui/skeleton";
 
@@ -18,6 +19,17 @@ const CartTotalCalculations = ({
     (state: TRootState) => state.shippingClass
   );
 
+  const couponInfo = useSelector((state: TRootState) => state.coupon);
+
+  const discount = (couponInfo.percentage / 100) * (totalCost ? totalCost : 1);
+
+  const applicableDiscount =
+    discount > couponInfo.maxDiscountAmount
+      ? couponInfo.maxDiscountAmount
+      : discount;
+
+  const ultimateTotalCost = (totalCost ? totalCost : 1) - applicableDiscount;
+
   return (
     <div>
       <div className="flex gap-2 justify-between items-center py-5 px-2 border-b-2">
@@ -33,6 +45,7 @@ const CartTotalCalculations = ({
         </span>
       </div>
       <SelectShippingMethod shippingCharges={shippingCharges} />
+
       <div className="flex justify-between py-3 px-2">
         <p className="font-bold">Total</p>
         <div className="font-bold">
@@ -42,8 +55,8 @@ const CartTotalCalculations = ({
             </>
           ) : (
             <>
-              {Number(totalCost) + selectedShipping.amount
-                ? Number(totalCost) + selectedShipping.amount
+              {ultimateTotalCost
+                ? ultimateTotalCost + selectedShipping.amount
                 : 0}{" "}
               &#2547;
             </>

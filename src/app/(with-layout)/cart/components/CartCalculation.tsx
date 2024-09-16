@@ -10,6 +10,8 @@ const CartCalculation = ({
 }) => {
   const { totalCost, isLoading: cartCostLoading } = useCart();
 
+  // Get the coupon info from Redux store
+
   return (
     <>
       <CartTotalCalculations

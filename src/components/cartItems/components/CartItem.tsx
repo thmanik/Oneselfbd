@@ -62,8 +62,8 @@ const CartItem = ({
           className="hover:text-secondary flex-grow flex flex-col gap-3 justify-center items-center font-semibold flex-wrap text-center"
         >
           <Image
-            src={cartItem?.product?.image?.src}
-            alt={cartItem?.product?.image?.alt}
+            src={cartItem?.product?.image?.src || ""}
+            alt={cartItem?.product?.image?.alt || ""}
             height={200}
             width={200}
             className="w-14 h-14 md:w-20 md:h-20 mx-auto"
@@ -85,7 +85,7 @@ const CartItem = ({
         {isLoading ? (
           "Loading..."
         ) : (
-          <>&#2547; {(price * cartItem?.quantity).toFixed(2)}</>
+          <>&#2547; {(price * cartItem?.quantity)?.toFixed(2)}</>
         )}
       </TableCell>
     </TableRow>

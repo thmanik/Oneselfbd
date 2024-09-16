@@ -4,6 +4,11 @@ import { TPaymentInfoState } from "./order/paymentInfo";
 import { TShippingInfoState } from "./order/shippingInfo";
 
 export type TRootState = {
+  coupon: {
+    maxDiscountAmount: number;
+    coupon: string;
+    percentage: number;
+  };
   tableData: ProductToClaim[];
   auth: {
     user: TUser;
