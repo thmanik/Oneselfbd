@@ -26,8 +26,8 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
       <div className="flex flex-col gap-5">
         <div className="bg-base-100">
           <Image
-            src={`${config.base_url}/${product.thumbnail?.src}`}
-            alt={product.thumbnail?.alt}
+            src={`${config.base_url}/${product.thumbnail?.src} ` || ""}
+            alt={product.thumbnail?.alt || ""}
             height={400}
             width={400}
             className="w-48 h-48 min-w-[100px] aspect-square object-cover mx-auto"

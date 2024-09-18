@@ -56,7 +56,7 @@ const OrderProductTable = () => {
                   Order ID
                 </TableHead>
                 <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
-                  Date
+                  Order Date
                 </TableHead>
                 <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
                   Order Total

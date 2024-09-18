@@ -30,8 +30,8 @@ const HighlightAProduct = ({ product }: { product: TProduct | null }) => {
           </div>
           <div className="mx-auto col-span-2">
             <Image
-              src={`${config.base_url}/${product?.image?.src as string}`}
-              alt={product?.image?.alt as string}
+              src={`${config.base_url}/${product?.image?.src as string} ` || ""}
+              alt={(product?.image?.alt as string) || ""}
               width={200}
               height={200}
               className="w-20 h-20"

@@ -5,7 +5,7 @@ import { Range, getTrackBackground } from "react-range";
 const STEP = 1;
 const MIN = 0;
 const MAX = 6000;
-const DEFAULT_MAX = 1300;
+const DEFAULT_MAX = 6000;
 
 type PriceRangeSliderProps = {
   initialState: number[];

@@ -40,4 +40,5 @@ export type TCartItemData = {
 export type TCart = {
   _id: string;
   cartItems: TCartItemData[];
+  data: object;
 };

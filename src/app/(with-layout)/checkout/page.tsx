@@ -11,7 +11,7 @@ const Checkout = async () => {
     await useQuery<TPaymentMethod[]>("/payment-method");
 
   return (
-    <section className="mt-20">
+    <section className="mt-3">
       <ContainerMax>
         <CheckoutPageContent
           shippingCharges={shippingCharges}

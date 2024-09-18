@@ -32,8 +32,8 @@ const SelectPaymentMethod = ({
           >
             <span>{paymentMethod?.name}</span>
             <Image
-              src={`${config.base_url}/${paymentMethod?.image?.src}`}
-              alt={paymentMethod?.image?.alt}
+              src={`${config.base_url}/${paymentMethod?.image?.src} ` || ""}
+              alt={paymentMethod?.image?.alt || ""}
               width={200}
               height={200}
               className="w-10 h-10 rounded-md"

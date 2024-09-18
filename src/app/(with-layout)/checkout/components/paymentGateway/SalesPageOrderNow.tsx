@@ -46,7 +46,7 @@ const SalesPageOrderNow = ({
           <div className="py-2 flex justify-between gap-2 items-center">
             <div className="flex gap-2">
               <Image
-                src={`${config.base_url}/${product?.thumbnail?.src}`}
+                src={`${config.base_url}/${product?.thumbnail?.src} ` || ""}
                 alt={product?.thumbnail?.alt as string}
                 width={100}
                 height={100}

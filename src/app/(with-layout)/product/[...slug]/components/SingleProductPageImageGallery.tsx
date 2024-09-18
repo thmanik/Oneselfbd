@@ -10,7 +10,7 @@ const SingleProductPageImageGallery = ({
   gallery: TGalleryImage[];
 }) => {
   const galleryImages = gallery?.map((image) => ({
-    original: `${config.base_url}/${image?.src}`,
+    original: `${config.base_url}/${image?.src} `,
     thumbnail: `${config.base_url}/${image?.src}`,
     crossOrigin: "anonymous",
   }));

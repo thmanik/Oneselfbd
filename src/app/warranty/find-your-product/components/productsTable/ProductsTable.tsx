@@ -48,8 +48,8 @@ const ProductTable = ({ searchResult }: Props) => {
               <Image
                 layout="fill"
                 objectFit="contain"
-                src={`${config?.base_url}/${product?.image?.src}`}
-                alt={product?.image?.alt}
+                src={`${config?.base_url}/${product?.image?.src} ` || ""}
+                alt={product?.image?.alt || ""}
               />
             </div>
           </TableCell>

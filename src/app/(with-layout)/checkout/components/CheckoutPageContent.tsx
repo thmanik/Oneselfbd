@@ -80,7 +80,7 @@ const CheckoutPageContent = ({
         name: "Website",
         url: window?.location?.href,
       },
-      coupon: couponInfo?.coupon,
+      coupon: couponInfo.coupon === null ? undefined : couponInfo.coupon,
     };
 
     await createOrderFN({

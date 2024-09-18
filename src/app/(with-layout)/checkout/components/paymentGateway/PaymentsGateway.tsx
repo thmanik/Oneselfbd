@@ -126,7 +126,10 @@ const PaymentsGateway = ({
                     </div>
                     <div>
                       <Image
-                        src={`${config.base_url}/${findSelectedPaymentMethod?.image?.src}`}
+                        src={
+                          `${config.base_url}/${findSelectedPaymentMethod?.image?.src} ` ||
+                          ""
+                        }
                         alt={findSelectedPaymentMethod?.image?.alt as string}
                         width={200}
                         height={200}

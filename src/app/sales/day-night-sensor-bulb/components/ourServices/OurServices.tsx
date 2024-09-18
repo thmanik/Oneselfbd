@@ -45,7 +45,7 @@ const OurServices = () => {
                       width={120}
                       height={120}
                       className="!w-[70px] !h-[60px]"
-                      src={service?.image}
+                      src={service?.image || ""}
                       alt="image"
                     />
                   </div>

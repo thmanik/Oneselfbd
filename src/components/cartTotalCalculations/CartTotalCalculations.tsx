@@ -21,14 +21,18 @@ const CartTotalCalculations = ({
 
   const couponInfo = useSelector((state: TRootState) => state.coupon);
 
-  const discount = (couponInfo.percentage / 100) * (totalCost ? totalCost : 1);
+  const discount = (couponInfo.percentage / 100) * (totalCost ? totalCost : 0);
 
   const applicableDiscount =
     discount > couponInfo.maxDiscountAmount
       ? couponInfo.maxDiscountAmount
       : discount;
 
-  const ultimateTotalCost = (totalCost ? totalCost : 1) - applicableDiscount;
+  // Calculate ultimateTotalCost
+  const ultimateTotalCost = (totalCost ? totalCost : 0) - applicableDiscount;
+
+  // Add shipping amount if there is a selected shipping method
+  const totalWithShipping = ultimateTotalCost + (selectedShipping.amount || 0);
 
   return (
     <div>
@@ -54,12 +58,7 @@ const CartTotalCalculations = ({
               <Skeleton className="h-4 w-[100px]" />
             </>
           ) : (
-            <>
-              {ultimateTotalCost
-                ? ultimateTotalCost + selectedShipping.amount
-                : 0}{" "}
-              &#2547;
-            </>
+            <>{totalWithShipping} &#2547;</>
           )}
         </div>
       </div>

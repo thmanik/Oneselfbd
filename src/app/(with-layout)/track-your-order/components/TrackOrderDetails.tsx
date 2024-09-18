@@ -146,7 +146,7 @@ const TrackOrderDetails = () => {
                   </a>
                 </div>
               ) : (
-                <div className="mt-6 text-center text-red-300">
+                <div className="mt-6 text-center text-gray-600">
                   আপনার পন্য কুরিয়ার এ পাঠানোর পর আপনি এখানে "Track Parcel" বাটন
                   দেখতে পাবেন। বাটন এ ক্লিক করে কুরিয়ারে ট্রেকিং করতে পারবেন।
                   অনুগ্রহ করে অপেক্ষা করুন, ধন্যবাদ !
