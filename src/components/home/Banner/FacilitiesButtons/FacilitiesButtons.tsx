@@ -45,8 +45,8 @@ const FacilitiesButtons = () => {
           <div className="flex justify-center items-center">
             <Image
               className="w-16"
-              src={`/images/${item.image}`}
-              alt={item.title}
+              src={`/images/${item.image} ` || ""}
+              alt={item.title || ""}
               width={100}
               height={60}
             />

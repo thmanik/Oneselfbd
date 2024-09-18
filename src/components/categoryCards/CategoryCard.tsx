@@ -12,8 +12,8 @@ const CategoryCard = ({ category }: { category: TCategory }) => {
         className="block text-center p-4"
       >
         <Image
-          src={`${config.base_url}/${category?.image?.src}`} //TODO: Change image Path
-          alt={category?.image?.alt}
+          src={`${config.base_url}/${category?.image?.src} ` || ""} //TODO: Change image Path
+          alt={category?.image?.alt || ""}
           width={200}
           height={200}
           className="w-20 h-20 mx-auto hover:scale-95 transition-all"

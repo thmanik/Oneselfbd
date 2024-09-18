@@ -46,7 +46,7 @@ const OrderDetails = () => {
     orderId,
 
     total,
-    status,
+
     payment,
     shipping,
 
@@ -74,12 +74,10 @@ const OrderDetails = () => {
               </p>
 
               <p className="mb-2">
-                <span className="font-semibold">Total:</span> ৳
+                <span className="font-semibold">Total Amount:</span> ৳
                 {total?.toFixed(2)}
               </p>
-              <p className="mb-2">
-                <span className="font-semibold">Status:</span> {status}
-              </p>
+
               <p className="mb-2">
                 <span className="font-semibold">Payment Method:</span>{" "}
                 {payment?.paymentMethod?.name}
@@ -153,7 +151,7 @@ const OrderDetails = () => {
                     <Image
                       width={60}
                       height={60}
-                      src={product.image.src}
+                      src={product.image.src || ""}
                       alt={product.image.alt}
                     />
                   </TableCell>
