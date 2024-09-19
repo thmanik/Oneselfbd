@@ -48,8 +48,8 @@ const JumpToTopBtn: React.FC = () => {
 const styles = {
   jumpButton: {
     position: "fixed" as const,
-    bottom: "30px",
-    right: "30px",
+    bottom: "15px",
+    right: "5px",
     backgroundColor: "#f0f0f0",
     borderRadius: "50%",
     width: "50px",
