@@ -68,7 +68,7 @@ const SingleProductPage = async ({ params }: TProps) => {
     title,
     shortDescription,
     price,
-    variations,
+    variations = [],
   } = product;
 
   // Determine the default variation if available

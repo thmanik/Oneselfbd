@@ -14,7 +14,7 @@ type VariationSelectorProps = {
 };
 
 const VariationSelector = ({
-  variations,
+  variations = [],
   initialPrice,
   onVariationChange,
 }: VariationSelectorProps) => {
@@ -78,11 +78,11 @@ const VariationSelector = ({
   };
 
   const displayedPrice =
-    filteredVariations.length > 0 && filteredVariations[0].price?.salePrice
+    filteredVariations?.length > 0 && filteredVariations[0].price?.salePrice
       ? filteredVariations[0].price.salePrice
       : initialPrice.salePrice;
   const originalPrice =
-    filteredVariations.length > 0 && filteredVariations[0].price?.regularPrice
+    filteredVariations?.length > 0 && filteredVariations[0].price?.regularPrice
       ? filteredVariations[0].price.regularPrice
       : initialPrice.regularPrice;
 
