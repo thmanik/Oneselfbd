@@ -7,4 +7,5 @@ export type TUser = {
 export type TInitialState = {
   user: null | TUser;
   token: null | string;
+  isLoggedIn: boolean;
 };
