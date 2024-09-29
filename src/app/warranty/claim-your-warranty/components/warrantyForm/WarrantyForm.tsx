@@ -1,16 +1,23 @@
 "use client";
 import EcButton from "@/components/EcButton/EcButton";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { useClaimRequestMutation } from "@/redux/features/warrantyApi/warrantyApiSlice";
 import { TRootState } from "@/types/rootState";
-import { ToastAction } from "@radix-ui/react-toast";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-
 type FormData = {
   purchaseDate: string;
   warrantyCodes: string;
@@ -29,6 +36,7 @@ const WarrantyForm = () => {
     phoneNumber: TableData[0]?.shippingDetails?.phoneNumber || "",
     fullAddress: TableData[0]?.shippingDetails?.fullAddress || "",
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     register,
@@ -80,20 +88,7 @@ const WarrantyForm = () => {
 
     try {
       await claimRequest(formData).unwrap();
-      toast({
-        description: "Warranty claim request submitted successfully",
-        className: "text-green-500",
-        action: (
-          <ToastAction
-            altText="Go back home"
-            onClick={() => {
-              router.push("/");
-            }}
-          >
-            <EcButton className="text-white">Go back home</EcButton>
-          </ToastAction>
-        ),
-      });
+      setIsModalOpen(true);
       setIsFormSubmitted(true);
     } catch (error: unknown) {
       toast({
@@ -117,6 +112,10 @@ const WarrantyForm = () => {
     }
   };
 
+  // const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const files = Array.from(e.target.files || []);
+  //   setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
+  // };
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
@@ -126,6 +125,10 @@ const WarrantyForm = () => {
     const updatedFiles = [...selectedFiles];
     updatedFiles.splice(index, 1);
     setSelectedFiles(updatedFiles);
+  };
+  const handleModalClose = () => {
+    setIsModalOpen(false); // Close modal
+    router.push("/"); // Redirect to home page
   };
 
   const renderSelectedFiles = () => {
@@ -201,7 +204,7 @@ const WarrantyForm = () => {
               </p>
             )}
           </div>
-          <div className="flex flex-col items-center justify-center">
+          {/* <div className="flex flex-col items-center justify-center">
             <div
               className={`${
                 fileDragged ? "border-blue-500" : "border-gray-300"
@@ -249,7 +252,56 @@ const WarrantyForm = () => {
                 নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
               </p>
             )}
+          </div> */}
+          <div
+            className={`${
+              fileDragged ? "border-blue-500" : "border-gray-300"
+            } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
+            onDragOver={(e) => {
+              e.preventDefault();
+              handleDragOver(e);
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              handleDrop(e);
+            }}
+            onClick={() => {
+              // Ensure the input field is clicked when the container is clicked
+              const fileInput = document.getElementById(
+                "customerFile"
+              ) as HTMLInputElement;
+              fileInput?.click();
+            }}
+            style={{
+              minHeight: "160px",
+              width: "100%",
+              background: "#ffffff",
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <input
+              type="file"
+              id="customerFile"
+              {...register("customerFiles", { required: true })}
+              className="hidden"
+              onChange={handleFileInputChange} // Handle file input change
+              multiple
+              onClick={(e) => e.stopPropagation()} // Prevent click event from bubbling up
+              style={{ width: "100%" }}
+            />
+            <label
+              htmlFor="customerFile"
+              className="flex justify-center items-center text-black py-2 px-4 rounded-md cursor-pointer"
+              style={{
+                borderRadius: "4px",
+                transition: "background-color 0.3s ease-in-out",
+              }}
+            >
+              <AiOutlineCloudUpload size={30} className="mr-2" />
+              নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
+            </label>
           </div>
+
           {renderSelectedFiles()}
           <div>
             <h2 className="text-xl mb-4">ক্রেতার তথ্য</h2>
@@ -380,6 +432,32 @@ const WarrantyForm = () => {
             )}
           </div>
         </form>
+
+        <div>
+          <Dialog
+            open={isModalOpen}
+            onOpenChange={(open) => {
+              if (!open) handleModalClose();
+            }}
+          >
+            <DialogContent className="w-11/12 max-w-[630px] mx-auto p-4">
+              <DialogHeader>
+                <DialogTitle className="text-center my-2 text-lg font-bold">
+                  অনুরোধ সফলভাবে গ্রহণ করা হয়েছে
+                </DialogTitle>
+                <DialogDescription className="text-center p-3 text-sm">
+                  আপনার অনুরোধটি গ্রহণ করা হয়েছে। আমাদের দক্ষ টিম আপনার সাথে
+                  যোগাযোগ করবে, ততক্ষণ পর্যন্ত অপেক্ষা করুন। ধন্যবাদ।
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="mx-auto my-1">
+                <Link href="/">
+                  <EcButton className="text-white ">Go back home</EcButton>
+                </Link>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
     </div>
   );

@@ -55,7 +55,7 @@ const ProductTable = ({ searchResult }: Props) => {
           </TableCell>
           <TableCell className="px-4 py-2">{product?.title}</TableCell>
           <TableCell className="px-4 py-2">
-            ${product?.unitPrice?.toFixed(2)}
+            &#2547; {product?.unitPrice?.toFixed(2)}
           </TableCell>
           <TableCell className="px-4 py-2">{product?.quantity}</TableCell>
           <TableCell className="px-4 py-2">
@@ -67,7 +67,7 @@ const ProductTable = ({ searchResult }: Props) => {
             {warrantyStatus}
           </TableCell>
           <TableCell className="px-4 py-2">
-            ${(product?.unitPrice * product?.quantity)?.toFixed(2)}
+            &#2547; {(product?.unitPrice * product?.quantity)?.toFixed(2)}
           </TableCell>
         </TableRow>
       );
