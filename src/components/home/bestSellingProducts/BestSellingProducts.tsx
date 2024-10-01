@@ -24,11 +24,14 @@ const BestSellingProducts = async () => {
         <SectionTitle title="Best-selling" href="/shop" />
         <div>
           <Carousel>
-            <CarouselContent className="p-4">
-              {bestSellingProducts?.map((product) => (
+            {/* Remove padding on small screens */}
+            <CarouselContent className="p-0 sm:p-4 justify-start">
+              {bestSellingProducts?.map((product, index) => (
                 <CarouselItem
                   key={product._id}
-                  className="basis-1/2 sm:basis-1/3 md:basis-1/4 xl:basis-1/6 mx-4 md:mx-5"
+                  className={`basis-1/2 sm:basis-1/3 md:basis-1/4 xl:basis-1/6  xms:mx-6 sm:mx-5 mx-5 ${
+                    index === 0 ? "ml-0 xms:ml-0" : "ml-5"
+                  }`}
                 >
                   <CarousalProductsCard product={product} />
                 </CarouselItem>

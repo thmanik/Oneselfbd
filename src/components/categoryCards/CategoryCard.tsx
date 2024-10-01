@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const CategoryCard = ({ category }: { category: TCategory }) => {
   return (
-    <CarouselItem className="basis-1/2 sm:basis-1/3 md:basis-1/6 mx-5 border rounded-md">
+    <CarouselItem className="basis-1/2 sm:basis-1/3 md:basis-1/6 mx-1 md:mx-5 border rounded-md">
       <Link
         href={`/shop?category=${category.slug}`}
         className="block text-center p-4"
