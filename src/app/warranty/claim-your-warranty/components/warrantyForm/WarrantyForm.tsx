@@ -447,7 +447,7 @@ const WarrantyForm = () => {
                 </DialogTitle>
                 <DialogDescription className="text-center p-3 text-sm">
                   আপনার অনুরোধটি গ্রহণ করা হয়েছে। আমাদের দক্ষ টিম আপনার সাথে
-                  যোগাযোগ করবে, ততক্ষণ পর্যন্ত অপেক্ষা করুন। ধন্যবাদ।
+                  যোগাযোগ করবে, ততক্ষণ পর্যন্ত অপেক্ষা করুন। ধন্যবাদ...
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter className="mx-auto my-1">
