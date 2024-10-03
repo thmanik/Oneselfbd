@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import ContainerMax from "@/components/containerMax/ContainerMax";
 import EcButton from "@/components/EcButton/EcButton";
 import { useOderTrackerQuery } from "@/redux/features/trackOrder/TrackOrder";
@@ -9,6 +8,31 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import Timeline from "./Timeline";
 
+// type Shipping = {
+//   fullAddress: string;
+//   fullName: string;
+//   phoneNumber: string;
+// }
+
+type StatusEvent = {
+  createdAt: string;
+  description: {
+    bn: string;
+    en: string;
+  };
+  status: string;
+};
+
+// type OrderData = {
+//   _id: string;
+//   parcelTrackingLink: string | null;
+//   shipping: Shipping;
+//   status: string;
+//   statusHistory: StatusEvent[];
+//   message: string;
+//   statusCode: number;
+//   success: boolean;
+// }
 // Utility function to capitalize each word in the status
 const capitalizeStatus = (status: string) => {
   return status
@@ -67,14 +91,17 @@ const TrackOrderDetails = () => {
 
   // Check if statusHistory is present and is an array
   const statuses = Array.isArray(orderData.statusHistory)
-    ? orderData.statusHistory.map((statusEvent: any, index: number) => ({
-        status: capitalizeStatus(statusEvent?.status || "N/A"),
-        description: statusEvent?.description?.bn || "No description available",
-        date: new Date(statusEvent?.createdAt).toLocaleDateString(),
-        time: new Date(statusEvent?.createdAt).toLocaleTimeString(),
-        icon: index === 0 ? "box" : "truck",
-        isActive: true,
-      }))
+    ? orderData.statusHistory.map(
+        (statusEvent: StatusEvent, index: number) => ({
+          status: capitalizeStatus(statusEvent?.status || "N/A"),
+          description:
+            statusEvent?.description?.bn || "No description available",
+          date: new Date(statusEvent?.createdAt).toLocaleDateString(),
+          time: new Date(statusEvent?.createdAt).toLocaleTimeString(),
+          icon: index === 0 ? "box" : "truck",
+          isActive: true,
+        })
+      )
     : [];
 
   const latestStatus = capitalizeStatus(
@@ -136,20 +163,26 @@ const TrackOrderDetails = () => {
               {/* Parcel Tracking */}
               {parcelTrackingLink ? (
                 <div className="mt-6 text-center">
+                  <div className="my-2">
+                    <p>
+                      নিচের বাটন ক্লিক করে কুরিয়ারে লাইভ ট্রেকিং করতে পারবেন...
+                    </p>
+                  </div>
+                  <br />
                   <a
                     href={parcelTrackingLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-lg transition"
                   >
-                    Track Parcel
+                    Live Track Parcel
                   </a>
                 </div>
               ) : (
                 <div className="mt-6 text-center text-gray-600">
-                  আপনার পন্য কুরিয়ার এ পাঠানোর পর আপনি এখানে "Track Parcel" বাটন
-                  দেখতে পাবেন। বাটন এ ক্লিক করে কুরিয়ারে ট্রেকিং করতে পারবেন।
-                  অনুগ্রহ করে অপেক্ষা করুন, ধন্যবাদ !
+                  আপনার পন্য কুরিয়ার এ পাঠানোর পর আপনি এখানে "Live Track Parcel"
+                  বাটন দেখতে পাবেন। বাটন এ ক্লিক করে কুরিয়ারে ট্রেকিং করতে
+                  পারবেন। অনুগ্রহ করে অপেক্ষা করুন, ধন্যবাদ !
                 </div>
               )}
             </div>

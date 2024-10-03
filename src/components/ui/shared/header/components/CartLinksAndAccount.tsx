@@ -127,11 +127,9 @@ const CartLinksAndAccount = () => {
                               <>
                                 <span className="text-muted text-xs">
                                   &#2547;
-                                  <del>
-                                    {product.price && product.regularPrice}
-                                  </del>
+                                  <del>{product.regularPrice}</del>
                                 </span>
-                                <span className="font-bold ">
+                                <span className="font-bold">
                                   {" "}
                                   &#2547;{product.salePrice}
                                 </span>

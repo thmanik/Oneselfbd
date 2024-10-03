@@ -37,19 +37,23 @@ const Timeline: React.FC<TimelineProps> = ({ statuses, latestStatus }) => {
         Current status: <span className="text-primary"> {latestStatus}</span>
       </h2>
       <div className="relative">
-        {statuses?.map((status, index) => (
-          <TimelineEvent
-            key={index}
-            status={status?.status}
-            description={status?.description}
-            date={status?.date}
-            time={status?.time}
-            icon={getIcon(status?.icon)}
-            isActive={status?.isActive}
-            isLast={index === statuses?.length - 1}
-            isLeft={index % 2 === 0} // Alternates the side
-          />
-        ))}
+        {/* Reverse the statuses array to show the latest at the top */}
+        {statuses
+          ?.slice()
+          .reverse()
+          .map((status, index) => (
+            <TimelineEvent
+              key={index}
+              status={status?.status}
+              description={status?.description}
+              date={status?.date}
+              time={status?.time}
+              icon={getIcon(status?.icon)}
+              isActive={status?.isActive}
+              isLast={index === statuses?.length - 1}
+              isLeft={index % 2 === 0} // Alternates the side
+            />
+          ))}
       </div>
     </div>
   );

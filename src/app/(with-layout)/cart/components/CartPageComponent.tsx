@@ -18,8 +18,6 @@ const CartPageComponent = ({
 }) => {
   const { data: cartItems } = useCart();
   const router = useRouter();
-  // const [{ data: shippingCharges }] =
-  //   await useQuery<TShippingCharges[]>("/shipping-charges");
 
   return (
     <section className="pt-10 md:pt-20 mb-10">

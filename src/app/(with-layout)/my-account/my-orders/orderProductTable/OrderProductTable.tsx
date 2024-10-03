@@ -80,7 +80,7 @@ const OrderProductTable = () => {
                         : "-"}
                     </TableCell>
                     <TableCell className="py-3 px-4">
-                      ${product.total.toFixed(2)}
+                      &#2547; {product.total.toFixed(2)}
                     </TableCell>
 
                     <TableCell className="text-right py-3 px-2">
