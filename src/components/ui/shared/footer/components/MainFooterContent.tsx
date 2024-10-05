@@ -34,7 +34,7 @@ const socialLinks = [
   },
   {
     icon: "/images/social_icons/whatsapp.png",
-    url: "https://api.whatsapp.com/send?phone=+8801967214215&text=Is%20anyone%20available?",
+    url: "http://wa.me/8801967214215",
   },
   {
     icon: "/images/social_icons/groups.png",
