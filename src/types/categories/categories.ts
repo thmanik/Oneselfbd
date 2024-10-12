@@ -7,6 +7,7 @@ type TCategory = {
     src: string;
     alt: string;
   };
+  isFlashSale?: boolean;
 };
 
 export default TCategory;

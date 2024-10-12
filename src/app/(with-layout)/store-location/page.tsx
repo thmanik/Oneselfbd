@@ -41,7 +41,7 @@ const StoreLocationPage = () => {
           </div>
 
           {/* Store Info */}
-          <div className="flex-1 p-6 bg-white rounded-lg shadow-lg">
+          <div className="flex-1 p-6 bg-white rounded-lg ">
             <div className="flex flex-col justify-center items-center ">
               <h2 className="text-2xl md:text-4xl text-gray-700 font-extrabold mb-2 ">
                 Our Store Location
@@ -64,7 +64,7 @@ const StoreLocationPage = () => {
                 href="tel:+8801967214215"
                 className="flex items-center justify-center space-x-3 hover:text-blue-600 transition-all duration-300"
               >
-                <div className="flex items-center bg-[#00C1F1] text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition">
+                <div className="flex items-center bg-primary text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition">
                   <FaHeadset className="mr-2 mt-1 text-2xl md:text-3xl animate-bounce" />
                   <p className="text-md md:text-xl">+88 01967214215</p>
                 </div>
