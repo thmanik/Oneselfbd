@@ -7,19 +7,19 @@ const carousalFooterData = [
     title: "Flash Sales",
     image: "offer.png",
     customClasses: "text-[#314997] from-indigo-400 to-cyan-40",
-    href: "/",
+    href: "/shop?flashSale=true",
   },
   {
     title: "Gift Voucher",
     image: "voucher.png",
     customClasses: "text-[#aa7b34] from-amber-200 to-yellow-400",
-    href: "/",
+    href: "/gift-voucher",
   },
   {
     title: "Return product",
     image: "return_product.png",
     customClasses: "text-[#d13f3f] from-orange-300 to-orange-500",
-    href: "/",
+    href: "/return-product",
   },
   {
     title: "Get Warranty",

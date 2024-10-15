@@ -36,10 +36,10 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
         </div>
         <div className="flex flex-col gap-2 px-4">
           <h2 className="font-semibold text-muted">
-            {product.title.length < 40 ? (
-              product.title
+            {product?.title?.length < 40 ? (
+              product?.title
             ) : (
-              <>{product.title.slice(0, 40)}...</>
+              <>{product?.title?.slice(0, 40)}...</>
             )}
           </h2>
           <div className="flex justify-between">
