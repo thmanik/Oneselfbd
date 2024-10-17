@@ -12,6 +12,10 @@ const CarousalProductsCard = ({
   product: TProduct;
   className?: string;
 }) => {
+  const discountBadgeClass =
+    product.discountPercent && Number(product.discountPercent) > 10
+      ? "bg-red-500 text-white text-xs px-2 py-1 rounded fire-animation"
+      : "bg-green-500 text-white text-xs px-2 py-1 rounded";
   return (
     <Link
       href={`/product/${product._id}/${product.slug}`}
@@ -20,8 +24,13 @@ const CarousalProductsCard = ({
         className
       )}
     >
-      <div className="flex flex-col gap-2">
-        <div className="bg-base-100">
+      <div className="flex flex-col gap-3  relative">
+        {product.discountPercent && (
+          <div className={`absolute top-1 -left-3 ${discountBadgeClass}`}>
+            {product.discountPercent}% Off
+          </div>
+        )}
+        <div className="bg-base-100 ">
           <Image
             src={`${config.base_url}/${product?.thumbnail?.src} ` || ""}
             alt={product?.thumbnail?.alt || ""}
