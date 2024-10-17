@@ -99,3 +99,20 @@
 .animate-spin-slow {
   animation: spin 60s linear infinite;
 }
+
+/* Add this to your global CSS or a relevant CSS file */
+@keyframes fire {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    background-color: red;
+  }
+}
+
+.fire-animation {
+  animation: fire 1s infinite;
+}
