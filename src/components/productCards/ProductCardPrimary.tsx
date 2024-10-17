@@ -29,7 +29,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
     >
       <div className="flex flex-col gap-5 py-2  relative">
         {product.discountPercent && (
-          <div className={`absolute top-1 -left-3 ${discountBadgeClass}`}>
+          <div className={`absolute top-1 -left-3  ${discountBadgeClass}`}>
             {product.discountPercent}% Off
           </div>
         )}
