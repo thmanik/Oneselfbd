@@ -8,6 +8,7 @@ type VariationSelectorProps = {
   initialPrice: {
     regularPrice: number;
     salePrice: number;
+    discountPercent?: number;
   };
   // eslint-disable-next-line no-unused-vars
   onVariationChange: (variation: TSingleProduct["variations"][0]) => void;
@@ -74,40 +75,49 @@ const VariationSelector = ({
     );
   };
 
+  // Determine the displayed and original prices based on variation selection
   const displayedPrice =
     filteredVariations.length > 0 && filteredVariations[0].price?.salePrice
       ? filteredVariations[0].price.salePrice
       : initialPrice.salePrice;
+
   const originalPrice =
     filteredVariations.length > 0 && filteredVariations[0].price?.regularPrice
       ? filteredVariations[0].price.regularPrice
       : initialPrice.regularPrice;
 
-  // Calculate discount percentage
+  // Use discountPercent directly from variations or the initial product price
   const discountPercent =
-    originalPrice > 0
-      ? Math.round(((originalPrice - displayedPrice) / originalPrice) * 100)
-      : 0;
+    filteredVariations.length > 0 &&
+    filteredVariations[0].price?.discountPercent
+      ? filteredVariations[0].price.discountPercent
+      : initialPrice.discountPercent
+        ? initialPrice.discountPercent
+        : originalPrice > displayedPrice
+          ? Math.round(((originalPrice - displayedPrice) / originalPrice) * 100)
+          : 0;
 
   return (
     <div>
-      <div className="text-2xl my-5 ">
+      <div className="text-2xl my-5">
         {displayedPrice < originalPrice ? (
           <>
             <del className="text-muted text-xl">&#2547;{originalPrice}</del>
             <span className="text-primary text-3xl">
-              {" "}
-              &#2547;{displayedPrice}{" "}
+              &#2547;{displayedPrice}
             </span>
 
-            <span className="px-2 ms-1 mb-2 text-sm text-white bg-red-500">
-              {discountPercent}% OFF
-            </span>
+            {discountPercent > 0 && (
+              <span className="px-2 ms-1 mb-2 text-sm text-white bg-red-500">
+                {discountPercent}% OFF
+              </span>
+            )}
           </>
         ) : (
-          <span>{displayedPrice}&#2547; </span>
+          <span>{displayedPrice}&#2547;</span>
         )}
       </div>
+
       <div className="my-4">
         {Object.keys(variations[0]?.attributes || {}).map((key, index) => {
           const showAttribute =
@@ -165,7 +175,7 @@ export default VariationSelector;
 // };
 
 // const VariationSelector = ({
-//   variations = [],
+//   variations,
 //   initialPrice,
 //   onVariationChange,
 // }: VariationSelectorProps) => {
@@ -177,7 +187,6 @@ export default VariationSelector;
 //   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
 //   useEffect(() => {
-//     // Get attribute keys dynamically from the first variation object
 //     const attributeKeys =
 //       variations.length > 0 ? Object.keys(variations[0].attributes) : [];
 
@@ -192,7 +201,6 @@ export default VariationSelector;
 //     });
 //     setFilteredVariations(filtered);
 
-//     // Update the selected variation for price calculation
 //     if (attributeKeys.every((key) => selectedOptions[key])) {
 //       const matchedVariation = variations.find((variation) =>
 //         attributeKeys.every(
@@ -204,7 +212,6 @@ export default VariationSelector;
 //       }
 //     }
 
-//     // Set an error message if not all options are selected
 //     if (
 //       attributeKeys.length > 0 &&
 //       !attributeKeys.every((key) => selectedOptions[key])
@@ -229,26 +236,39 @@ export default VariationSelector;
 //   };
 
 //   const displayedPrice =
-//     filteredVariations?.length > 0 && filteredVariations[0].price?.salePrice
+//     filteredVariations.length > 0 && filteredVariations[0].price?.salePrice
 //       ? filteredVariations[0].price.salePrice
 //       : initialPrice.salePrice;
 //   const originalPrice =
-//     filteredVariations?.length > 0 && filteredVariations[0].price?.regularPrice
+//     filteredVariations.length > 0 && filteredVariations[0].price?.regularPrice
 //       ? filteredVariations[0].price.regularPrice
 //       : initialPrice.regularPrice;
 
+//   // Calculate discount percentage
+//   const discountPercent =
+//     originalPrice > 0
+//       ? Math.round(((originalPrice - displayedPrice) / originalPrice) * 100)
+//       : 0;
+
 //   return (
 //     <div>
-//       <h2 className="text-3xl my-2">
+//       <div className="text-2xl my-5 ">
 //         {displayedPrice < originalPrice ? (
 //           <>
-//             <del className="text-muted text-base">{originalPrice}&#2547;</del>
-//             <span> {displayedPrice}&#2547; </span>
+//             <del className="text-muted text-xl">&#2547;{originalPrice}</del>
+//             <span className="text-primary text-3xl">
+//               {" "}
+//               &#2547;{displayedPrice}{" "}
+//             </span>
+
+//             <span className="px-2 ms-1 mb-2 text-sm text-white bg-red-500">
+//               {discountPercent}% OFF
+//             </span>
 //           </>
 //         ) : (
 //           <span>{displayedPrice}&#2547; </span>
 //         )}
-//       </h2>
+//       </div>
 //       <div className="my-4">
 //         {Object.keys(variations[0]?.attributes || {}).map((key, index) => {
 //           const showAttribute =
@@ -257,16 +277,16 @@ export default VariationSelector;
 //               selectedOptions[Object.keys(selectedOptions)[index - 1]]);
 //           if (showAttribute) {
 //             return (
-//               <div className="mb-4" key={key}>
+//               <div className="mb-6" key={key}>
 //                 <h3 className="text-md font-semibold">Select {key}:</h3>
-//                 <div className="flex flex-wrap">
+//                 <div className="flex flex-wrap my-2">
 //                   {uniqueValues(key).map((value) => (
 //                     <button
 //                       key={value}
 //                       onClick={() => handleAttributeSelection(key, value)}
 //                       className={`m-1 py-1 px-2 border w-16 rounded-md text-sm uppercase cursor-pointer ${
 //                         selectedOptions[key] === value
-//                           ? "bg-blue-500 text-white"
+//                           ? "bg-primary text-white"
 //                           : "bg-gray-200"
 //                       }`}
 //                     >
@@ -282,7 +302,7 @@ export default VariationSelector;
 //       </div>
 
 //       {errorMessage && (
-//         <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+//         <p className="text-red-500 text-sm mt-2 mb-1">{errorMessage}</p>
 //       )}
 //     </div>
 //   );
