@@ -72,7 +72,7 @@ const CarousalProductsCard = ({
             <div>
               {product?.stockStatus ? (
                 <span
-                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} text-[10px] md:text-xs`}
+                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} text-[10] md:text-xs`}
                 >
                   {product?.stockStatus}
                 </span>
