@@ -39,7 +39,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             alt={product.thumbnail?.alt || ""}
             height={400}
             width={400}
-            className="w-48 h-48 min-w-[100px] aspect-square object-cover mx-auto"
+            className="w-40 h-40 min-w-[100px] aspect-square object-cover mx-auto"
             priority
           />
         </div>
@@ -55,11 +55,14 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             <div>
               {product.salePrice ? (
                 <>
-                  <span className="text-muted text-xs">
+                  <span className="text-muted text-[10px] md:text-xs">
                     &#2547;
                     <del>{product.regularPrice}</del>
                   </span>
-                  <span className="font-bold"> &#2547;{product.salePrice}</span>
+                  <span className="font-bold ">
+                    {" "}
+                    &#2547;{product.salePrice}
+                  </span>
                 </>
               ) : (
                 <>
@@ -72,7 +75,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             <div>
               {product.stockStatus ? (
                 <span
-                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} text-xs`}
+                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} text-[10px] md:text-xs`}
                 >
                   {product?.stockStatus}
                 </span>

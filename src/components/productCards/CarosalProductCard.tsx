@@ -20,13 +20,13 @@ const CarousalProductsCard = ({
     <Link
       href={`/product/${product._id}/${product.slug}`}
       className={twMerge(
-        "bg-white w-56 h-[328px] flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
+        "bg-white h-full  xls:w-[180px] xms:w-[155px] md:w-[230px] flex flex-col justify-between gap-2 group ring-1 ring-gray-100 shadow-md hover:ring-primary transition-all",
         className
       )}
     >
-      <div className="flex flex-col gap-3  relative">
+      <div className="flex flex-col gap-3 md:p-3 relative">
         {product.discountPercent && (
-          <div className={`absolute top-1 -left-3 ${discountBadgeClass}`}>
+          <div className={`absolute top-0 -left-1 ${discountBadgeClass}`}>
             {product.discountPercent}% Off
           </div>
         )}
@@ -36,12 +36,12 @@ const CarousalProductsCard = ({
             alt={product?.thumbnail?.alt || ""}
             height={400}
             width={400}
-            className="w-48 h-48 min-w-[100px] aspect-square object-cover mx-auto"
+            className="w-40 h-40 min-w-[100px] aspect-square object-cover mx-auto"
             priority
           />
         </div>
         <div className="flex flex-col gap-2 px-4">
-          <h2 className="font-semibold text-muted">
+          <h2 className="font-semibold text-muted text-md xms:text-sm md:text-lg ">
             {product?.title?.length < 40 ? (
               product?.title
             ) : (
@@ -52,7 +52,7 @@ const CarousalProductsCard = ({
             <div>
               {product?.salePrice ? (
                 <>
-                  <span className="text-muted text-xs">
+                  <span className="text-muted text-[10px] md:text-xs">
                     &#2547;
                     <del>{product?.regularPrice}</del>
                   </span>
@@ -72,7 +72,7 @@ const CarousalProductsCard = ({
             <div>
               {product?.stockStatus ? (
                 <span
-                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} text-xs`}
+                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} text-[10px] md:text-xs`}
                 >
                   {product?.stockStatus}
                 </span>
