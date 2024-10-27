@@ -12,7 +12,7 @@ const config = {
   prefix: "",
   theme: {
     screens: {
-      xms: "310px",
+      xms: "200px",
       xls: "376px",
       sm: "640px",
       md: "768px",
