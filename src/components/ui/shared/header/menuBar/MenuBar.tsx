@@ -63,7 +63,7 @@ const MenuBar = ({
                 <MenubarTrigger>
                   <Link
                     href={menuItem.href}
-                    className={`text-sm md:text-md  lg:text-lg hover:!text-secondary flex justify-between items-center font-semibold py-2 px-4 transition duration-200 ${isActive ? "!text-secondary" : "!text-white"} ${visibilityClass}`}
+                    className={`text-sm md:text-md  lg:text-lg hover:!text-secondary flex justify-between items-center font-semibold px-4 transition duration-200 ${isActive ? "!text-secondary " : "!text-white"} ${visibilityClass}`}
                     onClick={onMenuItemClick} // Close sidebar on link click
                   >
                     {menuItem.title}
@@ -76,7 +76,7 @@ const MenuBar = ({
             return (
               <MenubarMenu key={menuItem.href}>
                 <MenubarTrigger
-                  className={`ps-8 pt-3 md:pt-2 md:ps-0 font-semibold  md:text-md lg:text-lg md:mx-auto hover:cursor-pointer hover:!text-secondary transition duration-200 ${isActive ? "!text-secondary" : "!text-white"}`}
+                  className={`ps-8 pt-3 md:pt-2 md:ps-0 font-semibold  md:text-md lg:text-lg md:mx-auto hover:cursor-pointer hover:!text-secondary transition duration-200 ${isActive ? "!text-secondary " : "!text-white"}`}
                 >
                   {menuItem.title} <IoMdArrowDropdown />
                 </MenubarTrigger>
