@@ -163,7 +163,7 @@ const ShopPage = async ({ searchParams }: ShopPageProps) => {
   }
 
   return (
-    <section className="relative">
+    <section className="relative mt-16 md:mt-0 px-2">
       <div className="absolute inset-0 -z-10  h-full w-full bg-base-100 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
       <ContainerMax>
         <CustomBreadcrumb paths={breadcrumbPaths} />

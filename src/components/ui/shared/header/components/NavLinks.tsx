@@ -16,10 +16,10 @@ import MenuBar from "../menuBar/MenuBar";
 
 const NavLinks = ({ categories }: { categories?: TCategory[] }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname(); // Get the current pathname
+  const pathname = usePathname();
 
   const handleMenuItemClick = () => {
-    setIsOpen(false); // Close the sidebar when a menu item is clicked
+    setIsOpen(false);
   };
 
   return (
