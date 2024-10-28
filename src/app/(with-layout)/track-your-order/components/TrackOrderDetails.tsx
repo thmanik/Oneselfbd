@@ -117,11 +117,11 @@ const TrackOrderDetails = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Order Summary */}
           <div className="lg:col-span-1 bg-gray-100 p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold mb-4 text-dark-gray">
+            <h3 className="xms:text-xs xls:text-sm sm:text-md md:text-lg  font-bold mb-4 text-dark-gray">
               Order Summary
             </h3>
             <hr className="border-t-4 border-gray-300 h-4" />
-            <div className="space-y-2">
+            <div className="xms:text-[10px] xls:text-[12px] sm:text-md md:text-lg  space-y-2">
               <p>
                 <strong>Order ID: </strong> {orderId}
               </p>
@@ -131,11 +131,11 @@ const TrackOrderDetails = () => {
             </div>
             {/* Shipping Information */}
             <div className="mt-6 md:mt-16">
-              <h3 className="text-lg font-semibold mb-4 text-dark-gray">
+              <h3 className="xms:text-xs xls:text-sm sm:text-md md:text-lg font-semibold mb-4 text-dark-gray">
                 Shipping Information
               </h3>
               <hr className="border-t-4 border-gray-300 h-4" />
-              <div className="text-gray-700 space-y-2">
+              <div className="xms:text-[10px] xls:text-[12px] sm:text-md md:text-lg  text-gray-700 space-y-2">
                 <p>
                   <strong>Name: </strong> {orderData?.shipping?.fullName}
                 </p>
@@ -151,8 +151,8 @@ const TrackOrderDetails = () => {
 
           {/* Timeline and Tracking Info */}
           <div className="lg:col-span-2">
-            <div className="p-6 bg-white shadow-md rounded-lg">
-              <h2 className="text-2xl font-bold text-center text-dark-gray mb-4">
+            <div className="xms:p-0 xls:p-1 sm:p-3 md:p-6 bg-white shadow-md rounded-lg">
+              <h2 className="xms:text-xs xls:text-sm sm:text-md md:text-xl  font-bold text-center text-dark-gray mb-4">
                 Order Status History
               </h2>
               <hr className="border-t-4 border-gray-300 h-4" />
@@ -164,7 +164,7 @@ const TrackOrderDetails = () => {
               {parcelTrackingLink ? (
                 <div className="mt-6 text-center">
                   <div className="my-2">
-                    <p>
+                    <p className="xms:text-[10px] xls:text-[12px] sm:text-md md:text-lg ">
                       নিচের বাটন ক্লিক করে কুরিয়ারে লাইভ ট্রেকিং করতে পারবেন...
                     </p>
                   </div>
@@ -179,7 +179,7 @@ const TrackOrderDetails = () => {
                   </a>
                 </div>
               ) : (
-                <div className="mt-6 text-center text-gray-600">
+                <div className="mt-6 xms:text-[10px] xls:text-[12px] px-2 sm:text-md md:text-lg  text-center text-gray-600">
                   আপনার পন্য কুরিয়ার এ পাঠানোর পর আপনি এখানে "Live Track Parcel"
                   বাটন দেখতে পাবেন। বাটন এ ক্লিক করে কুরিয়ারে ট্রেকিং করতে
                   পারবেন। অনুগ্রহ করে অপেক্ষা করুন, ধন্যবাদ !

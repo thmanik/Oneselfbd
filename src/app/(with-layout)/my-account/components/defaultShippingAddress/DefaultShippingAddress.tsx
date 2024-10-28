@@ -17,9 +17,11 @@ const DefaultShippingAddress = () => {
 
   return (
     <div>
-      <Card className="w-[350px]">
+      <Card className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
         <CardHeader>
-          <CardTitle className="text-1xl">Default Shipping Address</CardTitle>
+          <CardTitle className="xms:text-sm text-gray-800 xls:text-sm sm:text-lg md:text-xl lg:text-2xl font-semibold mb-4">
+            Default Shipping Address
+          </CardTitle>
           <CardDescription>
             {address ? (
               <div>
@@ -36,7 +38,7 @@ const DefaultShippingAddress = () => {
         <CardFooter className="flex justify-between">
           <Link href="/my-account/edit-account">
             <div
-              className="cursor-pointer text-blue-600"
+              className="cursor-pointer xms:text-xs xls:text-sm sm:text-sm md:text-base lg:text-lg text-blue-600"
               title="Edit Shipping Address"
             >
               Edit Address

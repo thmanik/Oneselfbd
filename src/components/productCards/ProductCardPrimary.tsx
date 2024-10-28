@@ -12,8 +12,8 @@ type TProps = {
 const ProductCardPrimary = ({ product, className }: TProps) => {
   const discountBadgeClass =
     product.discountPercent && Number(product.discountPercent) > 10
-      ? "bg-red-500 text-white text-xs px-2 py-1 rounded fire-animation"
-      : "bg-green-500 text-white text-xs px-2 py-1 rounded";
+      ? "bg-red-500 text-white  md:text-xs px-2 py-1 rounded fire-animation"
+      : "bg-green-500 text-white  md:text-xs px-2 py-1 rounded";
   return (
     <Link
       href={{
@@ -27,7 +27,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
         className
       )}
     >
-      <div className="flex flex-col gap-5 py-2  relative">
+      <div className="flex flex-col gap-5 py-2 xms:text-[8px] xls:text-[10px] sm:text-xs md:text-sm relative">
         {product.discountPercent && (
           <div className={`absolute top-1 -left-3  ${discountBadgeClass}`}>
             {product.discountPercent}% Off
@@ -39,12 +39,12 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             alt={product.thumbnail?.alt || ""}
             height={400}
             width={400}
-            className="w-40 h-40 min-w-[100px] aspect-square object-cover mx-auto"
+            className="w-40 h-40 min-w-[80px] aspect-square object-cover mx-auto"
             priority
           />
         </div>
         <div className="flex flex-col gap-2 px-4">
-          <h2 className="font-semibold text-muted">
+          <h2 className="font-semibold text-muted xms:text-[10px] xls:text-xs sm:text-sm md:text-base">
             {product?.title?.length < 40 ? (
               product?.title
             ) : (
@@ -55,18 +55,18 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             <div>
               {product.salePrice ? (
                 <>
-                  <span className="text-muted text-[10px] md:text-xs">
+                  <span className="text-muted xms:text-[7px] xls:text-[9px] sm:text-[10px] md:text-xs">
                     &#2547;
                     <del>{product.regularPrice}</del>
                   </span>
-                  <span className="font-bold ">
+                  <span className="font-bold xms:text-xs xls:text-xs sm:text-sm md:text-md  ">
                     {" "}
                     &#2547;{product.salePrice}
                   </span>
                 </>
               ) : (
                 <>
-                  <span className="font-bold">
+                  <span className="font-bold text-muted xms:text-[6px] xls:text-[8px] sm:text-[10px] md:text-xs">
                     &#2547;{product.regularPrice}
                   </span>
                 </>
@@ -75,7 +75,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             <div>
               {product.stockStatus ? (
                 <span
-                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} text-[10px] md:text-xs`}
+                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} xms:text-[7px] xls:text-[9px] sm:text-xs md:text-xs`}
                 >
                   {product?.stockStatus}
                 </span>

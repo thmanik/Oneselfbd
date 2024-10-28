@@ -14,8 +14,8 @@ const CarousalProductsCard = ({
 }) => {
   const discountBadgeClass =
     product.discountPercent && Number(product.discountPercent) > 10
-      ? "bg-red-500 text-white text-xs px-2 py-1 rounded fire-animation"
-      : "bg-green-500 text-white text-xs px-2 py-1 rounded";
+      ? "bg-red-500 text-white  md:text-xs px-2 py-1 rounded fire-animation"
+      : "bg-green-500 text-white  md:text-xs px-2 py-1 rounded";
   return (
     <Link
       href={`/product/${product._id}/${product.slug}`}
@@ -24,7 +24,7 @@ const CarousalProductsCard = ({
         className
       )}
     >
-      <div className="flex flex-col gap-3 md:p-3 relative">
+      <div className="flex flex-col gap-3 md:p-3 xms:text-[8px] xls:text-[10px] sm:text-xs md:text-sm  relative">
         {product.discountPercent && (
           <div className={`absolute top-0 -left-1 ${discountBadgeClass}`}>
             {product.discountPercent}% Off

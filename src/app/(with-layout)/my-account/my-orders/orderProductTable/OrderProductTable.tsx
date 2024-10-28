@@ -47,18 +47,18 @@ const OrderProductTable = () => {
           <div className="text-center py-4">Loading...</div>
         ) : (
           <Table className="min-w-full border-collapse">
-            <TableCaption className="text-lg font-semibold mb-4">
+            <TableCaption className="sm:text-base md:text-lg font-semibold mb-4">
               A list of your recent invoices.
             </TableCaption>
             <TableHeader>
-              <TableRow className="bg-gray-200">
-                <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
+              <TableRow className="bg-gray-200 xms:text-[8px] xls:text-[10px] sm:text-sm md:text-base">
+                <TableHead className=" xms:w-[90px] xls:w-[100px] sm:w-[120px] md:w-[150px] font-bold text-black py-3 px-4">
                   Order ID
                 </TableHead>
-                <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
+                <TableHead className=" xms:w-[90px] xls:w-[100px] sm:w-[120px] md:w-[150px] font-bold text-black py-3 px-4">
                   Order Date
                 </TableHead>
-                <TableHead className="w-[120px] lg:w-[150px] font-bold text-black py-3 px-4">
+                <TableHead className=" xms:w-[90px] xls:w-[100px] sm:w-[120px] md:w-[150px] font-bold text-black py-3 px-4">
                   Order Total
                 </TableHead>
 
@@ -70,7 +70,10 @@ const OrderProductTable = () => {
             <TableBody>
               {sortedData?.length > 0 ? (
                 sortedData.map((product: Product) => (
-                  <TableRow key={product._id} className="hover:bg-gray-100">
+                  <TableRow
+                    key={product._id}
+                    className="hover:bg-gray-100 xms:text-[8px] xls:text-[10px] sm:text-xs md:text-sm"
+                  >
                     <TableCell className="font-medium py-3 px-4">
                       {product.orderId}
                     </TableCell>

@@ -123,31 +123,34 @@ const OrderDetails = () => {
           </h3>
           <Table className="min-w-full border-collapse">
             <TableHeader>
-              <TableRow className="bg-gray-200">
-                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black py-3 px-4">
+              <TableRow className="bg-gray-200 xms:text-[8px] xls:text-[10px] sm:text-xs md:text-base">
+                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black  xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
                   Image
                 </TableHead>
-                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black py-3 px-4">
+                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black  xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
                   Title
                 </TableHead>
-                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black py-3 px-4">
+                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black  xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
                   Quantity
                 </TableHead>
-                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black py-3 px-4">
+                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black  xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
                   Unit Price
                 </TableHead>
-                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black py-3 px-4">
+                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black  xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
                   Total
                 </TableHead>
-                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black py-3 px-4">
+                <TableHead className="w-1/6 lg:w-1/5 font-bold text-black  xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
                   Action
                 </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {products?.map((product: Product) => (
-                <TableRow key={product._id} className="hover:bg-gray-100">
-                  <TableCell className="font-medium py-3 px-4">
+                <TableRow
+                  key={product._id}
+                  className="hover:bg-gray-100 xms:text-[8px] xls:text-[10px] sm:text-sm md:text-base"
+                >
+                  <TableCell className="font-medium  xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
                     <Image
                       width={60}
                       height={60}
@@ -155,15 +158,19 @@ const OrderDetails = () => {
                       alt={product.image.alt}
                     />
                   </TableCell>
-                  <TableCell className="py-3 px-4">{product.title}</TableCell>
-                  <TableCell className="py-3 px-4">
+                  <TableCell className="xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
+                    {product.title}
+                  </TableCell>
+                  <TableCell className="xms:ps-1 xls:ps-1 sm:ps-2 md:py-3 md:px-4">
                     {product.quantity}
                   </TableCell>
-                  <TableCell className="py-3 px-4">
+                  <TableCell className="xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
                     ৳ {product.unitPrice}
                   </TableCell>
-                  <TableCell className="py-3 px-4">৳ {product.total}</TableCell>
-                  <TableCell className="py-3 px-4 whitespace-nowrap">
+                  <TableCell className="xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4">
+                    ৳ {product.total}
+                  </TableCell>
+                  <TableCell className="xms:p-1 xls:p-1 sm:p-2 md:py-3 md:px-4 whitespace-nowrap">
                     {" "}
                     <Link href={`/track-your-order/${orderId}`}>
                       <span className="text-blue-500 hover:underline">
