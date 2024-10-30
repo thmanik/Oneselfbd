@@ -16,7 +16,7 @@ const Banner = async () => {
           <div className="col-span-8">
             <BannerCarousel />
           </div>
-          <div className="col-span-8 md:col-span-4 lg:col-span-4  my-4 space-y-5">
+          <div className="col-span-8 md:col-span-4 lg:col-span-4  md:my-4 space-y-5">
             {bannerSideProducts
               ?.slice(0, 3)
               ?.map((product) => (
