@@ -29,11 +29,12 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
       )}
     >
       <div className="flex flex-col gap-5 py-2 xms:text-[8px] xls:text-[10px] sm:text-xs md:text-sm relative">
-        {product.discountPercent && (
-          <div className={`absolute top-1 -left-3  ${discountBadgeClass}`}>
+        {product.discountPercent > 0 && (
+          <div className={`absolute top-1 -left-3 ${discountBadgeClass}`}>
             {product.discountPercent}% Off
           </div>
         )}
+
         <div className="bg-base-100  ">
           <Image
             src={`${config.base_url}/${product.thumbnail?.src} ` || ""}
