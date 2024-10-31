@@ -8,17 +8,18 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { TProduct } from "@/types/products/product";
+
+import { TSliders } from "@/types/sliders/slider";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import CarouselUi from "./CarouselUi";
 
 type ClientBannerCarouselProps = {
-  products: TProduct[];
+  sliders: TSliders[];
 };
 
 const ClientBannerCarousel: React.FC<ClientBannerCarouselProps> = ({
-  products,
+  sliders,
 }) => {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
@@ -38,9 +39,9 @@ const ClientBannerCarousel: React.FC<ClientBannerCarouselProps> = ({
       onMouseLeave={handleMouseLeave}
     >
       <CarouselContent>
-        {products.map((product) => (
-          <CarouselItem key={product._id}>
-            <CarouselUi product={product} />
+        {sliders.map((slider) => (
+          <CarouselItem key={slider._id}>
+            <CarouselUi slider={slider} />
           </CarouselItem>
         ))}
       </CarouselContent>
