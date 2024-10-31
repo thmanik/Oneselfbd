@@ -8,7 +8,7 @@ import Search from "./Search";
 
 const MainHeader = ({ categories }: { categories?: TCategory[] }) => {
   return (
-    <div className="flex gap-5 justify-between lg:justify-evenly items-center px-2 lg:px-10 py-2 border-b-[1px]">
+    <div className="flex gap-5 justify-between lg:justify-evenly items-center px-2 lg:px-10 py-2   border-b-[1px]">
       <div className="order-2 lg:order-1">
         <Link href="/">
           <Image
@@ -27,7 +27,7 @@ const MainHeader = ({ categories }: { categories?: TCategory[] }) => {
       <div className="flex-grow hidden lg:block lg:order-3 max-w-2xl">
         <Search />
       </div>
-      <div className="flex gap-2 items-center order-3 lg:order-4 flex-grow-0 justify-end">
+      <div className="flex gap-2 items-center order-3 lg:order-4  flex-grow-0 justify-end">
         <CartLinksAndAccount />
       </div>
     </div>
