@@ -168,31 +168,36 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
             </div>
           </div>
         )}
-        renderThumb={({ props, isDragged }) => (
-          <div
-            {...props}
-            style={{
-              ...props.style,
-              height: "24px",
-              width: "24px",
-              borderRadius: "50%",
-              backgroundColor: "#FFF",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              boxShadow: "0px 2px 6px #AAA",
-              border: isDragged ? "3px solid #00c1f3" : "3px solid #00c1f3",
-            }}
-          >
+        renderThumb={({ props, isDragged }) => {
+          const { key, ...restProps } = props; // Extract the key prop
+
+          return (
             <div
+              key={key} // Pass the key prop directly
+              {...restProps} // Spread the rest of the props
               style={{
-                height: "16px",
-                width: "5px",
-                backgroundColor: isDragged ? "#00c1f3" : "#00c1f3",
+                ...restProps.style,
+                height: "24px",
+                width: "24px",
+                borderRadius: "50%",
+                backgroundColor: "#FFF",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                boxShadow: "0px 2px 6px #AAA",
+                border: isDragged ? "3px solid #00c1f3" : "3px solid #00c1f3",
               }}
-            />
-          </div>
-        )}
+            >
+              <div
+                style={{
+                  height: "16px",
+                  width: "5px",
+                  backgroundColor: isDragged ? "#00c1f3" : "#00c1f3",
+                }}
+              />
+            </div>
+          );
+        }}
       />
     </div>
   );

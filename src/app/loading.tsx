@@ -10,7 +10,9 @@ const loading = () => {
         height={100}
         priority={true}
       ></Image>
-      <h1 className="text-4xl">Welcome to OneSelf</h1>
+      <h1 className=" xms:text-lg xls:text-xl sm:text-2xl md:text-4xl">
+        Welcome to OneSelf
+      </h1>
       <Image
         src="/images/animations/loading.gif"
         alt="loading"

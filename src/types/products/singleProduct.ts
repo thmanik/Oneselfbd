@@ -79,8 +79,10 @@ export type TSingleProduct = {
   permalink: string;
   type: string;
   slug: string;
-  description: string;
-  shortDescription: string;
+  description?: string;
+  shortDescription?: string;
+  usageGuidelines?: string;
+  additionalInfo?: string;
   downloadable: boolean;
   featured: boolean;
   review: boolean;

@@ -28,7 +28,7 @@ const VariationSelector = ({
 
   useEffect(() => {
     const attributeKeys =
-      variations.length > 0 ? Object.keys(variations[0].attributes) : [];
+      variations?.length > 0 ? Object.keys(variations[0].attributes) : [];
 
     let filtered = variations;
     attributeKeys.forEach((key) => {
@@ -42,7 +42,7 @@ const VariationSelector = ({
     setFilteredVariations(filtered);
 
     if (attributeKeys.every((key) => selectedOptions[key])) {
-      const matchedVariation = variations.find((variation) =>
+      const matchedVariation = variations?.find((variation) =>
         attributeKeys.every(
           (key) => variation.attributes[key] === selectedOptions[key]
         )
@@ -77,18 +77,18 @@ const VariationSelector = ({
 
   // Determine the displayed and original prices based on variation selection
   const displayedPrice =
-    filteredVariations.length > 0 && filteredVariations[0].price?.salePrice
+    filteredVariations?.length > 0 && filteredVariations[0].price?.salePrice
       ? filteredVariations[0].price.salePrice
       : initialPrice.salePrice;
 
   const originalPrice =
-    filteredVariations.length > 0 && filteredVariations[0].price?.regularPrice
+    filteredVariations?.length > 0 && filteredVariations[0].price?.regularPrice
       ? filteredVariations[0].price.regularPrice
       : initialPrice.regularPrice;
 
   // Use discountPercent directly from variations or the initial product price
   const discountPercent =
-    filteredVariations.length > 0 &&
+    filteredVariations?.length > 0 &&
     filteredVariations[0].price?.discountPercent
       ? filteredVariations[0].price.discountPercent
       : initialPrice.discountPercent
@@ -119,35 +119,36 @@ const VariationSelector = ({
       </div>
 
       <div className="my-4">
-        {Object.keys(variations[0]?.attributes || {}).map((key, index) => {
-          const showAttribute =
-            index === 0 ||
-            (Object.keys(selectedOptions)[index - 1] &&
-              selectedOptions[Object.keys(selectedOptions)[index - 1]]);
-          if (showAttribute) {
-            return (
-              <div className="mb-6" key={key}>
-                <h3 className="text-md font-semibold">Select {key}:</h3>
-                <div className="flex flex-wrap my-2">
-                  {uniqueValues(key).map((value) => (
-                    <button
-                      key={value}
-                      onClick={() => handleAttributeSelection(key, value)}
-                      className={`m-1 py-1 px-2 border w-16 rounded-md text-sm uppercase cursor-pointer ${
-                        selectedOptions[key] === value
-                          ? "bg-primary text-white"
-                          : "bg-gray-200"
-                      }`}
-                    >
-                      {value}
-                    </button>
-                  ))}
+        {variations?.[0]?.attributes &&
+          Object.keys(variations[0].attributes).map((key, index) => {
+            const showAttribute =
+              index === 0 ||
+              (Object.keys(selectedOptions)[index - 1] &&
+                selectedOptions[Object.keys(selectedOptions)[index - 1]]);
+            if (showAttribute) {
+              return (
+                <div className="mb-6" key={key}>
+                  <h3 className="text-md font-semibold">Select {key}:</h3>
+                  <div className="flex flex-wrap my-2">
+                    {uniqueValues(key).map((value) => (
+                      <button
+                        key={value}
+                        onClick={() => handleAttributeSelection(key, value)}
+                        className={`m-1 py-1 px-2 border w-16 rounded-md text-sm uppercase cursor-pointer ${
+                          selectedOptions[key] === value
+                            ? "bg-primary text-white"
+                            : "bg-gray-200"
+                        }`}
+                      >
+                        {value}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          }
-          return null;
-        })}
+              );
+            }
+            return null;
+          })}
       </div>
 
       {errorMessage && (
@@ -236,11 +237,11 @@ export default VariationSelector;
 //   };
 
 //   const displayedPrice =
-//     filteredVariations.length > 0 && filteredVariations[0].price?.salePrice
+//     filteredVariations?.length > 0 && filteredVariations[0].price?.salePrice
 //       ? filteredVariations[0].price.salePrice
 //       : initialPrice.salePrice;
 //   const originalPrice =
-//     filteredVariations.length > 0 && filteredVariations[0].price?.regularPrice
+//     filteredVariations?.length > 0 && filteredVariations[0].price?.regularPrice
 //       ? filteredVariations[0].price.regularPrice
 //       : initialPrice.regularPrice;
 

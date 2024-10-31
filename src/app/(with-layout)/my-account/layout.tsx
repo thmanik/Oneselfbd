@@ -10,7 +10,7 @@ const UserAccountLayout = ({ children }: Props) => {
   // const isLoggedIn = !!cookies()?.get("__app.ec.rt")?.value;
   // isLoggedIn={isLoggedIn}
   return (
-    <section className="px-6 py-8">
+    <section className="px-6 py-8 mt-4 md:mt-0">
       {/* Main Content */}
       <ContainerMax>
         <div className="grid grid-cols-12 gap-4">

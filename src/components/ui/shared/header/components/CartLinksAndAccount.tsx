@@ -5,7 +5,7 @@ import { useFindSearchProductQuery } from "@/redux/features/searchProduct/search
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaRegUser, FaSearch, FaTimes } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
 import CartData from "./CartData";
@@ -26,11 +26,14 @@ const CartLinksAndAccount = () => {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState<string>("");
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
-
+  const [isClient, setIsClient] = useState(false);
   const toggleSearchBar = () => {
     setIsSearchVisible(!isSearchVisible);
   };
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const {
     data: searchResults,
     isLoading,
@@ -64,7 +67,7 @@ const CartLinksAndAccount = () => {
 
   return (
     <>
-      {isSmallScreen ? (
+      {isClient && isSmallScreen ? (
         <>
           <FaSearch
             className="w-6 h-6 cursor-pointer"
@@ -130,7 +133,6 @@ const CartLinksAndAccount = () => {
                                   <del>{product.regularPrice}</del>
                                 </span>
                                 <span className="font-bold">
-                                  {" "}
                                   &#2547;{product.salePrice}
                                 </span>
                               </>

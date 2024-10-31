@@ -122,7 +122,7 @@ const SingleProductPage = async ({ params }: TProps) => {
               productUrl={`${config.base_url}/product/${product._id}`}
             />
           </Box>
-          <div className="col-span-1 md:col-span-2 mt-10">
+          <div className="col-span-1 md:col-span-2 px-3 sm:mt-5 md:mt-10">
             <ProductDetails product={product} />
           </div>
           <div className="col-span-1 md:col-span-2 mt-10">

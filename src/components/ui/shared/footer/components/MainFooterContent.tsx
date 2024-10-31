@@ -44,17 +44,16 @@ const socialLinks = [
 
 const MainFooterContent = () => {
   return (
-    <div className="relative pb-10 pt-10 text-white">
-      <div className="absolute inset-0 -z-10 h-full w-full bg-[#252E3C] bg-[radial-gradient(ellipse_90%_90%_at_50%_-30%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+    <div className="relative py-5 text-white bg-[#252E3C] bg-[radial-gradient(ellipse_90%_90%_at_50%_-30%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
       <ContainerMax>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          <div className="md:col-span-2 space-y-5">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5 md:mx-10">
+          <div className="space-y-2 md:space-y-5">
             <Image
               src="/images/logo/logo.png"
               alt="Company logo"
               width={400}
               height={200}
-              className="w-32 md:w-44 rounded-md shadow-md"
+              className="w-32 md:w-44 rounded-md shadow-md mx-auto md:mx-0"
               priority
             />
             <div className="flex gap-4 items-center">
@@ -66,47 +65,45 @@ const MainFooterContent = () => {
                 </p>
               </div>
             </div>
-            <address className="font-semibold not-italic space-y-1">
+          </div>
+          <div>
+            <h2 className="font-bold mb-3 text-secondary text-xl">
+              Quick links
+            </h2>
+            <div className="space-y-2">
+              {quickLinks.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.url}
+                  className="block text-base hover:text-secondary transition-all font-semibold"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h2 className="font-bold mb-4 text-secondary text-xl">
+              Social links
+            </h2>
+            <div className="flex gap-4">
+              {socialLinks.map((item, index) => (
+                <Link href={item.url} key={index} target="_blank">
+                  <Image
+                    src={item.icon}
+                    alt="Social icon"
+                    width={100}
+                    height={100}
+                    className="w-6 h-6 md:w-8 md:h-8 hover:scale-110 transition-transform"
+                  />
+                </Link>
+              ))}
+            </div>
+            <address className="font-semibold not-italic space-y-1 mt-5">
               <p className="text-lg">Address</p>
               <p className="text-base">Khulna, Bangladesh</p>
               {/* TODO: Change the address */}
             </address>
-          </div>
-          <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div>
-              <h2 className="font-bold mb-4 text-secondary text-xl">
-                Quick links
-              </h2>
-              <div className="space-y-2">
-                {quickLinks.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.url}
-                    className="block text-base hover:text-secondary transition-all font-semibold"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="font-bold mb-4 text-secondary text-xl">
-                Social links
-              </h2>
-              <div className="flex gap-4">
-                {socialLinks.map((item, index) => (
-                  <Link href={item.url} key={index} target="_blank">
-                    <Image
-                      src={item.icon}
-                      alt="Social icon"
-                      width={100}
-                      height={100}
-                      className="w-6 h-6 md:w-8 md:h-8 hover:scale-110 transition-transform"
-                    />
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </ContainerMax>

@@ -29,7 +29,7 @@ const Quantity = ({ quantity, setQuantity, callBack }: TProps) => {
       <button
         onClick={handleDecrement}
         disabled={quantity == 1 ? true : false}
-        className="text-xl hover:bg-slate-100 px-3 py-2  rounded"
+        className="xms:text-sm xls:text-base sm:text-lg md:text-xl hover:bg-slate-100 px-2 md:px-3 py-2  rounded"
       >
         <FiMinus />
       </button>
@@ -54,11 +54,11 @@ const Quantity = ({ quantity, setQuantity, callBack }: TProps) => {
             await callBack(newQuantity);
           }
         }}
-        className="text-xl border text-center w-[50px] h-[35px] rounded-md focus:outline-slate-100  [appearance:textfield][&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        className="text-xl border text-center w-[30px] md:w-[50px] h-[30px] md:h-[35px] rounded-md focus:outline-slate-100  [appearance:textfield][&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
       />
       <button
         onClick={handleIncrement}
-        className="text-xl hover:bg-slate-100 px-3 py-2 rounded"
+        className="xms:text-sm xls:text-base sm:text-lg md:text-xl hover:bg-slate-100 px-2 md:px-3 py-2  rounded"
       >
         <FiPlus />
       </button>

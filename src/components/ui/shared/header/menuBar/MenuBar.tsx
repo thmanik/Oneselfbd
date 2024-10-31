@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/menubar";
 import TCategory from "@/types/categories/categories";
 import Link from "next/link";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { FaCaretDown, FaUserCircle } from "react-icons/fa";
 
 const MenuBar = ({
   categories,
@@ -18,10 +18,16 @@ const MenuBar = ({
 }: {
   categories?: TCategory[];
   horizontal?: boolean;
-  onMenuItemClick?: () => void; // Optional prop to close the sidebar
-  activePath?: string; // New prop for the active path
+  onMenuItemClick?: () => void;
+  activePath?: string;
 }) => {
   const menuLinks = [
+    {
+      title: "My-Account",
+      href: "/my-account",
+      displayOnSmallScreenOnly: true,
+      icon: <FaUserCircle className="mr-2 text-2xl" />,
+    },
     {
       title: "Home",
       href: "/",
@@ -63,9 +69,11 @@ const MenuBar = ({
                 <MenubarTrigger>
                   <Link
                     href={menuItem.href}
-                    className={`text-md md:text-sm text-white hover:text-secondary flex justify-between items-center text-lg font-semibold py-2 px-4 transition duration-200 ${isActive ? " text-white" : ""} ${visibilityClass}`}
+                    className={`text-sm md:text-md  lg:text-lg hover:!text-secondary flex justify-between items-center font-semibold px-4 transition duration-200 ${isActive ? "!text-secondary " : "!text-white"} ${visibilityClass}`}
                     onClick={onMenuItemClick} // Close sidebar on link click
                   >
+                    {/* Show icon if it exists */}
+                    {menuItem.icon}
                     {menuItem.title}
                   </Link>
                 </MenubarTrigger>
@@ -75,8 +83,10 @@ const MenuBar = ({
           } else {
             return (
               <MenubarMenu key={menuItem.href}>
-                <MenubarTrigger className="text-white ps-8 pt-3 md:pt-2 md:ps-0 font-semibold">
-                  {menuItem.title} <IoMdArrowDropdown />
+                <MenubarTrigger
+                  className={`ps-8 pt-3 md:pt-2 md:ps-0 font-semibold  md:text-md lg:text-lg md:mx-auto hover:cursor-pointer hover:!text-secondary transition duration-200 ${isActive ? "!text-secondary " : "!text-white"}`}
+                >
+                  {menuItem.title} <FaCaretDown />
                 </MenubarTrigger>
                 <MenubarContent className="-mt-3">
                   {menuItem.subMenus?.map((subMenu) => {

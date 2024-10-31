@@ -43,7 +43,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="w-[430px] border-none md:mx-auto my-6">
+    <div className="w-[430px] border-none md:mx-auto mb-6 mt-10">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
