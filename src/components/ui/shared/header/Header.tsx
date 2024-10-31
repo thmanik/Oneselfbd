@@ -9,7 +9,7 @@ const Header = async () => {
     await useQuery<TCategory[]>("/categories");
 
   return (
-    <header className="fixed top-0 left-0 w-full mb-8 z-40 bg-white shadow-lg sm:static sm:shadow-none sm:bg-transparent sm:mb-0">
+    <header className="fixed top-0 left-0 w-full mb-16 z-40 bg-white shadow-lg sm:static sm:shadow-none sm:bg-transparent sm:mb-0">
       <TopHeader />
       <MainHeader categories={categories} />
       <BottomHeader categories={categories} />
