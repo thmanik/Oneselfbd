@@ -30,7 +30,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
     >
       <div className="flex flex-col gap-5 py-2 xms:text-[8px] xls:text-[10px] sm:text-xs md:text-sm relative">
         {product.discountPercent > 0 && (
-          <div className={`absolute top-1 -left-3 ${discountBadgeClass}`}>
+          <div className={`absolute top-0 -left-1 ${discountBadgeClass}`}>
             {product.discountPercent}% Off
           </div>
         )}
@@ -41,12 +41,12 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             alt={product.thumbnail?.alt || ""}
             height={400}
             width={400}
-            className="w-40 h-40 min-w-[80px] aspect-square object-cover mx-auto"
+            className=" w-full min-w-[80px] aspect-square object-cover mx-auto"
             priority
           />
         </div>
         <div className="flex flex-col gap-2 px-4">
-          <h2 className="font-semibold text-muted xms:text-[10px] xls:text-xs sm:text-sm md:text-base">
+          <h2 className="font-semibold text-gray-600 xms:text-[10px] xls:text-xs sm:text-sm md:text-base">
             {product?.title?.length < 40 ? (
               product?.title
             ) : (
