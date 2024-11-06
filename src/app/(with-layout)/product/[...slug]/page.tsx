@@ -31,7 +31,8 @@ export async function generateMetadata({ params }: TProps) {
 
 const fetchProductData = async (slug: string) => {
   const productResponse = await fetch(
-    `${config.base_url}/api/v1/products/${slug}`
+    `${config.base_url}/api/v1/products/${slug}`,
+    { cache: "no-store" }
   );
   const product = await productResponse.json();
   return product.data as TSingleProduct;
@@ -111,7 +112,7 @@ const SingleProductPage = async ({ params }: TProps) => {
             <hr />
             <div
               dangerouslySetInnerHTML={{ __html: shortDescription || "" }}
-              className="text-muted"
+              className="text-gray-500"
             />
             {/* Use the client-side wrapper component */}
             <ProductClientWrapper
