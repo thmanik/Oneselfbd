@@ -26,7 +26,7 @@ const CarousalProductsCard = ({
     >
       <div className="flex flex-col gap-3 md:p-3 xms:text-[8px] xls:text-[10px] sm:text-xs md:text-sm  relative">
         {product.discountPercent > 0 && (
-          <div className={`absolute top-1 -left-3 ${discountBadgeClass}`}>
+          <div className={`absolute top-0 -left-1  ${discountBadgeClass}`}>
             {product.discountPercent}% Off
           </div>
         )}
@@ -37,12 +37,12 @@ const CarousalProductsCard = ({
             alt={product?.thumbnail?.alt || ""}
             height={400}
             width={400}
-            className="w-40 h-40 min-w-[100px] aspect-square object-cover mx-auto"
+            className=" md:w-full min-w-[80px] aspect-square object-cover mx-auto"
             priority
           />
         </div>
-        <div className="flex flex-col gap-2 px-4">
-          <h2 className="font-semibold text-muted text-md xms:text-sm md:text-lg ">
+        <div className="flex flex-col gap-2 xms:px-1 xls:px-1 sm:-px-1 md:px-4">
+          <h2 className="font-semibold text-gray-600 xms:text-[10px] xls:text-xs sm:text-sm md:text-base">
             {product?.title?.length < 40 ? (
               product?.title
             ) : (

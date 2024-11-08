@@ -40,6 +40,7 @@ const WarrantyForm = () => {
 
   const {
     register,
+    clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
@@ -119,6 +120,10 @@ const WarrantyForm = () => {
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
+
+    if (files.length > 0) {
+      clearErrors("customerFiles");
+    }
   };
 
   const handleDeleteFile = (index: number) => {
@@ -253,53 +258,60 @@ const WarrantyForm = () => {
               </p>
             )}
           </div> */}
-          <div
-            className={`${
-              fileDragged ? "border-blue-500" : "border-gray-300"
-            } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
-            onDragOver={(e) => {
-              e.preventDefault();
-              handleDragOver(e);
-            }}
-            onDrop={(e) => {
-              e.preventDefault();
-              handleDrop(e);
-            }}
-            onClick={() => {
-              // Ensure the input field is clicked when the container is clicked
-              const fileInput = document.getElementById(
-                "customerFile"
-              ) as HTMLInputElement;
-              fileInput?.click();
-            }}
-            style={{
-              minHeight: "160px",
-              width: "100%",
-              background: "#ffffff",
-              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <input
-              type="file"
-              id="customerFile"
-              {...register("customerFiles", { required: true })}
-              className="hidden"
-              onChange={handleFileInputChange} // Handle file input change
-              multiple
-              onClick={(e) => e.stopPropagation()} // Prevent click event from bubbling up
-              style={{ width: "100%" }}
-            />
-            <label
-              htmlFor="customerFile"
-              className="flex justify-center items-center text-black py-2 px-4 rounded-md cursor-pointer"
+          <div>
+            <div
+              className={`${
+                fileDragged ? "border-blue-500" : "border-gray-300"
+              } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
+              onDragOver={(e) => {
+                e.preventDefault();
+                handleDragOver(e);
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                handleDrop(e);
+              }}
+              onClick={() => {
+                // Ensure the input field is clicked when the container is clicked
+                const fileInput = document.getElementById(
+                  "customerFile"
+                ) as HTMLInputElement;
+                fileInput?.click();
+              }}
               style={{
-                borderRadius: "4px",
-                transition: "background-color 0.3s ease-in-out",
+                minHeight: "160px",
+                width: "100%",
+                background: "#ffffff",
+                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <AiOutlineCloudUpload size={30} className="mr-2" />
-              নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
-            </label>
+              <input
+                type="file"
+                id="customerFile"
+                {...register("customerFiles", { required: true })}
+                className="hidden"
+                onChange={handleFileInputChange} // Handle file input change
+                multiple
+                onClick={(e) => e.stopPropagation()} // Prevent click event from bubbling up
+                style={{ width: "100%" }}
+              />
+              <label
+                htmlFor="customerFile"
+                className="flex justify-center items-center text-black py-2 px-4 rounded-md cursor-pointer"
+                style={{
+                  borderRadius: "4px",
+                  transition: "background-color 0.3s ease-in-out",
+                }}
+              >
+                <AiOutlineCloudUpload size={30} className="mr-2" />
+                নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
+              </label>
+            </div>
+            {errors.customerFiles && (
+              <p className="text-red-500">
+                নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
+              </p>
+            )}
           </div>
 
           {renderSelectedFiles()}

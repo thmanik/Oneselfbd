@@ -74,13 +74,13 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="w-[430px] border-none md:mx-auto mb-6 mt-10">
+    <div className="w-full max-w-lg mx-auto border-none mb-6 mt-16 px-4 sm:px-0">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-white shadow-md rounded px-4 sm:px-8 pt-6 pb-8 mb-4"
       >
         <div>
-          <h4 className="text-center my-3 font-bold text-2xl ">
+          <h4 className="text-center my-3 font-bold sm:text-xl md:text-2xl">
             Registration Page
           </h4>
         </div>
@@ -104,7 +104,7 @@ const RegisterForm = () => {
             </p>
           )}
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="fullAddress"
@@ -124,7 +124,7 @@ const RegisterForm = () => {
             </p>
           )}
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="phoneNumber"
@@ -165,7 +165,7 @@ const RegisterForm = () => {
           )}
         </div>
         <div className="flex items-center justify-between">
-          <EcButton className=" w-full  py-2 px-4 " type="submit">
+          <EcButton className="w-full py-2 px-4" type="submit">
             Registration
           </EcButton>
         </div>
