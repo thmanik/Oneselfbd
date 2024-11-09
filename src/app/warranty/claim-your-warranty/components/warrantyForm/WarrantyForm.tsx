@@ -99,17 +99,42 @@ const WarrantyForm = () => {
     }
   };
 
+  // const handleDragOver = (e: React.DragEvent<HTMLDivElement>): void => {
+  //   e.preventDefault();
+  //   setFileDragged(true);
+  // };
+
+  // const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  //   e.preventDefault();
+  //   setFileDragged(false);
+  //   const files = Array.from(e.dataTransfer.files);
+  //   if (files.length > 0) {
+  //     setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
+  //   }
+  // };
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>): void => {
     e.preventDefault();
-    setFileDragged(true);
+    setFileDragged(true); // Highlight the drop area when dragging files
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    setFileDragged(false);
+    setFileDragged(false); // Reset the border color after drop
+
     const files = Array.from(e.dataTransfer.files);
-    if (files.length > 0) {
-      setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
+
+    // Ensure the files are added only once (to avoid duplicates)
+    const uniqueFiles = files.filter(
+      (newFile) =>
+        !selectedFiles.some(
+          (existingFile) => existingFile.name === newFile.name
+        )
+    );
+
+    if (uniqueFiles.length > 0) {
+      // Update the selected files and clear validation errors
+      setSelectedFiles((prevFiles) => [...prevFiles, ...uniqueFiles]);
+      clearErrors("customerFiles"); // Clear validation errors for files
     }
   };
 
@@ -117,12 +142,30 @@ const WarrantyForm = () => {
   //   const files = Array.from(e.target.files || []);
   //   setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
   // };
-  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
+  // const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const files = Array.from(e.target.files || []);
+  //   setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
 
-    if (files.length > 0) {
-      clearErrors("customerFiles");
+  //   if (files.length > 0) {
+  //     clearErrors("customerFiles");
+  //   }
+  // };
+  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newFiles = Array.from(e.target.files || []);
+
+    // Filter out any files that are already in selectedFiles
+    const uniqueNewFiles = newFiles.filter(
+      (newFile) =>
+        !selectedFiles.some(
+          (existingFile) => existingFile.name === newFile.name
+        )
+    );
+
+    // Update the state with the new unique files
+    setSelectedFiles((prevFiles) => [...prevFiles, ...uniqueNewFiles]);
+
+    if (uniqueNewFiles.length > 0) {
+      clearErrors("customerFiles"); // Clear validation errors if files are selected
     }
   };
 
@@ -157,16 +200,21 @@ const WarrantyForm = () => {
   return (
     <div className="my-10">
       <div>
-        <h2 className="text-3xl text-center mb-10 font-semibold">
+        <h2 className=" xms:text-lg xls:text-lg sm:text-xl md:text-3xl text-center mb-4 md:mb-10 font-semibold">
           ওয়ারেন্টি দাবি ফর্ম
         </h2>
-        <h3 className="text-3xl my-1">ক্রয়ের তথ্যঃ-</h3>
+        <h3 className="xms:text-sm xls:text-sm sm:text-lg md:text-3xl my-1">
+          ক্রয়ের তথ্যঃ-
+        </h3>
       </div>
-      <div className="border border-gray-200 p-4 rounded-md">
+      <div className="border border-gray-200 p-2 md:p-4 rounded-md">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="mb-4">
-              <label htmlFor="orderedPhoneNumber" className="block mb-2">
+              <label
+                htmlFor="orderedPhoneNumber"
+                className="block mb-2 xms:text-xs xls:text-xs sm:text-sm md:text-lg"
+              >
                 অডারকৃত মোবাইল নম্বর-
               </label>
               <input
@@ -179,7 +227,10 @@ const WarrantyForm = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="warrantyCodes" className="block mb-2">
+              <label
+                htmlFor="warrantyCodes"
+                className="block mb-2 xms:text-xs xls:text-xs sm:text-sm md:text-lg"
+              >
                 পন্যের ওয়ারেন্টি কোড -
               </label>
               <input
@@ -193,7 +244,10 @@ const WarrantyForm = () => {
             </div>
           </div>
           <div className="mb-4">
-            <label htmlFor="issueDescription" className="block mb-2">
+            <label
+              htmlFor="issueDescription"
+              className="block mb-2 xms:text-xs xls:text-xs sm:text-sm md:text-lg"
+            >
               সমস্যাটি বর্ণনা করুন-
             </label>
             <textarea
@@ -203,120 +257,82 @@ const WarrantyForm = () => {
               placeholder="আপনি যে সমস্যা দেখে পরিবর্তন করতে চাচ্ছেন   উক্ত সমস্যাটি বিস্তারিত ভাবে লিখুন"
             />
             {errors.issueDescription && (
-              <p className="text-red-500">
+              <p className="text-red-500 xms:text-xs xls:text-xs sm:text-sm md:text-lg">
                 আপনি যে সমস্যা দেখে পরিবর্তন করতে চাচ্ছেন উক্ত সমস্যাটি
                 বিস্তারিত ভাবে লিখুন
               </p>
             )}
           </div>
-          {/* <div className="flex flex-col items-center justify-center">
-            <div
-              className={`${
-                fileDragged ? "border-blue-500" : "border-gray-300"
-              } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
-              onDragOver={(e) => {
-                e.preventDefault();
-                handleDragOver(e);
-              }}
-              onDrop={(e) => {
-                e.preventDefault();
-                handleDrop(e);
-              }}
+
+          <div
+            className={`${
+              fileDragged ? "border-blue-500" : "border-gray-300"
+            } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
+            onDragOver={handleDragOver} // Trigger drag over
+            onDrop={handleDrop} // Handle drop of files
+            style={{
+              minHeight: "160px",
+              width: "100%",
+              background: "#ffffff",
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <input
+              type="file"
+              id="customerFile"
+              {...register("customerFiles", {
+                required: "Please select a file.",
+                validate: () =>
+                  selectedFiles.length > 0 ||
+                  "Please select at least one file.",
+              })}
+              className="hidden"
+              onChange={handleFileInputChange}
+              multiple
+              onClick={(e) => e.stopPropagation()} // Prevent click from bubbling up
+            />
+            <label
+              htmlFor="customerFile"
+              className="flex justify-center items-center text-black py-2 px-4 rounded-md cursor-pointer"
+              onClick={(e) => e.stopPropagation()} // Prevent click from bubbling up
               style={{
-                minHeight: "160px",
-                width: "100%",
-                background: "#ffffff",
-                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-              }}
-              onClick={() => document.getElementById("customerFile")?.click()}
-            >
-              <input
-                type="file"
-                id="customerFile"
-                {...register("customerFiles", { required: true })}
-                className="hidden"
-                onChange={handleFileInputChange}
-                multiple
-                onClick={(e) => e.stopPropagation()}
-                style={{ width: "100%" }}
-              />
-              <label
-                htmlFor="customerFile"
-                className="flex justify-center items-center text-black py-2 px-4 rounded-md cursor-pointer"
-                style={{
-                  borderRadius: "4px",
-                  transition: "background-color 0.3s ease-in-out",
-                }}
-              >
-                <AiOutlineCloudUpload size={30} className="mr-2" />
-                নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
-              </label>
-            </div>
-            {errors.customerFiles && (
-              <p className="text-red-500">
-                নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
-              </p>
-            )}
-          </div> */}
-          <div>
-            <div
-              className={`${
-                fileDragged ? "border-blue-500" : "border-gray-300"
-              } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
-              onDragOver={(e) => {
-                e.preventDefault();
-                handleDragOver(e);
-              }}
-              onDrop={(e) => {
-                e.preventDefault();
-                handleDrop(e);
-              }}
-              onClick={() => {
-                // Ensure the input field is clicked when the container is clicked
-                const fileInput = document.getElementById(
-                  "customerFile"
-                ) as HTMLInputElement;
-                fileInput?.click();
-              }}
-              style={{
-                minHeight: "160px",
-                width: "100%",
-                background: "#ffffff",
-                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                borderRadius: "4px",
+                transition: "background-color 0.3s ease-in-out",
               }}
             >
-              <input
-                type="file"
-                id="customerFile"
-                {...register("customerFiles", { required: true })}
-                className="hidden"
-                onChange={handleFileInputChange} // Handle file input change
-                multiple
-                onClick={(e) => e.stopPropagation()} // Prevent click event from bubbling up
-                style={{ width: "100%" }}
+              <AiOutlineCloudUpload
+                size={30}
+                className="mr-2 xms:text-[9px] xls:text-[9px] sm:text-sm md:text-lg"
               />
-              <label
-                htmlFor="customerFile"
-                className="flex justify-center items-center text-black py-2 px-4 rounded-md cursor-pointer"
-                style={{
-                  borderRadius: "4px",
-                  transition: "background-color 0.3s ease-in-out",
-                }}
-              >
-                <AiOutlineCloudUpload size={30} className="mr-2" />
-                নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
-              </label>
-            </div>
-            {errors.customerFiles && (
-              <p className="text-red-500">
-                নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
-              </p>
+              নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
+            </label>
+          </div>
+
+          {/* Display selected files */}
+          <div className="mt-4">
+            {selectedFiles.length > 0 ? (
+              selectedFiles.map((file, index) => (
+                <div key={index} className="text-sm text-gray-700">
+                  {}
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500">No files selected</p>
             )}
           </div>
 
+          {/* Error message */}
+          {errors.customerFiles && (
+            <p className="text-red-500 xms:text-[9px] xls:text-[9px] sm:text-sm md:text-lg">
+              {errors.customerFiles.message}
+            </p>
+          )}
+
           {renderSelectedFiles()}
           <div>
-            <h2 className="text-xl mb-4">ক্রেতার তথ্য</h2>
+            <h2 className="xms:text-sm xls:text-sm sm:text-lg md:text-3xl sm:mb-1 md:mb-4">
+              ক্রেতার তথ্য
+            </h2>
             <div className="mb-4">
               <input
                 type="radio"
@@ -329,7 +345,10 @@ const WarrantyForm = () => {
                 }}
                 checked={addressOption === "keep"}
               />
-              <label htmlFor="keepAddress" className="ml-2">
+              <label
+                htmlFor="keepAddress"
+                className="ml-2 xms:text-xs xls:text-xs sm:text-sm md:text-lg"
+              >
                 পূর্বের ঠিকানা রাখুন
               </label>
               <input
@@ -348,13 +367,19 @@ const WarrantyForm = () => {
                 checked={addressOption === "change"}
                 className="ml-4"
               />
-              <label htmlFor="changeAddress" className="ml-2">
+              <label
+                htmlFor="changeAddress"
+                className="ml-2 xms:text-xs xls:text-xs sm:text-sm md:text-lg"
+              >
                 ঠিকানা পরিবর্তন করুন
               </label>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="mb-4">
-                <label htmlFor="fullName" className="block mb-2">
+              <div className="mb-1 md:mb-4">
+                <label
+                  htmlFor="fullName"
+                  className="block mb-2 xms:text-xs xls:text-xs sm:text-sm md:text-lg"
+                >
                   ক্রেতার নাম-
                 </label>
                 <input
@@ -373,11 +398,16 @@ const WarrantyForm = () => {
                   }
                 />
                 {errors.fullName && (
-                  <p className="text-red-500">ক্রেতার নাম প্রয়োজন</p>
+                  <p className="text-red-500 xms:text-xs xls:text-xs sm:text-sm md:text-lg">
+                    ক্রেতার নাম প্রয়োজন
+                  </p>
                 )}
               </div>
-              <div className="mb-4">
-                <label htmlFor="phoneNumber" className="block mb-2">
+              <div className=" mb-1 md:mb-4">
+                <label
+                  htmlFor="phoneNumber"
+                  className="block mb-2 xms:text-xs xls:text-xs sm:text-sm md:text-lg"
+                >
                   মোবাইল নম্বর-
                 </label>
                 <input
@@ -399,12 +429,17 @@ const WarrantyForm = () => {
                   }
                 />
                 {errors.phoneNumber && (
-                  <p className="text-red-500">মোবাইল নম্বর প্রয়োজন</p>
+                  <p className="text-red-500 xms:text-xs xls:text-xs sm:text-sm md:text-lg">
+                    মোবাইল নম্বর প্রয়োজন
+                  </p>
                 )}
               </div>
             </div>
-            <div className="mb-4">
-              <label htmlFor="fullAddress" className="block mb-2">
+            <div className="mb-2 md:mb-4">
+              <label
+                htmlFor="fullAddress"
+                className="block mb-2 xms:text-xs xls:text-xs sm:text-sm md:text-lg"
+              >
                 ঠিকানা-
               </label>
               <input
@@ -423,7 +458,9 @@ const WarrantyForm = () => {
                 }
               />
               {errors.fullAddress && (
-                <p className="text-red-500">ঠিকানা প্রয়োজন</p>
+                <p className="text-red-500 xms:text-xs xls:text-xs sm:text-sm md:text-lg">
+                  ঠিকানা প্রয়োজন
+                </p>
               )}
             </div>
           </div>
@@ -454,7 +491,7 @@ const WarrantyForm = () => {
           >
             <DialogContent className="w-11/12 max-w-[630px] mx-auto p-4">
               <DialogHeader>
-                <DialogTitle className="text-center my-2 text-lg font-bold">
+                <DialogTitle className="text-center my-2 xms:text-xs xls:text-xs sm:text-sm md:text-lg font-bold">
                   অনুরোধ সফলভাবে গ্রহণ করা হয়েছে
                 </DialogTitle>
                 <DialogDescription className="text-center p-3 text-sm">

@@ -10,11 +10,11 @@ const ClaimFormHeader = () => {
             width={150}
             height={60}
             src={logo}
-            className="mt-2"
+            className="mt-2 w-20 md:w-40"
             alt={""}
           ></Image>
         </Link>
-        <div className="text-end text-xl">
+        <div className="text-end xms:text-xs xls:text-xs sm:text-sm md:text-xl">
           <p>Oneself</p>
           <p>Khulna, bangladesh</p>
           <p>+8801967214215</p>
