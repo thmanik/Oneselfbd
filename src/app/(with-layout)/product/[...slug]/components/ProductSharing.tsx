@@ -9,27 +9,26 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-import Image from "next/image";
 import { useRef } from "react";
 import { FaRegCopy, FaShareAlt } from "react-icons/fa";
-const socialMedias = [
-  {
-    name: "Facebook",
-    icon: "/images/social_icons/facebook.png",
-  },
-  {
-    name: "Twitter",
-    icon: "/images/social_icons/twitter.png",
-  },
-  {
-    name: "Instagram",
-    icon: "/images/social_icons/instagram.png",
-  },
-  {
-    name: "WhatsApp",
-    icon: "/images/social_icons/whatsapp.png",
-  },
-];
+// const socialMedias = [
+//   {
+//     name: "Facebook",
+//     icon: "/images/social_icons/facebook.png",
+//   },
+//   {
+//     name: "Twitter",
+//     icon: "/images/social_icons/twitter.png",
+//   },
+//   {
+//     name: "Instagram",
+//     icon: "/images/social_icons/instagram.png",
+//   },
+//   {
+//     name: "WhatsApp",
+//     icon: "/images/social_icons/whatsapp.png",
+//   },
+// ];
 
 const ProductSharing = ({ productUrl }: { productUrl: string }) => {
   const linkInputRef = useRef(null);
@@ -75,7 +74,7 @@ const ProductSharing = ({ productUrl }: { productUrl: string }) => {
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="space-y-3">
-              <div className="flex gap-3 justify-center">
+              {/* <div className="flex gap-3 justify-center">
                 {socialMedias.map((item) => (
                   <Image
                     key={item.name}
@@ -86,7 +85,7 @@ const ProductSharing = ({ productUrl }: { productUrl: string }) => {
                     className="w-8 md:w-10 rounded-md"
                   />
                 ))}
-              </div>
+              </div> */}
               <div className="flex gap-2 max-w-[300px] mx-auto">
                 <Input disabled value={productUrl} ref={linkInputRef} />
                 <EcButton
