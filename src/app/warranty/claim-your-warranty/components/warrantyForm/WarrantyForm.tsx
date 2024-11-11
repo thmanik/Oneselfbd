@@ -20,7 +20,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 type FormData = {
   purchaseDate: string;
-  warrantyCodes: string;
+  validCodes: string;
   issueDescription: string;
   customerFiles: File[];
   fullName: string;
@@ -70,7 +70,7 @@ const WarrantyForm = () => {
     formData.append("problemInDetails", data.issueDescription);
 
     // Append warranty codes as an array
-    const warrantyCodesArray = data.warrantyCodes
+    const warrantyCodesArray = data.validCodes
       .split(",")
       .map((code) => code.trim());
     warrantyCodesArray.forEach((code) =>
@@ -99,19 +99,6 @@ const WarrantyForm = () => {
     }
   };
 
-  // const handleDragOver = (e: React.DragEvent<HTMLDivElement>): void => {
-  //   e.preventDefault();
-  //   setFileDragged(true);
-  // };
-
-  // const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-  //   e.preventDefault();
-  //   setFileDragged(false);
-  //   const files = Array.from(e.dataTransfer.files);
-  //   if (files.length > 0) {
-  //     setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
-  //   }
-  // };
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>): void => {
     e.preventDefault();
     setFileDragged(true); // Highlight the drop area when dragging files
@@ -138,18 +125,6 @@ const WarrantyForm = () => {
     }
   };
 
-  // const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const files = Array.from(e.target.files || []);
-  //   setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
-  // };
-  // const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const files = Array.from(e.target.files || []);
-  //   setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
-
-  //   if (files.length > 0) {
-  //     clearErrors("customerFiles");
-  //   }
-  // };
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newFiles = Array.from(e.target.files || []);
 
@@ -236,7 +211,7 @@ const WarrantyForm = () => {
               <input
                 type="text"
                 id="warrantyCodes"
-                {...register("warrantyCodes")}
+                {...register("validCodes")}
                 className="w-full border border-gray-300 rounded-md p-2"
                 defaultValue={TableData[0]?.warrantyCodes.join(", ") || ""}
                 readOnly
@@ -264,7 +239,7 @@ const WarrantyForm = () => {
             )}
           </div>
 
-          <div
+          {/* <div
             className={`${
               fileDragged ? "border-blue-500" : "border-gray-300"
             } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
@@ -298,6 +273,54 @@ const WarrantyForm = () => {
               style={{
                 borderRadius: "4px",
                 transition: "background-color 0.3s ease-in-out",
+              }}
+            >
+              <AiOutlineCloudUpload
+                size={30}
+                className="mr-2 xms:text-[9px] xls:text-[9px] sm:text-sm md:text-lg"
+              />
+              নষ্ট পন্যের ছবি/ভিডিও নির্বাচন করুন
+            </label>
+          </div> */}
+          <div
+            className={`${
+              fileDragged ? "border-blue-500" : "border-gray-300"
+            } border border-dashed rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer`}
+            onDragOver={handleDragOver} // Trigger drag over
+            onDrop={handleDrop} // Handle drop of files
+            style={{
+              minHeight: "160px",
+              width: "100%",
+              background: "#ffffff",
+              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <input
+              type="file"
+              id="customerFile"
+              {...register("customerFiles", {
+                required: "Please select a file.",
+                validate: () =>
+                  selectedFiles.length > 0 ||
+                  "Please select at least one file.",
+              })}
+              className="hidden"
+              onChange={handleFileInputChange}
+              multiple
+              onClick={(e) => e.stopPropagation()} // Prevent click from bubbling up
+            />
+            <label
+              htmlFor="customerFile"
+              className="flex justify-center items-center text-black py-2 px-4 rounded-md cursor-pointer"
+              onClick={(e) => e.stopPropagation()} // Prevent click from bubbling up
+              style={{
+                width: "100%", // Make label take full width of parent div
+                height: "100%", // Ensure it takes full height of parent div
+                borderRadius: "4px",
+                transition: "background-color 0.3s ease-in-out",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <AiOutlineCloudUpload

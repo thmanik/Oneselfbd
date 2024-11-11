@@ -86,16 +86,23 @@ const SingleProductPage = async ({ params }: TProps) => {
             <SingleProductPageImageGallery gallery={gallery} />
           </Box>
           <Box className="space-y-4 shadow-none ring-0">
-            <Link
-              className="text-sm text-muted"
-              href={`/category/${category?._id?._id}`}
-            >
-              {category?._id?.name}
-            </Link>
             <h2 className="font-semibold text-xl lg:text-2xl">{title}</h2>
-
-            <div className="flex gap-5">
-              <p className="text-md text-muted">brand: {brand?.name || null}</p>
+            <Link
+              className=" text-sm md:text-lg  text-muted hover:text-primary hover:underline  mb-5 md:mb-8"
+              href={`/shop?category=${category.slug}`}
+            >
+              {category?.name}
+            </Link>
+            <div className="flex gap-5 justify-between">
+              <div className="flex gap-5 md:gap-10">
+                <p className="text-md text-muted">
+                  brand: {brand?.name || null}
+                </p>
+                <p>
+                  <span className="text-muted">Sku:</span>
+                  {inventory?.sku}
+                </p>
+              </div>
               <p>
                 <span className="text-muted">Availability: </span>
                 <span className="font-semibold">

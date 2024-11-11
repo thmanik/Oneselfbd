@@ -103,7 +103,7 @@ const VariationSelector = ({
         {displayedPrice < originalPrice ? (
           <>
             <del className="text-muted text-xl">&#2547;{originalPrice}</del>
-            <span className="text-primary text-3xl">
+            <span className="text-primary ms-1 text-3xl">
               &#2547;{displayedPrice}
             </span>
 

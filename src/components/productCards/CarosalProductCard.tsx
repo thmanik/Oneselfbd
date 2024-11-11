@@ -41,7 +41,7 @@ const CarousalProductsCard = ({
             priority
           />
         </div>
-        <div className="flex flex-col gap-2 xms:px-1 xls:px-1 sm:-px-1 md:px-4">
+        <div className="flex flex-col gap-2 xms:px-1 xls:px-1 sm:px-1 md:px-2">
           <h2 className="font-semibold text-gray-600 xms:text-[10px] xls:text-xs sm:text-sm md:text-base">
             {product?.title?.length < 40 ? (
               product?.title
