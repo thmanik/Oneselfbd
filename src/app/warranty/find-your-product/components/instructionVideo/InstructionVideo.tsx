@@ -6,10 +6,10 @@ const InstructionVideo = () => {
           বুঝতে অসুবিধা হলে নিচের ভিডিও দেখুনঃ-
         </p>
       </div>
-      <div className="w-full mx-auto p-3 border-2 border-primary  max-w-screen-lg rounded-xl">
+      <div className="w-full mx-auto p-2 border-2 border-primary  max-w-screen-lg rounded-xl">
         <iframe
           className="mx-auto w-[98%] aspect-video rounded-xl"
-          src="https://www.youtube.com/embed/WFWq_Gl9BPk?si=-FOormLVNvF41QRr"
+          src="https://www.youtube.com/embed/YjhiCrCmpwY"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

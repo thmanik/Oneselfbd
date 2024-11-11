@@ -47,6 +47,7 @@ export type TBrand = {
 };
 
 export type TCategory = {
+  slug: string;
   name: string;
   _id: {
     _id: string;

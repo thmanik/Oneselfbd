@@ -3,6 +3,7 @@ import { useCheckWarrantyQuery } from "@/redux/features/warrantyApi/warrantyApiS
 import React, { useEffect, useState } from "react";
 import { Product, ProductItem } from "../commonTypes/CommonTypes";
 import ProductTable from "../productsTable/ProductsTable";
+
 type ApiError = {
   data?: {
     errorMessages?: {
@@ -20,6 +21,8 @@ const SearchProduct = () => {
   const [error, setError] = useState<string | null>(null);
   const [notFoundProducts, setNotFoundProducts] = useState<string[]>([]);
   const [searched, setSearched] = useState<boolean>(false);
+
+  const [validCodes, setValidCodes] = useState<string[]>([]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewWarrantyCode(event.target.value);
@@ -95,31 +98,52 @@ const SearchProduct = () => {
 
   useEffect(() => {
     if (searched && !isError && searchResultData) {
+      const foundCodes: string[] = [];
+      const invalidCodes: string[] = [];
       if (searchResultData?.data?.length === 0) {
         setError("কোনো তথ্য পাওয়া যায়নি");
         setNotFoundProducts([]);
-      } else {
-        const foundCodes: string[] = [];
-        searchResultData?.data?.forEach((order: Product) => {
-          order?.products?.forEach((product: ProductItem) => {
-            if (product?.warranty) {
-              product?.warranty?.warrantyCodes?.forEach((code) => {
-                foundCodes?.push(code.code);
-              });
-            }
-          });
+      }
+      // Iterate through the data and match warranty codes
+      searchResultData?.data?.forEach((order: Product) => {
+        order?.products?.forEach((product: ProductItem) => {
+          if (product?.warranty) {
+            product?.warranty?.warrantyCodes?.forEach((code) => {
+              // If the warranty code is valid, add it to foundCodes
+              if (warrantyCodes.includes(code.code)) {
+                foundCodes.push(code.code);
+              } else {
+                // If it's invalid, add it to invalidCodes
+                invalidCodes.push(code.code);
+              }
+            });
+          }
         });
-        const notFound = warrantyCodes?.filter(
-          (code) => !foundCodes.includes(code)
-        );
-        setNotFoundProducts(notFound);
-        setError(notFound?.length > 0 ? "এই ওয়ারেন্টি কোডগুলি সঠিক নয়" : null);
+      });
+
+      // Update the state with all valid codes
+      setValidCodes(foundCodes);
+
+      // Set the not found products (for invalid codes)
+      setNotFoundProducts(
+        warrantyCodes.filter((code) => !foundCodes.includes(code))
+      );
+
+      // Handle valid and invalid codes
+      if (foundCodes.length > 0) {
+        // If valid codes are found, don't show an error message
+        setError("");
+      } else if (invalidCodes.length > 0) {
+        // If no valid codes found, show error message
+        setError("এই কোডগুলির সাথে মিল নেই: " + invalidCodes.join(", "));
       }
     } else {
+      // Reset error and not found products if search result is empty or has an error
       setNotFoundProducts([]);
       setError("");
     }
 
+    // Handle API error if occurs
     if (isError && apiError) {
       const errorMessage =
         (apiError as ApiError).data?.errorMessages?.[0]?.message ||
@@ -128,11 +152,70 @@ const SearchProduct = () => {
     }
   }, [searched, isError, searchResultData, warrantyCodes, apiError]);
 
+  // useEffect(() => {
+  //   if (searched && !isError && searchResultData) {
+  //     const foundCodes: string[] = [];
+  //     const invalidCodes: string[] = [];
+  //     let adjustedQuantity = 0;
+
+  //     // Iterate through the data and match warranty codes
+  //     searchResultData?.data?.forEach((order: Product) => {
+  //       order?.products?.forEach((product: ProductItem) => {
+  //         if (product?.warranty) {
+  //           product?.warranty?.warrantyCodes?.forEach((code) => {
+  //             // If the warranty code is valid, add it to foundCodes
+  //             if (warrantyCodes.includes(code.code)) {
+  //               foundCodes.push(code.code);
+  //               adjustedQuantity += 1; // Increase quantity for valid codes
+  //             } else {
+  //               // If it's invalid, add it to invalidCodes
+  //               invalidCodes.push(code.code);
+  //             }
+  //           });
+  //         }
+  //       });
+  //     });
+
+  //     // Update the state with all valid codes
+  //     setValidCodes(foundCodes);
+
+  //     // Set the quantity and the not found products (for invalid codes)
+  //     setQuantity(adjustedQuantity);
+  //     setNotFoundProducts(
+  //       warrantyCodes.filter((code) => !foundCodes.includes(code))
+  //     );
+
+  //     // Handle valid and invalid codes
+  //     if (foundCodes.length > 0) {
+  //       // If valid codes are found, don't show an error message
+  //       setError("");
+  //     } else if (invalidCodes.length > 0) {
+  //       // If no valid codes found, show error message
+  //       setError("এই কোডগুলির সাথে মিল নেই: " + invalidCodes.join(", "));
+  //     } else {
+  //       // If there are no codes at all, handle it as an error
+  //       setError("এই ওয়ারেন্টি কোডগুলি সঠিক নয়");
+  //     }
+  //   } else {
+  //     // Reset error and not found products if search result is empty or has an error
+  //     setNotFoundProducts([]);
+  //     setError("");
+  //   }
+
+  //   // Handle API error if occurs
+  //   if (isError && apiError) {
+  //     const errorMessage =
+  //       (apiError as ApiError).data?.errorMessages?.[0]?.message ||
+  //       "Unknown error";
+  //     setError(errorMessage);
+  //   }
+  // }, [searched, isError, searchResultData, warrantyCodes, apiError]);
+
   return (
     <div className="flex justify-center items-center my-10 mx-2 md:my-20">
       <div className="text-center w-full">
         <div className="mb-8 w-full md:w-2/3 mx-auto">
-          <h1 className=" xms:text-lg xls:text-lg  sm:text-xl md:text-4xl font-bold text-gray-800 mb-4">
+          <h1 className="xms:text-lg xls:text-lg sm:text-xl md:text-4xl font-bold text-gray-800 mb-4">
             আপনার পন্য নির্বাচন করুন
           </h1>
           <p className="text-gray-700 xms:text-xs xls:text-xs sm:text-sm md:text-lg mx-5">
@@ -153,8 +236,7 @@ const SearchProduct = () => {
                 <input
                   value={newWarrantyCode}
                   onChange={handleInputChange}
-                  className="appearance-none outline-none border border-gray-300 rounded-l-md py-2  px-3 focus:ring-0 w-full
-                    sm:h-5 md:h-12"
+                  className="appearance-none outline-none border border-gray-300 rounded-l-md py-2 px-3 focus:ring-0 w-full sm:h-5 md:h-12"
                   id="warrantyCode"
                   type="text"
                   placeholder="প্যাকেটের গায়ে থাকা ওয়ারেন্টি কোডটি লিখুন"
@@ -215,7 +297,7 @@ const SearchProduct = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center mt-5">
+          <div className="flex items-center justify-center my-5">
             <button
               type="submit"
               className="bg-blue-500 xls:text-xs sm:text-sm md:text-lg text-white rounded-md py-2 px-2 md:px-4 hover:bg-blue-600"
@@ -227,39 +309,23 @@ const SearchProduct = () => {
 
         {isLoading && <p>Loading...</p>}
 
-        <div className="text-center w-full mt-2">
+        {/* <div className="text-center w-full mt-2">
           {notFoundProducts?.length > 0 && (
-            <p className="text-red-500 xms:text-xs xls:text-xs sm:text-sm md:text-sm mb-4">
-              এই ওয়ারেন্টি কোডগুলি সঠিক নয়:{" "}
-              {notFoundProducts.map((code, index) => (
-                <React.Fragment key={index}>
-                  {index > 0 && ", "}
-                  {code}
-                </React.Fragment>
-              ))}
-            </p>
-          )}
+            <p className="text-red-500">{` কোডগুলি সঠিক নয়: ${notFoundProducts.join(
+              ", "
+            )}`}</p>
+          )} */}
 
+        {/* </div> */}
+        {error && <p className="text-red-500">{error}</p>}
+        {searched && !isLoading && !error && (
           <ProductTable
             searchResult={searchResultData?.data || []}
             notFoundProducts={notFoundProducts}
             error={error}
+            validCodes={validCodes}
           />
-        </div>
-
-        <div className="my-10">
-          {!notFoundProducts.length && error && (
-            <p className="text-red-500 text-[18px] mx-3">{error}</p>
-          )}
-
-          {notFoundProducts.length > 0 && (
-            <ProductTable
-              searchResult={[]}
-              notFoundProducts={notFoundProducts}
-              error={error}
-            />
-          )}
-        </div>
+        )}
       </div>
     </div>
   );
