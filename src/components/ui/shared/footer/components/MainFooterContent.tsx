@@ -44,12 +44,12 @@ const socialLinks = [
 
 const MainFooterContent = () => {
   return (
-    <div className="relative py-5 text-white bg-[#252E3C] bg-[radial-gradient(ellipse_90%_90%_at_50%_-30%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
+    <div className="relative py-5 text-white  bg-[#252E3C] bg-[radial-gradient(ellipse_90%_90%_at_50%_-30%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
       <ContainerMax>
         <div className="flex flex-col md:flex-row items-center justify-between gap-5 md:mx-10">
           <div className="space-y-2 md:space-y-5">
             <Image
-              src="/images/logo/logo.png"
+              src="/images/logo/logo.jpg"
               alt="Company logo"
               width={400}
               height={200}
@@ -66,11 +66,11 @@ const MainFooterContent = () => {
               </div>
             </div>
           </div>
-          <div>
+          <div className="text-center">
             <h2 className="font-bold mb-3 text-secondary text-xl">
               Quick links
             </h2>
-            <div className="space-y-2">
+            <div className="space-y-2 ">
               {quickLinks.map((item, index) => (
                 <Link
                   key={index}
@@ -82,11 +82,11 @@ const MainFooterContent = () => {
               ))}
             </div>
           </div>
-          <div>
+          <div className="text-center">
             <h2 className="font-bold mb-4 text-secondary text-xl">
               Social links
             </h2>
-            <div className="flex gap-4">
+            <div className="flex gap-4 justify-center">
               {socialLinks.map((item, index) => (
                 <Link href={item.url} key={index} target="_blank">
                   <Image
@@ -100,7 +100,7 @@ const MainFooterContent = () => {
               ))}
             </div>
             <address className="font-semibold not-italic space-y-1 mt-5">
-              <p className="text-lg">Address</p>
+              <p className="text-lg">Address :</p>
               <p className="text-base">Khulna, Bangladesh</p>
               {/* TODO: Change the address */}
             </address>
@@ -162,7 +162,7 @@ export default MainFooterContent;
 //         <div className="grid grid-cols-1 md:grid-cols-4">
 //           <div className="md:col-span-2 space-y-3">
 //             <Image
-//               src="/images/logo/logo.png"
+//               src="/images/logo/logo.jpg"
 //               alt="Company logo"
 //               width={400}
 //               height={200}

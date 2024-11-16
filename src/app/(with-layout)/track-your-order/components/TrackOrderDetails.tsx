@@ -50,7 +50,7 @@ const TrackOrderDetails = () => {
   const LoadingSpinner = () => (
     <div className="flex flex-col items-center justify-center gap-5 h-[100vh]">
       <Image
-        src="/images/logo/logo.png"
+        src="/images/logo/logo.jpg"
         alt="logo"
         width={100}
         height={100}

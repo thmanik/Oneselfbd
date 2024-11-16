@@ -12,7 +12,7 @@ const MainHeader = ({ categories }: { categories?: TCategory[] }) => {
       <div className="order-2 lg:order-1">
         <Link href="/">
           <Image
-            src="/images/logo/logo.png"
+            src="/images/logo/logo.jpg"
             alt="Company logo"
             height={200}
             width={400}

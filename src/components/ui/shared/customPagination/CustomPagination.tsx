@@ -16,18 +16,22 @@ const CustomPagination = ({
   meta,
   searchParams,
   className,
+  currentPage, // Add currentPage as a prop
 }: {
   meta?: TMeta;
   searchParams: Record<string, string | string[] | undefined>;
   className?: string;
+  currentPage: number; // Define currentPage as part of the prop types
 }) => {
-  const pageNumbers: number[] = [];
   if (!meta) {
     return null;
   }
-  for (let i = meta?.page - 1; i <= meta?.page + 1; i++) {
+
+  // Pagination logic
+  const pageNumbers: number[] = [];
+  for (let i = meta.page - 1; i <= meta.page + 1; i++) {
     if (i < 1) continue;
-    if (i > meta?.totalPage) break;
+    if (i > meta.totalPage) break;
     pageNumbers.push(i);
   }
 
@@ -35,8 +39,6 @@ const CustomPagination = ({
   const newSearchParam = objectToSearchParams(
     withoutPageProp as Record<string, string>
   );
-
-  const currentPage = Number(searchParams?.page || 1);
 
   return (
     <div className={twMerge("mt-5 flex justify-center", className)}>
@@ -65,13 +67,13 @@ const CustomPagination = ({
               </PaginationLink>
             </PaginationItem>
           ))}
-          {meta?.totalPage > pageNumbers[pageNumbers.length - 1] && (
+          {meta.totalPage > pageNumbers[pageNumbers.length - 1] && (
             <PaginationItem className="mx-1">
               <PaginationEllipsis />
             </PaginationItem>
           )}
           <PaginationItem className="mx-1">
-            {currentPage < meta?.totalPage ? (
+            {currentPage < meta.totalPage ? (
               <PaginationNext
                 href={`?page=${currentPage + 1}${newSearchParam ? "&" + newSearchParam : ""}`}
                 className="hover:text-white focus:text-white"
