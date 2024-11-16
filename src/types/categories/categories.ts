@@ -1,4 +1,14 @@
-type TCategory = {
+export type TSubCategory = {
+  _id: string;
+  slug: string;
+  name: string;
+  hasProducts: boolean;
+};
+
+// Define TCategory type
+export type TCategory = {
+  hasProducts: boolean;
+
   slug: string;
   _id: string;
   name: string;
@@ -7,7 +17,15 @@ type TCategory = {
     src: string;
     alt: string;
   };
-  isFlashSale?: boolean;
+  subcategories: [
+    {
+      name: string;
+      slug: string;
+      image: {
+        src: string;
+      };
+    },
+  ];
 };
 
 export default TCategory;

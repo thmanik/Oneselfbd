@@ -31,7 +31,7 @@ const carousalFooterData = [
 
 const FacilitiesButtons = () => {
   return (
-    <div className="flex gap-5 mt-2  items-center justify-center border-red-500  flex-wrap">
+    <div className="flex gap-5 mt-4  items-center justify-center border-red-500  flex-wrap">
       {carousalFooterData.map((item) => (
         <Link
           href={item.href}

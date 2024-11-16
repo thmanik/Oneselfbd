@@ -16,7 +16,7 @@ type BreadcrumbProps = {
 const CustomBreadcrumb: React.FC<BreadcrumbProps> = ({ paths }) => {
   return (
     <Breadcrumb className="p-2 bg-[#F2F4F5] border w-full ">
-      <BreadcrumbList className="flex items-center space-x-2 text-lg">
+      <BreadcrumbList className="flex items-center space-x-2 text-sm md:text-lg">
         {paths.map((path, index) => (
           <React.Fragment key={index}>
             <BreadcrumbItem>

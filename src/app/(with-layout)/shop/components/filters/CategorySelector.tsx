@@ -6,32 +6,36 @@ const CategorySelector = ({
   categories,
   searchParams,
   setCategoryParams,
+  setSubcategoryParams,
 }: {
   categories: TCategory[];
   searchParams: Record<string, string | string[] | undefined>;
-  setCategoryParams: Dispatch<SetStateAction<string>>;
+  setCategoryParams: Dispatch<SetStateAction<string[]>>;
+  setSubcategoryParams: Dispatch<SetStateAction<Record<string, string[]>>>;
 }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const [subcategories, setSubcategories] = useState<Record<string, string[]>>(
+    {}
+  );
 
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (Array.isArray(selectedValues)) {
-      selectedValues?.forEach((value) => {
-        params.append("category", value);
-      });
-      setCategoryParams(params.toString());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedValues]);
+    setCategoryParams(selectedValues);
+  }, [selectedValues, setCategoryParams]);
+
+  useEffect(() => {
+    setSubcategoryParams(subcategories);
+  }, [subcategories, setSubcategoryParams]);
 
   return (
     <GenericFilterPropsSelector
       filterBy="category"
-      title="FIlter by category"
-      setSelectedValues={setSelectedValues}
+      title="Filter by category"
       selectedValues={selectedValues}
+      setSelectedValues={setSelectedValues}
       items={categories}
       searchParams={searchParams}
+      subcategories={subcategories}
+      setSubcategories={setSubcategories}
     />
   );
 };

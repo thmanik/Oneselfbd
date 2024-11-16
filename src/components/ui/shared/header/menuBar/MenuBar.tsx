@@ -69,7 +69,7 @@ const MenuBar = ({
                 <MenubarTrigger>
                   <Link
                     href={menuItem.href}
-                    className={`text-sm md:text-md  lg:text-lg hover:!text-secondary flex justify-between items-center font-semibold px-4 transition duration-200 ${isActive ? "!text-secondary " : "!text-white"} ${visibilityClass}`}
+                    className={`text-base md:text-base  lg:text-lg hover:!text-secondary flex justify-between items-center font-semibold px-4  py-2 transition duration-200 ${isActive ? "!text-secondary " : "!text-white"} ${visibilityClass}`}
                     onClick={onMenuItemClick} // Close sidebar on link click
                   >
                     {/* Show icon if it exists */}
