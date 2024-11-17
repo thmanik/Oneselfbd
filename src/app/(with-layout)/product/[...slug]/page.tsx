@@ -96,7 +96,10 @@ const SingleProductPage = async ({ params }: TProps) => {
             <div className="md:flex gap-5 justify-between">
               <div className="flex gap-5 md:gap-10">
                 <p className="text-md text-muted">
-                  Brand: {brand?.name || null}
+                  Brand:{" "}
+                  <span className="text-gray-500 font-bold">
+                    {brand?.name || null}
+                  </span>
                 </p>
                 <p>
                   <span className="text-muted">SKU: </span>
