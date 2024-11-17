@@ -43,7 +43,7 @@ const Banner = async () => {
   const bannerSideProducts = (data as TProduct[]) || [];
 
   return (
-    <section className="mt-[68px] sm:mt-0">
+    <section className="mt-[70px] sm:mt-0">
       <ContainerMax>
         <div className="grid grid-cols-8 lg:grid-cols-12 gap-5 justify-between">
           <div

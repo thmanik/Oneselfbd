@@ -30,7 +30,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
     >
       <div className="flex flex-col gap-5 py-2 xms:text-[8px] xls:text-[10px] sm:text-xs md:text-sm relative">
         {product.discountPercent > 0 && (
-          <div className={`absolute top-0 -left-1 ${discountBadgeClass}`}>
+          <div className={`absolute top-0 left-0 ${discountBadgeClass}`}>
             {product.discountPercent}% Off
           </div>
         )}
@@ -45,7 +45,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             priority
           />
         </div>
-        <div className="flex flex-col gap-2 px-4">
+        <div className="flex flex-col gap-2 px-2 md:px-3">
           <h2 className="font-semibold text-gray-600 xms:text-[10px] xls:text-xs sm:text-sm md:text-base">
             {product?.title?.length < 40 ? (
               product?.title
@@ -57,7 +57,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             <div>
               {product.salePrice ? (
                 <>
-                  <span className="text-muted xms:text-[7px] xls:text-[9px] sm:text-[10px] md:text-xs">
+                  <span className="text-gray-500 xms:text-[9px] xls:text-[10px] sm:text-[10px] md:text-xs">
                     &#2547;
                     <del>{product.regularPrice}</del>
                   </span>
@@ -77,7 +77,7 @@ const ProductCardPrimary = ({ product, className }: TProps) => {
             <div>
               {product.stockStatus ? (
                 <span
-                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} xms:text-[7px] xls:text-[9px] sm:text-xs md:text-xs`}
+                  className={`${product?.stockStatus === "In stock" ? "text-green-500" : "text-red-500"} xms:text-[10px] xls:text-[10px] sm:text-sm md:text-sm`}
                 >
                   {product?.stockStatus}
                 </span>
