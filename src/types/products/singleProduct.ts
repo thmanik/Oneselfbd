@@ -106,6 +106,11 @@ export type TSingleProduct = {
   variations: Tvariations[];
 };
 export type Tvariations = {
+  options: string[];
+  priceDifference: number;
+  id: string;
+  salePrice?: number;
+  regularPrice?: number;
   name: string;
   _id: string;
   length: number;

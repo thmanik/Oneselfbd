@@ -77,12 +77,12 @@ const SingleProductPage = async ({ params }: TProps) => {
   const initialVariationPrice = defaultVariation
     ? defaultVariation.price
     : price;
-
+  const ShareUrl = "https://www.oneselfbd.com";
   return (
     <section className="my-10">
       <ContainerMax>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <Box className="shadow-none ring-2">
+          <Box className="shadow-none ring-2 mt-5 ">
             <SingleProductPageImageGallery gallery={gallery} />
           </Box>
           <Box className="space-y-4 shadow-none ring-0">
@@ -129,9 +129,8 @@ const SingleProductPage = async ({ params }: TProps) => {
               product={product}
               initialVariationPrice={initialVariationPrice}
             />
-            <ProductSharing
-              productUrl={`${config.base_url}/product/${product._id}`}
-            />
+
+            <ProductSharing productUrl={`${ShareUrl}/product/${product._id}`} />
           </Box>
           <div className="col-span-1 md:col-span-2 px-3 sm:mt-5 md:mt-10">
             <ProductDetails product={product} />

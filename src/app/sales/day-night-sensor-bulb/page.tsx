@@ -19,7 +19,7 @@ const DayNightSensorBulbPage = async () => {
   if (!product) {
     return <div>Loading...</div>;
   }
-
+  // 65eb0c91e1aa722f00f24fea
   return (
     <div>
       <ProductBanner />
