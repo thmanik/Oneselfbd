@@ -34,7 +34,7 @@ const Sidebar = () => {
 
   return (
     <div className="md:col-span-4">
-      <div className="py-4">
+      <div className="py-6">
         <ul className="select-none">
           {isLoggedIn ? (
             <>

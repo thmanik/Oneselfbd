@@ -4,7 +4,7 @@ import Link from "next/link";
 /* eslint-disable react/no-unescaped-entities */
 const GiftVoucherPage = () => {
   return (
-    <div className="flex flex-col mx-2 md:mx-4 justify-center items-center h-80 ">
+    <div className="flex flex-col mx-2 md:mx-4 justify-center items-center h-80 mt-8 mb-3 ">
       <div className="text-center">
         <h3 className="text-4xl font-bold mb-4 animate-bounce">
           Coming Soon...
