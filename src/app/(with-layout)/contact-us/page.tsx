@@ -5,7 +5,7 @@ import contact_us from "../../../../public/images/contact_us.jpg";
 const ContactUsPage = () => {
   return (
     <div>
-      <div className="w-full relative">
+      <div className="w-full relative my-5">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{

@@ -9,11 +9,11 @@ import {
 
 const StoreLocationPage = () => {
   return (
-    <div className="min-h-screen  bg-gray-100 text-gray-900">
+    <div className="min-h-screen  bg-gray-100 text-gray-900 ">
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center h-[150px] md:h-[250px] bg-gradient-to-r from-[#00C1F1] to-[#005F73] text-white shadow-lg">
+      <section className="relative flex items-center justify-center pt-20 pb-10 h-[150px] md:h-[250px] bg-gradient-to-r from-[#00C1F1] to-[#005F73] text-white shadow-lg">
         <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg animate-pulse">
+          <h1 className="text-4xl mt-3 md:text-5xl font-bold drop-shadow-lg animate-pulse">
             Welcome to Our Store
           </h1>
           <p className="mt-4 text-lg md:text-xl">
