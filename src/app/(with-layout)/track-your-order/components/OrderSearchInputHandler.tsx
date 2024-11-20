@@ -25,16 +25,19 @@ const OrderSearchInputHandler = () => {
   };
 
   return (
-    <section className="bg-gray-100 md:py-8 flex justify-center items-center">
-      <ContainerMax>
-        <div className="max-w-3xl mx-auto xms:p-1 xls:p-2 sm:p-4 md:p-8 bg-white rounded-lg shadow-lg">
-          <h2 className="text-3xl text-center text-dark-gray mb-6">
+    <section className="bg-gray-100 py-5 md:py-8 flex justify-center items-center  ">
+      <ContainerMax className="mt-16 mb-8  ">
+        <div className="max-w-3xl mx-auto xms:p-2 xls:p-3 sm:p-4 md:p-8 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl md:text-3xl text-center font-semibold text-dark-gray mb-6">
             আপনার অর্ডার ট্র্যাক করুন
           </h2>
-          <p className="text-center text-xl text-gray-600 mb-6">
+          <p className="text-center text-base md:text-xl text-gray-600 mb-6">
             আপনার অর্ডার ট্র্যাক করতে অর্ডার আইডি নিচে লিখুন ।
           </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className="text-sm md:text-lg"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="grid grid-cols-1 ">
               <div>
                 <label htmlFor="orderId" className="block font-semibold mb-2">
