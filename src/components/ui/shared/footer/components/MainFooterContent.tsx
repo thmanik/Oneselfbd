@@ -56,7 +56,7 @@ const MainFooterContent = () => {
               className="w-32 md:w-44 rounded-md shadow-md mx-auto md:mx-0"
               priority
             />
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-4 ">
               <BiSupport className="w-10 h-10 md:w-12 md:h-12 text-secondary" />
               <div>
                 <p className="text-sm">Have a question? Call us right now</p>
