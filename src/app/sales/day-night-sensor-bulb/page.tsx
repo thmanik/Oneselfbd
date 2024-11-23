@@ -13,7 +13,7 @@ import UseOfTheProduct from "./components/useOfTheProduct/UseOfTheProduct";
 
 const DayNightSensorBulbPage = async () => {
   const [{ data: product }] = await useQuery<TSingleProduct>(
-    "/products/65eb0c91e1aa722f00f24fea"
+    "/products/66f95a59ad01def3b74b7325"
   );
 
   if (!product) {
