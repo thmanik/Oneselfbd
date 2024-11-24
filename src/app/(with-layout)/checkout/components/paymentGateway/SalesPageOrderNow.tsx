@@ -275,7 +275,6 @@ const SalesPageOrderNow = ({
   setTotalCost,
   quantity,
   setQuantity,
-
   setSelectedVariationId,
 }: {
   shippingCharges: TShippingCharges[];
@@ -292,7 +291,7 @@ const SalesPageOrderNow = ({
   setSelectedVariationId: Dispatch<SetStateAction<string | null>>;
 }) => {
   const [selectedOptions, setSelectedOptions] = useState<{
-    [key: string]: string[]; // Allows multiple selections for each attribute
+    [key: string]: string[];
   }>({});
   const [totalExpenseState, setTotalExpense] = useState<number>(totalCost || 0);
   const [isReadyToOrder, setIsReadyToOrder] = useState(false);
@@ -312,7 +311,6 @@ const SalesPageOrderNow = ({
 
   useEffect(() => {
     if (product?.variations?.length) {
-      // Filter the variations based on selected options
       const selectedVariations = product?.variations?.filter((variation) =>
         Object.keys(selectedOptions).every((attributeKey) =>
           selectedOptions[attributeKey]?.includes(
@@ -322,7 +320,6 @@ const SalesPageOrderNow = ({
       );
 
       if (selectedVariations?.length) {
-        // Calculate the total cost by summing up the prices of the selected variations
         const updatedTotal = selectedVariations.reduce((total, variation) => {
           const variationPrice =
             variation.price?.salePrice || variation.price?.regularPrice || 0;
@@ -355,16 +352,16 @@ const SalesPageOrderNow = ({
     setSelectedOptions((prevSelectedOptions) => {
       const updatedOptions = { ...prevSelectedOptions };
 
+      // Toggle the selected attribute value in the options list
       if (updatedOptions[key]?.includes(value)) {
-        // Deselect the value if it already exists
         updatedOptions[key] = updatedOptions[key].filter(
           (item) => item !== value
         );
       } else {
-        // Add the value to the selection
         updatedOptions[key] = [...(updatedOptions[key] || []), value];
       }
 
+      // Recalculate total cost based on selected variations
       const selectedVariations = product?.variations?.filter((variation) =>
         Object.keys(updatedOptions).every((attributeKey) =>
           updatedOptions[attributeKey]?.includes(
@@ -374,7 +371,6 @@ const SalesPageOrderNow = ({
       );
 
       if (selectedVariations?.length) {
-        // Calculate the total cost by summing up the prices of selected variations
         const updatedTotal = selectedVariations.reduce((total, variation) => {
           const variationPrice =
             variation.price?.salePrice || variation.price?.regularPrice || 0;
@@ -435,35 +431,54 @@ const SalesPageOrderNow = ({
 
       {product?.variations?.[0]?.attributes && (
         <div className="my-4">
-          {Object.keys(product.variations[0].attributes).map((key, index) => {
-            const showAttribute =
-              index === 0 ||
-              selectedOptions[Object.keys(selectedOptions)[index - 1]];
+          {Object.keys(product.variations[0].attributes).map((key) => (
+            <div className="mb-6" key={key}>
+              <h3 className="text-md font-semibold">Select {key}:</h3>
+              <div className="flex flex-wrap my-2">
+                {uniqueValues(key).map((value) => (
+                  <button
+                    key={value}
+                    onClick={() => handleAttributeSelection(key, value)}
+                    className={`m-1 py-1 px-2 border w-16 rounded-md text-sm uppercase cursor-pointer ${
+                      selectedOptions[key]?.includes(value)
+                        ? "bg-primary text-white"
+                        : "bg-gray-200"
+                    }`}
+                  >
+                    {value}
+                  </button>
+                ))}
+              </div>
 
-            if (showAttribute) {
-              return (
-                <div className="mb-6" key={key}>
-                  <h3 className="text-md font-semibold">Select {key}:</h3>
+              {selectedOptions[key]?.length > 0 && (
+                <div className="mt-4">
+                  <h4 className="text-sm font-semibold">Available Options:</h4>
                   <div className="flex flex-wrap my-2">
-                    {uniqueValues(key).map((value) => (
-                      <button
-                        key={value}
-                        onClick={() => handleAttributeSelection(key, value)}
-                        className={`m-1 py-1 px-2 border w-16 rounded-md text-sm uppercase cursor-pointer ${
-                          selectedOptions[key]?.includes(value)
-                            ? "bg-primary text-white"
-                            : "bg-gray-200"
-                        }`}
-                      >
-                        {value}
-                      </button>
-                    ))}
+                    {product.variations
+                      .filter((variation) =>
+                        selectedOptions[key]?.includes(
+                          variation.attributes[key]
+                        )
+                      )
+                      .map((filteredVariation, index) => (
+                        <div
+                          key={`${filteredVariation.id}-${index}`}
+                          className="m-1 py-1 px-2 border rounded-md text-sm bg-gray-100"
+                        >
+                          {Object.entries(filteredVariation.attributes).map(
+                            ([attrKey, attrValue]) => (
+                              <p key={attrKey}>
+                                {attrKey}: {attrValue}
+                              </p>
+                            )
+                          )}
+                        </div>
+                      ))}
                   </div>
                 </div>
-              );
-            }
-            return null;
-          })}
+              )}
+            </div>
+          ))}
         </div>
       )}
 
