@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import { useCheckWarrantyQuery } from "@/redux/features/warrantyApi/warrantyApiSlice";
 import React, { useEffect, useState } from "react";
@@ -230,7 +231,8 @@ const SearchProduct = () => {
                 className="block text-gray-700 text-left text-sm font-bold mb-2"
                 htmlFor="warrantyCode"
               >
-                পন্যের ওয়ারেন্টি কোড -
+                পন্যের ওয়ারেন্টি কোড -(ওয়ারেন্টি কোড এড করতে প্রতিটি ওয়ারেন্টি
+                কোড লিখে একবার করে "Add" বাটনে ক্লিক করুন )
               </label>
               <div className="flex">
                 <input
