@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import EcButton from "@/components/EcButton/EcButton";
 import ApplyCupon from "@/components/applyCupon/ApplyCupon";
 import CartTotalCalculations from "@/components/cartTotalCalculations/CartTotalCalculations";
@@ -17,6 +18,7 @@ const OrderNow = ({
   isLoading,
   totalCost,
   costLoading,
+  handleUltimateTotalCost,
   isSuccess,
 }: {
   shippingCharges: TShippingCharges[];
@@ -26,6 +28,7 @@ const OrderNow = ({
   totalCost?: number;
   costLoading?: boolean;
   isSuccess?: boolean;
+  handleUltimateTotalCost: (ultimateTotalCost: number) => void;
 }) => {
   const dispatch = useDispatch(); // Initialize dispatch
   const selectedShipping = useSelector(
@@ -33,17 +36,20 @@ const OrderNow = ({
   );
   const couponInfo = useSelector((state: TRootState) => state.coupon);
 
-  const discount = (couponInfo.percentage / 100) * (totalCost ? totalCost : 1);
+  const totalWithoutCoupon = Math.floor(
+    (totalCost || 0) + (selectedShipping.amount || 0)
+  );
+  // Calculate coupon discount
+  const discount = Math.ceil(
+    (couponInfo.percentage / 100) * (totalWithoutCoupon || 0)
+  );
   const applicableDiscount =
     discount > couponInfo.maxDiscountAmount
       ? couponInfo.maxDiscountAmount
       : discount;
 
-  const ultimateTotalCost =
-    (totalCost ? totalCost : 0) +
-    selectedShipping.amount -
-    (applicableDiscount ? applicableDiscount : 0);
-
+  const ultimateTotalCost = totalWithoutCoupon - applicableDiscount;
+  handleUltimateTotalCost(ultimateTotalCost);
   const handleOrderClick = async () => {
     await handleOrder(); // Call the original order function
     dispatch(resetCoupon()); // Reset coupon info after successful order

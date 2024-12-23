@@ -11,11 +11,11 @@ import {
 } from "@/redux/features/order/paymentInfo";
 import { TPaymentInfo } from "@/types/order/paymentInfo";
 import { TPaymentMethod } from "@/types/paymentMethod";
-import { TRootState } from "@/types/rootState";
+// import { TRootState } from "@/types/rootState";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import SelectPaymentMethod from "./SelectPaymentMethod";
 const PaymentsGateway = ({
   paymentMethods,
@@ -30,9 +30,9 @@ const PaymentsGateway = ({
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     string | null
   >(paymentMethods[0]?._id);
-  const selectedShippingClass = useSelector(
-    (state: TRootState) => state.shippingClass
-  );
+  // const selectedShippingClass = useSelector(
+  //   (state: TRootState) => state.shippingClass
+  // );
   const findSelectedPaymentMethod = paymentMethods.find(
     (item) => item._id === selectedPaymentMethod
   );
@@ -99,7 +99,7 @@ const PaymentsGateway = ({
                 </>
               ) : (
                 <span className="text-secondary font-bold">
-                  &#2547; {Number(totalCost) + selectedShippingClass.amount}
+                  &#2547; {Number(totalCost)}
                 </span>
               )}
             </div>

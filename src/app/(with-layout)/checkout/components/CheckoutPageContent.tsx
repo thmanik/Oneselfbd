@@ -39,7 +39,7 @@ const CheckoutPageContent = ({
   const dispatch = useDispatch();
   const router = useRouter();
   const [createOrder, { isLoading }] = useCreateOrderMutation();
-
+  const [ultimateCost, setUltimateCost] = useState<number>(0);
   useEffect(() => {
     const shippingInfo = JSON.parse(
       localStorage.getItem("shippingAddress") || "{}"
@@ -98,6 +98,10 @@ const CheckoutPageContent = ({
       setLimitModalStatus,
     });
   };
+  const handleUltimateTotalCost = (ultimateTotalCost: number) => {
+    // Log the ultimate total cost in the parent component
+    setUltimateCost(ultimateTotalCost);
+  };
 
   return (
     <>
@@ -118,12 +122,13 @@ const CheckoutPageContent = ({
             totalCost={totalCost}
             costLoading={cartCostLoading}
             isSuccess={isSuccess}
+            handleUltimateTotalCost={handleUltimateTotalCost}
           />
         </div>
         <div className="order-3 lg:order-4">
           <PaymentsGateway
             paymentMethods={paymentMethods}
-            totalCost={totalCost}
+            totalCost={ultimateCost}
           />
         </div>
       </div>

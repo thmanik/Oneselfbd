@@ -180,20 +180,23 @@ const CartTotalCalculations = ({
   );
 
   const couponInfo = useSelector((state: TRootState) => state.coupon);
-
-  const discount = (couponInfo.percentage / 100) * (totalCost ? totalCost : 0);
+  const totalWithoutCoupon = Math.floor(
+    (totalCost || 0) + (selectedShipping.amount || 0)
+  );
+  // Calculate coupon discount
+  const discount = Math.ceil(
+    (couponInfo.percentage / 100) * (totalWithoutCoupon || 0)
+  );
   const applicableDiscount =
     discount > couponInfo.maxDiscountAmount
       ? couponInfo.maxDiscountAmount
       : discount;
 
-  // Calculate ultimateTotalCost (with discount) and totalWithShipping
-  const totalWithoutCoupon =
-    (totalCost ? totalCost : 0) + (selectedShipping.amount || 0);
-  const ultimateTotalCost = (totalCost ? totalCost : 0) - applicableDiscount;
+  const ultimateTotalCost = totalWithoutCoupon - applicableDiscount;
 
   return (
     <div>
+      {/* Subtotal Section */}
       <div className="flex gap-2 justify-between items-center py-5 px-2 border-b-2">
         <span className="font-bold">Subtotal</span>
         <span className="text-sm font-semibold">
@@ -208,7 +211,7 @@ const CartTotalCalculations = ({
       {/* Shipping Method Selection */}
       <SelectShippingMethod shippingCharges={shippingCharges} />
 
-      {/* total amount */}
+      {/* Total Section */}
       <div className="flex justify-between py-3 px-2">
         <p className="font-bold">Total</p>
         <span className="font-bold">
@@ -219,9 +222,10 @@ const CartTotalCalculations = ({
           )}
         </span>
       </div>
+
       {/* Discount Section */}
       {applicableDiscount > 0 && (
-        <div className="flex justify-between pt-3 pb-1  px-2">
+        <div className="flex justify-between pt-3 pb-1 px-2">
           <p className="font-bold text-primary">Coupon Discount</p>
           <span className="text-sm font-semibold text-primary">
             - {applicableDiscount} &#2547;
@@ -231,7 +235,7 @@ const CartTotalCalculations = ({
 
       {/* Grand Total Section */}
       {applicableDiscount > 0 && (
-        <div className="">
+        <div>
           <hr className="py-1 border-t-2 border-gray-200 w-full" />
           <div className="flex justify-between pb-3 pt-1 px-2">
             <p className="font-bold">Grand Total (with coupon)</p>
@@ -245,8 +249,6 @@ const CartTotalCalculations = ({
           </div>
         </div>
       )}
-
-      {/* Total including shipping */}
     </div>
   );
 };
