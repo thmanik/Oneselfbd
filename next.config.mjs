@@ -37,11 +37,11 @@ const nextConfig = {
       },
       {
         protocol: "http",
-        hostname: "api.oneselfbd.com",
+        hostname: "electrocommerce.mustaqim.site",
       },
       {
         protocol: "https",
-        hostname: "api.oneselfbd.com",
+        hostname: "electrocommerce.mustaqim.site",
       },
     ],
   },
