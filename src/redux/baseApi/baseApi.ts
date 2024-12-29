@@ -55,7 +55,6 @@
 
 // export default baseApi;
 
-import config from "@/config/config";
 import {
   BaseQueryFn,
   createApi,
@@ -65,8 +64,8 @@ import { logOut, setUser } from "../features/auth/authSlice";
 import { RootState } from "../store";
 
 // Define the base URL for your API
-const baseUrl = `${config.base_url}/api/v1`;
-
+const baseUrl = `https://electrocommerce.mustaqim.site/api/v1`;
+//electrocommerce.mustaqim.site
 // Create a base query using fetchBaseQuery
 const baseQuery = fetchBaseQuery({
   baseUrl,
